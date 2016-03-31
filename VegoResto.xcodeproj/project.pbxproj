@@ -10,11 +10,20 @@
 		3978B2751CAC087A00D82040 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3978B2741CAC087A00D82040 /* libz.tbd */; };
 		3978B2771CAC088400D82040 /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3978B2761CAC088400D82040 /* libstdc++.tbd */; };
 		39968D3F1CABFFBB0085C61F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39968D3E1CABFFBB0085C61F /* AppDelegate.swift */; };
-		39968D411CABFFBB0085C61F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39968D401CABFFBB0085C61F /* ViewController.swift */; };
 		39968D441CABFFBB0085C61F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39968D421CABFFBB0085C61F /* Main.storyboard */; };
 		39968D471CABFFBB0085C61F /* VegoResto.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 39968D451CABFFBB0085C61F /* VegoResto.xcdatamodeld */; };
 		39968D491CABFFBB0085C61F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 39968D481CABFFBB0085C61F /* Assets.xcassets */; };
 		39968D4C1CABFFBB0085C61F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39968D4A1CABFFBB0085C61F /* LaunchScreen.storyboard */; };
+		39EC7FF01CAC0E15002AD862 /* MapsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EC7FEF1CAC0E15002AD862 /* MapsViewController.swift */; };
+		39EC7FF21CAC0EAF002AD862 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39EC7FF11CAC0EAF002AD862 /* MapKit.framework */; };
+		39EC7FF41CAC1F69002AD862 /* restaurants.json in Resources */ = {isa = PBXBuildFile; fileRef = 39EC7FF31CAC1F69002AD862 /* restaurants.json */; };
+		39EC7FF61CAC1F9F002AD862 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EC7FF51CAC1F9F002AD862 /* UserData.swift */; };
+		39EC7FFB1CAC223C002AD862 /* Tag+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EC7FF71CAC223C002AD862 /* Tag+CoreDataProperties.swift */; };
+		39EC7FFC1CAC223C002AD862 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EC7FF81CAC223C002AD862 /* Tag.swift */; };
+		39EC7FFD1CAC223C002AD862 /* Restaurant+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EC7FF91CAC223C002AD862 /* Restaurant+CoreDataProperties.swift */; };
+		39EC7FFE1CAC223C002AD862 /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EC7FFA1CAC223C002AD862 /* Restaurant.swift */; };
+		39EC80041CAC4787002AD862 /* RechercheViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EC80031CAC4787002AD862 /* RechercheViewController.swift */; };
+		39EC80061CAD5ED2002AD862 /* RestaurantAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EC80051CAD5ED2002AD862 /* RestaurantAnnotation.swift */; };
 		B9C69EA0EB7D4900CB10A0BF /* Pods_VegoResto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E1CAC8B923C643DB750F0E8 /* Pods_VegoResto.framework */; };
 /* End PBXBuildFile section */
 
@@ -23,12 +32,21 @@
 		3978B2761CAC088400D82040 /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
 		39968D3B1CABFFBA0085C61F /* VegoResto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VegoResto.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		39968D3E1CABFFBB0085C61F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		39968D401CABFFBB0085C61F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		39968D431CABFFBB0085C61F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		39968D461CABFFBB0085C61F /* VegoResto.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = VegoResto.xcdatamodel; sourceTree = "<group>"; };
 		39968D481CABFFBB0085C61F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		39968D4B1CABFFBB0085C61F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		39968D4D1CABFFBB0085C61F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		39EC7FEF1CAC0E15002AD862 /* MapsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapsViewController.swift; sourceTree = "<group>"; };
+		39EC7FF11CAC0EAF002AD862 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		39EC7FF31CAC1F69002AD862 /* restaurants.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = restaurants.json; sourceTree = "<group>"; };
+		39EC7FF51CAC1F9F002AD862 /* UserData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
+		39EC7FF71CAC223C002AD862 /* Tag+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Tag+CoreDataProperties.swift"; path = "NSManagedObject/Tag+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		39EC7FF81CAC223C002AD862 /* Tag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Tag.swift; path = NSManagedObject/Tag.swift; sourceTree = "<group>"; };
+		39EC7FF91CAC223C002AD862 /* Restaurant+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Restaurant+CoreDataProperties.swift"; path = "NSManagedObject/Restaurant+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		39EC7FFA1CAC223C002AD862 /* Restaurant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Restaurant.swift; path = NSManagedObject/Restaurant.swift; sourceTree = "<group>"; };
+		39EC80031CAC4787002AD862 /* RechercheViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RechercheViewController.swift; sourceTree = "<group>"; };
+		39EC80051CAD5ED2002AD862 /* RestaurantAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantAnnotation.swift; sourceTree = "<group>"; };
 		3E1CAC8B923C643DB750F0E8 /* Pods_VegoResto.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VegoResto.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4633F00877AD5D8A5A8EA809 /* Pods-VegoResto.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VegoResto.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VegoResto/Pods-VegoResto.debug.xcconfig"; sourceTree = "<group>"; };
 		8A4BAF8AAACF3E606D5A4601 /* Pods-VegoResto.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VegoResto.release.xcconfig"; path = "Pods/Target Support Files/Pods-VegoResto/Pods-VegoResto.release.xcconfig"; sourceTree = "<group>"; };
@@ -39,6 +57,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				39EC7FF21CAC0EAF002AD862 /* MapKit.framework in Frameworks */,
 				3978B2771CAC088400D82040 /* libstdc++.tbd in Frameworks */,
 				3978B2751CAC087A00D82040 /* libz.tbd in Frameworks */,
 				B9C69EA0EB7D4900CB10A0BF /* Pods_VegoResto.framework in Frameworks */,
@@ -55,6 +74,17 @@
 				8A4BAF8AAACF3E606D5A4601 /* Pods-VegoResto.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		397901751CADC62900597DCD /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				39EC7FF71CAC223C002AD862 /* Tag+CoreDataProperties.swift */,
+				39EC7FF81CAC223C002AD862 /* Tag.swift */,
+				39EC7FF91CAC223C002AD862 /* Restaurant+CoreDataProperties.swift */,
+				39EC7FFA1CAC223C002AD862 /* Restaurant.swift */,
+			);
+			name = CoreData;
 			sourceTree = "<group>";
 		};
 		39968D321CABFFBA0085C61F = {
@@ -78,8 +108,13 @@
 		39968D3D1CABFFBB0085C61F /* VegoResto */ = {
 			isa = PBXGroup;
 			children = (
+				397901751CADC62900597DCD /* CoreData */,
+				39EC7FF31CAC1F69002AD862 /* restaurants.json */,
+				39EC7FEF1CAC0E15002AD862 /* MapsViewController.swift */,
 				39968D3E1CABFFBB0085C61F /* AppDelegate.swift */,
-				39968D401CABFFBB0085C61F /* ViewController.swift */,
+				39EC80051CAD5ED2002AD862 /* RestaurantAnnotation.swift */,
+				39EC7FF51CAC1F9F002AD862 /* UserData.swift */,
+				39EC80031CAC4787002AD862 /* RechercheViewController.swift */,
 				39968D421CABFFBB0085C61F /* Main.storyboard */,
 				39968D481CABFFBB0085C61F /* Assets.xcassets */,
 				39968D4A1CABFFBB0085C61F /* LaunchScreen.storyboard */,
@@ -92,6 +127,7 @@
 		FDF1F99F6257ABBB1FA1CF5F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				39EC7FF11CAC0EAF002AD862 /* MapKit.framework */,
 				3978B2761CAC088400D82040 /* libstdc++.tbd */,
 				3978B2741CAC087A00D82040 /* libz.tbd */,
 				3E1CAC8B923C643DB750F0E8 /* Pods_VegoResto.framework */,
@@ -160,6 +196,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				39EC7FF41CAC1F69002AD862 /* restaurants.json in Resources */,
 				39968D4C1CABFFBB0085C61F /* LaunchScreen.storyboard in Resources */,
 				39968D491CABFFBB0085C61F /* Assets.xcassets in Resources */,
 				39968D441CABFFBB0085C61F /* Main.storyboard in Resources */,
@@ -221,9 +258,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				39968D411CABFFBB0085C61F /* ViewController.swift in Sources */,
+				39EC80061CAD5ED2002AD862 /* RestaurantAnnotation.swift in Sources */,
 				39968D3F1CABFFBB0085C61F /* AppDelegate.swift in Sources */,
+				39EC7FFD1CAC223C002AD862 /* Restaurant+CoreDataProperties.swift in Sources */,
+				39EC7FFB1CAC223C002AD862 /* Tag+CoreDataProperties.swift in Sources */,
+				39EC7FFC1CAC223C002AD862 /* Tag.swift in Sources */,
 				39968D471CABFFBB0085C61F /* VegoResto.xcdatamodeld in Sources */,
+				39EC7FF61CAC1F9F002AD862 /* UserData.swift in Sources */,
+				39EC7FF01CAC0E15002AD862 /* MapsViewController.swift in Sources */,
+				39EC7FFE1CAC223C002AD862 /* Restaurant.swift in Sources */,
+				39EC80041CAC4787002AD862 /* RechercheViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

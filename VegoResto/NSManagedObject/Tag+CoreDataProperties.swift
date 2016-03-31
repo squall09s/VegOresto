@@ -14,6 +14,6 @@ import CoreData
 
 extension Tag {
 
-    @NSManaged var name: UNKNOWN_TYPE
+    @NSManaged var name: String
 
 }
