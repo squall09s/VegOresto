@@ -10,6 +10,15 @@ import UIKit
 
 class RechercheViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    
+    @IBOutlet weak var varIB_tableView: UITableView!
+    
+    
+    let TAG_CELL_LABEL_NAME = 501
+    let TAG_CELL_LABEL_ADRESS = 502
+    
+    var array_restaurants : [Restaurant] = UserData.sharedInstance.getRestaurants()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -22,16 +31,28 @@ class RechercheViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        
+        if segue.identifier == "segue_to_detail" {
+            
+            if let detailRestaurantVC : DetailRestaurantViewController = segue.destinationViewController as? DetailRestaurantViewController {
+                
+                if let index = self.varIB_tableView.indexPathForSelectedRow?.row{
+                
+                    detailRestaurantVC.current_restaurant = self.array_restaurants[index]
+                }
+                
+            }
+            
+        }
+        
+        
     }
-    */
-    
+ 
     
     
     
@@ -47,19 +68,25 @@ class RechercheViewController: UIViewController, UITableViewDelegate, UITableVie
         
         if cell == nil
         {
+            
             cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: reuseIdentifier)
             
         }
         
         
+        let current_restaurant : Restaurant = self.array_restaurants[indexPath.row]
         
+        let label_name = cell?.viewWithTag(TAG_CELL_LABEL_NAME) as? UILabel
+        let label_adress = cell?.viewWithTag(TAG_CELL_LABEL_ADRESS) as? UILabel
+        
+
+        label_name?.text = current_restaurant.name
+        label_adress?.text = current_restaurant.address
         
         return cell!
         
     }
     
-    
-
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         
@@ -69,10 +96,7 @@ class RechercheViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return 10
+        return self.array_restaurants.count
     }
-    
-    
-   
     
 }
