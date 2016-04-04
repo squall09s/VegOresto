@@ -46,14 +46,14 @@ class UserData: NSObject {
     
     func chargerDonneesLocales(){
         
-        
-        
+   
         if self.getRestaurants().count > 0 {
             return
         }
         
         
         let entityStatut =  NSEntityDescription.entityForName("Restaurant",  inManagedObjectContext:managedContext)
+        let entityTag =  NSEntityDescription.entityForName("Tag",  inManagedObjectContext:managedContext)
         
         
         if let path = NSBundle.mainBundle().pathForResource("restaurants", ofType: "json"){
@@ -80,7 +80,7 @@ class UserData: NSObject {
                         new_restaurant.name = restaurant["name"] as? String
                         new_restaurant.website = restaurant["website"] as? String
                         new_restaurant.absolute_url = restaurant["absolute_url"] as? String
-                        new_restaurant.address = restaurant["address"] as? String
+                        new_restaurant.address = (restaurant["address"] as? String)?.stringByReplacingOccurrencesOfString("<br />", withString: "\n")
                         new_restaurant.phone = restaurant["phone"] as? String
                         new_restaurant.national_phone_number = restaurant["national_phone_number"] as? String
                         new_restaurant.international_phone_number = restaurant["international_phone_number"] as? String
@@ -89,19 +89,30 @@ class UserData: NSObject {
                         new_restaurant.lat = restaurant["lat"] as? NSNumber
                         new_restaurant.lon = restaurant["lon"] as? NSNumber
                         
+                        new_restaurant.tags = NSSet()
                         
+                        if let arrayTypes : [String] = restaurant["tags"] as? [String]{
+                        
+                        for type_name in arrayTypes {
+                            
+                            
+                            let new_tag = NSManagedObject(entity: entityTag!, insertIntoManagedObjectContext: managedContext) as! Tag
+                            
+                            new_tag.name = type_name
+                            
+                            new_restaurant.addTag(new_tag)
+                            
+                        }
+                        }
                     }
                     
                 }
                 
-                
             } catch {
-                print("error serializing JSON: \(error)")
+                Debug.log("error serializing JSON: \(error)")
             }
             }
             
-            
-    
         }
         
         
@@ -111,7 +122,7 @@ class UserData: NSObject {
             try managedContext.save()
         }
         catch _ {
-            print("erreur")
+            Debug.log("erreur save managedContext")
         }
         
         

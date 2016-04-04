@@ -14,4 +14,22 @@ class Restaurant: NSManagedObject {
 
 // Insert code here to add functionality to your managed object subclass
 
+    
+    func addTag(tag:Tag) {
+        
+        let tags = self.mutableSetValueForKey("tags")
+        tags.addObject(tag)
+        
+    }
+    
+ 
+    func getTags() -> [Tag]? {
+        var tmpTags: [Tag]?
+        tmpTags = (self.tags?.allObjects) as? [Tag]
+        
+        return tmpTags
+    }
+    
+    
+    
 }

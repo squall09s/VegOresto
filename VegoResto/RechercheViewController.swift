@@ -8,8 +8,12 @@
 
 import UIKit
 
-class RechercheViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-
+class RechercheViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate{
+    
+    
+    
+    @IBOutlet weak var varIB_searchBar: UISearchBar!
+    
     
     @IBOutlet weak var varIB_tableView: UITableView!
     
@@ -17,23 +21,26 @@ class RechercheViewController: UIViewController, UITableViewDelegate, UITableVie
     let TAG_CELL_LABEL_NAME = 501
     let TAG_CELL_LABEL_ADRESS = 502
     
+    let TAG_CELL_IMAGEVIEW_VEGAN = 503
+    let TAG_CELL_IMAGEVIEW_GLUTEN = 504
+    
     var array_restaurants : [Restaurant] = UserData.sharedInstance.getRestaurants()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-
+    
     
     // MARK: - Navigation
-
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
@@ -42,7 +49,7 @@ class RechercheViewController: UIViewController, UITableViewDelegate, UITableVie
             if let detailRestaurantVC : DetailRestaurantViewController = segue.destinationViewController as? DetailRestaurantViewController {
                 
                 if let index = self.varIB_tableView.indexPathForSelectedRow?.row{
-                
+                    
                     detailRestaurantVC.current_restaurant = self.array_restaurants[index]
                 }
                 
@@ -52,13 +59,13 @@ class RechercheViewController: UIViewController, UITableViewDelegate, UITableVie
         
         
     }
- 
+    
     
     
     
     // MARK: UITableViewDelegate Delegate
     
-
+    
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
@@ -79,9 +86,49 @@ class RechercheViewController: UIViewController, UITableViewDelegate, UITableVie
         let label_name = cell?.viewWithTag(TAG_CELL_LABEL_NAME) as? UILabel
         let label_adress = cell?.viewWithTag(TAG_CELL_LABEL_ADRESS) as? UILabel
         
-
+        
         label_name?.text = current_restaurant.name
         label_adress?.text = current_restaurant.address
+        
+        
+        var nom_image_vegan = "img_vegan_off"
+        var nom_image_gluten = "img_gluten_free_off"
+        
+        if let array_tags : [Tag] = current_restaurant.getTags(){
+            
+            for tag in array_tags{
+                
+                if tag.name == "vegan"{
+                    
+                    nom_image_vegan = "img_vegan_on"
+                    
+                }else if tag.name == "gluten-free"{
+                    
+                    nom_image_gluten = "img_gluten_free_on"
+                    
+                }
+                
+            }
+            
+        }
+        
+        if let imageview_vegan = cell?.viewWithTag(TAG_CELL_IMAGEVIEW_VEGAN) as? UIImageView{
+            
+            if let image = UIImage(named: nom_image_vegan){
+                imageview_vegan.image = image
+            }
+            
+        }
+        
+        
+        if let imageview_gluten = cell?.viewWithTag(TAG_CELL_IMAGEVIEW_GLUTEN) as? UIImageView{
+            
+            if let image = UIImage(named: nom_image_gluten){
+                imageview_gluten.image = image
+            }
+            
+        }
+        
         
         return cell!
         
@@ -98,5 +145,124 @@ class RechercheViewController: UIViewController, UITableViewDelegate, UITableVie
         
         return self.array_restaurants.count
     }
+    
+    
+    
+    
+    // MARK: UISearchBar Delegate
+    
+    
+    func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
+        
+        let textField : UITextField? = self.findTextFieldInView( searchBar)
+        
+        if let _textField = textField{
+            _textField.enablesReturnKeyAutomatically = false
+        }
+        
+        
+    }
+    
+    func searchBarShouldEndEditing(searchBar: UISearchBar) -> Bool{
+        
+        searchBar.resignFirstResponder()
+        
+        return true
+    }
+    
+    
+    func searchBar(searchBar: UISearchBar, textDidChange searchText: String){
+        
+        self.loadRestaurantsWithWord(searchText)
+        self.varIB_tableView?.reloadData()
+    }
+    
+    
+    func searchBarSearchButtonClicked(searchBar: UISearchBar){
+        
+        searchBar.resignFirstResponder()
+    }
+    
+    func searchBarCancelButtonClicked(searchBar: UISearchBar){
+        
+        self.loadRestaurantsWithWord(nil)
+        self.varIB_tableView?.reloadData()
+    }
+    
+    func searchBarResultsListButtonClicked(searchBar: UISearchBar){
+        
+        searchBar.resignFirstResponder()
+        
+    }
+    
+    
+    
+    func findTextFieldInView(view : UIView)  -> UITextField? {
+        
+        if view.isKindOfClass(UITextField) {
+            
+            return view as? UITextField
+            
+        }
+        
+        
+        for subview : UIView in view.subviews {
+            
+            let textField : UITextField? = self.findTextFieldInView(subview)
+            
+            if let _textField = textField {
+                
+                return _textField
+                
+            }
+            
+        }
+        
+        return nil
+        
+    }
+    
+    
+    
+    
+    func loadRestaurantsWithWord(key : String?){
+        
+        self.array_restaurants = UserData.sharedInstance.getRestaurants()
+        
+        if let _key = key {
+            
+            if _key.characters.count > 3 {
+            
+            self.array_restaurants = self.array_restaurants.flatMap({ (current_restaurant : Restaurant) -> Restaurant? in
+                
+                
+                if let name = current_restaurant.name {
+                    
+                    if name.containsString(_key){
+                        return current_restaurant
+                    }
+                    
+                }
+                
+                if let adress = current_restaurant.address {
+                    
+                    if adress.containsString(_key){
+                        return current_restaurant
+                    }
+                    
+                }
+                
+                return nil
+                
+                
+            })
+                
+            }
+            
+        }
+        
+        
+    }
+    
     
 }

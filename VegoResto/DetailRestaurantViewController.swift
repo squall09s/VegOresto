@@ -11,25 +11,23 @@ import UIKit
 class DetailRestaurantViewController: UIViewController {
 
     @IBOutlet weak var varIB_label_name: UILabel!
+    @IBOutlet weak var varIB_label_adresse : UILabel!
+    
+    @IBOutlet weak var varIB_label_phone : UILabel!
+
     
     var current_restaurant : Restaurant? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
+    
         if let _current_restaurant =  self.current_restaurant {
             
            self.varIB_label_name.text = _current_restaurant.name
+           self.varIB_label_adresse.text = _current_restaurant.address
             
-        }else{
-            
-            UIAlertView(title: "Error", message: "Aucun restaurant trouvé", delegate: nil, cancelButtonTitle: "ok", otherButtonTitles: "").show()
-            
-        
-            
-           // UIAlertController(title: "Error", message: "Aucun restaurant trouvé.", preferredStyle: UIAlertControllerStyle.Alert).pr
-            
+           self.varIB_label_phone.text = _current_restaurant.phone
         }
         
         // Do any additional setup after loading the view.
@@ -41,6 +39,22 @@ class DetailRestaurantViewController: UIViewController {
     }
     
 
+    override func viewDidAppear(animated: Bool) {
+        
+        super.viewDidAppear(animated)
+        
+        /*
+        let alertController = UIAlertController(title: "Error", message: "Aucun restaurant trouvé.", preferredStyle: UIAlertControllerStyle.Alert)
+        
+        alertController.addAction( UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil  ) )
+        
+        self.presentViewController(alertController, animated: true, completion: nil)
+        */
+        
+        
+    }
+    
+    
     @IBAction func touch_bt_back(sender: AnyObject) {
     
         self.dismissViewControllerAnimated(true) { 
@@ -49,6 +63,30 @@ class DetailRestaurantViewController: UIViewController {
         }
         
     }
+    
+    
+    @IBAction func touch_bt_phone(sender: AnyObject) {
+        
+    
+    }
+    
+    
+    @IBAction func touch_bt_maps(sender: AnyObject) {
+        
+    
+    }
+    
+    @IBAction func touch_bt_site_web(sender: AnyObject) {
+    
+        
+    }
+    
+    
+    @IBAction func touch_bt_more_informations(sender: AnyObject) {
+        
+        
+    }
+    
     
     /*
     // MARK: - Navigation
