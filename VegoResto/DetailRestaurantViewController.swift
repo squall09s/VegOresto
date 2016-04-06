@@ -15,6 +15,9 @@ class DetailRestaurantViewController: UIViewController {
     
     @IBOutlet weak var varIB_label_phone : UILabel!
 
+    @IBOutlet weak var varIB_image_vegan : UIImageView!
+    @IBOutlet weak var varIB_image_gluten_free : UIImageView!
+    
     
     var current_restaurant : Restaurant? = nil
     
@@ -28,7 +31,16 @@ class DetailRestaurantViewController: UIViewController {
            self.varIB_label_adresse.text = _current_restaurant.address
             
            self.varIB_label_phone.text = _current_restaurant.phone
+            
+            let tags_presents = _current_restaurant.tags_are_present()
+            
+            varIB_image_vegan?.image = UIImage(named: tags_presents.is_vegan ?         "img_vegan_on"          :  "img_vegan_off_white")
+            
+            varIB_image_gluten_free?.image = UIImage(named: tags_presents.is_gluten_free ?   "img_gluten_free_on"   :  "img_gluten_free_off_white")
+            
+            
         }
+        
         
         // Do any additional setup after loading the view.
     }
@@ -51,8 +63,8 @@ class DetailRestaurantViewController: UIViewController {
         self.presentViewController(alertController, animated: true, completion: nil)
         */
         
-        
     }
+    
     
     
     @IBAction func touch_bt_back(sender: AnyObject) {
@@ -67,17 +79,31 @@ class DetailRestaurantViewController: UIViewController {
     
     @IBAction func touch_bt_phone(sender: AnyObject) {
         
-    
+        if let phone : String = self.current_restaurant?.national_phone_number {
+            
+            UIApplication.sharedApplication().openURL(NSURL(string: "telprompt://" + phone)!)
+        }
     }
     
     
     @IBAction func touch_bt_maps(sender: AnyObject) {
         
-    
+        
     }
     
     @IBAction func touch_bt_site_web(sender: AnyObject) {
     
+        guard
+        
+        let url_str = self.current_restaurant?.absolute_url,
+        let url = NSURL(string: url_str)
+        
+        else{
+            return
+        }
+        
+        
+        UIApplication.sharedApplication().openURL( url )
         
     }
     
@@ -86,6 +112,21 @@ class DetailRestaurantViewController: UIViewController {
         
         
     }
+   
+    
+    @IBAction func touch_bt_share(sender: AnyObject) {
+        
+        if let textToShare = self.current_restaurant?.absolute_url{
+            
+            let objectsToShare = [textToShare]
+            
+            let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
+            
+            self.presentViewController(activityVC, animated: true, completion: nil)
+            
+        }
+    }
+    
     
     
     /*

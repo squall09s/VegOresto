@@ -91,42 +91,19 @@ class RechercheViewController: UIViewController, UITableViewDelegate, UITableVie
         label_adress?.text = current_restaurant.address
         
         
-        var nom_image_vegan = "img_vegan_off"
-        var nom_image_gluten = "img_gluten_free_off"
         
-        if let array_tags : [Tag] = current_restaurant.getTags(){
-            
-            for tag in array_tags{
-                
-                if tag.name == "vegan"{
-                    
-                    nom_image_vegan = "img_vegan_on"
-                    
-                }else if tag.name == "gluten-free"{
-                    
-                    nom_image_gluten = "img_gluten_free_on"
-                    
-                }
-                
-            }
-            
-        }
+        let tags_presents = current_restaurant.tags_are_present()
         
+    
         if let imageview_vegan = cell?.viewWithTag(TAG_CELL_IMAGEVIEW_VEGAN) as? UIImageView{
             
-            if let image = UIImage(named: nom_image_vegan){
-                imageview_vegan.image = image
-            }
-            
+            imageview_vegan.image = UIImage(named: tags_presents.is_vegan ?         "img_vegan_on"          :  "img_vegan_off")
         }
         
         
         if let imageview_gluten = cell?.viewWithTag(TAG_CELL_IMAGEVIEW_GLUTEN) as? UIImageView{
-            
-            if let image = UIImage(named: nom_image_gluten){
-                imageview_gluten.image = image
-            }
-            
+        
+            imageview_gluten.image = UIImage(named: tags_presents.is_gluten_free ?   "img_gluten_free_on"   :  "img_gluten_free_off")
         }
         
         

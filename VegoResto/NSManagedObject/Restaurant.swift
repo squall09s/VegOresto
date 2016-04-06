@@ -32,4 +32,32 @@ class Restaurant: NSManagedObject {
     
     
     
+    func tags_are_present() -> ( is_vegan : Bool , is_gluten_free : Bool ){
+        
+        var is_vegan = false
+        var is_gluten_free = false
+        
+        if let array_tags : [Tag] = self.getTags(){
+            
+            for tag in array_tags{
+                
+                if tag.name == "vegan"{
+                    
+                    is_vegan = true
+                    
+                }else if tag.name == "gluten-free"{
+                    
+                    is_gluten_free = true
+                    
+                }
+                
+            }
+            
+        }
+        
+        return (is_vegan , is_gluten_free)
+        
+    }
+    
+    
 }
