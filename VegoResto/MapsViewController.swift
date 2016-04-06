@@ -9,6 +9,7 @@
 import UIKit
 import MapKit
 import FBAnnotationClusteringSwift
+import SVPulsingAnnotationView
 
 class MapsViewController: UIViewController, MKMapViewDelegate {
     
@@ -17,9 +18,11 @@ class MapsViewController: UIViewController, MKMapViewDelegate {
     @IBOutlet weak var varIB_mapView: MKMapView!
     
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        
         
         
         var array : [FBAnnotation] = [FBAnnotation]()
@@ -39,6 +42,9 @@ class MapsViewController: UIViewController, MKMapViewDelegate {
         }
         
         clusteringManager.addAnnotations(array)
+        
+        
+        self.varIB_mapView.showsUserLocation = true
         
         // Do any additional setup after loading the view, typically from a nib.
     }
@@ -68,11 +74,13 @@ class MapsViewController: UIViewController, MKMapViewDelegate {
         var reuseId = ""
         
         if annotation.isKindOfClass(FBAnnotationCluster) {
+            
             reuseId = "Cluster"
             var clusterView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId)
             clusterView = FBAnnotationClusterView(annotation: annotation, reuseIdentifier: reuseId, options: nil)
             return clusterView
-        } else {
+            
+        } else if annotation.isKindOfClass(RestaurantAnnotation)  {
             
             reuseId = "Pin"
             var pinView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId) as? MKPinAnnotationView
@@ -95,7 +103,25 @@ class MapsViewController: UIViewController, MKMapViewDelegate {
             pinView!.detailCalloutAccessoryView = myView
             
             return pinView
-        }
+        
+        }else {
+            
+                
+            print("current ici ")
+                
+            reuseId = "currentLocation"
+            
+            var pulsingView : SVPulsingAnnotationView? =  mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId) as? SVPulsingAnnotationView
+    
+            if pulsingView == nil{
+                
+                pulsingView = SVPulsingAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+                pulsingView!.annotationColor = UIColor(red: 0.678431, green: 0.0, blue: 0.0, alpha: 1.0)
+                pulsingView!.canShowCallout = true
+            
+            }
+        
+            return pulsingView
         
     }
     
@@ -120,17 +146,24 @@ class MapsViewController: UIViewController, MKMapViewDelegate {
             
         }
             
-        
-        
     
-        
-        
-        
-        
-        
     }
     
     
+    
+    
+    @IBAction func touch_bt_location(sender: AnyObject) {
+        
+        if let location = UserData.sharedInstance.location{
+        
+        let center = CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)
+        let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+        
+        self.varIB_mapView.setRegion(region, animated: true)
+            
+        }
+    }
+     
     
     
 }

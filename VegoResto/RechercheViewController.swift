@@ -201,7 +201,6 @@ class RechercheViewController: UIViewController, UITableViewDelegate, UITableVie
     
     
     
-    
     func loadRestaurantsWithWord(key : String?){
         
         self.array_restaurants = UserData.sharedInstance.getRestaurants()
@@ -213,21 +212,22 @@ class RechercheViewController: UIViewController, UITableViewDelegate, UITableVie
             self.array_restaurants = self.array_restaurants.flatMap({ (current_restaurant : Restaurant) -> Restaurant? in
                 
                 
-                if let name = current_restaurant.name {
+                if let unaccentedStringName : String = current_restaurant.name?.stringByFoldingWithOptions( NSStringCompareOptions.DiacriticInsensitiveSearch , locale: NSLocale.currentLocale() ){
                     
-                    if name.containsString(_key){
+                    if unaccentedStringName.containsString(_key){
                         return current_restaurant
                     }
+                    
                     
                 }
                 
-                if let adress = current_restaurant.address {
+                if let unaccentedStringAdress : String = current_restaurant.address?.stringByFoldingWithOptions( NSStringCompareOptions.DiacriticInsensitiveSearch , locale: NSLocale.currentLocale() ){
                     
-                    if adress.containsString(_key){
+                    if unaccentedStringAdress.containsString(_key){
                         return current_restaurant
                     }
-                    
                 }
+                
                 
                 return nil
                 

@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10083"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
@@ -18,12 +19,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="wQa-al-Uge">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wQa-al-Uge">
                                 <rect key="frame" x="10" y="30" width="580" height="560"/>
                                 <connections>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="zmg-7f-WLi"/>
                                 </connections>
                             </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aFt-ES-0Pg">
+                                <rect key="frame" x="534" y="0.0" width="46" height="30"/>
+                                <color key="backgroundColor" red="0.56862747670000002" green="0.16078431900000001" blue="0.1764705926" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="46" id="UP0-Ko-UdB"/>
+                                    <constraint firstAttribute="height" constant="30" id="bfj-HF-szr"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="touch_bt_location:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hEW-uJ-s0D"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -31,6 +43,8 @@
                             <constraint firstAttribute="trailing" secondItem="wQa-al-Uge" secondAttribute="trailing" constant="10" id="4vF-UN-9e5"/>
                             <constraint firstItem="wQa-al-Uge" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="10" id="eJ3-9e-1cb"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="wQa-al-Uge" secondAttribute="bottom" constant="10" id="erO-Yp-jES"/>
+                            <constraint firstItem="aFt-ES-0Pg" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" id="pAM-WH-ZfR"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="aFt-ES-0Pg" secondAttribute="trailing" id="uda-A7-FJ1"/>
                         </constraints>
                     </view>
                     <connections>

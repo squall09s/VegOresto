@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import CoreLocation
+import MapKit
 
 class DetailRestaurantViewController: UIViewController {
 
@@ -79,8 +81,10 @@ class DetailRestaurantViewController: UIViewController {
     
     @IBAction func touch_bt_phone(sender: AnyObject) {
         
-        if let phone : String = self.current_restaurant?.national_phone_number {
+        if let phone : String = self.current_restaurant?.international_phone_number {
             
+            
+            print("num = \(phone)")
             UIApplication.sharedApplication().openURL(NSURL(string: "telprompt://" + phone)!)
         }
     }
@@ -88,14 +92,28 @@ class DetailRestaurantViewController: UIViewController {
     
     @IBAction func touch_bt_maps(sender: AnyObject) {
         
+        if let latitude = self.current_restaurant?.lat?.doubleValue , longitude = self.current_restaurant?.lon?.doubleValue {
         
+        let regionDistance:CLLocationDistance = 10000
+        let coordinates = CLLocationCoordinate2DMake(latitude, longitude)
+        let regionSpan = MKCoordinateRegionMakeWithDistance(coordinates, regionDistance, regionDistance)
+        let options = [
+            MKLaunchOptionsMapCenterKey: NSValue(MKCoordinate: regionSpan.center),
+            MKLaunchOptionsMapSpanKey: NSValue(MKCoordinateSpan: regionSpan.span)
+        ]
+        let placemark = MKPlacemark(coordinate: coordinates, addressDictionary: nil)
+        let mapItem = MKMapItem(placemark: placemark)
+        mapItem.name = self.current_restaurant?.name
+        mapItem.openInMapsWithLaunchOptions(options)
+        
+        }
     }
     
     @IBAction func touch_bt_site_web(sender: AnyObject) {
     
         guard
         
-        let url_str = self.current_restaurant?.absolute_url,
+        let url_str = self.current_restaurant?.website,
         let url = NSURL(string: url_str)
         
         else{
@@ -110,6 +128,18 @@ class DetailRestaurantViewController: UIViewController {
     
     @IBAction func touch_bt_more_informations(sender: AnyObject) {
         
+        
+        guard
+            
+            let url_str = self.current_restaurant?.absolute_url,
+            let url = NSURL(string: url_str)
+            
+            else{
+                return
+        }
+        
+        
+        UIApplication.sharedApplication().openURL( url )
         
     }
    

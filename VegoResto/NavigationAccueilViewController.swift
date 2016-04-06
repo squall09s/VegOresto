@@ -26,6 +26,8 @@ class NavigationAccueilViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        
+        
         // Do any additional setup after loading the view.
         
         let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
@@ -33,6 +35,9 @@ class NavigationAccueilViewController: UIViewController {
         self.recherche_viewController = storyboard.instantiateViewControllerWithIdentifier("RechercheViewController") as? RechercheViewController
 
         self.maps_viewController = storyboard.instantiateViewControllerWithIdentifier("MapsViewController") as? MapsViewController
+        
+        
+        
         
     }
     
@@ -60,6 +65,8 @@ class NavigationAccueilViewController: UIViewController {
             vc.didMoveToParentViewController(self)
             vc.view.frame = CGRectMake( Device.LARGEUR, 0, Device.LARGEUR, Device.HAUTEUR - HAUTEUR_HEADER_BAR - HAUTEUR_TABBAR )
         }
+        
+        
         
     }
     
