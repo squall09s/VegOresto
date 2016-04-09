@@ -20,6 +20,8 @@ class RechercheViewController: UIViewController, UITableViewDelegate, UITableVie
     
     let TAG_CELL_LABEL_NAME = 501
     let TAG_CELL_LABEL_ADRESS = 502
+    let TAG_CELL_LABEL_DISTANCE = 505
+    
     
     let TAG_CELL_IMAGEVIEW_VEGAN = 503
     let TAG_CELL_IMAGEVIEW_GLUTEN = 504
@@ -85,12 +87,36 @@ class RechercheViewController: UIViewController, UITableViewDelegate, UITableVie
         
         let label_name = cell?.viewWithTag(TAG_CELL_LABEL_NAME) as? UILabel
         let label_adress = cell?.viewWithTag(TAG_CELL_LABEL_ADRESS) as? UILabel
-        
+        let label_distance = cell?.viewWithTag(TAG_CELL_LABEL_DISTANCE) as? UILabel
         
         label_name?.text = current_restaurant.name
         label_adress?.text = current_restaurant.address
         
         
+        label_distance?.text = ""
+        
+        if let distance : Double = current_restaurant.distance{
+            
+            if distance > 0 {
+                
+                if distance < 1000 {
+                    
+                    label_distance?.text = String(Int(distance)) + " m"
+                    
+                }else {
+                    
+                    label_distance?.text = String(format: "%.1f Km", distance/1000.0 )
+                    
+                }
+                
+            }
+            
+            
+            
+            
+            
+            
+        }
         
         let tags_presents = current_restaurant.tags_are_present()
         
@@ -238,6 +264,29 @@ class RechercheViewController: UIViewController, UITableViewDelegate, UITableVie
             
         }
         
+        
+    }
+    
+    
+    func update_resultats_for_user_location(){
+        
+        if let location = UserData.sharedInstance.location{
+        
+        for restaurant in self.array_restaurants{
+            
+            restaurant.update_distance_avec_localisation( location )
+            
+        }
+        
+        self.array_restaurants.sortInPlace({ (restaurantA, restaurantB) -> Bool in
+            
+            restaurantA.distance < restaurantB.distance
+            
+        })
+            
+        self.varIB_tableView.reloadData()
+            
+        }
         
     }
     

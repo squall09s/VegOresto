@@ -8,12 +8,14 @@
 
 import Foundation
 import CoreData
+import MapKit
 
 @objc(Restaurant)
 class Restaurant: NSManagedObject {
 
 // Insert code here to add functionality to your managed object subclass
 
+    var distance : Double = -1
     
     func addTag(tag:Tag) {
         
@@ -30,6 +32,15 @@ class Restaurant: NSManagedObject {
         return tmpTags
     }
     
+    
+    func update_distance_avec_localisation(location : CLLocationCoordinate2D) {
+        
+        if let longitude = self.lon?.doubleValue , latitude = self.lat?.doubleValue {
+        
+            self.distance = CLLocation(latitude:  location.latitude, longitude: location.longitude ).distanceFromLocation( CLLocation(latitude:  latitude, longitude: longitude ))
+        }
+        
+    }
     
     
     func tags_are_present() -> ( is_vegan : Bool , is_gluten_free : Bool ){

@@ -16,7 +16,8 @@ class UserData: NSObject,  CLLocationManagerDelegate {
     static let sharedInstance = UserData()
     
     private var locationmanager : CLLocationManager?
-    var location : CLLocationCoordinate2D?
+    
+    var location : CLLocationCoordinate2D? = nil
     
     var managedContext = ( UIApplication.sharedApplication().delegate as! AppDelegate ).managedObjectContext
    
@@ -61,6 +62,8 @@ class UserData: NSObject,  CLLocationManagerDelegate {
     func chargerDonneesLocales(){
         
    
+        
+        
         if self.getRestaurants().count > 0 {
             return
         }
@@ -92,12 +95,12 @@ class UserData: NSObject,  CLLocationManagerDelegate {
                         let new_restaurant = NSManagedObject(entity: entityStatut!, insertIntoManagedObjectContext: managedContext) as! Restaurant
                         
                         new_restaurant.name = restaurant["name"] as? String
-                        new_restaurant.name = new_restaurant.name?.stringByReplacingOccurrencesOfString("&#039", withString: "'")
+                        new_restaurant.name = new_restaurant.name?.stringByReplacingOccurrencesOfString("&#039;", withString: "'")
                         
                         new_restaurant.website = restaurant["website"] as? String
                         new_restaurant.absolute_url = restaurant["absolute_url"] as? String
                         new_restaurant.address = (restaurant["address"] as? String)?.stringByReplacingOccurrencesOfString("<br />", withString: "\n")
-                        new_restaurant.address = new_restaurant.address?.stringByReplacingOccurrencesOfString("&#039", withString: "'")
+                        new_restaurant.address = new_restaurant.address?.stringByReplacingOccurrencesOfString("&#039;", withString: "'")
                         
                         new_restaurant.phone = restaurant["phone"] as? String
                         new_restaurant.national_phone_number = restaurant["national_phone_number"] as? String
@@ -150,8 +153,6 @@ class UserData: NSObject,  CLLocationManagerDelegate {
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
-        
-        print("location update")
         
         let location = locations.last
         

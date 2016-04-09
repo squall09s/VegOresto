@@ -22,9 +22,6 @@ class MapsViewController: UIViewController, MKMapViewDelegate {
         super.viewDidLoad()
         
         
-        
-        
-        
         var array : [FBAnnotation] = [FBAnnotation]()
         
         for restaurant in UserData.sharedInstance.getRestaurants()  {
@@ -34,7 +31,7 @@ class MapsViewController: UIViewController, MKMapViewDelegate {
                 let current_pin = RestaurantAnnotation(_titre: restaurant.name, _telephone: restaurant.phone, _url: restaurant.absolute_url, _adresse: restaurant.address, _tag: [Tag]() )
                 
                 current_pin.coordinate = CLLocationCoordinate2D(latitude:  Double(lat), longitude: Double(lon) )
-            
+                
                 array.append(current_pin)
                 
             }
@@ -94,35 +91,33 @@ class MapsViewController: UIViewController, MKMapViewDelegate {
             let myView = UIView()
             myView.backgroundColor = .greenColor()
             
-            let widthConstraint = NSLayoutConstraint(item: myView, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1, constant: 150)
+            let widthConstraint = NSLayoutConstraint(item: myView, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1, constant: 220)
             myView.addConstraint(widthConstraint)
             
-            let heightConstraint = NSLayoutConstraint(item: myView, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1, constant: 50)
+            let heightConstraint = NSLayoutConstraint(item: myView, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1, constant: 70)
             myView.addConstraint(heightConstraint)
             
             pinView!.detailCalloutAccessoryView = myView
             
             return pinView
-        
+            
         }else {
             
-                
-            print("current ici ")
-                
+            
             reuseId = "currentLocation"
             
             var pulsingView : SVPulsingAnnotationView? =  mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId) as? SVPulsingAnnotationView
-    
+            
             if pulsingView == nil{
                 
                 pulsingView = SVPulsingAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
                 pulsingView!.annotationColor = UIColor(red: 0.678431, green: 0.0, blue: 0.0, alpha: 1.0)
                 pulsingView!.canShowCallout = true
-            
+                
             }
-        
+            
             return pulsingView
-        
+        }
     }
     
     
@@ -138,32 +133,50 @@ class MapsViewController: UIViewController, MKMapViewDelegate {
                 
                 //if let restaurantAnnotation = annotation as? RestaurantAnnotation {
                 
-                    
-                
                 //}
                 
             }
             
         }
-            
+        
+        
+    }
     
+    
+    // permet de conserver l'annotation de la position de l'user toujours au dessus des autres (Z-Index).
+    func mapView(mapView: MKMapView, didAddAnnotationViews views: [MKAnnotationView]) {
+        
+        for view : MKAnnotationView in views
+        {
+            if let annotation = view.annotation{
+                
+                if annotation.isKindOfClass(MKUserLocation)
+                {
+                    view.superview?.bringSubviewToFront(view)
+                }
+                else
+                {
+                    view.superview?.sendSubviewToBack(view)
+                }
+            }
+        }
+        
+        
     }
     
     
     
-    
-    @IBAction func touch_bt_location(sender: AnyObject) {
+    func update_region_for_user_location(){
         
         if let location = UserData.sharedInstance.location{
-        
-        let center = CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)
-        let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
-        
-        self.varIB_mapView.setRegion(region, animated: true)
+            
+            let center = CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)
+            let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+            
+            self.varIB_mapView.setRegion(region, animated: true)
             
         }
     }
-     
     
     
 }

@@ -41,6 +41,12 @@ class DetailRestaurantViewController: UIViewController {
             varIB_image_gluten_free?.image = UIImage(named: tags_presents.is_gluten_free ?   "img_gluten_free_on"   :  "img_gluten_free_off_white")
             
             
+            if ( _current_restaurant.website == nil || ( _current_restaurant.website == "" ) ) {
+                
+                // griser case bouton msite web
+            }
+            
+            
         }
         
         
@@ -84,7 +90,6 @@ class DetailRestaurantViewController: UIViewController {
         if let phone : String = self.current_restaurant?.international_phone_number {
             
             
-            print("num = \(phone)")
             UIApplication.sharedApplication().openURL(NSURL(string: "telprompt://" + phone)!)
         }
     }
@@ -110,18 +115,26 @@ class DetailRestaurantViewController: UIViewController {
     }
     
     @IBAction func touch_bt_site_web(sender: AnyObject) {
-    
-        guard
         
-        let url_str = self.current_restaurant?.website,
-        let url = NSURL(string: url_str)
         
-        else{
-            return
+        if let url_str = self.current_restaurant?.website{
+            
+            var url_str_avec_prefix = url_str
+            
+            if !(url_str_avec_prefix.hasPrefix("http://")) {
+                
+                url_str_avec_prefix = "http://\(url_str_avec_prefix)"
+                
+                
+            }
+            
+            if let url = NSURL(string: url_str_avec_prefix){
+                
+                UIApplication.sharedApplication().openURL( url )
+            }
         }
+         
         
-        
-        UIApplication.sharedApplication().openURL( url )
         
     }
     
