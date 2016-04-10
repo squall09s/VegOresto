@@ -2,7 +2,7 @@
 //  ColorExtension.swift
 //  ManageColabApps
 //
-//  Created by Laurent Nicolas (141 - LILLE TOURCOING) on 21/10/2015.
+//  Created by Laurent Nicolas on 21/10/2015.
 //  Copyright © 2015 sopra. All rights reserved.
 //
 

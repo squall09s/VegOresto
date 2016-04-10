@@ -73,19 +73,34 @@ class MapsViewController: UIViewController, MKMapViewDelegate {
         if annotation.isKindOfClass(FBAnnotationCluster) {
             
             reuseId = "Cluster"
+            
             var clusterView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId)
-            clusterView = FBAnnotationClusterView(annotation: annotation, reuseIdentifier: reuseId, options: nil)
+            
+            if clusterView == nil {
+                
+                clusterView = FBAnnotationClusterView(annotation: annotation, reuseIdentifier: reuseId, options: nil)
+                
+            }
+            
+            
+            
             return clusterView
             
         } else if annotation.isKindOfClass(RestaurantAnnotation)  {
             
-            reuseId = "Pin"
-            var pinView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId) as? MKPinAnnotationView
-            pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
-            pinView!.pinTintColor = UIColor.greenColor()
+            reuseId = "myIdentifier"
             
-            pinView!.canShowCallout = true
-            pinView!.animatesDrop = false
+            var pinView : MKAnnotationView? = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId)
+            
+            if pinView == nil {
+                
+                pinView = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+            
+                pinView?.canShowCallout = true
+                //pinView?.animatesDrop = false
+                
+            }
+            
             
             
             let myView = UIView()
@@ -97,7 +112,11 @@ class MapsViewController: UIViewController, MKMapViewDelegate {
             let heightConstraint = NSLayoutConstraint(item: myView, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1, constant: 70)
             myView.addConstraint(heightConstraint)
             
-            pinView!.detailCalloutAccessoryView = myView
+            pinView?.detailCalloutAccessoryView = myView
+            
+            
+            pinView?.image = UIImage(named: "img_anotation")
+            pinView?.centerOffset = CGPointMake(0,-pinView!.frame.size.height*0.5);
             
             return pinView
             
