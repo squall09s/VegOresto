@@ -22,12 +22,9 @@ class NavigationAccueilViewController: UIViewController {
     let HAUTEUR_HEADER_BAR = CGFloat(70.0)
     let HAUTEUR_TABBAR = CGFloat(60.0)
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
-        
         // Do any additional setup after loading the view.
         
         let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
@@ -36,19 +33,16 @@ class NavigationAccueilViewController: UIViewController {
 
         self.maps_viewController = storyboard.instantiateViewControllerWithIdentifier("MapsViewController") as? MapsViewController
         
-        
         self.varIB_button_tabbar_list.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.3)
         self.varIB_button_tabbar_maps.backgroundColor = UIColor.clearColor()
         
     }
-    
     
     override func viewDidAppear(animated: Bool) {
         
         super.viewDidAppear(animated)
         
         self.varIB_scrollView.contentSize = CGSizeMake(self.varIB_scrollView.frame.width * 2.0, Device.HAUTEUR )
-        
         
         if let vc : RechercheViewController = self.recherche_viewController {
             
@@ -57,7 +51,6 @@ class NavigationAccueilViewController: UIViewController {
             vc.didMoveToParentViewController(self)
             vc.view.frame = CGRectMake(0, 0, Device.LARGEUR , Device.HAUTEUR - HAUTEUR_HEADER_BAR - HAUTEUR_TABBAR )
         }
-        
         
         if let vc : MapsViewController = self.maps_viewController {
             
@@ -79,7 +72,6 @@ class NavigationAccueilViewController: UIViewController {
         
     }
     
-    
     /*
     // MARK: - Navigation
 
@@ -89,20 +81,16 @@ class NavigationAccueilViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-    
 
-    
     @IBAction func touch_bt_tabbar(sender: UIButton){
      
         
         if self.varIB_button_tabbar_list == sender {
         
-            
                 self.varIB_scrollView.scrollRectToVisible( CGRectMake(0, 0, Device.LARGEUR , Device.HAUTEUR - HAUTEUR_HEADER_BAR - HAUTEUR_TABBAR ), animated: true )
            
             UIView.animateWithDuration(0.2, animations: {
                 
-            
                 self.varIB_button_tabbar_list.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.3)
                 self.varIB_button_tabbar_maps.backgroundColor = UIColor.clearColor()
                 
@@ -116,7 +104,6 @@ class NavigationAccueilViewController: UIViewController {
                 self.varIB_scrollView.scrollRectToVisible( CGRectMake(Device.LARGEUR, 0, Device.LARGEUR , Device.HAUTEUR - HAUTEUR_HEADER_BAR - HAUTEUR_TABBAR ), animated: true )
             
             UIView.animateWithDuration(0.2, animations: {
-                
                 
                 self.varIB_button_tabbar_maps.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.3)
                 self.varIB_button_tabbar_list.backgroundColor = UIColor.clearColor()
@@ -133,7 +120,6 @@ class NavigationAccueilViewController: UIViewController {
             
             nc_maps.update_region_for_user_location()
             
-          
         }
         
         if let nc_recherche = self.recherche_viewController{

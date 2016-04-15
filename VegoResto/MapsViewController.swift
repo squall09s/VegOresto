@@ -31,11 +31,8 @@ class MapsViewController: UIViewController, MKMapViewDelegate {
                 let current_pin = RestaurantAnnotation(_titre: restaurant.name, _telephone: restaurant.phone, _url: restaurant.absolute_url, _adresse: restaurant.address, _tag: [Tag]() )
                 
                 current_pin.coordinate = CLLocationCoordinate2D(latitude:  Double(lat), longitude: Double(lon) )
-                
                 array.append(current_pin)
-                
             }
-            
         }
         
         clusteringManager.addAnnotations(array)
@@ -64,8 +61,7 @@ class MapsViewController: UIViewController, MKMapViewDelegate {
         })
     }
     
-    
-    
+
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         
         var reuseId = ""
@@ -74,15 +70,7 @@ class MapsViewController: UIViewController, MKMapViewDelegate {
             
             reuseId = "Cluster"
             
-            var clusterView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId)
-            
-            if clusterView == nil {
-                
-                clusterView = FBAnnotationClusterView(annotation: annotation, reuseIdentifier: reuseId, options: nil)
-                
-            }
-            
-            
+            let clusterView = FBAnnotationClusterView(annotation: annotation, reuseIdentifier: reuseId, options: nil)
             
             return clusterView
             
@@ -103,20 +91,36 @@ class MapsViewController: UIViewController, MKMapViewDelegate {
             
             
             
-            let myView = UIView()
-            myView.backgroundColor = .greenColor()
             
-            let widthConstraint = NSLayoutConstraint(item: myView, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1, constant: 220)
-            myView.addConstraint(widthConstraint)
+            if let restaurantAnnotation = annotation as? RestaurantAnnotation {
+                
+                let myView = UIView()
+                myView.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.2)
+                
+                let widthConstraint = NSLayoutConstraint(item: myView, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1, constant: 220)
+                myView.addConstraint(widthConstraint)
+                
+                let heightConstraint = NSLayoutConstraint(item: myView, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1, constant: 90)
+                myView.addConstraint(heightConstraint)
+                
+                myView.frame.size = CGSizeMake(220, 90)
             
-            let heightConstraint = NSLayoutConstraint(item: myView, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1, constant: 70)
-            myView.addConstraint(heightConstraint)
+                self.configurerViewAnnotation( myView , currentAnnotation: restaurantAnnotation )
+
+                pinView?.detailCalloutAccessoryView = myView
+            }
             
-            pinView?.detailCalloutAccessoryView = myView
+            
+            
             
             
             pinView?.image = UIImage(named: "img_anotation")
             pinView?.centerOffset = CGPointMake(0,-pinView!.frame.size.height*0.5);
+            
+            pinView?.frame.size = CGSize(width: 144.0/4.0, height: 208.0/4.0)
+            
+            
+            
             
             return pinView
             
@@ -140,6 +144,69 @@ class MapsViewController: UIViewController, MKMapViewDelegate {
     }
     
     
+    func configurerViewAnnotation(view_support : UIView, currentAnnotation : RestaurantAnnotation){
+        
+        let largeur_barre_separation : CGFloat = 1.0
+        let marge_image_gauche : CGFloat = 0.0
+        let largeur_image : CGFloat = 20.0
+        let espacement_vertical : CGFloat = 3.0
+        let espacement_horizontal : CGFloat = 5.0
+        
+        let hauteur_label_adresse : CGFloat = 30.0
+        
+        let largeurView = view_support.frame.size.width
+        
+        let layer_barre_separation : CALayer = CALayer()
+        layer_barre_separation.frame = CGRectMake( largeurView * 0.1, 0, largeurView * 0.8, largeur_barre_separation )
+        layer_barre_separation.backgroundColor = UIColor.grayColor().CGColor
+        
+        view_support.layer.addSublayer(layer_barre_separation)
+        
+        
+        let label_adresse : UILabel = UILabel(frame: CGRectMake( marge_image_gauche ,  largeur_barre_separation + espacement_vertical, largeurView - marge_image_gauche, hauteur_label_adresse ) )
+        label_adresse.backgroundColor = UIColor.grayColor()
+        label_adresse.text = currentAnnotation.adresse
+        view_support.addSubview(label_adresse)
+        
+        
+        let image_label1 : UIImageView = UIImageView(frame: CGRectMake( marge_image_gauche, hauteur_label_adresse + largeur_barre_separation + espacement_vertical*2.0, largeur_image, largeur_image) )
+        image_label1.backgroundColor = UIColor.clearColor()
+        image_label1.image = UIImage(named: "img_ic_phone_black")
+        view_support.addSubview(image_label1)
+        
+        
+        let label1 : UILabel = UILabel(frame: CGRectMake( marge_image_gauche + largeur_image + espacement_horizontal , hauteur_label_adresse + largeur_barre_separation + espacement_vertical*2.0, largeurView - largeur_image - marge_image_gauche*2.0 - espacement_horizontal, largeur_image) )
+        label1.backgroundColor = UIColor.grayColor()
+        view_support.addSubview(label1)
+        
+        
+        let image_label2 : UIImageView = UIImageView(frame: CGRectMake( marge_image_gauche, hauteur_label_adresse + largeur_barre_separation + espacement_vertical*3.0 + largeur_image, largeur_image, largeur_image) )
+        image_label2.backgroundColor = UIColor.clearColor()
+        image_label2.image = UIImage(named: "img_ic_maps_black")
+        view_support.addSubview(image_label2)
+        
+        let label2 : UILabel = UILabel(frame: CGRectMake( marge_image_gauche + largeur_image + espacement_horizontal , hauteur_label_adresse + largeur_barre_separation + espacement_vertical*3.0 + largeur_image, largeurView - largeur_image - marge_image_gauche*2.0 - espacement_horizontal, largeur_image) )
+        label2.backgroundColor = UIColor.grayColor()
+        view_support.addSubview(label2)
+        
+        
+        
+        let image_label3 : UIImageView = UIImageView(frame: CGRectMake( marge_image_gauche, hauteur_label_adresse + largeur_barre_separation + espacement_vertical*4.0 + largeur_image*2.0, largeur_image, largeur_image) )
+        image_label3.backgroundColor = UIColor.clearColor()
+        image_label3.image = UIImage(named: "img_ic_more_black")
+        
+        view_support.addSubview(image_label3)
+        
+        
+        let label3 : UILabel = UILabel(frame: CGRectMake( marge_image_gauche + largeur_image + espacement_horizontal , hauteur_label_adresse + largeur_barre_separation + espacement_vertical*4.0 + largeur_image*2.0, largeurView - largeur_image - marge_image_gauche*2.0 - espacement_horizontal, largeur_image) )
+        label3.backgroundColor = UIColor.grayColor()
+        view_support.addSubview(label3)
+        
+        
+        
+        
+        
+    }
     
     func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
         
