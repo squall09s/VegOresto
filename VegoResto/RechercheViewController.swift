@@ -285,6 +285,10 @@ class RechercheViewController: UIViewController, UITableViewDelegate, UITableVie
         })
             
         self.varIB_tableView.reloadData()
+        
+        self.varIB_tableView.scrollRectToVisible(CGRectMake(0, 0, 1, 1), animated: false)
+            
+            
             
         }
         

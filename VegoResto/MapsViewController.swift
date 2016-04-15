@@ -95,7 +95,7 @@ class MapsViewController: UIViewController, MKMapViewDelegate {
             if let restaurantAnnotation = annotation as? RestaurantAnnotation {
                 
                 let myView = UIView()
-                myView.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.2)
+                myView.backgroundColor = UIColor.clearColor()
                 
                 let widthConstraint = NSLayoutConstraint(item: myView, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1, constant: 220)
                 myView.addConstraint(widthConstraint)
@@ -115,10 +115,10 @@ class MapsViewController: UIViewController, MKMapViewDelegate {
             
             
             pinView?.image = UIImage(named: "img_anotation")
-            pinView?.centerOffset = CGPointMake(0,-pinView!.frame.size.height*0.5);
             
             pinView?.frame.size = CGSize(width: 144.0/4.0, height: 208.0/4.0)
             
+            pinView?.centerOffset = CGPointMake(0,-pinView!.frame.size.height*0.5);
             
             
             
@@ -149,10 +149,10 @@ class MapsViewController: UIViewController, MKMapViewDelegate {
         let largeur_barre_separation : CGFloat = 1.0
         let marge_image_gauche : CGFloat = 0.0
         let largeur_image : CGFloat = 20.0
-        let espacement_vertical : CGFloat = 3.0
+        let espacement_vertical : CGFloat = 2.0
         let espacement_horizontal : CGFloat = 5.0
         
-        let hauteur_label_adresse : CGFloat = 30.0
+        let hauteur_label_adresse : CGFloat = 23.0
         
         let largeurView = view_support.frame.size.width
         
@@ -164,7 +164,9 @@ class MapsViewController: UIViewController, MKMapViewDelegate {
         
         
         let label_adresse : UILabel = UILabel(frame: CGRectMake( marge_image_gauche ,  largeur_barre_separation + espacement_vertical, largeurView - marge_image_gauche, hauteur_label_adresse ) )
-        label_adresse.backgroundColor = UIColor.grayColor()
+        label_adresse.backgroundColor = UIColor.clearColor()
+        label_adresse.font = UIFont(name: "HelveticaNeue-Light", size: 10)!
+        label_adresse.numberOfLines = 2 
         label_adresse.text = currentAnnotation.adresse
         view_support.addSubview(label_adresse)
         
@@ -176,7 +178,7 @@ class MapsViewController: UIViewController, MKMapViewDelegate {
         
         
         let label1 : UILabel = UILabel(frame: CGRectMake( marge_image_gauche + largeur_image + espacement_horizontal , hauteur_label_adresse + largeur_barre_separation + espacement_vertical*2.0, largeurView - largeur_image - marge_image_gauche*2.0 - espacement_horizontal, largeur_image) )
-        label1.backgroundColor = UIColor.grayColor()
+        label1.backgroundColor = UIColor.clearColor()
         view_support.addSubview(label1)
         
         
@@ -186,7 +188,7 @@ class MapsViewController: UIViewController, MKMapViewDelegate {
         view_support.addSubview(image_label2)
         
         let label2 : UILabel = UILabel(frame: CGRectMake( marge_image_gauche + largeur_image + espacement_horizontal , hauteur_label_adresse + largeur_barre_separation + espacement_vertical*3.0 + largeur_image, largeurView - largeur_image - marge_image_gauche*2.0 - espacement_horizontal, largeur_image) )
-        label2.backgroundColor = UIColor.grayColor()
+        label2.backgroundColor = UIColor.clearColor()
         view_support.addSubview(label2)
         
         
@@ -199,7 +201,7 @@ class MapsViewController: UIViewController, MKMapViewDelegate {
         
         
         let label3 : UILabel = UILabel(frame: CGRectMake( marge_image_gauche + largeur_image + espacement_horizontal , hauteur_label_adresse + largeur_barre_separation + espacement_vertical*4.0 + largeur_image*2.0, largeurView - largeur_image - marge_image_gauche*2.0 - espacement_horizontal, largeur_image) )
-        label3.backgroundColor = UIColor.grayColor()
+        label3.backgroundColor = UIColor.clearColor()
         view_support.addSubview(label3)
         
         
