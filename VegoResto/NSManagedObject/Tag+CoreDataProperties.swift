@@ -2,7 +2,7 @@
 //  Tag+CoreDataProperties.swift
 //  VegoResto
 //
-//  Created by Laurent Nicolas on 30/03/2016.
+//  Created by Laurent Nicolas on 16/04/2016.
 //  Copyright © 2016 Nicolas Laurent. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -14,6 +14,7 @@ import CoreData
 
 extension Tag {
 
-    @NSManaged var name: String
+    @NSManaged var name: String?
+    @NSManaged var restaurants: NSSet?
 
 }

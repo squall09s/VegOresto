@@ -11,13 +11,14 @@
         <attribute name="national_phone_number" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="phone" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="website" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="tags" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Tag" syncable="YES"/>
+        <relationship name="tags" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Tag" inverseName="restaurants" inverseEntity="Tag" syncable="YES"/>
     </entity>
     <entity name="Tag" representedClassName="Tag" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="restaurants" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Restaurant" inverseName="tags" inverseEntity="Restaurant" syncable="YES"/>
     </entity>
     <elements>
         <element name="Restaurant" positionX="-1469" positionY="18" width="128" height="208"/>
-        <element name="Tag" positionX="-1307" positionY="95" width="128" height="58"/>
+        <element name="Tag" positionX="-1127" positionY="369" width="128" height="73"/>
     </elements>
 </model>
