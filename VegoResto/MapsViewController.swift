@@ -28,11 +28,7 @@ class MapsViewController: UIViewController, MKMapViewDelegate {
 
             if let lat = restaurant.lat, lon = restaurant.lon {
 
-                let current_pin = RestaurantAnnotation(_titre: restaurant.name,
-                                                       _telephone: restaurant.phone,
-                                                       _url: restaurant.absolute_url,
-                                                       _adresse: restaurant.address,
-                                                       _tag: [Tag]() )
+                let current_pin = RestaurantAnnotation(_restaurant : restaurant)
 
                 current_pin.coordinate = CLLocationCoordinate2D(latitude:  Double(lat), longitude: Double(lon) )
                 array.append(current_pin)
@@ -51,7 +47,6 @@ class MapsViewController: UIViewController, MKMapViewDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
 
 
 
@@ -90,7 +85,6 @@ class MapsViewController: UIViewController, MKMapViewDelegate {
                 pinView = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
 
                 pinView?.canShowCallout = true
-                //pinView?.animatesDrop = false
 
             }
 
@@ -105,10 +99,10 @@ class MapsViewController: UIViewController, MKMapViewDelegate {
                 let widthConstraint = NSLayoutConstraint(item: myView, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1, constant: 220)
                 myView.addConstraint(widthConstraint)
 
-                let heightConstraint = NSLayoutConstraint(item: myView, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1, constant: 90)
+                let heightConstraint = NSLayoutConstraint(item: myView, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1, constant: 80)
                 myView.addConstraint(heightConstraint)
 
-                myView.frame.size = CGSize(width: 220, height: 90)
+                myView.frame.size = CGSize(width: 220, height: 80)
 
                 self.configurerViewAnnotation( myView, currentAnnotation: restaurantAnnotation )
 
@@ -153,8 +147,8 @@ class MapsViewController: UIViewController, MKMapViewDelegate {
 
         let largeur_barre_separation: CGFloat = 1.0
         let img_width: CGFloat = 20.0
-        let espacement_y: CGFloat = 2.0
-        let espacement_x: CGFloat = 5.0
+        let espacement_y: CGFloat = 5.0
+        let espacement_x: CGFloat = 15.0
 
         let hauteur_label_adresse: CGFloat = 23.0
 
@@ -171,9 +165,9 @@ class MapsViewController: UIViewController, MKMapViewDelegate {
         position_y += largeur_barre_separation + espacement_y
 
         let label_adresse: UILabel = UILabel(frame: CGRect( x : 0, y : position_y, width : view_width, height : hauteur_label_adresse ) )
-        label_adresse.font = UIFont(name: "HelveticaNeue-Light", size: 10)!
+        label_adresse.font = UIFont(name: "HelveticaNeue-Light", size: 11)!
         label_adresse.numberOfLines = 2
-        label_adresse.text = currentAnnotation.adresse
+        label_adresse.text = currentAnnotation.restaurant?.address
         view_support.addSubview(label_adresse)
 
         position_y += hauteur_label_adresse  + espacement_y
@@ -184,32 +178,58 @@ class MapsViewController: UIViewController, MKMapViewDelegate {
 
 
         let label1: UILabel = UILabel(frame: CGRect( x : img_width + espacement_x, y : position_y, width : view_width - img_width - espacement_x, height : img_width) )
-        label1.font = UIFont(name: "HelveticaNeue-Light", size: 10)!
+        label1.font = UIFont(name: "HelveticaNeue-Light", size: 12)!
         view_support.addSubview(label1)
+
+        label1.text = currentAnnotation.restaurant?.phone
 
         position_y += img_width  + espacement_y
 
         let image_label2: UIImageView = UIImageView(frame: CGRect( x : 0, y : position_y, width : img_width, height : img_width) )
-        image_label2.image = UIImage(named: "img_ic_maps_black")
+        image_label2.image = UIImage(named: "img_ic_more_black")
         view_support.addSubview(image_label2)
 
-        let label2: UILabel = UILabel(frame: CGRect( x : img_width + espacement_x, y : position_y, width : view_width - img_width - espacement_x, height : img_width) )
-        label2.font = UIFont(name: "HelveticaNeue-Light", size: 10)!
-        view_support.addSubview(label2)
+        let bt_info = BTTransitionVersDetailsRestaurant(frame: CGRect( x : img_width + espacement_x, y : position_y, width : view_width - img_width - espacement_x, height : img_width) )
+        bt_info.titleLabel?.font = UIFont(name: "HelveticaNeue-Light", size: 12)!
+        bt_info.contentHorizontalAlignment = UIControlContentHorizontalAlignment.Left
+        bt_info.setTitle("Plus d'informations", forState: UIControlState.Normal)
+        bt_info.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
+        bt_info.restaurant = currentAnnotation.restaurant
+        bt_info.addTarget(self, action: #selector(MapsViewController.touch_bt_more_info(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        view_support.addSubview(bt_info)
 
-        position_y += img_width  + espacement_y
-
-        let image_label3: UIImageView = UIImageView(frame: CGRect( x : 0, y : position_y, width : img_width, height : img_width) )
-        image_label3.image = UIImage(named: "img_ic_more_black")
-
-        view_support.addSubview(image_label3)
-
-        let label3: UILabel = UILabel(frame: CGRect( x : img_width + espacement_x, y : position_y, width : view_width - img_width - espacement_x, height : img_width) )
-        label3.font = UIFont(name: "HelveticaNeue-Light", size: 10)!
-        view_support.addSubview(label3)
 
 
     }
+
+    func touch_bt_more_info(sender: BTTransitionVersDetailsRestaurant) {
+
+        self.performSegueWithIdentifier("segue_to_detail", sender: sender.restaurant)
+
+    }
+
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+
+        if segue.identifier == "segue_to_detail" {
+
+            if let detailRestaurantVC: DetailRestaurantViewController = segue.destinationViewController as? DetailRestaurantViewController {
+
+                if let restaurantCible = sender as? Restaurant {
+
+                    detailRestaurantVC.current_restaurant = restaurantCible
+                }
+
+            }
+
+        }
+
+
+    }
+
+
+
 
     func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
 
@@ -263,5 +283,13 @@ class MapsViewController: UIViewController, MKMapViewDelegate {
         }
     }
 
+
+}
+
+
+
+class BTTransitionVersDetailsRestaurant: UIButton {
+
+    var restaurant: Restaurant? = nil
 
 }

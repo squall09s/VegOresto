@@ -34,6 +34,7 @@
                     </view>
                     <connections>
                         <outlet property="varIB_mapView" destination="wQa-al-Uge" id="saE-42-ave"/>
+                        <segue destination="SlD-xl-2se" kind="presentation" identifier="segue_to_detail" modalPresentationStyle="fullScreen" modalTransitionStyle="flipHorizontal" id="Kya-On-ECe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -67,7 +68,7 @@
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="505" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ivN-yI-w62">
-                                                    <rect key="frame" x="15" y="55" width="100" height="25"/>
+                                                    <rect key="frame" x="15" y="50" width="100" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="100" id="lV5-kb-LBs"/>
                                                     </constraints>
@@ -84,10 +85,10 @@
                                                     <color key="textColor" red="0.18431372549019609" green="0.66274509803921566" blue="0.87450980392156863" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" tag="502" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nYB-Zf-BoR" userLabel="Label adresse">
-                                                    <rect key="frame" x="15" y="30" width="465" height="25"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="502" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nYB-Zf-BoR" userLabel="Label adresse">
+                                                    <rect key="frame" x="15" y="30" width="465" height="20"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="25" id="293-PN-EH2"/>
+                                                        <constraint firstAttribute="height" constant="20" id="293-PN-EH2"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -125,7 +126,7 @@
                                                 <constraint firstItem="3CO-R2-LB7" firstAttribute="centerY" secondItem="kd4-rh-Fms" secondAttribute="centerY" id="gaW-xR-JlD"/>
                                                 <constraint firstItem="22e-b1-zRJ" firstAttribute="leading" secondItem="FsT-BX-Kx7" secondAttribute="trailing" id="iBw-zf-HFr"/>
                                                 <constraint firstAttribute="trailing" secondItem="Oed-i0-MKY" secondAttribute="trailing" id="pnv-4k-mvM"/>
-                                                <constraint firstAttribute="bottom" secondItem="ivN-yI-w62" secondAttribute="bottom" id="xcW-mT-da6"/>
+                                                <constraint firstAttribute="bottom" secondItem="ivN-yI-w62" secondAttribute="bottom" constant="10" id="xcW-mT-da6"/>
                                                 <constraint firstItem="22e-b1-zRJ" firstAttribute="centerY" secondItem="kd4-rh-Fms" secondAttribute="centerY" id="y33-1U-hWK"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -140,7 +141,7 @@
                                     <outlet property="delegate" destination="dIM-2e-uWP" id="Fg8-b7-DeG"/>
                                 </connections>
                             </tableView>
-                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="w9T-WS-cpd">
+                            <searchBar contentMode="redraw" placeholder="Restaurant, Ville, etc..." translatesAutoresizingMaskIntoConstraints="NO" id="w9T-WS-cpd">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="eAd-TZ-TfG"/>
@@ -618,7 +619,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NaW-Dc-cgg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="988" y="821"/>
+            <point key="canvasLocation" x="1178" y="818"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="PYe-DF-ViQ">
@@ -657,4 +658,7 @@
         <image name="img_vegan_off.png" width="229" height="283"/>
         <image name="img_vegan_on.png" width="229" height="283"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="Kya-On-ECe"/>
+    </inferredMetricsTieBreakers>
 </document>

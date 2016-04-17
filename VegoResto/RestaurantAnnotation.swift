@@ -11,21 +11,15 @@ import FBAnnotationClusteringSwift
 
 class RestaurantAnnotation: FBAnnotation {
 
-var telephone: String?
-var url: String?
-var adresse: String?
-var tags: [Tag]?
+    var restaurant: Restaurant? = nil
 
-init(_titre: String?, _telephone: String?, _url: String?, _adresse: String?, _tag: [Tag]?) {
+init(_restaurant: Restaurant) {
 
-    self.telephone = _telephone
-    self.url = _url
-    self.adresse = _adresse
-    self.tags = _tag
+    self.restaurant = _restaurant
 
     super.init()
 
-    self.title = _titre
+    self.title = _restaurant.name
 
     }
 
