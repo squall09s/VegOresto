@@ -1,8 +1,8 @@
 # VegOresto
 
-[![CocoaPods]("https://img.shields.io/cocoapods/v/AFNetworking.svg?maxAge=2592000?style=flat-square)](http://cocoapods.org)
-[![Build](https://img.shields.io/wercker/ci/wercker/docs.svg?maxAge=2592000?style=flat-square)]()(https://github.com/squall09s/VegOresto)
-[![iOS](https://img.shields.io/badge/Plateforme-iOS-blue.svg)]()(https://github.com/squall09s/VegOresto)
+[![CocoaPods](https://img.shields.io/cocoapods/v/AFNetworking.svg?maxAge=2592000?style=flat-square)](http://cocoapods.org)
+[![Build](https://img.shields.io/wercker/ci/wercker/docs.svg?maxAge=2592000?style=flat-square)](https://github.com/squall09s/VegOresto)
+[![iOS](https://img.shields.io/badge/Plateforme-iOS-blue.svg)](https://github.com/squall09s/VegOresto)
 
 ![Preview](https://github.com/squall09s/VegoResto/blob/master/mockDrop_iPhone_6.jpg)
 
