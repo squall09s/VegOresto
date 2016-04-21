@@ -113,7 +113,7 @@ class MapsViewController: UIViewController, MKMapViewDelegate {
 
 
 
-            pinView?.image = UIImage(named: "img_anotation")
+            pinView?.image = UIImage.Asset.Img_anotation.image
 
             pinView?.frame.size = CGSize(width: 144.0/4.0, height: 208.0/4.0)
 
@@ -173,7 +173,7 @@ class MapsViewController: UIViewController, MKMapViewDelegate {
         position_y += hauteur_label_adresse  + espacement_y
 
         let image_label1: UIImageView = UIImageView(frame: CGRect( x : 0, y : position_y, width : img_width, height : img_width) )
-        image_label1.image = UIImage(named: "img_ic_phone_black")
+        image_label1.image =  UIImage.Asset.Img_ic_phone_black.image
         view_support.addSubview(image_label1)
 
 
@@ -186,7 +186,7 @@ class MapsViewController: UIViewController, MKMapViewDelegate {
         position_y += img_width  + espacement_y
 
         let image_label2: UIImageView = UIImageView(frame: CGRect( x : 0, y : position_y, width : img_width, height : img_width) )
-        image_label2.image = UIImage(named: "img_ic_more_black")
+        image_label2.image = UIImage.Asset.Img_ic_more_black.image
         view_support.addSubview(image_label2)
 
         let bt_info = BTTransitionVersDetailsRestaurant(frame: CGRect( x : img_width + espacement_x, y : position_y, width : view_width - img_width - espacement_x, height : img_width) )
@@ -204,15 +204,17 @@ class MapsViewController: UIViewController, MKMapViewDelegate {
 
     func touch_bt_more_info(sender: BTTransitionVersDetailsRestaurant) {
 
-        self.performSegueWithIdentifier("segue_to_detail", sender: sender.restaurant)
-
+         self.performSegue(StoryboardSegue.Main.Segue_to_detail)
     }
 
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 
-        if segue.identifier == "segue_to_detail" {
+    switch StoryboardSegue.Main(rawValue: segue.identifier! )! {
+
+        case .Segue_to_detail:
+        // Prepare for your custom segue transition
 
             if let detailRestaurantVC: DetailRestaurantViewController = segue.destinationViewController as? DetailRestaurantViewController {
 
@@ -222,8 +224,8 @@ class MapsViewController: UIViewController, MKMapViewDelegate {
                 }
 
             }
-
         }
+
 
 
     }

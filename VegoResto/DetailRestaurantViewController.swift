@@ -36,19 +36,16 @@ class DetailRestaurantViewController: UIViewController {
 
             let tags_presents = _current_restaurant.tags_are_present()
 
-            varIB_image_vegan?.image = UIImage(named: tags_presents.is_vegan ?         "img_vegan_on"          :  "img_vegan_off_white")
+            varIB_image_vegan?.image = tags_presents.is_vegan ? UIImage.Asset.Img_vegan_on.image : UIImage.Asset.Img_vegan_off_white.image
 
-            varIB_image_gluten_free?.image = UIImage(named: tags_presents.is_gluten_free ?   "img_gluten_free_on"   :  "img_gluten_free_off_white")
-
+            varIB_image_gluten_free?.image = tags_presents.is_gluten_free ?   UIImage.Asset.Img_gluten_free_on.image  :  UIImage.Asset.Img_gluten_free_off_white.image
 
             if  _current_restaurant.website == nil ||  _current_restaurant.website == "" {
 
                 //TODO: griser case bouton msite web
             }
 
-
         }
-
 
         // Do any additional setup after loading the view.
     }

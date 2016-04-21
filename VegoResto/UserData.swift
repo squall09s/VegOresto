@@ -39,8 +39,6 @@ class UserData: NSObject, CLLocationManagerDelegate {
 
     }
 
-
-
     func getRestaurants() -> [Restaurant] {
 
         let fetchRequest = NSFetchRequest(entityName: "Restaurant")
@@ -80,7 +78,6 @@ class UserData: NSObject, CLLocationManagerDelegate {
 
 
         if let path = NSBundle.mainBundle().pathForResource("restaurants", ofType: "json") {
-
 
 
             if let fileContents: NSData = NSData(contentsOfFile: path) {

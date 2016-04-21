@@ -27,11 +27,8 @@ class NavigationAccueilViewController: UIViewController {
 
         // Do any additional setup after loading the view.
 
-        let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-
-        self.recherche_viewController = storyboard.instantiateViewControllerWithIdentifier("RechercheViewController") as? RechercheViewController
-
-        self.maps_viewController = storyboard.instantiateViewControllerWithIdentifier("MapsViewController") as? MapsViewController
+        self.recherche_viewController = StoryboardScene.Main.instantiateRechercheViewController()
+        self.maps_viewController = StoryboardScene.Main.instantiateMapsViewController()
 
         self.varIB_button_tabbar_list.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.3)
         self.varIB_button_tabbar_maps.backgroundColor = UIColor.clearColor()

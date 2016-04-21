@@ -10,11 +10,7 @@ import UIKit
 
 class RechercheViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
 
-
-
     @IBOutlet weak var varIB_searchBar: UISearchBar!
-
-
     @IBOutlet weak var varIB_tableView: UITableView!
 
 
@@ -43,10 +39,14 @@ class RechercheViewController: UIViewController, UITableViewDelegate, UITableVie
 
     // MARK: - Navigation
 
+
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 
-        if segue.identifier == "segue_to_detail" {
+        switch StoryboardSegue.Main(rawValue: segue.identifier! )! {
+
+        case .Segue_to_detail:
+            // Prepare for your custom segue transition
 
             if let detailRestaurantVC: DetailRestaurantViewController = segue.destinationViewController as? DetailRestaurantViewController {
 
@@ -56,11 +56,12 @@ class RechercheViewController: UIViewController, UITableViewDelegate, UITableVie
                 }
 
             }
-
         }
 
 
+
     }
+
 
 
 
@@ -110,11 +111,6 @@ class RechercheViewController: UIViewController, UITableViewDelegate, UITableVie
 
             }
 
-
-
-
-
-
         }
 
         let tags_presents = current_restaurant.tags_are_present()
@@ -122,13 +118,15 @@ class RechercheViewController: UIViewController, UITableViewDelegate, UITableVie
 
         if let imageview_vegan = cell?.viewWithTag(TAG_CELL_IMAGEVIEW_VEGAN) as? UIImageView {
 
-            imageview_vegan.image = UIImage(named: tags_presents.is_vegan ?         "img_vegan_on"          :  "img_vegan_off")
+            imageview_vegan.image =  tags_presents.is_vegan ?    UIImage.Asset.Img_vegan_on.image : UIImage.Asset.Img_vegan_off.image
+
         }
 
 
         if let imageview_gluten = cell?.viewWithTag(TAG_CELL_IMAGEVIEW_GLUTEN) as? UIImageView {
 
-            imageview_gluten.image = UIImage(named: tags_presents.is_gluten_free ?   "img_gluten_free_on"   :  "img_gluten_free_off")
+            imageview_gluten.image =  tags_presents.is_gluten_free ?    UIImage.Asset.Img_gluten_free_on.image  :  UIImage.Asset.Img_gluten_free_off.image
+
         }
 
 
