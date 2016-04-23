@@ -11,7 +11,6 @@
 		396BD9751CAE62670071DF07 /* DetailRestaurantViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396BD9741CAE62670071DF07 /* DetailRestaurantViewController.swift */; };
 		396BD97E1CAEB8410071DF07 /* Constantes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396BD97D1CAEB8410071DF07 /* Constantes.swift */; };
 		396BD9801CAEB8640071DF07 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396BD97F1CAEB8640071DF07 /* ColorExtension.swift */; };
-		3978B2751CAC087A00D82040 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3978B2741CAC087A00D82040 /* libz.tbd */; };
 		3978B2771CAC088400D82040 /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3978B2761CAC088400D82040 /* libstdc++.tbd */; };
 		39848B081CB4231300D718FD /* NavigationAccueilViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39848B071CB4231300D718FD /* NavigationAccueilViewController.swift */; };
 		398857E61CC2B97600B05F64 /* Tag+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398857E41CC2B97600B05F64 /* Tag+CoreDataProperties.swift */; };
@@ -26,9 +25,10 @@
 		39C50EFC1CC8D9670019FA2B /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C50EFA1CC8D9670019FA2B /* Images.swift */; };
 		39C50EFD1CC8D9670019FA2B /* Storyboards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C50EFB1CC8D9670019FA2B /* Storyboards.swift */; };
 		39C50EFF1CC8DE100019FA2B /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 39C50EFE1CC8DE100019FA2B /* Media.xcassets */; };
+		39C50F0A1CCAD7C20019FA2B /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3978B2741CAC087A00D82040 /* libz.tbd */; };
+		39C50F0C1CCB7B620019FA2B /* restaurants.xml in Resources */ = {isa = PBXBuildFile; fileRef = 39C50F0B1CCB7B620019FA2B /* restaurants.xml */; };
 		39EC7FF01CAC0E15002AD862 /* MapsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EC7FEF1CAC0E15002AD862 /* MapsViewController.swift */; };
 		39EC7FF21CAC0EAF002AD862 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39EC7FF11CAC0EAF002AD862 /* MapKit.framework */; };
-		39EC7FF41CAC1F69002AD862 /* restaurants.json in Resources */ = {isa = PBXBuildFile; fileRef = 39EC7FF31CAC1F69002AD862 /* restaurants.json */; };
 		39EC7FF61CAC1F9F002AD862 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EC7FF51CAC1F9F002AD862 /* UserData.swift */; };
 		39EC80041CAC4787002AD862 /* RechercheViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EC80031CAC4787002AD862 /* RechercheViewController.swift */; };
 		39EC80061CAD5ED2002AD862 /* RestaurantAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EC80051CAD5ED2002AD862 /* RestaurantAnnotation.swift */; };
@@ -57,9 +57,10 @@
 		39C50EFA1CC8D9670019FA2B /* Images.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Images.swift; path = Constants_Gen/Images.swift; sourceTree = SOURCE_ROOT; };
 		39C50EFB1CC8D9670019FA2B /* Storyboards.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Storyboards.swift; path = Constants_Gen/Storyboards.swift; sourceTree = SOURCE_ROOT; };
 		39C50EFE1CC8DE100019FA2B /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Media.xcassets; path = Ressources/Media.xcassets; sourceTree = "<group>"; };
+		39C50F011CCAC5610019FA2B /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		39C50F0B1CCB7B620019FA2B /* restaurants.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = restaurants.xml; sourceTree = "<group>"; };
 		39EC7FEF1CAC0E15002AD862 /* MapsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapsViewController.swift; sourceTree = "<group>"; };
 		39EC7FF11CAC0EAF002AD862 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		39EC7FF31CAC1F69002AD862 /* restaurants.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = restaurants.json; sourceTree = "<group>"; };
 		39EC7FF51CAC1F9F002AD862 /* UserData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		39EC80031CAC4787002AD862 /* RechercheViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RechercheViewController.swift; sourceTree = "<group>"; };
 		39EC80051CAD5ED2002AD862 /* RestaurantAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantAnnotation.swift; sourceTree = "<group>"; };
@@ -73,10 +74,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				39C50F0A1CCAD7C20019FA2B /* libz.tbd in Frameworks */,
 				39189F7A1CB5548500A64E5E /* CoreLocation.framework in Frameworks */,
 				39EC7FF21CAC0EAF002AD862 /* MapKit.framework in Frameworks */,
 				3978B2771CAC088400D82040 /* libstdc++.tbd in Frameworks */,
-				3978B2751CAC087A00D82040 /* libz.tbd in Frameworks */,
 				B9C69EA0EB7D4900CB10A0BF /* Pods_VegoResto.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -96,7 +97,7 @@
 		396BD9781CAEB7640071DF07 /* Ressources */ = {
 			isa = PBXGroup;
 			children = (
-				39EC7FF31CAC1F69002AD862 /* restaurants.json */,
+				39C50F0B1CCB7B620019FA2B /* restaurants.xml */,
 				39C50F001CC8E02D0019FA2B /* SwiftGen */,
 				396BD9791CAEB76C0071DF07 /* images */,
 			);
@@ -207,6 +208,7 @@
 		FDF1F99F6257ABBB1FA1CF5F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				39C50F011CCAC5610019FA2B /* libc++.tbd */,
 				39189F791CB5548500A64E5E /* CoreLocation.framework */,
 				39EC7FF11CAC0EAF002AD862 /* MapKit.framework */,
 				3978B2761CAC088400D82040 /* libstdc++.tbd */,
@@ -229,7 +231,7 @@
 				39968D391CABFFBA0085C61F /* Resources */,
 				2DDB3C14112C8D3449A9A697 /* Embed Pods Frameworks */,
 				847B091A34508DB14BCEB391 /* Copy Pods Resources */,
-				398857E31CC2B26300B05F64 /* ShellScript */,
+				398857E31CC2B26300B05F64 /* Run Script */,
 			);
 			buildRules = (
 			);
@@ -278,8 +280,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				39C50F0C1CCB7B620019FA2B /* restaurants.xml in Resources */,
 				39C50EFF1CC8DE100019FA2B /* Media.xcassets in Resources */,
-				39EC7FF41CAC1F69002AD862 /* restaurants.json in Resources */,
 				39968D4C1CABFFBB0085C61F /* LaunchScreen.storyboard in Resources */,
 				39968D441CABFFBB0085C61F /* Main.storyboard in Resources */,
 			);
@@ -303,18 +305,19 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VegoResto/Pods-VegoResto-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		398857E31CC2B26300B05F64 /* ShellScript */ = {
+		398857E31CC2B26300B05F64 /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
+			name = "Run Script";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n\nif which ./Pods/SwiftGen/bin/swiftgen >/dev/null; then\n\nrm -r ./Constants_Gen\n\nmkdir ./Constants_Gen\n\ntouch ./Constants_Gen/Images.swift\ntouch ./Constants_Gen/Storyboards.swift\n\n\n./Pods/SwiftGen/bin/swiftgen storyboards \"$PROJECT_DIR\" --output \"$PROJECT_DIR/Constants_Gen/Storyboards.swift\"\n./Pods/SwiftGen/bin/swiftgen images \"$PROJECT_DIR\" --output \"$PROJECT_DIR/Constants_Gen/Images.swift\"\nelse\necho \"warning: SwiftGen not installed, download it from https://github.com/AliSoftware/SwiftGen\"\nfi\n";
+			shellScript = "if which swiftlint >/dev/null; then\nswiftlint autocorrect\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n\nif which ./Pods/SwiftGen/bin/swiftgen >/dev/null; then\n\nrm -r ./Constants_Gen\n\nmkdir ./Constants_Gen\n\ntouch ./Constants_Gen/Images.swift\ntouch ./Constants_Gen/Storyboards.swift\n\n\n./Pods/SwiftGen/bin/swiftgen storyboards \"$PROJECT_DIR\" --output \"$PROJECT_DIR/Constants_Gen/Storyboards.swift\"\n./Pods/SwiftGen/bin/swiftgen images \"$PROJECT_DIR\" --output \"$PROJECT_DIR/Constants_Gen/Images.swift\"\nelse\necho \"warning: SwiftGen not installed, download it from https://github.com/AliSoftware/SwiftGen\"\nfi\n";
 		};
 		847B091A34508DB14BCEB391 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -436,6 +439,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -474,6 +478,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;

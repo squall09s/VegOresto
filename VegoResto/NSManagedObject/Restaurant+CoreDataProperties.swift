@@ -16,12 +16,10 @@ extension Restaurant {
 
     @NSManaged var absolute_url: String?
     @NSManaged var address: String?
-    @NSManaged var id: NSNumber?
-    @NSManaged var international_phone_number: String?
+    @NSManaged var identifier: NSNumber?
     @NSManaged var lat: NSNumber?
     @NSManaged var lon: NSNumber?
     @NSManaged var name: String?
-    @NSManaged var national_phone_number: String?
     @NSManaged var phone: String?
     @NSManaged var website: String?
     @NSManaged var tags: NSSet?

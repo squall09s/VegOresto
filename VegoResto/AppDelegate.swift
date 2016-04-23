@@ -19,6 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         UserData.sharedInstance.chargerDonneesLocales()
 
+        UserData.sharedInstance.loadDataOnVegorestoURL()
+
         return true
     }
 

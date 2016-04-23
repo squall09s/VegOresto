@@ -10,6 +10,9 @@
 import UIKit
 import CoreData
 import CoreLocation
+import Alamofire
+import GZIP
+import SWXMLHash
 
 class UserData: NSObject, CLLocationManagerDelegate {
 
@@ -45,7 +48,7 @@ class UserData: NSObject, CLLocationManagerDelegate {
 
         do {
 
-            let results = try managedContext.executeFetchRequest(fetchRequest)
+            let results = try self.managedContext.executeFetchRequest(fetchRequest)
 
             if let resultats_restaurants = (results as? [Restaurant]) {
                 return resultats_restaurants
@@ -65,93 +68,18 @@ class UserData: NSObject, CLLocationManagerDelegate {
 
     func chargerDonneesLocales() {
 
-
-
-
-        if self.getRestaurants().count > 0 {
-            return
-        }
-
-
-        let entityStatut =  NSEntityDescription.entityForName("Restaurant", inManagedObjectContext:managedContext)
-        let entityTag =  NSEntityDescription.entityForName("Tag", inManagedObjectContext:managedContext)
-
-
-        if let path = NSBundle.mainBundle().pathForResource("restaurants", ofType: "json") {
+        if let path = NSBundle.mainBundle().pathForResource("restaurants", ofType: "xml") {
 
 
             if let fileContents: NSData = NSData(contentsOfFile: path) {
 
+                if let xml = String(data: fileContents, encoding: NSUTF8StringEncoding) {
 
-                do {
-
-
-                    let json = try NSJSONSerialization.JSONObjectWithData(fileContents, options: .AllowFragments)
-
-
-                    if let restaurants = json as? [AnyObject] {
-
-
-                        for restaurant in restaurants {
-
-
-                            if let new_restaurant = (NSManagedObject(entity: entityStatut!, insertIntoManagedObjectContext: managedContext) as? Restaurant) {
-
-                            new_restaurant.name = restaurant["name"] as? String
-                            new_restaurant.name = new_restaurant.name?.stringByReplacingOccurrencesOfString("&#039;", withString: "'")
-
-                            new_restaurant.website = restaurant["website"] as? String
-                            new_restaurant.absolute_url = restaurant["absolute_url"] as? String
-                            new_restaurant.address = (restaurant["address"] as? String)?.stringByReplacingOccurrencesOfString("<br />", withString: "\n")
-                            new_restaurant.address = new_restaurant.address?.stringByReplacingOccurrencesOfString("&#039;", withString: "'")
-
-                            new_restaurant.phone = restaurant["phone"] as? String
-                            new_restaurant.national_phone_number = restaurant["national_phone_number"] as? String
-                            new_restaurant.international_phone_number = restaurant["international_phone_number"] as? String
-
-                            new_restaurant.id = restaurant["id"] as? NSNumber
-                            new_restaurant.lat = restaurant["lat"] as? NSNumber
-                            new_restaurant.lon = restaurant["lon"] as? NSNumber
-
-                            new_restaurant.tags = NSSet()
-
-                            if let arrayTypes: [String] = restaurant["tags"] as? [String] {
-
-                                for type_name in arrayTypes {
-
-
-                                    if let new_tag = (NSManagedObject(entity: entityTag!, insertIntoManagedObjectContext: managedContext) as? Tag) {
-
-                                    new_tag.name = type_name
-                                    new_tag.restaurants = NSSet()
-
-                                    new_restaurant.addTag(new_tag)
-                                    }
-
-                                }
-                            }
-
-                            }
-                        }
-
-                    }
-
-                } catch {
-                    Debug.log("error serializing JSON: \(error)")
+                    self.parseXML(xml)
                 }
             }
 
         }
-
-
-
-
-        do {
-            try managedContext.save()
-        } catch _ {
-            Debug.log("erreur save managedContext")
-        }
-
 
     }
 
@@ -160,6 +88,174 @@ class UserData: NSObject, CLLocationManagerDelegate {
         let location = locations.last
 
         self.location = CLLocationCoordinate2D(latitude: location!.coordinate.latitude, longitude: location!.coordinate.longitude)
+
+
+    }
+
+
+    func parseXML(xml: String) {
+
+
+        let xml = SWXMLHash.parse(xml)
+
+        var i = 0
+
+        let entityRestaurant =  NSEntityDescription.entityForName("Restaurant", inManagedObjectContext:self.managedContext)
+
+
+        for elem in xml["root"]["item"] {
+
+            // récupération des éléments dans le XML)
+
+            let name = elem["titre"].element?.text
+            let adress = elem["adresse"].element?.text
+            let latitude = elem["lat"].element?.text
+            let longitude = elem["lon"].element?.text
+            let website = elem["site_internet"].element?.text
+            let phone = elem["tel_fixe"].element?.text
+            let link = elem["link"].element?.text
+            let identifer = elem["id"].element?.text
+
+
+
+            var restaurant: Restaurant? = nil
+
+            // si le restaurant existe déjà je le charge dans l'objet courrant
+            if let _identifer = identifer {
+
+                if let _identifier_to_int = Int(_identifer) {
+
+                    restaurant = self.getRestaurantWithIdentifier( _identifier_to_int )
+                }
+
+            }
+
+            //si il est nil je crée un objet dans mon contexte
+            if restaurant == nil {
+
+                restaurant = NSManagedObject(entity: entityRestaurant!, insertIntoManagedObjectContext: self.managedContext) as? Restaurant
+
+            }
+
+            // remplisssage de l'objet (ou mise à jour)
+            if let _name = name {
+                restaurant?.name = self.cleanString(_name)
+            }
+
+            if let _adress = adress {
+                restaurant?.address = self.cleanString(_adress)
+            }
+
+            restaurant?.website = website
+            restaurant?.absolute_url = link
+            restaurant?.phone = phone
+
+            if let _identifer = identifer {
+                restaurant?.identifier = Int(_identifer)
+            }
+
+            if let _latitude = latitude {
+                restaurant?.lat = Double(_latitude)
+            }
+
+            if let _longitude = longitude {
+                restaurant?.lon = Double(_longitude)
+            }
+
+            restaurant?.tags = NSSet()
+
+
+
+
+            i += 1
+        }
+
+        Debug.log("Parser XML : \(i) element(s)")
+
+        do {
+            try self.managedContext.save()
+        } catch _ {
+            Debug.log("erreur save managedContext")
+        }
+    }
+
+
+
+    func cleanString(str: String) -> String {
+
+        var strResult = str.stringByReplacingOccurrencesOfString("<br />", withString: "\n")
+        strResult = strResult.stringByReplacingOccurrencesOfString("&#039;", withString: "'")
+
+        return strResult
+    }
+
+
+
+
+    func getRestaurantWithIdentifier(identifier: Int) -> Restaurant? {
+
+        /*
+
+         NSPredicate *searchFilter = [NSPredicate predicateWithFormat:@"attribute = %@", searchingFor];
+         NSError *error = nil;
+         NSArray *results = [context executeFetchRequest:request error:&amp;error];
+         */
+
+        let fetchRequest: NSFetchRequest = NSFetchRequest(entityName: "Restaurant")
+        let predicate: NSPredicate = NSPredicate(format: "identifier = %@", String(identifier) )
+        fetchRequest.predicate = predicate
+
+        do {
+
+            let results = try self.managedContext.executeFetchRequest(fetchRequest)
+
+            if let resultats_restaurants = (results as? [Restaurant]) {
+
+                if resultats_restaurants.count > 0 {
+
+                    return resultats_restaurants[0]
+                }
+            }
+
+        } catch _ {
+
+
+        }
+
+
+        return nil
+    }
+
+    func loadDataOnVegorestoURL() {
+
+        Alamofire.request(.GET, "http://vegoresto.fr/restos-fichier-xml/", parameters: nil)
+            .responseData { ( response ) in
+
+                //Debug.log(response.request)  // original URL request
+                //Debug.log(response.response) // URL response
+
+                Debug.log("Téléchargement page : http://vegoresto.fr/restos-fichier-xml/")
+
+                switch response.result {
+                case .Success:
+                    Debug.log("Validation Successful")
+                case .Failure(let error):
+                    Debug.log(error)
+                }
+
+
+                if let decompressedData: NSData = response.data?.gunzippedData() {
+
+                    if let decompressedXML: String = String(data: decompressedData, encoding: NSUTF8StringEncoding) {
+
+                        Debug.log("Decompression XML : OK")
+
+                        self.parseXML(decompressedXML)
+
+                    }
+                }
+
+        }
 
 
     }

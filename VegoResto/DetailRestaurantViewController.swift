@@ -84,7 +84,7 @@ class DetailRestaurantViewController: UIViewController {
 
     @IBAction func touch_bt_phone(sender: AnyObject) {
 
-        if let phone: String = self.current_restaurant?.international_phone_number {
+        if let phone: String = self.current_restaurant?.phone {
 
 
             UIApplication.sharedApplication().openURL(NSURL(string: "telprompt://" + phone)!)
