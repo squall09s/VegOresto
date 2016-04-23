@@ -21,6 +21,7 @@ extension Restaurant {
     @NSManaged var lon: NSNumber?
     @NSManaged var name: String?
     @NSManaged var phone: String?
+    @NSManaged var ville: String?
     @NSManaged var website: String?
     @NSManaged var tags: NSSet?
 

@@ -46,6 +46,7 @@ struct Debug {
     }
 }
 
-let COLOR_ORANGE: UIColor = UIColor(hexString: "F79F1F")
-let COLOR_BLEU: UIColor = UIColor(hexString: "7CA2A3")
-let COLOR_VERT: UIColor = UIColor(hexString: "78AF57")
+let COLOR_ORANGE: UIColor = UIColor(hexString: "F79F21")
+let COLOR_BLEU: UIColor = UIColor(hexString: "37A8DA")
+let COLOR_VERT: UIColor = UIColor(hexString: "70B211")
+let COLOR_VIOLET: UIColor = UIColor(hexString: "D252B9")

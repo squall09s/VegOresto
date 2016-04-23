@@ -10,6 +10,14 @@ import Foundation
 import CoreData
 import MapKit
 
+enum CategorieRestaurant {
+
+    case Vegan
+    case Végétarien
+    case Traditionnel
+}
+
+
 @objc(Restaurant)
 class Restaurant: NSManagedObject {
 
@@ -70,6 +78,37 @@ class Restaurant: NSManagedObject {
         }
 
         return (is_vegan, is_gluten_free)
+
+    }
+
+    func categorie() -> CategorieRestaurant {
+
+        if let tags = self.getTagsAsArray() {
+
+            for tag in tags {
+
+                if tag.name == "vegan" {
+
+                    return CategorieRestaurant.Vegan
+                }
+
+            }
+
+
+            for tag in tags {
+
+                if tag.name == "vege" {
+
+                    return CategorieRestaurant.Végétarien
+                }
+
+            }
+
+
+        }
+
+        return CategorieRestaurant.Traditionnel
+
 
     }
 

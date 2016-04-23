@@ -68,15 +68,20 @@ class UserData: NSObject, CLLocationManagerDelegate {
 
     func chargerDonneesLocales() {
 
-        if let path = NSBundle.mainBundle().pathForResource("restaurants", ofType: "xml") {
+        // chargement des données depuis fichier local uniquement si la base de données CoreData est vide
+        if self.getRestaurants().count == 0 {
+
+            if let path = NSBundle.mainBundle().pathForResource("restaurants", ofType: "xml") {
 
 
-            if let fileContents: NSData = NSData(contentsOfFile: path) {
+                if let fileContents: NSData = NSData(contentsOfFile: path) {
 
-                if let xml = String(data: fileContents, encoding: NSUTF8StringEncoding) {
+                    if let xml = String(data: fileContents, encoding: NSUTF8StringEncoding) {
 
-                    self.parseXML(xml)
+                        self.parseXML(xml)
+                    }
                 }
+
             }
 
         }
@@ -102,6 +107,8 @@ class UserData: NSObject, CLLocationManagerDelegate {
 
         let entityRestaurant =  NSEntityDescription.entityForName("Restaurant", inManagedObjectContext:self.managedContext)
 
+        let entityTag =  NSEntityDescription.entityForName("Tag", inManagedObjectContext:managedContext)
+
 
         for elem in xml["root"]["item"] {
 
@@ -115,6 +122,7 @@ class UserData: NSObject, CLLocationManagerDelegate {
             let phone = elem["tel_fixe"].element?.text
             let link = elem["link"].element?.text
             let identifer = elem["id"].element?.text
+            let ville = elem["ville"].element?.text
 
 
 
@@ -149,6 +157,7 @@ class UserData: NSObject, CLLocationManagerDelegate {
             restaurant?.website = website
             restaurant?.absolute_url = link
             restaurant?.phone = phone
+            restaurant?.ville = ville
 
             if let _identifer = identifer {
                 restaurant?.identifier = Int(_identifer)
@@ -162,8 +171,26 @@ class UserData: NSObject, CLLocationManagerDelegate {
                 restaurant?.lon = Double(_longitude)
             }
 
+
+
             restaurant?.tags = NSSet()
 
+
+            if let categories_culinaires = elem["categories_culinaires"].element?.text {
+
+                let arrayOfTags = categories_culinaires.componentsSeparatedByString("|")
+
+                for strTag in arrayOfTags {
+
+                    if let new_tag = (NSManagedObject(entity: entityTag!, insertIntoManagedObjectContext: managedContext) as? Tag) {
+
+                        new_tag.name = strTag
+                        new_tag.restaurants = NSSet()
+
+                        restaurant?.addTag(new_tag)
+                    }
+                }
+            }
 
 
 

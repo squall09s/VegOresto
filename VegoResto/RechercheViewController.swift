@@ -17,15 +17,17 @@ class RechercheViewController: UIViewController, UITableViewDelegate, UITableVie
     let TAG_CELL_LABEL_NAME = 501
     let TAG_CELL_LABEL_ADRESS = 502
     let TAG_CELL_LABEL_DISTANCE = 505
+    let TAG_CELL_LABEL_VILLE = 506
 
-
-    let TAG_CELL_IMAGEVIEW_VEGAN = 503
-    let TAG_CELL_IMAGEVIEW_GLUTEN = 504
+    let TAG_CELL_VIEW_CATEGORIE_COLOR = 510
 
     var array_restaurants: [Restaurant] = UserData.sharedInstance.getRestaurants()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+
+        self.varIB_searchBar.backgroundImage = UIImage()
 
         // Do any additional setup after loading the view.
     }
@@ -88,9 +90,28 @@ class RechercheViewController: UIViewController, UITableViewDelegate, UITableVie
         let label_name = cell?.viewWithTag(TAG_CELL_LABEL_NAME) as? UILabel
         let label_adress = cell?.viewWithTag(TAG_CELL_LABEL_ADRESS) as? UILabel
         let label_distance = cell?.viewWithTag(TAG_CELL_LABEL_DISTANCE) as? UILabel
+        let label_ville = cell?.viewWithTag(TAG_CELL_LABEL_VILLE) as? UILabel
 
         label_name?.text = current_restaurant.name
         label_adress?.text = current_restaurant.address
+        label_ville?.text = current_restaurant.ville
+
+        if let view_color_categorie = cell?.viewWithTag(TAG_CELL_VIEW_CATEGORIE_COLOR) {
+
+                switch current_restaurant.categorie() {
+
+                case CategorieRestaurant.Vegan :
+                    view_color_categorie.backgroundColor = COLOR_VERT
+
+                case CategorieRestaurant.Végétarien :
+                    view_color_categorie.backgroundColor = COLOR_VIOLET
+
+                case CategorieRestaurant.Traditionnel :
+                    view_color_categorie.backgroundColor = COLOR_BLEU
+
+                }
+        }
+
 
 
         label_distance?.text = ""
@@ -112,23 +133,6 @@ class RechercheViewController: UIViewController, UITableViewDelegate, UITableVie
             }
 
         }
-
-        let tags_presents = current_restaurant.tags_are_present()
-
-
-        if let imageview_vegan = cell?.viewWithTag(TAG_CELL_IMAGEVIEW_VEGAN) as? UIImageView {
-
-            imageview_vegan.image =  tags_presents.is_vegan ?    UIImage.Asset.Img_vegan_on.image : UIImage.Asset.Img_vegan_off.image
-
-        }
-
-
-        if let imageview_gluten = cell?.viewWithTag(TAG_CELL_IMAGEVIEW_GLUTEN) as? UIImageView {
-
-            imageview_gluten.image =  tags_presents.is_gluten_free ?    UIImage.Asset.Img_gluten_free_on.image  :  UIImage.Asset.Img_gluten_free_off.image
-
-        }
-
 
         return cell!
 

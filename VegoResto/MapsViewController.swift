@@ -107,13 +107,32 @@ class MapsViewController: UIViewController, MKMapViewDelegate {
                 self.configurerViewAnnotation( myView, currentAnnotation: restaurantAnnotation )
 
                 pinView?.detailCalloutAccessoryView = myView
+
+                if let categorie = restaurantAnnotation.restaurant?.categorie() {
+
+                switch categorie {
+
+                case CategorieRestaurant.Vegan :
+                    pinView?.image = UIImage.Asset.Img_anotation_0.image
+
+                case CategorieRestaurant.Végétarien :
+                    pinView?.image = UIImage.Asset.Img_anotation_1.image
+
+                case CategorieRestaurant.Traditionnel :
+                    pinView?.image = UIImage.Asset.Img_anotation_2.image
+
+                }
+                }
+
+
             }
 
 
 
 
 
-            pinView?.image = UIImage.Asset.Img_anotation.image
+
+
 
             pinView?.frame.size = CGSize(width: 144.0/4.0, height: 208.0/4.0)
 
