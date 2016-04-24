@@ -244,6 +244,13 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uKb-jl-WGc">
                                 <rect key="frame" x="0.0" y="70" width="600" height="470"/>
                             </scrollView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_chevrons" translatesAutoresizingMaskIntoConstraints="NO" id="mQg-vP-CjV">
+                                <rect key="frame" x="100" y="525" width="30" height="15"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="30" id="0OE-jJ-Jsa"/>
+                                    <constraint firstAttribute="height" constant="15" id="xDv-WP-aUH"/>
+                                </constraints>
+                            </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sR8-Mu-iyN">
                                 <rect key="frame" x="0.0" y="540" width="600" height="60"/>
                                 <subviews>
@@ -307,8 +314,10 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="uKb-jl-WGc" firstAttribute="leading" secondItem="bEd-l9-QNL" secondAttribute="leading" id="3ah-Wh-hgP"/>
+                            <constraint firstItem="sR8-Mu-iyN" firstAttribute="top" secondItem="mQg-vP-CjV" secondAttribute="bottom" id="BmL-Xh-PJj"/>
                             <constraint firstItem="GQC-jA-oKE" firstAttribute="leading" secondItem="bEd-l9-QNL" secondAttribute="leading" id="Bzs-nz-Qbb"/>
                             <constraint firstItem="GQC-jA-oKE" firstAttribute="top" secondItem="Pd5-ex-8Hk" secondAttribute="bottom" id="C2c-5q-X3x"/>
+                            <constraint firstItem="mQg-vP-CjV" firstAttribute="leading" secondItem="bEd-l9-QNL" secondAttribute="leading" constant="100" id="CtJ-56-SEH"/>
                             <constraint firstItem="sR8-Mu-iyN" firstAttribute="leading" secondItem="bEd-l9-QNL" secondAttribute="leading" id="GFX-sl-oNu"/>
                             <constraint firstItem="E2N-0s-hWP" firstAttribute="top" secondItem="sR8-Mu-iyN" secondAttribute="bottom" id="MbT-9G-nsg"/>
                             <constraint firstAttribute="trailing" secondItem="uKb-jl-WGc" secondAttribute="trailing" id="Mea-g1-dPV"/>
@@ -324,6 +333,7 @@
                     <connections>
                         <outlet property="varIB_button_tabbar_list" destination="13y-tX-OSE" id="WBS-EB-6F3"/>
                         <outlet property="varIB_button_tabbar_maps" destination="Xwi-ua-6ZR" id="EJm-MQ-4jC"/>
+                        <outlet property="varIB_contrainte_y_chevron_tabbar" destination="CtJ-56-SEH" id="yJc-cC-LKQ"/>
                         <outlet property="varIB_scrollView" destination="uKb-jl-WGc" id="mrX-Jf-cLk"/>
                     </connections>
                 </viewController>
@@ -681,6 +691,7 @@
         <image name="img_bt_localisation.png" width="148" height="148"/>
         <image name="img_bt_localisation_black" width="148" height="148"/>
         <image name="img_bt_share.png" width="143" height="143"/>
+        <image name="img_chevrons" width="267" height="133"/>
         <image name="img_gluten_free_on.png" width="229" height="283"/>
         <image name="img_header.png" width="599" height="195"/>
         <image name="img_ic_accueil_bt_1.png" width="215" height="215"/>

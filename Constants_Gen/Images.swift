@@ -15,6 +15,7 @@ extension UIImage {
     case Img_bt_localisation = "img_bt_localisation"
     case Img_bt_localisation_black = "img_bt_localisation_black"
     case Img_bt_share = "img_bt_share"
+    case Img_chevrons = "img_chevrons"
     case Img_gluten_free_off = "img_gluten_free_off"
     case Img_gluten_free_off_white = "img_gluten_free_off_white"
     case Img_gluten_free_on = "img_gluten_free_on"

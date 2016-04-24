@@ -16,6 +16,8 @@ class NavigationAccueilViewController: UIViewController {
     @IBOutlet weak var varIB_button_tabbar_list: UIButton!
     @IBOutlet weak var varIB_button_tabbar_maps: UIButton!
 
+    @IBOutlet weak var varIB_contrainte_y_chevron_tabbar: NSLayoutConstraint!
+
     var recherche_viewController: RechercheViewController?
     var maps_viewController: MapsViewController?
 
@@ -30,8 +32,10 @@ class NavigationAccueilViewController: UIViewController {
         self.recherche_viewController = StoryboardScene.Main.instantiateRechercheViewController()
         self.maps_viewController = StoryboardScene.Main.instantiateMapsViewController()
 
-        self.varIB_button_tabbar_list.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.3)
-        self.varIB_button_tabbar_maps.backgroundColor = UIColor.clearColor()
+        self.varIB_button_tabbar_maps.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.3)
+        self.varIB_button_tabbar_list.backgroundColor = UIColor.clearColor()
+
+        self.varIB_contrainte_y_chevron_tabbar.constant = Device.LARGEUR * 0.25 - 15
 
     }
 
@@ -88,23 +92,7 @@ class NavigationAccueilViewController: UIViewController {
 
             self.varIB_scrollView.scrollRectToVisible( frame, animated: true )
 
-            UIView.animateWithDuration(0.2, animations: {
-
-                self.varIB_button_tabbar_list.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.3)
-                self.varIB_button_tabbar_maps.backgroundColor = UIColor.clearColor()
-
-            })
-
-
-
-        } else if self.varIB_button_tabbar_maps == sender {
-
-
-
-            let frame = CGRect(x : Device.LARGEUR, y : 0, width : Device.LARGEUR, height :Device.HAUTEUR - HAUTEUR_HEADER_BAR - HAUTEUR_TABBAR )
-
-
-                self.varIB_scrollView.scrollRectToVisible( frame, animated: true )
+            self.varIB_contrainte_y_chevron_tabbar.constant = Device.LARGEUR * 0.25 - 15
 
             UIView.animateWithDuration(0.2, animations: {
 
@@ -113,6 +101,28 @@ class NavigationAccueilViewController: UIViewController {
 
             })
 
+
+
+        } else if self.varIB_button_tabbar_maps == sender {
+
+
+            let frame = CGRect(x : Device.LARGEUR, y : 0, width : Device.LARGEUR, height :Device.HAUTEUR - HAUTEUR_HEADER_BAR - HAUTEUR_TABBAR )
+
+            self.varIB_scrollView.scrollRectToVisible( frame, animated: true )
+
+            self.varIB_contrainte_y_chevron_tabbar.constant = Device.LARGEUR * 0.75 - 15
+
+            UIView.animateWithDuration(0.2, animations: {
+
+                self.varIB_button_tabbar_list.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.3)
+                self.varIB_button_tabbar_maps.backgroundColor = UIColor.clearColor()
+
+            })
+
+        }
+
+        UIView.animateWithDuration(0.25) {
+            self.view.layoutIfNeeded()
         }
     }
 
