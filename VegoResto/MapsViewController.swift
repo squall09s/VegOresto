@@ -223,7 +223,7 @@ class MapsViewController: UIViewController, MKMapViewDelegate {
 
     func touch_bt_more_info(sender: BTTransitionVersDetailsRestaurant) {
 
-         self.performSegue(StoryboardSegue.Main.Segue_to_detail)
+        self.performSegue(StoryboardSegue.Main.Segue_to_detail, sender : sender.restaurant )
     }
 
 
