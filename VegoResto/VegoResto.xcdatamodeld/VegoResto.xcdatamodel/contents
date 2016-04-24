@@ -3,11 +3,23 @@
     <entity name="Restaurant" representedClassName="Restaurant" syncable="YES">
         <attribute name="absolute_url" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="ambiance" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="animaux_bienvenus" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="facebook" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="fermeture" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="identifier" optional="YES" attributeType="Integer 16" defaultValueString="0" indexed="YES" syncable="YES"/>
+        <attribute name="image" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="influence_gastronomique" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="langues_parlees" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lat" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="lon" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="montant_moyen" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="moyens_de_paiement" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="phone" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="resume" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="terrasse" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="type_etablissement" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="ville" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="website" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="tags" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Tag" inverseName="restaurants" inverseEntity="Tag" syncable="YES"/>
@@ -17,7 +29,7 @@
         <relationship name="restaurants" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Restaurant" inverseName="tags" inverseEntity="Restaurant" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Restaurant" positionX="-1469" positionY="18" width="128" height="195"/>
+        <element name="Restaurant" positionX="-1469" positionY="18" width="128" height="375"/>
         <element name="Tag" positionX="-1127" positionY="369" width="128" height="73"/>
     </elements>
 </model>

@@ -17,12 +17,24 @@ extension Restaurant {
     @NSManaged var absolute_url: String?
     @NSManaged var address: String?
     @NSManaged var identifier: NSNumber?
+    @NSManaged var terrasse: NSNumber?
     @NSManaged var lat: NSNumber?
     @NSManaged var lon: NSNumber?
     @NSManaged var name: String?
     @NSManaged var phone: String?
     @NSManaged var ville: String?
+    @NSManaged var resume: String?
+    @NSManaged var type_etablissement: String?
+    @NSManaged var facebook: String?
     @NSManaged var website: String?
+    @NSManaged var montant_moyen: String?
     @NSManaged var tags: NSSet?
+    @NSManaged var moyens_de_paiement: String?
+    @NSManaged var langues_parlees: String?
+    @NSManaged var animaux_bienvenus: NSNumber?
+    @NSManaged var influence_gastronomique: String?
+    @NSManaged var ambiance: String?
+    @NSManaged var fermeture: String?
+    @NSManaged var image: String?
 
 }

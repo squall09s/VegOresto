@@ -9,6 +9,7 @@
 import UIKit
 import CoreLocation
 import MapKit
+import MapleBacon
 
 class DetailRestaurantViewController: UIViewController {
 
@@ -20,6 +21,8 @@ class DetailRestaurantViewController: UIViewController {
     @IBOutlet weak var varIB_image_vegan: UIImageView!
     @IBOutlet weak var varIB_image_gluten_free: UIImageView!
 
+
+    @IBOutlet weak var varIB_image_presentation: UIImageView!
 
     var current_restaurant: Restaurant? = nil
 
@@ -44,6 +47,19 @@ class DetailRestaurantViewController: UIViewController {
 
                 //TODO: griser case bouton msite web
             }
+
+
+            guard
+
+                let imageString = _current_restaurant.image,
+                let imageURL = NSURL(string: imageString)
+
+            else {
+
+                return
+            }
+
+            self.varIB_image_presentation.setImageWithURL(imageURL, placeholder: UIImage.Asset.Img_no_images.image, crossFadePlaceholder: false)
 
         }
 

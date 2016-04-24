@@ -10,6 +10,7 @@ pod 'SwiftGen'
 pod 'Alamofire', '~> 3.3'
 pod 'GZIP', '~> 1.1.1'
 pod 'SWXMLHash', '~> 2.3.1'
+pod 'MapleBacon'
 
 end
 

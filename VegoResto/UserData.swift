@@ -31,7 +31,6 @@ class UserData: NSObject, CLLocationManagerDelegate {
         super.init()
 
 
-
         self.locationmanager = CLLocationManager()
         //locationmanager?.startUpdatingLocation()
         //locationmanager?.requestWhenInUseAuthorization()
@@ -123,7 +122,18 @@ class UserData: NSObject, CLLocationManagerDelegate {
             let link = elem["link"].element?.text
             let identifer = elem["id"].element?.text
             let ville = elem["ville"].element?.text
-
+            let resume = elem["description"].element?.text
+            let facebook = elem["facebook"].element?.text
+            let type_etablissement = elem["type_etablissement"].element?.text
+            let montant_moyen = elem["montant_moyen"].element?.text
+            let terrasse = elem["terrasse"].element?.text
+            let moyens_de_paiement = elem["moyens_de_paiement"].element?.text
+            let langues_parlees = elem["langues_parlees"].element?.text
+            let animaux_bienvenus = elem["animaux_bienvenus"].element?.text
+            let influence_gastronomique = elem["influence_gastronomique"].element?.text
+            let ambiance = elem["ambiance"].element?.text
+            let fermeture = elem["fermeture"].element?.text
+            let image = elem["image"].element?.text
 
 
             var restaurant: Restaurant? = nil
@@ -158,6 +168,25 @@ class UserData: NSObject, CLLocationManagerDelegate {
             restaurant?.absolute_url = link
             restaurant?.phone = phone
             restaurant?.ville = ville
+            restaurant?.resume = resume
+            restaurant?.facebook = facebook
+            restaurant?.type_etablissement = type_etablissement
+            restaurant?.montant_moyen = montant_moyen
+            restaurant?.moyens_de_paiement = moyens_de_paiement
+            restaurant?.langues_parlees = langues_parlees
+            restaurant?.influence_gastronomique = influence_gastronomique
+            restaurant?.ambiance = ambiance
+            restaurant?.fermeture = fermeture
+            restaurant?.image = image
+
+
+            if let _animaux_bienvenus = animaux_bienvenus {
+                restaurant?.animaux_bienvenus = ( _animaux_bienvenus == "oui" )
+            }
+
+            if let _terrasse = terrasse {
+                restaurant?.terrasse = ( _terrasse == "oui" )
+            }
 
             if let _identifer = identifer {
                 restaurant?.identifier = Int(_identifer)
@@ -212,6 +241,9 @@ class UserData: NSObject, CLLocationManagerDelegate {
 
         var strResult = str.stringByReplacingOccurrencesOfString("<br />", withString: "\n")
         strResult = strResult.stringByReplacingOccurrencesOfString("&#039;", withString: "'")
+        strResult = strResult.stringByReplacingOccurrencesOfString("&rsquo;", withString: "'")
+        strResult = strResult.stringByReplacingOccurrencesOfString("&#8211;", withString: "–")
+
 
         return strResult
     }
