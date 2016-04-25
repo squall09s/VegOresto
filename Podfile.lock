@@ -3,6 +3,7 @@ PODS:
   - FBAnnotationClusteringSwift (1.0.1)
   - GZIP (1.1.1)
   - MapleBacon (2.0.8)
+  - MGSwipeTableCell (1.5.5)
   - Pushwoosh (3.1.2)
   - SVPulsingAnnotationView (0.3.0)
   - SwiftGen (0.8.0)
@@ -13,6 +14,7 @@ DEPENDENCIES:
   - FBAnnotationClusteringSwift
   - GZIP (~> 1.1.1)
   - MapleBacon
+  - MGSwipeTableCell (~> 1.5.5)
   - Pushwoosh (~> 3.1.2)
   - SVPulsingAnnotationView (~> 0.3.0)
   - SwiftGen
@@ -23,6 +25,7 @@ SPEC CHECKSUMS:
   FBAnnotationClusteringSwift: a1f4c07f5472b13acd69de04c61e68e2d7daaad3
   GZIP: f8beb59597f651e6970a45b816508a9c6d700b77
   MapleBacon: 32e3590e1730485b93f450283ff242f9444efc12
+  MGSwipeTableCell: bafeb5f351124544c9364ecbdf24c7b06a37d340
   Pushwoosh: 9812736e39e5d2503408ed919ca2948f5d92f5b5
   SVPulsingAnnotationView: f1a8dc7a57ebb5fa231d0ef8b0da59a250005511
   SwiftGen: d27095418addd706b18da94bc8d9552e8d8148c3

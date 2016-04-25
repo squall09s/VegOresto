@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import MGSwipeTableCell
+
 
 class RechercheViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
 
@@ -20,6 +22,7 @@ class RechercheViewController: UIViewController, UITableViewDelegate, UITableVie
     let TAG_CELL_LABEL_VILLE = 506
 
     let TAG_CELL_VIEW_CATEGORIE_COLOR = 510
+    let TAG_CELL_IMAGE_FAVORIS = 520
 
     var array_restaurants: [Restaurant] = UserData.sharedInstance.getRestaurants()
 
@@ -74,18 +77,66 @@ class RechercheViewController: UIViewController, UITableViewDelegate, UITableVie
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 
-        let reuseIdentifier = "cell_restaurant_identifer"
+        let current_restaurant: Restaurant = self.array_restaurants[indexPath.row]
 
-        var cell = tableView.dequeueReusableCellWithIdentifier(reuseIdentifier)
+
+        let reuseIdentifier = current_restaurant.favoris.boolValue ? "cell_restaurant_identifer_favoris_on" : "cell_restaurant_identifer_favoris_off"
+
+        var cell = tableView.dequeueReusableCellWithIdentifier(reuseIdentifier, forIndexPath: indexPath) as? MGSwipeTableCell
+
+
 
         if cell == nil {
-
-            cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: reuseIdentifier)
+            cell = MGSwipeTableCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: reuseIdentifier)
 
         }
 
+        var imageSwipe: UIImage
 
-        let current_restaurant: Restaurant = self.array_restaurants[indexPath.row]
+        if current_restaurant.favoris.boolValue == false {
+
+            switch current_restaurant.categorie() {
+
+            case CategorieRestaurant.Vegan :
+                imageSwipe = UIImage.Asset.Img_favoris_on_0.image
+
+            case CategorieRestaurant.Végétarien :
+                imageSwipe = UIImage.Asset.Img_favoris_on_1.image
+
+            case CategorieRestaurant.Traditionnel :
+                imageSwipe = UIImage.Asset.Img_favoris_on_2.image
+
+            }
+
+        } else {
+
+            imageSwipe = UIImage.Asset.Img_favoris_off.image
+        }
+
+        let bt1 = MGSwipeButton(title: "", icon: imageSwipe, backgroundColor: COLOR_GRIS_BACKGROUND ) { (cell) -> Bool in
+
+            current_restaurant.favoris = !(current_restaurant.favoris.boolValue)
+
+            self.varIB_tableView.reloadData()
+
+            return true
+        }
+
+
+        bt1.buttonWidth = 110
+
+        if let _cell = cell {
+            _cell.rightButtons = [ bt1 ]
+
+            _cell.rightSwipeSettings.transition = MGSwipeTransition.Static
+            _cell.rightSwipeSettings.offset = 0
+            _cell.rightSwipeSettings.threshold = 10
+
+        }
+
+        // Configure the cell...
+
+
 
         let label_name = cell?.viewWithTag(TAG_CELL_LABEL_NAME) as? UILabel
         let label_adress = cell?.viewWithTag(TAG_CELL_LABEL_ADRESS) as? UILabel
@@ -98,18 +149,41 @@ class RechercheViewController: UIViewController, UITableViewDelegate, UITableVie
 
         if let view_color_categorie = cell?.viewWithTag(TAG_CELL_VIEW_CATEGORIE_COLOR) {
 
+            switch current_restaurant.categorie() {
+
+            case CategorieRestaurant.Vegan :
+                view_color_categorie.backgroundColor = COLOR_VERT
+
+            case CategorieRestaurant.Végétarien :
+                view_color_categorie.backgroundColor = COLOR_VIOLET
+
+            case CategorieRestaurant.Traditionnel :
+                view_color_categorie.backgroundColor = COLOR_BLEU
+
+            }
+        }
+
+        if current_restaurant.favoris.boolValue {
+
+            if let imageview_favoris = cell?.viewWithTag(TAG_CELL_IMAGE_FAVORIS) as? UIImageView {
+
                 switch current_restaurant.categorie() {
 
                 case CategorieRestaurant.Vegan :
-                    view_color_categorie.backgroundColor = COLOR_VERT
+                    imageview_favoris.image = UIImage.Asset.Img_favoris_0.image
 
                 case CategorieRestaurant.Végétarien :
-                    view_color_categorie.backgroundColor = COLOR_VIOLET
+                    imageview_favoris.image = UIImage.Asset.Img_favoris_1.image
 
                 case CategorieRestaurant.Traditionnel :
-                    view_color_categorie.backgroundColor = COLOR_BLEU
+                    imageview_favoris.image = UIImage.Asset.Img_favoris_2.image
 
                 }
+
+
+            }
+
+
         }
 
 
@@ -236,31 +310,31 @@ class RechercheViewController: UIViewController, UITableViewDelegate, UITableVie
 
             if _key.characters.count > 3 {
 
-            self.array_restaurants = self.array_restaurants.flatMap({ (current_restaurant: Restaurant) -> Restaurant? in
+                self.array_restaurants = self.array_restaurants.flatMap({ (current_restaurant: Restaurant) -> Restaurant? in
 
 
-                if let clean_name: String = current_restaurant.name?.stringByFoldingWithOptions( .DiacriticInsensitiveSearch, locale: .currentLocale() ) {
+                    if let clean_name: String = current_restaurant.name?.stringByFoldingWithOptions( .DiacriticInsensitiveSearch, locale: .currentLocale() ) {
 
-                    if clean_name.containsString(_key) {
-                        return current_restaurant
+                        if clean_name.containsString(_key) {
+                            return current_restaurant
+                        }
+
+
                     }
 
 
-                }
+                    if let clean_adress: String = current_restaurant.address?.stringByFoldingWithOptions( .DiacriticInsensitiveSearch, locale: .currentLocale() ) {
 
-
-                if let clean_adress: String = current_restaurant.address?.stringByFoldingWithOptions( .DiacriticInsensitiveSearch, locale: .currentLocale() ) {
-
-                    if clean_adress.containsString(_key) {
-                        return current_restaurant
+                        if clean_adress.containsString(_key) {
+                            return current_restaurant
+                        }
                     }
-                }
 
 
-                return nil
+                    return nil
 
 
-            })
+                })
 
             }
 
@@ -274,21 +348,21 @@ class RechercheViewController: UIViewController, UITableViewDelegate, UITableVie
 
         if let location = UserData.sharedInstance.location {
 
-        for restaurant in self.array_restaurants {
+            for restaurant in self.array_restaurants {
 
-            restaurant.update_distance_avec_localisation( location )
+                restaurant.update_distance_avec_localisation( location )
 
-        }
+            }
 
-        self.array_restaurants.sortInPlace({ (restaurantA, restaurantB) -> Bool in
+            self.array_restaurants.sortInPlace({ (restaurantA, restaurantB) -> Bool in
 
-            restaurantA.distance < restaurantB.distance
+                restaurantA.distance < restaurantB.distance
 
-        })
+            })
 
-        self.varIB_tableView.reloadData()
+            self.varIB_tableView.reloadData()
 
-        self.varIB_tableView.scrollRectToVisible(CGRect(x: 0, y: 0, width: 1, height: 1), animated: false)
+            self.varIB_tableView.scrollRectToVisible(CGRect(x: 0, y: 0, width: 1, height: 1), animated: false)
 
 
 
