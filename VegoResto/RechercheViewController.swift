@@ -15,6 +15,11 @@ class RechercheViewController: UIViewController, UITableViewDelegate, UITableVie
     @IBOutlet weak var varIB_searchBar: UISearchBar!
     @IBOutlet weak var varIB_tableView: UITableView!
 
+    @IBOutlet weak var varIB_bt_filtre_categorie_1: UIButton!
+    @IBOutlet weak var varIB_bt_filtre_categorie_2: UIButton!
+    @IBOutlet weak var varIB_bt_filtre_categorie_3: UIButton!
+
+    var filtre_categorie: CategorieRestaurant? = nil
 
     let TAG_CELL_LABEL_NAME = 501
     let TAG_CELL_LABEL_ADRESS = 502
@@ -28,7 +33,6 @@ class RechercheViewController: UIViewController, UITableViewDelegate, UITableVie
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
 
         self.varIB_searchBar.backgroundImage = UIImage()
 
@@ -72,8 +76,6 @@ class RechercheViewController: UIViewController, UITableViewDelegate, UITableVie
 
 
     // MARK: UITableViewDelegate Delegate
-
-
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 
@@ -126,6 +128,7 @@ class RechercheViewController: UIViewController, UITableViewDelegate, UITableVie
         bt1.buttonWidth = 110
 
         if let _cell = cell {
+
             _cell.rightButtons = [ bt1 ]
 
             _cell.rightSwipeSettings.transition = MGSwipeTransition.Static
@@ -137,7 +140,6 @@ class RechercheViewController: UIViewController, UITableViewDelegate, UITableVie
         }
 
         // Configure the cell...
-
 
 
         let label_name = cell?.viewWithTag(TAG_CELL_LABEL_NAME) as? UILabel
@@ -343,6 +345,63 @@ class RechercheViewController: UIViewController, UITableViewDelegate, UITableVie
         }
 
 
+        if let _filtre_categorie = filtre_categorie {
+
+
+            self.array_restaurants = self.array_restaurants.flatMap({ (current_restaurant: Restaurant) -> Restaurant? in
+
+
+
+                if current_restaurant.categorie() == _filtre_categorie {
+                    return current_restaurant
+                }
+
+                return nil
+
+
+            })
+
+        }
+
+
+
+    }
+
+    @IBAction func touch_bt_categorie(sender: UIButton) {
+
+        if sender == self.varIB_bt_filtre_categorie_1 {
+
+            if self.filtre_categorie != CategorieRestaurant.Végétarien {
+                self.filtre_categorie = CategorieRestaurant.Végétarien
+            } else {
+                self.filtre_categorie = nil
+            }
+
+        } else if sender == self.varIB_bt_filtre_categorie_2 {
+
+            if self.filtre_categorie != CategorieRestaurant.Vegan {
+                self.filtre_categorie = CategorieRestaurant.Vegan
+            } else {
+                self.filtre_categorie = nil
+            }
+
+        } else if sender == self.varIB_bt_filtre_categorie_3 {
+
+            if self.filtre_categorie != CategorieRestaurant.Traditionnel {
+                self.filtre_categorie = CategorieRestaurant.Traditionnel
+            } else {
+                self.filtre_categorie = nil
+            }
+
+        }
+
+        self.varIB_bt_filtre_categorie_1.backgroundColor = (self.filtre_categorie == CategorieRestaurant.Végétarien || self.filtre_categorie == nil)  ? COLOR_VIOLET : COLOR_GRIS_FONCÉ.colorWithAlphaComponent(0.6)
+        self.varIB_bt_filtre_categorie_2.backgroundColor = (self.filtre_categorie == CategorieRestaurant.Vegan || self.filtre_categorie == nil) ? COLOR_VERT : COLOR_GRIS_FONCÉ.colorWithAlphaComponent(0.6)
+        self.varIB_bt_filtre_categorie_3.backgroundColor = (self.filtre_categorie == CategorieRestaurant.Traditionnel || self.filtre_categorie == nil) ? COLOR_BLEU : COLOR_GRIS_FONCÉ.colorWithAlphaComponent(0.6)
+
+
+        self.loadRestaurantsWithWord(self.varIB_searchBar.text)
+        self.varIB_tableView.reloadData()
     }
 
 

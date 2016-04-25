@@ -41,11 +41,6 @@ struct StoryboardScene {
   enum Main: String, StoryboardSceneType {
     static let storyboardName = "Main"
 
-    case AnnotationPopoverScene = "AnnotationPopover"
-    static func instantiateAnnotationPopover() -> UIViewController {
-      return StoryboardScene.Main.AnnotationPopoverScene.viewController()
-    }
-
     case MapsViewControllerScene = "MapsViewController"
     static func instantiateMapsViewController() -> MapsViewController {
       return StoryboardScene.Main.MapsViewControllerScene.viewController() as! MapsViewController

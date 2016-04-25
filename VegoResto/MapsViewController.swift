@@ -17,6 +17,11 @@ class MapsViewController: UIViewController, MKMapViewDelegate {
 
     @IBOutlet weak var varIB_mapView: MKMapView!
 
+    @IBOutlet weak var varIB_bt_filtre_categorie_1: UIButton!
+    @IBOutlet weak var varIB_bt_filtre_categorie_2: UIButton!
+    @IBOutlet weak var varIB_bt_filtre_categorie_3: UIButton!
+
+    var filtre_categorie: CategorieRestaurant? = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -305,7 +310,47 @@ class MapsViewController: UIViewController, MKMapViewDelegate {
     }
 
 
+
+    @IBAction func touch_bt_categorie(sender: UIButton) {
+
+        if sender == self.varIB_bt_filtre_categorie_1 {
+
+            if self.filtre_categorie != CategorieRestaurant.Végétarien {
+                self.filtre_categorie = CategorieRestaurant.Végétarien
+            } else {
+                self.filtre_categorie = nil
+            }
+
+        } else if sender == self.varIB_bt_filtre_categorie_2 {
+
+            if self.filtre_categorie != CategorieRestaurant.Vegan {
+                self.filtre_categorie = CategorieRestaurant.Vegan
+            } else {
+                self.filtre_categorie = nil
+            }
+
+        } else if sender == self.varIB_bt_filtre_categorie_3 {
+
+            if self.filtre_categorie != CategorieRestaurant.Traditionnel {
+                self.filtre_categorie = CategorieRestaurant.Traditionnel
+            } else {
+                self.filtre_categorie = nil
+            }
+
+        }
+
+
+        self.varIB_bt_filtre_categorie_1.backgroundColor = (self.filtre_categorie == CategorieRestaurant.Végétarien || self.filtre_categorie == nil)  ? COLOR_VIOLET : COLOR_GRIS_FONCÉ.colorWithAlphaComponent(0.6)
+        self.varIB_bt_filtre_categorie_2.backgroundColor = (self.filtre_categorie == CategorieRestaurant.Vegan || self.filtre_categorie == nil) ? COLOR_VERT : COLOR_GRIS_FONCÉ.colorWithAlphaComponent(0.6)
+        self.varIB_bt_filtre_categorie_3.backgroundColor = (self.filtre_categorie == CategorieRestaurant.Traditionnel || self.filtre_categorie == nil) ? COLOR_BLEU : COLOR_GRIS_FONCÉ.colorWithAlphaComponent(0.6)
+
+
+    }
+
+
 }
+
+
 
 
 
