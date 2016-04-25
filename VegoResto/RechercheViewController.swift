@@ -131,6 +131,8 @@ class RechercheViewController: UIViewController, UITableViewDelegate, UITableVie
             _cell.rightSwipeSettings.transition = MGSwipeTransition.Static
             _cell.rightSwipeSettings.offset = 0
             _cell.rightSwipeSettings.threshold = 10
+            _cell.rightExpansion.buttonIndex = 0
+            _cell.rightExpansion.fillOnTrigger = true
 
         }
 
