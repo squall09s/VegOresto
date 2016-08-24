@@ -13,7 +13,10 @@ extension StoryboardSceneType {
   }
 
   static func initialViewController() -> UIViewController {
-    return storyboard().instantiateInitialViewController()!
+    guard let vc = storyboard().instantiateInitialViewController() else {
+      fatalError("Failed to instantiate initialViewController for \(self.storyboardName)")
+    }
+    return vc
   }
 }
 
@@ -41,14 +44,49 @@ struct StoryboardScene {
   enum Main: String, StoryboardSceneType {
     static let storyboardName = "Main"
 
+    case MainViewControllerScene = "MainViewController"
+    static func instantiateMainViewController() -> MainViewController {
+      guard let vc = StoryboardScene.Main.MainViewControllerScene.viewController() as? MainViewController
+      else {
+        fatalError("ViewController 'MainViewController' is not of the expected class MainViewController.")
+      }
+      return vc
+    }
+
     case MapsViewControllerScene = "MapsViewController"
     static func instantiateMapsViewController() -> MapsViewController {
-      return StoryboardScene.Main.MapsViewControllerScene.viewController() as! MapsViewController
+      guard let vc = StoryboardScene.Main.MapsViewControllerScene.viewController() as? MapsViewController
+      else {
+        fatalError("ViewController 'MapsViewController' is not of the expected class MapsViewController.")
+      }
+      return vc
+    }
+
+    case MenuLateralScene = "MenuLateral"
+    static func instantiateMenuLateral() -> MenuLateral {
+      guard let vc = StoryboardScene.Main.MenuLateralScene.viewController() as? MenuLateral
+      else {
+        fatalError("ViewController 'MenuLateral' is not of the expected class MenuLateral.")
+      }
+      return vc
+    }
+
+    case NavigationControllerScene = "NavigationController"
+    static func instantiateNavigationController() -> UITabBarController {
+      guard let vc = StoryboardScene.Main.NavigationControllerScene.viewController() as? UITabBarController
+      else {
+        fatalError("ViewController 'NavigationController' is not of the expected class UITabBarController.")
+      }
+      return vc
     }
 
     case RechercheViewControllerScene = "RechercheViewController"
     static func instantiateRechercheViewController() -> RechercheViewController {
-      return StoryboardScene.Main.RechercheViewControllerScene.viewController() as! RechercheViewController
+      guard let vc = StoryboardScene.Main.RechercheViewControllerScene.viewController() as? RechercheViewController
+      else {
+        fatalError("ViewController 'RechercheViewController' is not of the expected class RechercheViewController.")
+      }
+      return vc
     }
   }
 }

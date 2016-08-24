@@ -105,6 +105,7 @@ class MapsViewController: UIViewController, MKMapViewDelegate {
                 myView.addConstraint(widthConstraint)
 
                 let heightConstraint = NSLayoutConstraint(item: myView, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1, constant: 80)
+
                 myView.addConstraint(heightConstraint)
 
                 myView.frame.size = CGSize(width: 220, height: 80)
@@ -118,13 +119,13 @@ class MapsViewController: UIViewController, MKMapViewDelegate {
                 switch categorie {
 
                 case CategorieRestaurant.Vegan :
-                    pinView?.image = UIImage.Asset.Img_anotation_0.image
+                    pinView?.image = UIImage(asset: .Img_anotation_0)
 
                 case CategorieRestaurant.Végétarien :
-                    pinView?.image = UIImage.Asset.Img_anotation_1.image
+                    pinView?.image = UIImage(asset: .Img_anotation_1)
 
                 case CategorieRestaurant.Traditionnel :
-                    pinView?.image = UIImage.Asset.Img_anotation_2.image
+                    pinView?.image = UIImage(asset: .Img_anotation_2)
 
                 }
                 }
@@ -189,7 +190,7 @@ class MapsViewController: UIViewController, MKMapViewDelegate {
         position_y += largeur_barre_separation + espacement_y
 
         let label_adresse: UILabel = UILabel(frame: CGRect( x : 0, y : position_y, width : view_width, height : hauteur_label_adresse ) )
-        label_adresse.font = UIFont(name: "HelveticaNeue-Light", size: 11)!
+        label_adresse.font = UIFont(name: "URWGothicL-Book", size: 11)!
         label_adresse.numberOfLines = 2
         label_adresse.text = currentAnnotation.restaurant?.address
         view_support.addSubview(label_adresse)
@@ -197,12 +198,12 @@ class MapsViewController: UIViewController, MKMapViewDelegate {
         position_y += hauteur_label_adresse  + espacement_y
 
         let image_label1: UIImageView = UIImageView(frame: CGRect( x : 0, y : position_y, width : img_width, height : img_width) )
-        image_label1.image =  UIImage.Asset.Img_ic_phone_black.image
+        image_label1.image =  UIImage(asset: .Img_ic_phone_black)
         view_support.addSubview(image_label1)
 
 
         let label1: UILabel = UILabel(frame: CGRect( x : img_width + espacement_x, y : position_y, width : view_width - img_width - espacement_x, height : img_width) )
-        label1.font = UIFont(name: "HelveticaNeue-Light", size: 12)!
+        label1.font = UIFont(name: "URWGothicL-Book", size: 12)!
         view_support.addSubview(label1)
 
         label1.text = currentAnnotation.restaurant?.phone
@@ -210,11 +211,11 @@ class MapsViewController: UIViewController, MKMapViewDelegate {
         position_y += img_width  + espacement_y
 
         let image_label2: UIImageView = UIImageView(frame: CGRect( x : 0, y : position_y, width : img_width, height : img_width) )
-        image_label2.image = UIImage.Asset.Img_ic_more_black.image
+        image_label2.image = UIImage(asset: .Img_ic_more_black)
         view_support.addSubview(image_label2)
 
         let bt_info = BTTransitionVersDetailsRestaurant(frame: CGRect( x : img_width + espacement_x, y : position_y, width : view_width - img_width - espacement_x, height : img_width) )
-        bt_info.titleLabel?.font = UIFont(name: "HelveticaNeue-Light", size: 12)!
+        bt_info.titleLabel?.font = UIFont(name: "URWGothicL-Book", size: 12)!
         bt_info.contentHorizontalAlignment = UIControlContentHorizontalAlignment.Left
         bt_info.setTitle("Plus d'informations", forState: UIControlState.Normal)
         bt_info.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
@@ -233,7 +234,7 @@ class MapsViewController: UIViewController, MKMapViewDelegate {
 
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 
     switch StoryboardSegue.Main(rawValue: segue.identifier! )! {
 

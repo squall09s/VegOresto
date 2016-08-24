@@ -38,4 +38,19 @@ extension Restaurant {
     @NSManaged var fermeture: String?
     @NSManaged var image: String?
 
+
+    @NSManaged var h_lundi: String?
+    @NSManaged var h_mardi: String?
+    @NSManaged var h_mercredi: String?
+    @NSManaged var h_jeudi: String?
+    @NSManaged var h_vendredi: String?
+    @NSManaged var h_samedi: String?
+    @NSManaged var h_dimanche: String?
+
+    @NSManaged var h_matin: String?
+    @NSManaged var h_midi: String?
+    @NSManaged var h_ap_midi: String?
+    @NSManaged var h_soir: String?
+    @NSManaged var h_nuit: String?
+
 }

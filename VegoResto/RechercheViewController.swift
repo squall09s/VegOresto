@@ -12,30 +12,34 @@ import MGSwipeTableCell
 
 class RechercheViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
 
-    @IBOutlet weak var varIB_searchBar: UISearchBar!
-    @IBOutlet weak var varIB_tableView: UITableView!
+    @IBOutlet weak var varIB_searchBar: UISearchBar?
+    @IBOutlet weak var varIB_tableView: UITableView?
 
     @IBOutlet weak var varIB_bt_filtre_categorie_1: UIButton!
     @IBOutlet weak var varIB_bt_filtre_categorie_2: UIButton!
     @IBOutlet weak var varIB_bt_filtre_categorie_3: UIButton!
 
+    var afficherUniquementFavoris = false
     var filtre_categorie: CategorieRestaurant? = nil
 
     let TAG_CELL_LABEL_NAME = 501
     let TAG_CELL_LABEL_ADRESS = 502
     let TAG_CELL_LABEL_DISTANCE = 505
     let TAG_CELL_LABEL_VILLE = 506
+    let TAG_CELL_IMAGE_LOC = 507
 
     let TAG_CELL_VIEW_CATEGORIE_COLOR = 510
     let TAG_CELL_IMAGE_FAVORIS = 520
 
-    var array_restaurants: [Restaurant] = UserData.sharedInstance.getRestaurants()
+    var array_restaurants: [Restaurant] = [Restaurant]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.varIB_searchBar.backgroundImage = UIImage()
+        self.varIB_searchBar?.backgroundImage = UIImage()
 
+
+        self.loadRestaurantsWithWord(nil)
         // Do any additional setup after loading the view.
     }
 
@@ -52,6 +56,7 @@ class RechercheViewController: UIViewController, UITableViewDelegate, UITableVie
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 
+
         switch StoryboardSegue.Main(rawValue: segue.identifier! )! {
 
         case .Segue_to_detail:
@@ -59,7 +64,7 @@ class RechercheViewController: UIViewController, UITableViewDelegate, UITableVie
 
             if let detailRestaurantVC: DetailRestaurantViewController = segue.destinationViewController as? DetailRestaurantViewController {
 
-                if let index = self.varIB_tableView.indexPathForSelectedRow?.row {
+                if let index = self.varIB_tableView?.indexPathForSelectedRow?.row {
 
                     detailRestaurantVC.current_restaurant = self.array_restaurants[index]
                 }
@@ -100,38 +105,46 @@ class RechercheViewController: UIViewController, UITableViewDelegate, UITableVie
             switch current_restaurant.categorie() {
 
             case CategorieRestaurant.Vegan :
-                imageSwipe = UIImage.Asset.Img_favoris_on_0.image
+                imageSwipe = UIImage(asset: .Img_favoris_on_0)
 
             case CategorieRestaurant.Végétarien :
-                imageSwipe = UIImage.Asset.Img_favoris_on_1.image
+                imageSwipe = UIImage(asset: .Img_favoris_on_1)
 
             case CategorieRestaurant.Traditionnel :
-                imageSwipe = UIImage.Asset.Img_favoris_on_2.image
+                imageSwipe = UIImage(asset: .Img_favoris_on_2)
 
             }
 
         } else {
 
-            imageSwipe = UIImage.Asset.Img_favoris_off.image
+            imageSwipe = UIImage(asset: .Img_favoris_off)
         }
 
         let bt1 = MGSwipeButton(title: "", icon: imageSwipe, backgroundColor: COLOR_GRIS_BACKGROUND ) { (cell) -> Bool in
 
             current_restaurant.favoris = !(current_restaurant.favoris.boolValue)
 
-            self.varIB_tableView.reloadData()
+            if self.afficherUniquementFavoris {
+
+                self.updateData()
+
+            } else {
+
+            self.varIB_tableView?.reloadData()
+
+            }
 
             return true
         }
 
 
-        bt1.buttonWidth = 110
+        bt1?.buttonWidth = 110
 
         if let _cell = cell {
 
-            _cell.rightButtons = [ bt1 ]
+            _cell.rightButtons = [ bt1! ]
 
-            _cell.rightSwipeSettings.transition = MGSwipeTransition.Static
+            _cell.rightSwipeSettings.transition = .Static
             _cell.rightSwipeSettings.offset = 0
             _cell.rightSwipeSettings.threshold = 10
             _cell.rightExpansion.buttonIndex = 0
@@ -146,12 +159,16 @@ class RechercheViewController: UIViewController, UITableViewDelegate, UITableVie
         let label_adress = cell?.viewWithTag(TAG_CELL_LABEL_ADRESS) as? UILabel
         let label_distance = cell?.viewWithTag(TAG_CELL_LABEL_DISTANCE) as? UILabel
         let label_ville = cell?.viewWithTag(TAG_CELL_LABEL_VILLE) as? UILabel
+        let image_loc = cell?.viewWithTag(TAG_CELL_IMAGE_LOC) as? UIImageView
+
 
         label_name?.text = current_restaurant.name
         label_adress?.text = current_restaurant.address
         label_ville?.text = current_restaurant.ville
 
         if let view_color_categorie = cell?.viewWithTag(TAG_CELL_VIEW_CATEGORIE_COLOR) {
+
+            print("frame = \(view_color_categorie.frame)")
 
             switch current_restaurant.categorie() {
 
@@ -174,13 +191,13 @@ class RechercheViewController: UIViewController, UITableViewDelegate, UITableVie
                 switch current_restaurant.categorie() {
 
                 case CategorieRestaurant.Vegan :
-                    imageview_favoris.image = UIImage.Asset.Img_favoris_0.image
+                    imageview_favoris.image = UIImage(asset: .Img_favoris_0)
 
                 case CategorieRestaurant.Végétarien :
-                    imageview_favoris.image = UIImage.Asset.Img_favoris_1.image
+                    imageview_favoris.image = UIImage(asset: .Img_favoris_1)
 
                 case CategorieRestaurant.Traditionnel :
-                    imageview_favoris.image = UIImage.Asset.Img_favoris_2.image
+                    imageview_favoris.image = UIImage(asset: .Img_favoris_2)
 
                 }
 
@@ -193,6 +210,8 @@ class RechercheViewController: UIViewController, UITableViewDelegate, UITableVie
 
 
         label_distance?.text = ""
+        image_loc?.hidden = true
+
 
         if let distance: Double = current_restaurant.distance {
 
@@ -207,6 +226,8 @@ class RechercheViewController: UIViewController, UITableViewDelegate, UITableVie
                     label_distance?.text = String(format: "%.1f Km", distance/1000.0 )
 
                 }
+
+                image_loc?.hidden = false
 
             }
 
@@ -242,7 +263,6 @@ class RechercheViewController: UIViewController, UITableViewDelegate, UITableVie
             _textField.enablesReturnKeyAutomatically = false
         }
 
-
     }
 
     func searchBarShouldEndEditing(searchBar: UISearchBar) -> Bool {
@@ -274,7 +294,6 @@ class RechercheViewController: UIViewController, UITableViewDelegate, UITableVie
     func searchBarResultsListButtonClicked(searchBar: UISearchBar) {
 
         searchBar.resignFirstResponder()
-
     }
 
 
@@ -310,6 +329,26 @@ class RechercheViewController: UIViewController, UITableViewDelegate, UITableVie
 
         self.array_restaurants = UserData.sharedInstance.getRestaurants()
 
+
+        if self.afficherUniquementFavoris {
+
+        self.array_restaurants = self.array_restaurants.flatMap({ (current_restaurant: Restaurant) -> Restaurant? in
+
+            if current_restaurant.favoris.boolValue == true {
+
+                return current_restaurant
+            }
+
+            return nil
+
+        })
+
+        }
+
+        self.varIB_tableView?.reloadData()
+
+
+
         if let _key = key {
 
             if _key.characters.count > 3 {
@@ -333,6 +372,7 @@ class RechercheViewController: UIViewController, UITableViewDelegate, UITableVie
                             return current_restaurant
                         }
                     }
+
 
 
                     return nil
@@ -400,8 +440,7 @@ class RechercheViewController: UIViewController, UITableViewDelegate, UITableVie
         self.varIB_bt_filtre_categorie_3.backgroundColor = (self.filtre_categorie == CategorieRestaurant.Traditionnel || self.filtre_categorie == nil) ? COLOR_BLEU : COLOR_GRIS_FONCÉ.colorWithAlphaComponent(0.6)
 
 
-        self.loadRestaurantsWithWord(self.varIB_searchBar.text)
-        self.varIB_tableView.reloadData()
+        self.updateData()
     }
 
 
@@ -412,7 +451,6 @@ class RechercheViewController: UIViewController, UITableViewDelegate, UITableVie
             for restaurant in self.array_restaurants {
 
                 restaurant.update_distance_avec_localisation( location )
-
             }
 
             self.array_restaurants.sortInPlace({ (restaurantA, restaurantB) -> Bool in
@@ -421,14 +459,20 @@ class RechercheViewController: UIViewController, UITableViewDelegate, UITableVie
 
             })
 
-            self.varIB_tableView.reloadData()
+            self.varIB_tableView?.reloadData()
 
-            self.varIB_tableView.scrollRectToVisible(CGRect(x: 0, y: 0, width: 1, height: 1), animated: false)
-
-
+            self.varIB_tableView?.scrollRectToVisible(CGRect(x: 0, y: 0, width: 1, height: 1), animated: false)
 
         }
 
+    }
+
+
+
+    func updateData() {
+
+        self.loadRestaurantsWithWord(self.varIB_searchBar?.text)
+        self.varIB_tableView?.reloadData()
     }
 
 

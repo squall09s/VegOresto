@@ -65,6 +65,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // named "Nicolas-Laurent.VegoResto" in the application's documents Application Support directory.
         let urls = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
         return urls[urls.count-1]
+
     }()
 
     lazy var managedObjectModel: NSManagedObjectModel = {
@@ -102,18 +103,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return coordinator
     }()
 
+
+
+
     lazy var managedObjectContext: NSManagedObjectContext = {
 
 
         let coordinator = self.persistentStoreCoordinator
-        var managedObjectContext = NSManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
+        var managedObjectContext = NSManagedObjectContext(concurrencyType: .PrivateQueueConcurrencyType)
         managedObjectContext.persistentStoreCoordinator = coordinator
         return managedObjectContext
     }()
 
     // MARK: - Core Data Saving support
 
-    func saveContext () {
+    func saveContext() {
         if managedObjectContext.hasChanges {
             do {
                 try managedObjectContext.save()

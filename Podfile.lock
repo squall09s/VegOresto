@@ -1,12 +1,13 @@
 PODS:
-  - Alamofire (3.3.1)
+  - Alamofire (3.4.1)
   - FBAnnotationClusteringSwift (1.0.1)
   - GZIP (1.1.1)
   - MapleBacon (2.0.8)
   - MGSwipeTableCell (1.5.5)
   - Pushwoosh (3.1.2)
   - SVPulsingAnnotationView (0.3.0)
-  - SwiftGen (0.8.0)
+  - SwiftGen (1.1.2)
+  - SwiftSpinner (0.9.5)
   - SWXMLHash (2.3.1)
 
 DEPENDENCIES:
@@ -18,17 +19,21 @@ DEPENDENCIES:
   - Pushwoosh (~> 3.1.2)
   - SVPulsingAnnotationView (~> 0.3.0)
   - SwiftGen
+  - SwiftSpinner (~> 0.9.5)
   - SWXMLHash (~> 2.3.1)
 
 SPEC CHECKSUMS:
-  Alamofire: 369bc67b6f5ac33ded3648d7bd21c5bfb91c2ecc
+  Alamofire: 01a82e2f6c0f860ade35534c8dd88be61bdef40c
   FBAnnotationClusteringSwift: a1f4c07f5472b13acd69de04c61e68e2d7daaad3
   GZIP: f8beb59597f651e6970a45b816508a9c6d700b77
   MapleBacon: 32e3590e1730485b93f450283ff242f9444efc12
   MGSwipeTableCell: bafeb5f351124544c9364ecbdf24c7b06a37d340
   Pushwoosh: 9812736e39e5d2503408ed919ca2948f5d92f5b5
   SVPulsingAnnotationView: f1a8dc7a57ebb5fa231d0ef8b0da59a250005511
-  SwiftGen: d27095418addd706b18da94bc8d9552e8d8148c3
+  SwiftGen: 18b1421be72f6e565a1844d0fb402825c249859e
+  SwiftSpinner: c6585a0ae5c67eb33e737695cce88f0262008cce
   SWXMLHash: 795c66e74f4cc9473ad6465c6653c5a6f59f417e
 
-COCOAPODS: 0.39.0
+PODFILE CHECKSUM: 360f23939f7104cad017c99ccb9d1c0f8580d595
+
+COCOAPODS: 1.0.0
