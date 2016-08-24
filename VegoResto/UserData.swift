@@ -155,9 +155,7 @@ class UserData: NSObject, CLLocationManagerDelegate {
                 var i = 0
 
                 let entityRestaurant =  NSEntityDescription.entityForName("Restaurant", inManagedObjectContext: self.managedContext)
-
                 let entityTag =  NSEntityDescription.entityForName("Tag", inManagedObjectContext: self.managedContext)
-
 
                 for elem in xml["root"]["item"] {
 
@@ -169,7 +167,7 @@ class UserData: NSObject, CLLocationManagerDelegate {
                     let longitude = elem["lon"].element?.text
                     let website = elem["site_internet"].element?.text
                     let phone = elem["tel_fixe"].element?.text
-                    let link = elem["link"].element?.text
+                    let link = elem["vgo_url"].element?.text
                     let identifer = elem["id"].element?.text
                     let ville = elem["ville"].element?.text
                     let resume = elem["description"].element?.text
