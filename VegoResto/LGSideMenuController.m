@@ -126,8 +126,6 @@
 @property (assign, nonatomic, getter=isUserLeftViewInititialScale) BOOL userLeftViewInititialScale;
 @property (assign, nonatomic, getter=isUserLeftViewInititialOffsetX) BOOL userLeftViewInititialOffsetX;
 
-
-
 @end
 
 @implementation LGSideMenuController

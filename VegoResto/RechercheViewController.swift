@@ -40,6 +40,10 @@ class RechercheViewController: UIViewController, UITableViewDelegate, UITableVie
 
 
         self.loadRestaurantsWithWord(nil)
+
+
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(RechercheViewController.updateDataAfterDelay), name: "CHARGEMENT_TERMINE", object: nil)
+
         // Do any additional setup after loading the view.
     }
 
@@ -167,8 +171,6 @@ class RechercheViewController: UIViewController, UITableViewDelegate, UITableVie
         label_ville?.text = current_restaurant.ville
 
         if let view_color_categorie = cell?.viewWithTag(TAG_CELL_VIEW_CATEGORIE_COLOR) {
-
-            print("frame = \(view_color_categorie.frame)")
 
             switch current_restaurant.categorie() {
 
@@ -327,6 +329,8 @@ class RechercheViewController: UIViewController, UITableViewDelegate, UITableVie
 
     func loadRestaurantsWithWord(key: String?) {
 
+
+
         self.array_restaurants = UserData.sharedInstance.getRestaurants()
 
 
@@ -469,7 +473,28 @@ class RechercheViewController: UIViewController, UITableViewDelegate, UITableVie
 
 
 
+
+
+    func updateDataAfterDelay() {
+
+        self.runAfterDelay(0.3) {
+
+            self.updateData()
+
+        }
+
+    }
+
+
+    func runAfterDelay(delay: NSTimeInterval, block: dispatch_block_t) {
+        let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay * Double(NSEC_PER_SEC)))
+        dispatch_after(time, dispatch_get_main_queue(), block)
+    }
+
+
     func updateData() {
+
+        Debug.log("RechercheViewController - updateData")
 
         self.loadRestaurantsWithWord(self.varIB_searchBar?.text)
         self.varIB_tableView?.reloadData()

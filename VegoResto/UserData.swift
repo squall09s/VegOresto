@@ -66,25 +66,10 @@ class UserData: NSObject, CLLocationManagerDelegate {
 
 
 
-    func chargerDonneesLocales() {
-
-        // chargement des données depuis fichier local uniquement si la base de données CoreData est vide
-        if self.getRestaurants().count == 0 {
-
-            if let path = NSBundle.mainBundle().pathForResource("restaurants", ofType: "xml") {
+    func chargerDonnees() {
 
 
-                if let fileContents: NSData = NSData(contentsOfFile: path) {
-
-                    if let xml = String(data: fileContents, encoding: NSUTF8StringEncoding) {
-
-                        self.parseXML(xml)
-                    }
-                }
-
-            }
-
-        }
+        self.loadDataOnVegorestoURL()
 
     }
 
@@ -95,7 +80,7 @@ class UserData: NSObject, CLLocationManagerDelegate {
 
         self.locationmanager?.stopUpdatingLocation()
 
-        print(error)
+        Debug.log(error)
 
     }
 
@@ -104,15 +89,7 @@ class UserData: NSObject, CLLocationManagerDelegate {
 
         if let location = locations.last {
 
-            let coord = location.coordinate
-
-            print(coord.latitude)
-            print(coord.longitude)
-
-            let location = locations.last
-
-            self.location = CLLocationCoordinate2D(latitude: location!.coordinate.latitude, longitude: location!.coordinate.longitude)
-
+            self.location = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
         }
     }
 
@@ -122,17 +99,18 @@ class UserData: NSObject, CLLocationManagerDelegate {
 
         switch status {
         case CLAuthorizationStatus.Restricted:
-            print( "Restricted Access to location")
+            Debug.log( "Restricted Access to location")
         case CLAuthorizationStatus.Denied:
-            print( "User denied access to location")
+            Debug.log( "User denied access to location")
         case CLAuthorizationStatus.NotDetermined:
-            print( "Status not determined")
+            Debug.log( "Status not determined")
         default:
-            print( "Allowed to location Access")
+            Debug.log( "Allowed to location Access")
             shouldIAllow = true
         }
         NSNotificationCenter.defaultCenter().postNotificationName("LabelHasbeenUpdated", object: nil)
-        if (shouldIAllow == true) {
+
+        if shouldIAllow == true {
             NSLog("Location to Allowed")
             // Start location services
 
@@ -146,155 +124,166 @@ class UserData: NSObject, CLLocationManagerDelegate {
 
 
 
+
+        var nbObjetCrées = 0
+
         self.managedContext.performBlock {
 
+            let entityRestaurant =  NSEntityDescription.entityForName("Restaurant", inManagedObjectContext: self.managedContext)
+            let entityTag =  NSEntityDescription.entityForName("Tag", inManagedObjectContext: self.managedContext)
 
 
-                let xml = SWXMLHash.parse(xml)
+            let xml = SWXMLHash.parse(xml)
 
-                var i = 0
+            for elem in xml["root"]["item"] {
 
-                let entityRestaurant =  NSEntityDescription.entityForName("Restaurant", inManagedObjectContext: self.managedContext)
-                let entityTag =  NSEntityDescription.entityForName("Tag", inManagedObjectContext: self.managedContext)
+                // récupération des éléments dans le XML)
 
-                for elem in xml["root"]["item"] {
 
-                    // récupération des éléments dans le XML)
+                var restaurant: Restaurant? = nil
 
-                    let name = elem["titre"].element?.text
-                    let adress = elem["adresse"].element?.text
-                    let latitude = elem["lat"].element?.text
-                    let longitude = elem["lon"].element?.text
-                    let website = elem["site_internet"].element?.text
-                    let phone = elem["tel_fixe"].element?.text
-                    let link = elem["vgo_url"].element?.text
-                    let identifer = elem["id"].element?.text
-                    let ville = elem["ville"].element?.text
-                    let resume = elem["description"].element?.text
-                    let facebook = elem["facebook"].element?.text
-                    let type_etablissement = elem["type_etablissement"].element?.text
-                    let montant_moyen = elem["montant_moyen"].element?.text
-                    let terrasse = elem["terrasse"].element?.text
-                    let moyens_de_paiement = elem["moyens_de_paiement"].element?.text
-                    let langues_parlees = elem["langues_parlees"].element?.text
-                    let animaux_bienvenus = elem["animaux_bienvenus"].element?.text
-                    let influence_gastronomique = elem["influence_gastronomique"].element?.text
-                    let ambiance = elem["ambiance"].element?.text
-                    let fermeture = elem["fermeture"].element?.text
-                    let image = elem["image"].element?.text
 
-                    var restaurant: Restaurant? = nil
+                let identifer = elem["id"].element?.text
 
-                    // si le restaurant existe déjà je le charge dans l'objet courrant
-                    if let _identifer = identifer {
 
-                        if let _identifier_to_int = Int(_identifer) {
+                // si le restaurant existe déjà je le charge dans l'objet courrant
+                if let _identifer = identifer {
 
-                            restaurant = self.getRestaurantWithIdentifier( _identifier_to_int )
-                        }
+                    if let _identifier_to_int = Int(_identifer) {
 
+                        restaurant = self.getRestaurantWithIdentifier( _identifier_to_int )
                     }
 
-                    //si il est nil je crée un objet dans mon contexte
-                    if restaurant == nil {
-
-                        //NSManagedObjectContext(concurrencyType:.MainQueueConcurrencyType)
-
-                        restaurant = NSManagedObject(entity: entityRestaurant!, insertIntoManagedObjectContext: self.managedContext) as? Restaurant
-
-                    }
-
-                    // remplisssage de l'objet (ou mise à jour)
-                    if let _name = name {
-                        restaurant?.name = self.cleanString(_name)
-                    }
-
-                    if let _adress = adress {
-                        restaurant?.address = self.cleanString(_adress)
-                    }
-
-                    restaurant?.website = website
-                    restaurant?.absolute_url = link
-                    restaurant?.phone = phone
-                    restaurant?.ville = ville
-                    restaurant?.resume = resume
-                    restaurant?.facebook = facebook
-                    restaurant?.type_etablissement = type_etablissement
-                    restaurant?.montant_moyen = montant_moyen
-                    restaurant?.moyens_de_paiement = moyens_de_paiement
-                    restaurant?.langues_parlees = langues_parlees
-                    restaurant?.influence_gastronomique = influence_gastronomique
-                    restaurant?.ambiance = ambiance
-                    restaurant?.fermeture = fermeture
-                    restaurant?.image = image
-
-
-                    restaurant?.h_lundi = elem["lundi"].element?.text
-                    restaurant?.h_mardi = elem["mardi"].element?.text
-                    restaurant?.h_mercredi = elem["mercredi"].element?.text
-                    restaurant?.h_jeudi = elem["jeudi"].element?.text
-                    restaurant?.h_vendredi = elem["vendredi"].element?.text
-                    restaurant?.h_samedi = elem["samedi"].element?.text
-                    restaurant?.h_dimanche = elem["dimanche"].element?.text
-
-                    restaurant?.h_matin = elem["horaires_matin"].element?.text
-                    restaurant?.h_midi = elem["horaires_midi"].element?.text
-                    restaurant?.h_ap_midi = elem["horaires_am"].element?.text
-                    restaurant?.h_soir = elem["horaires_soir"].element?.text
-                    restaurant?.h_nuit = elem["horaires_nuit"].element?.text
-
-                    if let _animaux_bienvenus = animaux_bienvenus {
-                        restaurant?.animaux_bienvenus = ( _animaux_bienvenus == "oui" )
-                    }
-
-                    if let _terrasse = terrasse {
-                        restaurant?.terrasse = ( _terrasse == "oui" )
-                    }
-
-                    if let _identifer = identifer {
-                        restaurant?.identifier = Int(_identifer)
-                    }
-
-                    if let _latitude = latitude {
-                        restaurant?.lat = Double(_latitude)
-                    }
-
-                    if let _longitude = longitude {
-                        restaurant?.lon = Double(_longitude)
-                    }
-
-                    restaurant?.tags = NSSet()
-
-                    if let categories_culinaires = elem["categories_culinaires"].element?.text {
-
-                        let arrayOfTags = categories_culinaires.componentsSeparatedByString("|")
-
-                        for strTag in arrayOfTags {
-
-                            if let new_tag = (NSManagedObject(entity: entityTag!, insertIntoManagedObjectContext: self.managedContext) as? Tag) {
-
-                                new_tag.name = strTag
-                                new_tag.restaurants = NSSet()
-
-                                restaurant?.addTag(new_tag)
-                            }
-                        }
-                    }
-
-
-                    i += 1
                 }
 
-                Debug.log("Parser XML : \(i) element(s)")
+                //si il est nil je crée un objet dans mon contexte
+                if restaurant == nil {
 
+                    restaurant = NSManagedObject(entity: entityRestaurant!, insertIntoManagedObjectContext: self.managedContext) as? Restaurant
 
-                do {
-                    try self.managedContext.save()
-                } catch _ {
-                    Debug.log("erreur save managedContext")
                 }
+
+
+
+                // remplisssage de l'objet (ou mise à jour)
+                if let _name = elem["titre"].element?.text {
+                    restaurant?.name = self.cleanString(_name)
+                }
+
+                if let _adress = elem["adresse"].element?.text {
+                    restaurant?.address = self.cleanString(_adress)
+                }
+
+                if let _resume = elem["description"].element?.text?.html2String {
+                    restaurant?.resume = self.cleanString(_resume)
+                }
+
+                restaurant?.website = elem["site_internet"].element?.text
+                restaurant?.absolute_url = elem["vgo_url"].element?.text
+                restaurant?.phone =  elem["tel_fixe"].element?.text
+                restaurant?.ville = elem["ville"].element?.text
+                restaurant?.facebook = elem["facebook"].element?.text
+                restaurant?.type_etablissement = elem["type_etablissement"].element?.text
+                restaurant?.montant_moyen = elem["montant_moyen"].element?.text
+                restaurant?.moyens_de_paiement = elem["moyens_de_paiement"].element?.text
+                restaurant?.influence_gastronomique = elem["influence_gastronomique"].element?.text
+                restaurant?.ambiance = elem["ambiance"].element?.text
+                restaurant?.fermeture = elem["fermeture"].element?.text
+                restaurant?.image = elem["image"].element?.text
+
+                restaurant?.h_lundi = elem["lundi"].element?.text
+                restaurant?.h_mardi = elem["mardi"].element?.text
+                restaurant?.h_mercredi = elem["mercredi"].element?.text
+                restaurant?.h_jeudi = elem["jeudi"].element?.text
+                restaurant?.h_vendredi = elem["vendredi"].element?.text
+                restaurant?.h_samedi = elem["samedi"].element?.text
+                restaurant?.h_dimanche = elem["dimanche"].element?.text
+
+                restaurant?.h_matin = elem["horaires_matin"].element?.text
+                restaurant?.h_midi = elem["horaires_midi"].element?.text
+                restaurant?.h_ap_midi = elem["horaires_am"].element?.text
+                restaurant?.h_soir = elem["horaires_soir"].element?.text
+                restaurant?.h_nuit = elem["horaires_nuit"].element?.text
+
+
+
+                restaurant?.animaux_bienvenus = ( (elem["animaux_bienvenus"].element?.text) == "oui")
+                restaurant?.terrasse = ( (elem["terrasse"].element?.text) == "oui")
+
+
+                if let _identifer = identifer {
+                    restaurant?.identifier = Int(_identifer)
+                }
+
+                if let _latitude = elem["lat"].element?.text {
+                    restaurant?.lat = Double(_latitude)
+                }
+
+                if let _longitude = elem["lon"].element?.text {
+                    restaurant?.lon = Double(_longitude)
+                }
+
+                restaurant?.tags = NSSet()
+
+                if let categories_culinaires = elem["categories_culinaires"].element?.text {
+
+                    let arrayOfTags = categories_culinaires.componentsSeparatedByString("|")
+
+                    for strTag in arrayOfTags {
+
+                        if let new_tag = (NSManagedObject(entity: entityTag!, insertIntoManagedObjectContext: self.managedContext) as? Tag) {
+
+                            new_tag.name = strTag
+                            new_tag.restaurants = NSSet()
+
+                            restaurant?.addTag(new_tag)
+                        }
+                    }
+                }
+
+                nbObjetCrées = nbObjetCrées + 1
+            }
+
+            Debug.log("Parser XML : \(nbObjetCrées) element(s)")
+
+
+            do {
+                try self.managedContext.save()
+            } catch _ {
+                Debug.log("erreur save managedContext")
+            }
+
+
+
+            if nbObjetCrées == 0 && self.getRestaurants().count == 0 {
+
+                SwiftSpinner.show("Chargement des données...")
+
+                if let path = NSBundle.mainBundle().pathForResource("restaurants", ofType: "xml") {
+
+                    if let fileContents: NSData = NSData(contentsOfFile: path) {
+
+                        if let xml = String(data: fileContents, encoding: NSUTF8StringEncoding) {
+
+                            SwiftSpinner.show("Chargement des données...")
+
+                            self.parseXML(xml)
+                        }
+                    }
+
+                }
+
+
+            } else {
+
+                SwiftSpinner.hide()
+                NSNotificationCenter.defaultCenter().postNotificationName("CHARGEMENT_TERMINE", object: nil)
+
+                Debug.log("fin chargement des données depuis URL")
 
             }
+
+        }
 
 
 
@@ -305,6 +294,8 @@ class UserData: NSObject, CLLocationManagerDelegate {
     func cleanString(str: String) -> String {
 
         var strResult = str.stringByReplacingOccurrencesOfString("<br />", withString: "\n")
+        strResult = strResult.stringByReplacingOccurrencesOfString("<p>", withString: "")
+        strResult = strResult.stringByReplacingOccurrencesOfString("</p>", withString: "")
         strResult = strResult.stringByReplacingOccurrencesOfString("&#039;", withString: "'")
         strResult = strResult.stringByReplacingOccurrencesOfString("&rsquo;", withString: "'")
         strResult = strResult.stringByReplacingOccurrencesOfString("&#8211;", withString: "–")
@@ -316,14 +307,11 @@ class UserData: NSObject, CLLocationManagerDelegate {
 
 
 
+
+
+
     func getRestaurantWithIdentifier(identifier: Int) -> Restaurant? {
 
-        /*
-
-         NSPredicate *searchFilter = [NSPredicate predicateWithFormat:@"attribute = %@", searchingFor];
-         NSError *error = nil;
-         NSArray *results = [context executeFetchRequest:request error:&amp;error];
-         */
 
         let fetchRequest: NSFetchRequest = NSFetchRequest(entityName: "Restaurant")
         let predicate: NSPredicate = NSPredicate(format: "identifier = %@", String(identifier) )
@@ -344,19 +332,18 @@ class UserData: NSObject, CLLocationManagerDelegate {
         } catch _ {
 
 
+
         }
 
 
         return nil
     }
 
+
     func loadDataOnVegorestoURL() {
 
         Alamofire.request(.GET, "http://vegoresto.fr/restos-fichier-xml/", parameters: nil)
             .responseData { ( response ) in
-
-                //Debug.log(response.request)  // original URL request
-                //Debug.log(response.response) // URL response
 
                 Debug.log("Téléchargement page : http://vegoresto.fr/restos-fichier-xml/")
 
@@ -374,19 +361,32 @@ class UserData: NSObject, CLLocationManagerDelegate {
 
                         Debug.log("Decompression XML : OK")
 
-
+                        SwiftSpinner.show("Chargement des données...")
 
                         self.parseXML(decompressedXML)
 
-
-
                     }
                 }
-
         }
-
-
     }
 
+}
+
+extension String {
+
+    var html2AttributedString: NSAttributedString? {
+        guard
+            let data = dataUsingEncoding(NSUTF8StringEncoding)
+            else { return nil }
+        do {
+            return try NSAttributedString(data: data, options: [NSDocumentTypeDocumentAttribute:NSHTMLTextDocumentType, NSCharacterEncodingDocumentAttribute:NSUTF8StringEncoding], documentAttributes: nil)
+        } catch let error as NSError {
+            print(error.localizedDescription)
+            return  nil
+        }
+    }
+    var html2String: String {
+        return html2AttributedString?.string ?? ""
+    }
 
 }

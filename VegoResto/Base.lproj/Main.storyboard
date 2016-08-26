@@ -55,6 +55,9 @@
             <string>URWGothicL-Book</string>
             <string>URWGothicL-Book</string>
             <string>URWGothicL-Book</string>
+            <string>URWGothicL-Book</string>
+            <string>URWGothicL-Book</string>
+            <string>URWGothicL-Book</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -532,6 +535,26 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yDs-2w-2qf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="769" y="-1947"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="EPi-nY-W6U">
+            <objects>
+                <navigationController navigationBarHidden="YES" id="bYO-Dx-gkc" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="4pP-k0-hJj"/>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="BVB-jh-so0">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="XvF-0Y-XO5" kind="relationship" relationship="rootViewController" id="MwL-o1-lOe"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="n8U-tt-XMr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="795" y="-180"/>
         </scene>
         <!--Item-->
         <scene sceneID="6oT-33-dAR">
@@ -1596,8 +1619,8 @@
                     <connections>
                         <segue destination="tNs-gf-Gxk" kind="relationship" relationship="viewControllers" id="Kwh-0c-YW8"/>
                         <segue destination="nNG-BI-faJ" kind="relationship" relationship="viewControllers" id="kzR-sV-SFS"/>
-                        <segue destination="XvF-0Y-XO5" kind="relationship" relationship="viewControllers" id="T0D-Ji-8qF"/>
                         <segue destination="qI2-5M-2j6" kind="relationship" relationship="viewControllers" id="6kb-bs-7th"/>
+                        <segue destination="bYO-Dx-gkc" kind="relationship" relationship="viewControllers" id="16a-TT-eQ3"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P02-bx-igT" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1673,7 +1696,7 @@
         <!--Item 3-->
         <scene sceneID="TcQ-a8-M3C">
             <objects>
-                <viewController id="XvF-0Y-XO5" sceneMemberID="viewController">
+                <viewController id="XvF-0Y-XO5" customClass="ParametresViewController" customModule="VegoResto" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ja6-dv-tEJ"/>
                         <viewControllerLayoutGuide type="bottom" id="1Kg-zD-xrY"/>
@@ -1718,22 +1741,110 @@
                                     <constraint firstAttribute="height" constant="70" id="vl1-S9-TGE"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y4u-Nf-DJ7">
+                                <rect key="frame" x="0.0" y="144" width="600" height="55"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="55" id="z4c-nZ-kFc"/>
+                                </constraints>
+                                <state key="normal">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="clic_licences:" destination="XvF-0Y-XO5" eventType="touchUpInside" id="OB1-xg-d9h"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aec-6Y-Ncn">
+                                <rect key="frame" x="0.0" y="88" width="600" height="55"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="55" id="YdK-GE-o62"/>
+                                </constraints>
+                                <state key="normal">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="clic_nous_contacter:" destination="XvF-0Y-XO5" eventType="touchUpInside" id="KN5-Mi-Kho"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Licences et remerciements" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4mw-Bz-VYN">
+                                <rect key="frame" x="70" y="161" width="250" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="hjy-yP-reL"/>
+                                    <constraint firstAttribute="width" constant="250" id="plE-ba-Iri"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="URWGothicL-Book" family="URW Gothic L" pointSize="17"/>
+                                <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.40000000596046448" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="©2016 VégOresto" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bF0-mN-0Rg">
+                                <rect key="frame" x="0.0" y="554" width="600" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="GtL-L0-rRD"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="URWGothicL-Book" family="URW Gothic L" pointSize="15"/>
+                                <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nous contacter " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AoZ-We-KLq">
+                                <rect key="frame" x="70" y="105" width="200" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="1Sq-Cd-Cdd"/>
+                                    <constraint firstAttribute="height" constant="20" id="UJQ-fX-lZU"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="URWGothicL-Book" family="URW Gothic L" pointSize="17"/>
+                                <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_settings_mail" translatesAutoresizingMaskIntoConstraints="NO" id="Rcd-Wb-BdP">
+                                <rect key="frame" x="22" y="102" width="26" height="26"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="26" id="CGH-64-Rma"/>
+                                    <constraint firstAttribute="width" constant="26" id="bZQ-DS-LR2"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_settings_doc" translatesAutoresizingMaskIntoConstraints="NO" id="PCa-P1-9D9">
+                                <rect key="frame" x="22" y="158" width="26" height="26"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="26" id="3Q5-Jm-QgO"/>
+                                    <constraint firstAttribute="width" constant="26" id="Loz-Cq-qdg"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.92941176470588238" green="0.92941176470588238" blue="0.92941176470588238" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="aec-6Y-Ncn" firstAttribute="top" secondItem="Ys6-QI-zWH" secondAttribute="bottom" constant="18" id="CAg-FV-bZa"/>
                             <constraint firstAttribute="trailing" secondItem="Ys6-QI-zWH" secondAttribute="trailing" id="GUj-tz-xcu"/>
+                            <constraint firstItem="Y4u-Nf-DJ7" firstAttribute="leading" secondItem="Ckv-6y-gdg" secondAttribute="leading" id="HHS-Id-wOw"/>
+                            <constraint firstItem="bF0-mN-0Rg" firstAttribute="leading" secondItem="Ckv-6y-gdg" secondAttribute="leading" id="Hye-P1-0eB"/>
+                            <constraint firstItem="4mw-Bz-VYN" firstAttribute="leading" secondItem="PCa-P1-9D9" secondAttribute="trailing" constant="22" id="Js6-D4-G2E"/>
                             <constraint firstItem="Ys6-QI-zWH" firstAttribute="top" secondItem="Ja6-dv-tEJ" secondAttribute="bottom" id="Kaa-IP-HQf"/>
+                            <constraint firstItem="Y4u-Nf-DJ7" firstAttribute="top" secondItem="aec-6Y-Ncn" secondAttribute="bottom" constant="1" id="OO9-gE-Mo3"/>
+                            <constraint firstItem="Y4u-Nf-DJ7" firstAttribute="top" secondItem="aec-6Y-Ncn" secondAttribute="bottom" constant="1" id="OQR-e6-PtY"/>
+                            <constraint firstAttribute="trailing" secondItem="Y4u-Nf-DJ7" secondAttribute="trailing" id="P4F-BS-pp2"/>
+                            <constraint firstItem="AoZ-We-KLq" firstAttribute="top" secondItem="Ys6-QI-zWH" secondAttribute="bottom" constant="35" id="Phg-dA-I8B"/>
+                            <constraint firstItem="PCa-P1-9D9" firstAttribute="top" secondItem="aec-6Y-Ncn" secondAttribute="bottom" constant="15" id="Sp2-cs-CWS"/>
                             <constraint firstItem="Ys6-QI-zWH" firstAttribute="leading" secondItem="Ckv-6y-gdg" secondAttribute="leading" id="Wh6-Ka-5ug"/>
+                            <constraint firstItem="AoZ-We-KLq" firstAttribute="leading" secondItem="Rcd-Wb-BdP" secondAttribute="trailing" constant="22" id="ZTQ-Tr-2nF"/>
+                            <constraint firstItem="PCa-P1-9D9" firstAttribute="leading" secondItem="Ckv-6y-gdg" secondAttribute="leading" constant="22" id="bu9-zT-VgO"/>
+                            <constraint firstItem="1Kg-zD-xrY" firstAttribute="top" secondItem="bF0-mN-0Rg" secondAttribute="bottom" constant="26" id="cvB-bc-EZj"/>
+                            <constraint firstAttribute="trailing" secondItem="bF0-mN-0Rg" secondAttribute="trailing" id="fwN-Pu-QbD"/>
+                            <constraint firstItem="Rcd-Wb-BdP" firstAttribute="top" secondItem="Ys6-QI-zWH" secondAttribute="bottom" constant="32" id="gNN-fo-GpO"/>
+                            <constraint firstAttribute="trailing" secondItem="aec-6Y-Ncn" secondAttribute="trailing" id="ioe-nf-Xz5"/>
+                            <constraint firstItem="4mw-Bz-VYN" firstAttribute="top" secondItem="aec-6Y-Ncn" secondAttribute="bottom" constant="18" id="kiy-UW-ylr"/>
+                            <constraint firstItem="Rcd-Wb-BdP" firstAttribute="leading" secondItem="Ckv-6y-gdg" secondAttribute="leading" constant="22" id="klq-v2-ohT"/>
+                            <constraint firstItem="aec-6Y-Ncn" firstAttribute="leading" secondItem="Ckv-6y-gdg" secondAttribute="leading" id="lRI-05-46x"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item 3" id="0ND-YX-wkn"/>
+                    <navigationItem key="navigationItem" id="Lg1-eR-mIg"/>
                     <nil key="simulatedStatusBarMetrics"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Myv-v0-hGe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="769" y="-180"/>
+            <point key="canvasLocation" x="2057" y="-180"/>
         </scene>
         <!--Item 3-->
         <scene sceneID="yzx-ga-byG">
@@ -1784,7 +1895,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.92941176469999998" green="0.92941176469999998" blue="0.92941176469999998" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="W0b-8q-Hss" firstAttribute="top" secondItem="sKJ-B1-ht3" secondAttribute="bottom" id="4OX-ah-GQO"/>
                             <constraint firstItem="W0b-8q-Hss" firstAttribute="leading" secondItem="lPo-dH-9Sp" secondAttribute="leading" id="864-dX-QjP"/>
@@ -2061,6 +2172,8 @@
         <image name="img_menu_restos" width="2133" height="2133"/>
         <image name="img_no_images" width="3330" height="2458"/>
         <image name="img_separateur_detail_resto" width="3" height="43"/>
+        <image name="img_settings_doc" width="46" height="59"/>
+        <image name="img_settings_mail" width="50" height="47"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="nrP-40-5BX"/>

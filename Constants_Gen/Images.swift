@@ -74,6 +74,8 @@ enum Asset: String {
   case Img_menu_restos = "img_menu_restos"
   case Img_no_images = "img_no_images"
   case Img_separateur_detail_resto = "img_separateur_detail_resto"
+  case Img_settings_doc = "img_settings_doc"
+  case Img_settings_mail = "img_settings_mail"
   case Img_vegan_off = "img_vegan_off"
   case Img_vegan_off_white = "img_vegan_off_white"
   case Img_vegan_on = "img_vegan_on"

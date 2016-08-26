@@ -23,7 +23,6 @@
         <attribute name="identifier" optional="YES" attributeType="Integer 16" defaultValueString="0" indexed="YES" syncable="YES"/>
         <attribute name="image" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="influence_gastronomique" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="langues_parlees" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lat" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="lon" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="montant_moyen" optional="YES" attributeType="String" syncable="YES"/>
@@ -42,7 +41,7 @@
         <relationship name="restaurants" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Restaurant" inverseName="tags" inverseEntity="Restaurant" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Restaurant" positionX="-1469" positionY="18" width="128" height="570"/>
+        <element name="Restaurant" positionX="-1469" positionY="18" width="128" height="555"/>
         <element name="Tag" positionX="-1127" positionY="369" width="128" height="73"/>
     </elements>
 </model>

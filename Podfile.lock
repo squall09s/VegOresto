@@ -9,6 +9,7 @@ PODS:
   - SwiftGen (1.1.2)
   - SwiftSpinner (0.9.5)
   - SWXMLHash (2.3.1)
+  - VTAcknowledgementsViewController (1.1)
 
 DEPENDENCIES:
   - Alamofire (~> 3.3)
@@ -21,6 +22,7 @@ DEPENDENCIES:
   - SwiftGen
   - SwiftSpinner (~> 0.9.5)
   - SWXMLHash (~> 2.3.1)
+  - VTAcknowledgementsViewController
 
 SPEC CHECKSUMS:
   Alamofire: 01a82e2f6c0f860ade35534c8dd88be61bdef40c
@@ -33,7 +35,8 @@ SPEC CHECKSUMS:
   SwiftGen: 18b1421be72f6e565a1844d0fb402825c249859e
   SwiftSpinner: c6585a0ae5c67eb33e737695cce88f0262008cce
   SWXMLHash: 795c66e74f4cc9473ad6465c6653c5a6f59f417e
+  VTAcknowledgementsViewController: 44da49d57a1dbf414e653688793a130d24af151e
 
-PODFILE CHECKSUM: 360f23939f7104cad017c99ccb9d1c0f8580d595
+PODFILE CHECKSUM: 8855ed370540273da8e13c22a334e20ead69e965
 
 COCOAPODS: 1.0.0

@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		39189F7A1CB5548500A64E5E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39189F791CB5548500A64E5E /* CoreLocation.framework */; };
+		391D6D7A1D7060780023733E /* Pods-VegoResto-acknowledgements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 391D6D791D7060780023733E /* Pods-VegoResto-acknowledgements.plist */; };
+		391D6D7C1D7060A50023733E /* ParametresViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391D6D7B1D7060A50023733E /* ParametresViewController.swift */; };
 		3939F3921D6B9889006786D6 /* olivier_01.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3939F3911D6B9889006786D6 /* olivier_01.ttf */; };
 		3939F3941D6B98B8006786D6 /* ufonts.com_urw-gothic-l-book.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3939F3931D6B98B8006786D6 /* ufonts.com_urw-gothic-l-book.ttf */; };
 		396BD9751CAE62670071DF07 /* DetailRestaurantViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396BD9741CAE62670071DF07 /* DetailRestaurantViewController.swift */; };
@@ -44,6 +46,8 @@
 
 /* Begin PBXFileReference section */
 		39189F791CB5548500A64E5E /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		391D6D791D7060780023733E /* Pods-VegoResto-acknowledgements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "Pods-VegoResto-acknowledgements.plist"; path = "../Pods/Target Support Files/Pods-VegoResto/Pods-VegoResto-acknowledgements.plist"; sourceTree = "<group>"; };
+		391D6D7B1D7060A50023733E /* ParametresViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParametresViewController.swift; sourceTree = "<group>"; };
 		3939F3911D6B9889006786D6 /* olivier_01.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = olivier_01.ttf; sourceTree = "<group>"; };
 		3939F3931D6B98B8006786D6 /* ufonts.com_urw-gothic-l-book.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ufonts.com_urw-gothic-l-book.ttf"; sourceTree = "<group>"; };
 		396BD9741CAE62670071DF07 /* DetailRestaurantViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailRestaurantViewController.swift; sourceTree = "<group>"; };
@@ -122,6 +126,7 @@
 		396BD9781CAEB7640071DF07 /* Ressources */ = {
 			isa = PBXGroup;
 			children = (
+				391D6D791D7060780023733E /* Pods-VegoResto-acknowledgements.plist */,
 				3939F3901D6B9874006786D6 /* Fonts */,
 				39C50F0B1CCB7B620019FA2B /* restaurants.xml */,
 				39C50F001CC8E02D0019FA2B /* SwiftGen */,
@@ -148,6 +153,7 @@
 				399C05FF1CB8F86700885C0B /* ImageAnnotationView.swift */,
 				39EC80031CAC4787002AD862 /* RechercheViewController.swift */,
 				396BD9741CAE62670071DF07 /* DetailRestaurantViewController.swift */,
+				391D6D7B1D7060A50023733E /* ParametresViewController.swift */,
 				39848B071CB4231300D718FD /* NavigationAccueilViewController.swift */,
 			);
 			name = Controllers;
@@ -337,6 +343,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3939F3941D6B98B8006786D6 /* ufonts.com_urw-gothic-l-book.ttf in Resources */,
+				391D6D7A1D7060780023733E /* Pods-VegoResto-acknowledgements.plist in Resources */,
 				3939F3921D6B9889006786D6 /* olivier_01.ttf in Resources */,
 				39C50F0C1CCB7B620019FA2B /* restaurants.xml in Resources */,
 				39C50EFF1CC8DE100019FA2B /* Media.xcassets in Resources */,
@@ -420,6 +427,7 @@
 				39968D3F1CABFFBB0085C61F /* AppDelegate.swift in Sources */,
 				398AA7E51D17F90600FA7E0A /* LGSideMenuController.m in Sources */,
 				39848B081CB4231300D718FD /* NavigationAccueilViewController.swift in Sources */,
+				391D6D7C1D7060A50023733E /* ParametresViewController.swift in Sources */,
 				398857E61CC2B97600B05F64 /* Tag+CoreDataProperties.swift in Sources */,
 				398857EA1CC2BA1000B05F64 /* Restaurant+CoreDataProperties.swift in Sources */,
 				398857EB1CC2BA1000B05F64 /* Restaurant.swift in Sources */,

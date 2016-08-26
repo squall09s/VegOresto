@@ -26,24 +26,11 @@ class MapsViewController: UIViewController, MKMapViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-
-        var array: [FBAnnotation] = [FBAnnotation]()
-
-        for restaurant in UserData.sharedInstance.getRestaurants() {
-
-            if let lat = restaurant.lat, lon = restaurant.lon {
-
-                let current_pin = RestaurantAnnotation(_restaurant : restaurant)
-
-                current_pin.coordinate = CLLocationCoordinate2D(latitude:  Double(lat), longitude: Double(lon) )
-                array.append(current_pin)
-            }
-        }
-
-        clusteringManager.addAnnotations(array)
-
-
         self.varIB_mapView.showsUserLocation = true
+
+        self.updateData()
+
+         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MapsViewController.updateDataAfterDelay), name: "CHARGEMENT_TERMINE", object: nil)
 
         // Do any additional setup after loading the view, typically from a nib.
     }
@@ -346,6 +333,66 @@ class MapsViewController: UIViewController, MKMapViewDelegate {
         self.varIB_bt_filtre_categorie_3.backgroundColor = (self.filtre_categorie == CategorieRestaurant.Traditionnel || self.filtre_categorie == nil) ? COLOR_BLEU : COLOR_GRIS_FONCÉ.colorWithAlphaComponent(0.6)
 
 
+        self.updateData()
+    }
+
+
+    func updateData() {
+
+
+        var array: [FBAnnotation] = [FBAnnotation]()
+
+        let restaurants = UserData.sharedInstance.getRestaurants().flatMap { (currentResto) -> Restaurant? in
+
+            if currentResto.categorie() == self.filtre_categorie || self.filtre_categorie == nil {
+
+                return currentResto
+
+            } else {
+
+                return nil
+
+            }
+
+        }
+
+        for restaurant in restaurants {
+
+            if let lat = restaurant.lat, lon = restaurant.lon {
+
+                let current_pin = RestaurantAnnotation(_restaurant : restaurant)
+
+                current_pin.coordinate = CLLocationCoordinate2D(latitude:  Double(lat), longitude: Double(lon) )
+                array.append(current_pin)
+            }
+        }
+
+        clusteringManager.setAnnotations(array)
+
+        let mapBoundsWidth = Double(self.varIB_mapView.bounds.size.width)
+        let mapRectWidth: Double = self.varIB_mapView.visibleMapRect.size.width
+        let scale: Double = mapBoundsWidth / mapRectWidth
+        let annotationArray = self.clusteringManager.clusteredAnnotationsWithinMapRect(self.varIB_mapView.visibleMapRect, withZoomScale:scale)
+        self.clusteringManager.displayAnnotations(annotationArray, onMapView:self.varIB_mapView)
+
+
+    }
+
+
+    func updateDataAfterDelay() {
+
+        self.runAfterDelay(0.3) {
+
+            self.updateData()
+
+        }
+
+    }
+
+
+    func runAfterDelay(delay: NSTimeInterval, block: dispatch_block_t) {
+        let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay * Double(NSEC_PER_SEC)))
+        dispatch_after(time, dispatch_get_main_queue(), block)
     }
 
 

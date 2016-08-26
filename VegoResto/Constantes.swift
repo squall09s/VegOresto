@@ -9,7 +9,6 @@
 import UIKit
 
 
-
 /// Device check
 struct Device {
 
@@ -27,6 +26,7 @@ struct Device {
     static let IS_IPAD_PRO   = UIDevice.currentDevice().userInterfaceIdiom == .Pad && maxLength == 1366.0
     static let IS_TV      = UIDevice.currentDevice().userInterfaceIdiom == .TV
 }
+
 
 
 

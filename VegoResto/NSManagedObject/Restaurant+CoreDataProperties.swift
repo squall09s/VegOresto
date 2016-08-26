@@ -30,7 +30,6 @@ extension Restaurant {
     @NSManaged var montant_moyen: String?
     @NSManaged var tags: NSSet?
     @NSManaged var moyens_de_paiement: String?
-    @NSManaged var langues_parlees: String?
     @NSManaged var animaux_bienvenus: NSNumber?
     @NSManaged var favoris: NSNumber
     @NSManaged var influence_gastronomique: String?

@@ -186,8 +186,6 @@ typedef NS_ENUM(NSUInteger, LGSideMenuSwipeGestureArea)
 
 - (BOOL)isLeftViewAlwaysVisible;
 
-- (BOOL)isLeftViewAlwaysVisibleForInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation;
-
 - (void)setLeftViewEnabledWithWidth:(CGFloat)width
                   presentationStyle:(LGSideMenuPresentationStyle)presentationStyle
                alwaysVisibleOptions:(LGSideMenuAlwaysVisibleOptions)alwaysVisibleOptions;

@@ -18,6 +18,7 @@ class MenuLateral: UIViewController, UITableViewDelegate, UITableViewDataSource 
 
 
 
+
     override func viewDidLoad() {
 
         super.viewDidLoad()
@@ -132,6 +133,34 @@ class MenuLateral: UIViewController, UITableViewDelegate, UITableViewDataSource 
         }
 
     }
+
+
+    func updateDataOnCV() {
+
+            let mainController: MainViewController? = UIApplication.sharedApplication().delegate?.window??.rootViewController as? MainViewController
+
+            let kNavigationController: UITabBarController? = mainController?.rootViewController as? UITabBarController
+
+
+
+            let accueilNVC: UINavigationController? = (kNavigationController?.viewControllers?[0]) as? UINavigationController
+
+            let accueilVC: NavigationAccueilViewController? = accueilNVC?.viewControllers[0] as? NavigationAccueilViewController
+
+            accueilVC?.recherche_viewController?.updateData()
+
+
+
+            let listeControllersFavorisNC: UINavigationController? = (kNavigationController?.viewControllers?[1]) as? UINavigationController
+
+            let listeControllersFavoris: ListeFavorisViewController? = listeControllersFavorisNC?.viewControllers[0] as? ListeFavorisViewController
+
+            listeControllersFavoris?.recherche_viewController?.updateData()
+
+
+
+    }
+
 
     func runAfterDelay(delay: NSTimeInterval, block: dispatch_block_t) {
         let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay * Double(NSEC_PER_SEC)))
