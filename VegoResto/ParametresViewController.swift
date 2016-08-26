@@ -37,8 +37,6 @@ class ParametresViewController: UIViewController {
     @IBAction func clic_nous_contacter(sender: UIButton) {
 
 
-
-
                 if let suject = "CONTACT - VégOresto iOS ".stringByAddingPercentEncodingWithAllowedCharacters( NSCharacterSet.URLQueryAllowedCharacterSet() ) {
 
                     var sujet2 = "" + suject

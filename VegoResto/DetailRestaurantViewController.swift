@@ -241,8 +241,17 @@ class DetailRestaurantViewController: UIViewController {
 
     @IBAction func touch_bt_mail(sender: AnyObject) {
 
+        if let mail = self.current_restaurant?.mail {
 
+        if let sujet = "Prise de contact".stringByAddingPercentEncodingWithAllowedCharacters( NSCharacterSet.URLQueryAllowedCharacterSet() ) {
 
+            let str = "mailto:" + mail + "?subject=" + sujet
+
+            let url = NSURL(string: str)
+            UIApplication.sharedApplication().openURL(url!)
+
+        }
+        }
 
     }
 
@@ -253,7 +262,7 @@ class DetailRestaurantViewController: UIViewController {
 
             var url_str_avec_prefix = url_str
 
-            if !(url_str_avec_prefix.hasPrefix("http://")) {
+            if !(url_str_avec_prefix.hasPrefix("http")) {
 
                 url_str_avec_prefix = "http://\(url_str_avec_prefix)"
 
@@ -275,7 +284,7 @@ class DetailRestaurantViewController: UIViewController {
 
             var url_str_avec_prefix = url_str
 
-            if !(url_str_avec_prefix.hasPrefix("http://")) {
+            if !(url_str_avec_prefix.hasPrefix("http")) {
 
                 url_str_avec_prefix = "http://\(url_str_avec_prefix)"
 

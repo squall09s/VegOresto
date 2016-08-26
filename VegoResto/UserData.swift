@@ -200,7 +200,7 @@ class UserData: NSObject, CLLocationManagerDelegate {
                 restaurant?.h_ap_midi = elem["horaires_am"].element?.text
                 restaurant?.h_soir = elem["horaires_soir"].element?.text
                 restaurant?.h_nuit = elem["horaires_nuit"].element?.text
-
+                restaurant?.mail = elem["mel_public"].element?.text
 
 
                 restaurant?.animaux_bienvenus = ( (elem["animaux_bienvenus"].element?.text) == "oui")
