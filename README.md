@@ -47,3 +47,30 @@ Copyright (c) 2013, Sam Vermette <hello@samvermette.com>
 
 - SwiftGen 
 Copyright (c) 2015 Olivier Halligon
+
+- VTAcknowledgementsViewController 
+Copyright (c) 2013-2016 Vincent Tourraine <http://www.vtourraine.net>
+
+- SwiftSpinner 
+Copyright (c) 2015 Marin Todorov <touch-code-magazine@underplot.com>
+
+- SWXMLHash
+Copyright (c) 2014 David Mohundro
+
+- MapleBacon 
+Copyright (c) 2015 Zalando SE
+
+- MGSwipeTableCell 
+Copyright (c) 2014 Imanol Fernandez
+
+- GZIP 
+Copyright (C) 2012 Charcoal Design
+
+- Alamofire 
+Copyright (c) 2014-2016 Alamofire Software Foundation <http://alamofire.org/>
+
+- SwiftLint"
+Copyright (c) 2015 Realm Inc.
+
+- LGSideMenuController
+Copyright (c) 2015 Grigory Lutkov <Friend.LGA@gmail.com>
