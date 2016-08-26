@@ -126,7 +126,7 @@ class MenuLateral: UIViewController, UITableViewDelegate, UITableViewDataSource 
 
         }
 
-        self.runAfterDelay(0.3) {
+        runAfterDelay(0.3) {
 
             self.varIB_tableView.reloadData()
 
@@ -162,9 +162,5 @@ class MenuLateral: UIViewController, UITableViewDelegate, UITableViewDataSource 
     }
 
 
-    func runAfterDelay(delay: NSTimeInterval, block: dispatch_block_t) {
-        let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay * Double(NSEC_PER_SEC)))
-        dispatch_after(time, dispatch_get_main_queue(), block)
-    }
 
 }

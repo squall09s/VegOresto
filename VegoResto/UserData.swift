@@ -111,8 +111,7 @@ class UserData: NSObject, CLLocationManagerDelegate {
         NSNotificationCenter.defaultCenter().postNotificationName("LabelHasbeenUpdated", object: nil)
 
         if shouldIAllow == true {
-            NSLog("Location to Allowed")
-            // Start location services
+            Debug.log("Location to Allowed")
 
             self.locationmanager?.startUpdatingLocation()
         }
@@ -121,9 +120,6 @@ class UserData: NSObject, CLLocationManagerDelegate {
 
 
     func parseXML(xml: String) {
-
-
-
 
         var nbObjetCrées = 0
 
@@ -372,6 +368,7 @@ class UserData: NSObject, CLLocationManagerDelegate {
 
 }
 
+
 extension String {
 
     var html2AttributedString: NSAttributedString? {
@@ -379,9 +376,10 @@ extension String {
             let data = dataUsingEncoding(NSUTF8StringEncoding)
             else { return nil }
         do {
-            return try NSAttributedString(data: data, options: [NSDocumentTypeDocumentAttribute:NSHTMLTextDocumentType, NSCharacterEncodingDocumentAttribute:NSUTF8StringEncoding], documentAttributes: nil)
+            let options: [String : AnyObject ] = [NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType, NSCharacterEncodingDocumentAttribute : NSUTF8StringEncoding]
+            return try NSAttributedString(data: data, options: options, documentAttributes: nil)
         } catch let error as NSError {
-            print(error.localizedDescription)
+            Debug.log(error.localizedDescription)
             return  nil
         }
     }

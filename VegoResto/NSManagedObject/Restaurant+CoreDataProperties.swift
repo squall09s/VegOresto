@@ -36,7 +36,7 @@ extension Restaurant {
     @NSManaged var ambiance: String?
     @NSManaged var fermeture: String?
     @NSManaged var image: String?
-
+    @NSManaged var mail: String?
 
     @NSManaged var h_lundi: String?
     @NSManaged var h_mardi: String?

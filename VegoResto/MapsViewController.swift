@@ -328,9 +328,30 @@ class MapsViewController: UIViewController, MKMapViewDelegate {
         }
 
 
-        self.varIB_bt_filtre_categorie_1.backgroundColor = (self.filtre_categorie == CategorieRestaurant.Végétarien || self.filtre_categorie == nil)  ? COLOR_VIOLET : COLOR_GRIS_FONCÉ.colorWithAlphaComponent(0.6)
-        self.varIB_bt_filtre_categorie_2.backgroundColor = (self.filtre_categorie == CategorieRestaurant.Vegan || self.filtre_categorie == nil) ? COLOR_VERT : COLOR_GRIS_FONCÉ.colorWithAlphaComponent(0.6)
-        self.varIB_bt_filtre_categorie_3.backgroundColor = (self.filtre_categorie == CategorieRestaurant.Traditionnel || self.filtre_categorie == nil) ? COLOR_BLEU : COLOR_GRIS_FONCÉ.colorWithAlphaComponent(0.6)
+        if self.filtre_categorie == CategorieRestaurant.Végétarien {
+
+            self.varIB_bt_filtre_categorie_1.backgroundColor = COLOR_VIOLET
+            self.varIB_bt_filtre_categorie_2.backgroundColor = COLOR_GRIS_FONCÉ.colorWithAlphaComponent(0.6)
+            self.varIB_bt_filtre_categorie_3.backgroundColor = COLOR_GRIS_FONCÉ.colorWithAlphaComponent(0.6)
+
+        } else if self.filtre_categorie == CategorieRestaurant.Vegan {
+
+            self.varIB_bt_filtre_categorie_1.backgroundColor = COLOR_GRIS_FONCÉ.colorWithAlphaComponent(0.6)
+            self.varIB_bt_filtre_categorie_2.backgroundColor = COLOR_VERT
+            self.varIB_bt_filtre_categorie_3.backgroundColor = COLOR_GRIS_FONCÉ.colorWithAlphaComponent(0.6)
+
+        } else if self.filtre_categorie == CategorieRestaurant.Traditionnel {
+
+            self.varIB_bt_filtre_categorie_1.backgroundColor = COLOR_GRIS_FONCÉ.colorWithAlphaComponent(0.6)
+            self.varIB_bt_filtre_categorie_2.backgroundColor = COLOR_GRIS_FONCÉ.colorWithAlphaComponent(0.6)
+            self.varIB_bt_filtre_categorie_3.backgroundColor = COLOR_BLEU
+
+        } else {
+
+            self.varIB_bt_filtre_categorie_1.backgroundColor = COLOR_VIOLET
+            self.varIB_bt_filtre_categorie_2.backgroundColor = COLOR_VERT
+            self.varIB_bt_filtre_categorie_3.backgroundColor = COLOR_BLEU
+        }
 
 
         self.updateData()
@@ -381,7 +402,7 @@ class MapsViewController: UIViewController, MKMapViewDelegate {
 
     func updateDataAfterDelay() {
 
-        self.runAfterDelay(0.3) {
+        runAfterDelay(0.3) {
 
             self.updateData()
 
@@ -390,10 +411,6 @@ class MapsViewController: UIViewController, MKMapViewDelegate {
     }
 
 
-    func runAfterDelay(delay: NSTimeInterval, block: dispatch_block_t) {
-        let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay * Double(NSEC_PER_SEC)))
-        dispatch_after(time, dispatch_get_main_queue(), block)
-    }
 
 
 }

@@ -25,6 +25,7 @@
         <attribute name="influence_gastronomique" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lat" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="lon" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="mail" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="montant_moyen" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="moyens_de_paiement" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
@@ -41,7 +42,7 @@
         <relationship name="restaurants" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Restaurant" inverseName="tags" inverseEntity="Restaurant" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Restaurant" positionX="-1469" positionY="18" width="128" height="555"/>
+        <element name="Restaurant" positionX="-1469" positionY="18" width="128" height="570"/>
         <element name="Tag" positionX="-1127" positionY="369" width="128" height="73"/>
     </elements>
 </model>

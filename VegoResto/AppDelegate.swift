@@ -95,7 +95,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             // Replace this with code to handle the error appropriately.
             // abort() causes the application to generate a crash log and terminate. You should not use
             // this function in a shipping application, although it may be useful during development.
-            NSLog("Unresolved error \(wrappedError), \(wrappedError.userInfo)")
+            Debug.log("AppDelegate : persistentStoreCoordinator - Unresolved error \(wrappedError), \(wrappedError.userInfo)")
             abort()
         }
 
@@ -124,7 +124,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
                 let nserror = error as NSError
-                NSLog("Unresolved error \(nserror), \(nserror.userInfo)")
+                Debug.log("AppDelegate : saveContext - Unresolved error \(nserror), \(nserror.userInfo)")
                 abort()
             }
         }

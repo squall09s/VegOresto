@@ -69,7 +69,7 @@ Copyright (C) 2012 Charcoal Design
 - Alamofire 
 Copyright (c) 2014-2016 Alamofire Software Foundation <http://alamofire.org/>
 
-- SwiftLint"
+- SwiftLint
 Copyright (c) 2015 Realm Inc.
 
 - LGSideMenuController
