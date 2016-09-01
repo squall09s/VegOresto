@@ -10,6 +10,7 @@ import UIKit
 import CoreLocation
 import MapKit
 import MapleBacon
+import LNRSimpleNotifications
 
 class DetailRestaurantViewController: UIViewController {
 
@@ -217,7 +218,33 @@ class DetailRestaurantViewController: UIViewController {
 
         if let _current_restaurant = self.current_restaurant {
 
+            let notificationManager = LNRNotificationManager()
+
+            if !(notificationManager.isNotificationActive) {
+
             _current_restaurant.favoris = !(_current_restaurant.favoris.boolValue)
+
+
+
+            notificationManager.notificationsPosition = LNRNotificationPosition.Top
+            notificationManager.notificationsBackgroundColor = COLOR_ORANGE
+            notificationManager.notificationsTitleTextColor = UIColor.whiteColor()
+            notificationManager.notificationsBodyTextColor = UIColor.whiteColor()
+            notificationManager.notificationsSeperatorColor = UIColor.whiteColor()
+
+            notificationManager.notificationsTitleFont = UIFont(name: "URWGothicL-Book", size: 15)!
+            notificationManager.notificationsBodyFont = UIFont(name: "URWGothicL-Book", size: 11)!
+            //notificationManager.notificationsIcon = UIImage(asset: .Img_favoris_wh)
+
+            let message = _current_restaurant.favoris.boolValue ? "Vous avez bien ajouté ce restaurant à vos favoris" : "Vous avez bien retiré ce restaurant de vos favoris"
+
+            notificationManager.showNotification("Favoris", body: message, onTap: { () -> Void in
+                    notificationManager.dismissActiveNotification({ () -> Void in
+                        print("Notification dismissed")
+                    })
+                })
+
+            }
         }
 
         self.refreshBt_favoris()
@@ -233,7 +260,6 @@ class DetailRestaurantViewController: UIViewController {
             } else {
                 self.varIB_button_favoris?.setImage(  UIImage(asset: .Img_favoris_orange_off ), forState: UIControlState())
             }
-
         }
 
     }

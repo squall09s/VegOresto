@@ -2,6 +2,7 @@ PODS:
   - Alamofire (3.4.1)
   - FBAnnotationClusteringSwift (1.0.1)
   - GZIP (1.1.1)
+  - LNRSimpleNotifications (0.4.1)
   - MapleBacon (2.0.8)
   - MGSwipeTableCell (1.5.5)
   - Pushwoosh (3.1.2)
@@ -15,6 +16,7 @@ DEPENDENCIES:
   - Alamofire (~> 3.3)
   - FBAnnotationClusteringSwift
   - GZIP (~> 1.1.1)
+  - LNRSimpleNotifications
   - MapleBacon
   - MGSwipeTableCell (~> 1.5.5)
   - Pushwoosh (~> 3.1.2)
@@ -28,6 +30,7 @@ SPEC CHECKSUMS:
   Alamofire: 01a82e2f6c0f860ade35534c8dd88be61bdef40c
   FBAnnotationClusteringSwift: a1f4c07f5472b13acd69de04c61e68e2d7daaad3
   GZIP: f8beb59597f651e6970a45b816508a9c6d700b77
+  LNRSimpleNotifications: a4916ab314c21f75876ffc1168d91a7580a20166
   MapleBacon: 32e3590e1730485b93f450283ff242f9444efc12
   MGSwipeTableCell: bafeb5f351124544c9364ecbdf24c7b06a37d340
   Pushwoosh: 9812736e39e5d2503408ed919ca2948f5d92f5b5
@@ -37,6 +40,6 @@ SPEC CHECKSUMS:
   SWXMLHash: 795c66e74f4cc9473ad6465c6653c5a6f59f417e
   VTAcknowledgementsViewController: 44da49d57a1dbf414e653688793a130d24af151e
 
-PODFILE CHECKSUM: 8855ed370540273da8e13c22a334e20ead69e965
+PODFILE CHECKSUM: 99b60cf44c921cb6883693959b26bb87863f94af
 
 COCOAPODS: 1.0.0

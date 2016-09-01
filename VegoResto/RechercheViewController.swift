@@ -134,7 +134,7 @@ class RechercheViewController: UIViewController, UITableViewDelegate, UITableVie
 
             } else {
 
-            self.varIB_tableView?.reloadData()
+                self.varIB_tableView?.reloadData()
 
             }
 
@@ -144,17 +144,12 @@ class RechercheViewController: UIViewController, UITableViewDelegate, UITableVie
 
         bt1?.buttonWidth = 110
 
-        if let _cell = cell {
+        cell?.rightButtons = [ bt1!]
+        cell?.rightSwipeSettings.transition = .Static
+        cell?.rightSwipeSettings.threshold = 10
+        cell?.rightExpansion.buttonIndex = 0
+        cell?.rightExpansion.fillOnTrigger = true
 
-            _cell.rightButtons = [ bt1! ]
-
-            _cell.rightSwipeSettings.transition = .Static
-            _cell.rightSwipeSettings.offset = 0
-            _cell.rightSwipeSettings.threshold = 10
-            _cell.rightExpansion.buttonIndex = 0
-            _cell.rightExpansion.fillOnTrigger = true
-
-        }
 
         // Configure the cell...
 
@@ -217,21 +212,18 @@ class RechercheViewController: UIViewController, UITableViewDelegate, UITableVie
 
         if let distance: Double = current_restaurant.distance {
 
-            if distance > 0 {
-
-                if distance < 1000 {
+                if distance > 0 && distance < 1000 {
 
                     label_distance?.text = String(Int(distance)) + " m"
+                    image_loc?.hidden = false
 
-                } else {
+                } else if distance >= 1000 {
 
                     label_distance?.text = String(format: "%.1f Km", distance/1000.0 )
-
+                    image_loc?.hidden = false
                 }
 
-                image_loc?.hidden = false
 
-            }
 
         }
 
@@ -491,7 +483,6 @@ class RechercheViewController: UIViewController, UITableViewDelegate, UITableVie
         }
 
     }
-
 
 
 

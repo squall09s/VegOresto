@@ -33,10 +33,18 @@ class ListeFavorisViewController: UIViewController {
 
         if let vc: RechercheViewController = self.recherche_viewController {
 
+            if vc.parentViewController != self {
+
             self.addChildViewController(vc)
             self.view.addSubview(vc.view)
             vc.didMoveToParentViewController(self)
             vc.view.frame = CGRect(x : 0, y : HAUTEUR_HEADER_BAR, width : Device.LARGEUR, height : Device.HAUTEUR - HAUTEUR_HEADER_BAR )
+
+            } else {
+
+                vc.updateData()
+
+            }
         }
 
 

@@ -105,7 +105,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nmx-eb-mBL">
-                                        <rect key="frame" x="390.5" y="0.0" width="189" height="30"/>
+                                        <rect key="frame" x="391" y="0.0" width="189" height="30"/>
                                         <color key="backgroundColor" red="0.2156862745" green="0.6588235294" blue="0.85490196080000003" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="olivier" family="olivier" pointSize="17"/>
                                         <state key="normal" title="Traditonnel">
@@ -116,7 +116,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dyZ-P9-YYk">
-                                        <rect key="frame" x="194.5" y="0.0" width="189.5" height="30"/>
+                                        <rect key="frame" x="195" y="0.0" width="190" height="30"/>
                                         <color key="backgroundColor" red="0.43921568630000002" green="0.69803921570000005" blue="0.066666666669999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="olivier" family="olivier" pointSize="17"/>
                                         <state key="normal" title="Vegan">
@@ -414,7 +414,7 @@
                                 <rect key="frame" x="26" y="49" width="323" height="30"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZG3-bO-0ES">
-                                        <rect key="frame" x="0.0" y="0.0" width="103.5" height="30"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="104" height="30"/>
                                         <color key="backgroundColor" red="0.82352941176470584" green="0.32156862745098036" blue="0.72549019607843135" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="olivier" family="olivier" pointSize="17"/>
                                         <state key="normal" title="Végétarien">
@@ -425,7 +425,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XYQ-11-ljx">
-                                        <rect key="frame" x="219" y="0.0" width="103.5" height="30"/>
+                                        <rect key="frame" x="219" y="0.0" width="104" height="30"/>
                                         <color key="backgroundColor" red="0.21568627450980393" green="0.6588235294117647" blue="0.85490196078431369" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="olivier" family="olivier" pointSize="17"/>
                                         <state key="normal" title="Traditonnel">
@@ -436,7 +436,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CP2-2M-UDa">
-                                        <rect key="frame" x="109" y="0.0" width="103.5" height="30"/>
+                                        <rect key="frame" x="110" y="0.0" width="103" height="30"/>
                                         <color key="backgroundColor" red="0.4392156862745098" green="0.69803921568627447" blue="0.066666666666666666" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="olivier" family="olivier" pointSize="17"/>
                                         <state key="normal" title="Vegan">
@@ -584,7 +584,7 @@
                                         </connections>
                                     </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_header" translatesAutoresizingMaskIntoConstraints="NO" id="HU7-bW-y8I">
-                                        <rect key="frame" x="181" y="21.5" width="237" height="35"/>
+                                        <rect key="frame" x="181" y="22" width="237" height="35"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="35" id="09I-bN-BCC"/>
                                             <constraint firstAttribute="width" constant="237" id="60v-0A-dv9"/>
@@ -627,15 +627,15 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sR8-Mu-iyN">
                                 <rect key="frame" x="0.0" y="540" width="600" height="60"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_ic_accueil_bt_1" translatesAutoresizingMaskIntoConstraints="NO" id="Q3I-4G-ZmJ">
-                                        <rect key="frame" x="133" y="12.5" width="35" height="35"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_ic_accueil_bt_2" translatesAutoresizingMaskIntoConstraints="NO" id="Q3I-4G-ZmJ">
+                                        <rect key="frame" x="133" y="13" width="35" height="35"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="35" id="7Bw-2j-d5d"/>
                                             <constraint firstAttribute="height" constant="35" id="pgQ-gZ-poC"/>
                                         </constraints>
                                     </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_ic_accueil_bt_2" translatesAutoresizingMaskIntoConstraints="NO" id="dLI-A6-y99">
-                                        <rect key="frame" x="432" y="12.5" width="35" height="35"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_ic_accueil_bt_1" translatesAutoresizingMaskIntoConstraints="NO" id="dLI-A6-y99">
+                                        <rect key="frame" x="432" y="13" width="35" height="35"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="35" id="3d7-8N-c8B"/>
                                             <constraint firstAttribute="width" constant="35" id="FnB-Fp-oyX"/>
@@ -656,7 +656,7 @@
                                         </connections>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GEs-Hu-JCQ">
-                                        <rect key="frame" x="299.5" y="10" width="1" height="50"/>
+                                        <rect key="frame" x="300" y="10" width="1" height="50"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="1" id="f6M-MK-J1g"/>
@@ -706,8 +706,8 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="varIB_button_tabbar_list" destination="13y-tX-OSE" id="WBS-EB-6F3"/>
-                        <outlet property="varIB_button_tabbar_maps" destination="Xwi-ua-6ZR" id="EJm-MQ-4jC"/>
+                        <outlet property="varIB_button_tabbar_list" destination="Xwi-ua-6ZR" id="ir4-Ar-zv2"/>
+                        <outlet property="varIB_button_tabbar_maps" destination="13y-tX-OSE" id="bbR-yG-C6L"/>
                         <outlet property="varIB_contrainte_y_chevron_tabbar" destination="CtJ-56-SEH" id="yJc-cC-LKQ"/>
                         <outlet property="varIB_scrollView" destination="uKb-jl-WGc" id="mrX-Jf-cLk"/>
                     </connections>
@@ -772,9 +772,9 @@
                                                     <constraint firstAttribute="height" constant="35" id="9on-iQ-pDS"/>
                                                     <constraint firstAttribute="width" constant="35" id="oYm-Hy-uZA"/>
                                                 </constraints>
-                                                <state key="normal" image="img_bt_orange_share"/>
+                                                <state key="normal" image="img_favoris_orange_off"/>
                                                 <connections>
-                                                    <action selector="touch_bt_share:" destination="SlD-xl-2se" eventType="touchUpInside" id="fMp-cv-fZo"/>
+                                                    <action selector="touch_bt_favoris:" destination="SlD-xl-2se" eventType="touchUpInside" id="cik-ub-bR3"/>
                                                 </connections>
                                             </button>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_no_images" translatesAutoresizingMaskIntoConstraints="NO" id="fIt-Zf-FuN">
@@ -1154,7 +1154,7 @@
                                                 <color key="textColor" red="0.40784313729999999" green="0.40784313729999999" blue="0.40784313729999999" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Aucune page Facebook disponible" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dCH-fX-LFv">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Aucune page disponible" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dCH-fX-LFv">
                                                 <rect key="frame" x="15" y="782" width="250" height="35"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="35" id="rUO-bZ-Tml"/>
@@ -1339,7 +1339,7 @@
                                                 <color key="textColor" red="0.40784313729999999" green="0.40784313729999999" blue="0.40784313729999999" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Animaux bienvenue" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a0G-vB-iF1">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Animaux bienvenus" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a0G-vB-iF1">
                                                 <rect key="frame" x="15" y="1402" width="140" height="20"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="20" id="eW2-NL-PUZ"/>
@@ -1354,9 +1354,9 @@
                                                     <constraint firstAttribute="height" constant="35" id="TEu-60-3VD"/>
                                                     <constraint firstAttribute="width" constant="35" id="hgn-vF-fqN"/>
                                                 </constraints>
-                                                <state key="normal" image="img_favoris_orange_off"/>
+                                                <state key="normal" image="img_bt_orange_share"/>
                                                 <connections>
-                                                    <action selector="touch_bt_favoris:" destination="SlD-xl-2se" eventType="touchUpInside" id="2O7-7V-m2x"/>
+                                                    <action selector="touch_bt_share:" destination="SlD-xl-2se" eventType="touchUpInside" id="dIG-VF-dSv"/>
                                                 </connections>
                                             </button>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_separateur_detail_resto" translatesAutoresizingMaskIntoConstraints="NO" id="GZE-6P-rzO">
@@ -1602,7 +1602,7 @@
                     <size key="freeformSize" width="320" height="1600"/>
                     <connections>
                         <outlet property="varIB_button_facebook" destination="Gap-eB-7Ad" id="vTO-Wq-0A2"/>
-                        <outlet property="varIB_button_favoris" destination="UVt-Ve-vaJ" id="aJy-9D-yTW"/>
+                        <outlet property="varIB_button_favoris" destination="AbG-rh-pzf" id="4Kb-Y4-sRv"/>
                         <outlet property="varIB_button_mail" destination="VLc-tp-JDm" id="FTM-w4-Aw2"/>
                         <outlet property="varIB_button_maps" destination="u3x-Hk-nIU" id="6JK-9h-0yV"/>
                         <outlet property="varIB_button_phone" destination="X7p-jP-3W9" id="KpW-bU-faG"/>
@@ -1753,7 +1753,7 @@
                                             <action selector="tap_menu_lateral:" destination="XvF-0Y-XO5" eventType="touchUpInside" id="uDO-1c-qNj"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PARAMETRES" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2K8-w0-gn3">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A PROPOS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2K8-w0-gn3">
                                         <rect key="frame" x="218" y="24" width="164" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="92s-Lh-cjV"/>
@@ -1906,7 +1906,7 @@
                                             <action selector="tap_menu_lateral:" destination="qI2-5M-2j6" eventType="touchUpInside" id="4ea-tG-hM8"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A PROPOS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ybg-ho-VCV">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PARAMETRES" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ybg-ho-VCV">
                                         <rect key="frame" x="218" y="24" width="164" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="4Fb-5G-Ud1"/>
@@ -2001,7 +2001,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="BFE-xA-VAM">
-                                <rect key="frame" x="0.0" y="138.5" width="260" height="461.5"/>
+                                <rect key="frame" x="0.0" y="139" width="260" height="461"/>
                                 <color key="backgroundColor" red="0.35686274509803922" green="0.35686274509803922" blue="0.35686274509803922" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="260" id="SZ8-hr-HeE"/>
@@ -2147,7 +2147,7 @@
                                 </constraints>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_menu_bg_0" translatesAutoresizingMaskIntoConstraints="NO" id="0so-Eo-Xc9">
-                                <rect key="frame" x="0.0" y="0.0" width="260" height="138.5"/>
+                                <rect key="frame" x="0.0" y="0.0" width="260" height="139"/>
                                 <color key="backgroundColor" red="0.35686274509803922" green="0.35686274509803922" blue="0.35686274509803922" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="0so-Eo-Xc9" secondAttribute="height" multiplier="15:8" id="FTe-lN-NZN"/>

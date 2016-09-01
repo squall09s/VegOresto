@@ -14,5 +14,6 @@ pod 'MGSwipeTableCell', '~> 1.5.5'
 pod 'SwiftSpinner', '~> 0.9.5'
 pod 'MapleBacon'
 pod 'VTAcknowledgementsViewController'
+pod 'LNRSimpleNotifications'
 
 end
