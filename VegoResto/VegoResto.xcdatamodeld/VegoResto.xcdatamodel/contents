@@ -1,37 +1,31 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10174" systemVersion="15F34" minimumToolsVersion="Automatic">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11232" systemVersion="15F34" minimumToolsVersion="Xcode 7.3" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
     <entity name="Restaurant" representedClassName="Restaurant" syncable="YES">
         <attribute name="absolute_url" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="ambiance" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="animaux_bienvenus" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="animaux_bienvenus" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="facebook" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="favoris" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
-        <attribute name="fermeture" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="h_ap_midi" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="favoris" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="h_dimanche" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="h_jeudi" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="h_lundi" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="h_mardi" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="h_matin" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="h_mercredi" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="h_midi" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="h_nuit" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="h_samedi" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="h_soir" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="h_vendredi" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="identifier" optional="YES" attributeType="Integer 16" defaultValueString="0" indexed="YES" syncable="YES"/>
+        <attribute name="identifier" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" indexed="YES" syncable="YES"/>
         <attribute name="image" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="influence_gastronomique" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="lat" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="lon" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="lat" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="lon" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="mail" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="montant_moyen" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="moyens_de_paiement" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="phone" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="resume" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="terrasse" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="terrasse" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="type_etablissement" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="ville" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="website" optional="YES" attributeType="String" syncable="YES"/>
@@ -42,7 +36,7 @@
         <relationship name="restaurants" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Restaurant" inverseName="tags" inverseEntity="Restaurant" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Restaurant" positionX="-1469" positionY="18" width="128" height="570"/>
+        <element name="Restaurant" positionX="-1469" positionY="18" width="128" height="480"/>
         <element name="Tag" positionX="-1127" positionY="369" width="128" height="73"/>
     </elements>
 </model>

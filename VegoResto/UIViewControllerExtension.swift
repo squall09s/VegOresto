@@ -13,7 +13,7 @@ extension UIViewController {
 
     @IBAction func tap_menu_lateral(sender: UIButton) {
 
-        MainViewController.sharedInstance?.showLeftViewAnimated(true, completionHandler: nil)
+        MainViewController.sharedInstance?.showLeftView(animated: true, completionHandler: nil)
 
         MainViewController.sharedInstance?.controllerMenuLateral.varIB_tableView.reloadData()
 

@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import FBAnnotationClusteringSwift
+//import FBAnnotationClusteringSwift
 
 class RestaurantAnnotation: FBAnnotation {
 

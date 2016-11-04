@@ -16,7 +16,7 @@ extension UIColor {
 
         // String -> UInt32
         var rgbValue: UInt32 = 0
-        NSScanner(string: cleanedHexString).scanHexInt(&rgbValue)
+        Scanner(string: cleanedHexString).scanHexInt32(&rgbValue)
 
         // UInt32 -> R,G,B
         let red = CGFloat((rgbValue >> 16) & 0xff) / 255.0

@@ -10,28 +10,28 @@ import UIKit
 
 
 /// Device check
+
+
+/// Device check
 struct Device {
 
-    static let LARGEUR   = UIScreen.mainScreen().bounds.size.width
-    static let HAUTEUR    = UIScreen.mainScreen().bounds.size.height
-    private static let maxLength = max(LARGEUR, HAUTEUR)
-    private static let minLength = min(LARGEUR, HAUTEUR)
+    static let WIDTH   = UIScreen.main.bounds.size.width
+    static let HEIGHT    = UIScreen.main.bounds.size.height
+    private static let maxLength = max(WIDTH, HEIGHT)
+    private static let minLength = min(WIDTH, HEIGHT)
 
-    static let IS_IPHONE_4 = ( Double( UIScreen.mainScreen().bounds.height) == Double(480.0) )
-    static let IS_IPHONE_5 = ( Double( UIScreen.mainScreen().bounds.height) == Double(568.0) )
-    static let IS_IPHONE_6 = ( Double( UIScreen.mainScreen().bounds.height) == Double(667.0) )
-    static let IS_IPHONE_6_PLUS = ( Double( UIScreen.mainScreen().bounds.height) == Double(736.0) )
+    static let IS_IPHONE_4 = ( Double( UIScreen.main.bounds.height) == Double(480.0) )
+    static let IS_IPHONE_5 = ( Double( UIScreen.main.bounds.height) == Double(568.0) )
+    static let IS_IPHONE_6 = ( Double( UIScreen.main.bounds.height) == Double(667.0) )
+    static let IS_IPHONE_6_PLUS = ( Double( UIScreen.main
+        .bounds.height) == Double(736.0) )
 
-    static let IS_IPAD      = UIDevice.currentDevice().userInterfaceIdiom == .Pad && maxLength == 1024.0
-    static let IS_IPAD_PRO   = UIDevice.currentDevice().userInterfaceIdiom == .Pad && maxLength == 1366.0
-    static let IS_TV      = UIDevice.currentDevice().userInterfaceIdiom == .TV
+    static let IS_IPAD      = UIDevice.current.userInterfaceIdiom == .pad && maxLength == 1024.0
+    static let IS_IPAD_PRO   = UIDevice.current.userInterfaceIdiom == .pad && maxLength == 1366.0
+    static let IS_TV      = UIDevice.current.userInterfaceIdiom == .tv
 }
 
 
-func runAfterDelay (delay: NSTimeInterval, block: dispatch_block_t) {
-    let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay * Double(NSEC_PER_SEC)))
-    dispatch_after(time, dispatch_get_main_queue(), block)
-}
 
 struct Debug {
 
@@ -48,6 +48,7 @@ struct Debug {
         }
     }
 }
+
 
 let COLOR_ORANGE: UIColor = UIColor(hexString: "F79F21")
 let COLOR_BLEU: UIColor = UIColor(hexString: "37A8DA")

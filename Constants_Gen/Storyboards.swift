@@ -22,7 +22,7 @@ extension StoryboardSceneType {
 
 extension StoryboardSceneType where Self: RawRepresentable, Self.RawValue == String {
   func viewController() -> UIViewController {
-    return Self.storyboard().instantiateViewControllerWithIdentifier(self.rawValue)
+    return Self.storyboard().instantiateViewController(withIdentifier: self.rawValue)
   }
   static func viewController(identifier: Self) -> UIViewController {
     return identifier.viewController()
@@ -32,10 +32,13 @@ extension StoryboardSceneType where Self: RawRepresentable, Self.RawValue == Str
 protocol StoryboardSegueType: RawRepresentable { }
 
 extension UIViewController {
-  func performSegue<S: StoryboardSegueType where S.RawValue == String>(segue: S, sender: AnyObject? = nil) {
-    performSegueWithIdentifier(segue.rawValue, sender: sender)
+  func performSegue<S: StoryboardSegueType>(segue: S, sender: AnyObject? = nil) where S.RawValue == String {
+    performSegue(withIdentifier: segue.rawValue, sender: sender)
   }
 }
+
+// swiftlint:disable file_length
+// swiftlint:disable type_body_length
 
 struct StoryboardScene {
   enum LaunchScreen: StoryboardSceneType {
@@ -44,45 +47,52 @@ struct StoryboardScene {
   enum Main: String, StoryboardSceneType {
     static let storyboardName = "Main"
 
-    case MainViewControllerScene = "MainViewController"
+    static func initialViewController() -> MainViewController {
+      guard let vc = storyboard().instantiateInitialViewController() as? MainViewController else {
+        fatalError("Failed to instantiate initialViewController for \(self.storyboardName)")
+      }
+      return vc
+    }
+
+    case mainViewControllerScene = "MainViewController"
     static func instantiateMainViewController() -> MainViewController {
-      guard let vc = StoryboardScene.Main.MainViewControllerScene.viewController() as? MainViewController
+      guard let vc = StoryboardScene.Main.mainViewControllerScene.viewController() as? MainViewController
       else {
         fatalError("ViewController 'MainViewController' is not of the expected class MainViewController.")
       }
       return vc
     }
 
-    case MapsViewControllerScene = "MapsViewController"
+    case mapsViewControllerScene = "MapsViewController"
     static func instantiateMapsViewController() -> MapsViewController {
-      guard let vc = StoryboardScene.Main.MapsViewControllerScene.viewController() as? MapsViewController
+      guard let vc = StoryboardScene.Main.mapsViewControllerScene.viewController() as? MapsViewController
       else {
         fatalError("ViewController 'MapsViewController' is not of the expected class MapsViewController.")
       }
       return vc
     }
 
-    case MenuLateralScene = "MenuLateral"
+    case menuLateralScene = "MenuLateral"
     static func instantiateMenuLateral() -> MenuLateral {
-      guard let vc = StoryboardScene.Main.MenuLateralScene.viewController() as? MenuLateral
+      guard let vc = StoryboardScene.Main.menuLateralScene.viewController() as? MenuLateral
       else {
         fatalError("ViewController 'MenuLateral' is not of the expected class MenuLateral.")
       }
       return vc
     }
 
-    case NavigationControllerScene = "NavigationController"
+    case navigationControllerScene = "NavigationController"
     static func instantiateNavigationController() -> UITabBarController {
-      guard let vc = StoryboardScene.Main.NavigationControllerScene.viewController() as? UITabBarController
+      guard let vc = StoryboardScene.Main.navigationControllerScene.viewController() as? UITabBarController
       else {
         fatalError("ViewController 'NavigationController' is not of the expected class UITabBarController.")
       }
       return vc
     }
 
-    case RechercheViewControllerScene = "RechercheViewController"
+    case rechercheViewControllerScene = "RechercheViewController"
     static func instantiateRechercheViewController() -> RechercheViewController {
-      guard let vc = StoryboardScene.Main.RechercheViewControllerScene.viewController() as? RechercheViewController
+      guard let vc = StoryboardScene.Main.rechercheViewControllerScene.viewController() as? RechercheViewController
       else {
         fatalError("ViewController 'RechercheViewController' is not of the expected class RechercheViewController.")
       }
@@ -93,6 +103,6 @@ struct StoryboardScene {
 
 struct StoryboardSegue {
   enum Main: String, StoryboardSegueType {
-    case Segue_to_detail = "segue_to_detail"
+    case segueToDetail = "segue_to_detail"
   }
 }

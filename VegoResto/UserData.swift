@@ -24,7 +24,7 @@ class UserData: NSObject, CLLocationManagerDelegate {
     var location: CLLocationCoordinate2D? = nil
 
     // swiftlint:disable:next force_cast
-    var managedContext = ( UIApplication.sharedApplication().delegate as! AppDelegate ).managedObjectContext
+    var managedContext = ( UIApplication.shared.delegate as! AppDelegate ).managedObjectContext
 
 
     private override init() {
@@ -42,19 +42,18 @@ class UserData: NSObject, CLLocationManagerDelegate {
 
     }
 
+
+
     func getRestaurants() -> [Restaurant] {
 
-        let fetchRequest = NSFetchRequest(entityName: "Restaurant")
+        let fetchRequest: NSFetchRequest<Restaurant> = NSFetchRequest(entityName: "Restaurant")
 
         do {
 
-            let results = try self.managedContext.executeFetchRequest(fetchRequest)
+            let results = try self.managedContext.fetch(fetchRequest )
 
-            if let resultats_restaurants = (results as? [Restaurant]) {
-                return resultats_restaurants
-            } else {
-                return [Restaurant]()
-            }
+            return results
+
 
         } catch _ {
 
@@ -75,17 +74,15 @@ class UserData: NSObject, CLLocationManagerDelegate {
 
 
 
-
-    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
 
         self.locationmanager?.stopUpdatingLocation()
 
-        Debug.log(error)
+        Debug.log(object: error)
 
     }
 
-
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
 
         if let location = locations.last {
 
@@ -93,25 +90,28 @@ class UserData: NSObject, CLLocationManagerDelegate {
         }
     }
 
-    func locationManager(manager: CLLocationManager,
-                         didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+
         var shouldIAllow = false
 
         switch status {
-        case CLAuthorizationStatus.Restricted:
-            Debug.log( "Restricted Access to location")
-        case CLAuthorizationStatus.Denied:
-            Debug.log( "User denied access to location")
-        case CLAuthorizationStatus.NotDetermined:
-            Debug.log( "Status not determined")
+        case CLAuthorizationStatus.restricted:
+            Debug.log( object: "Restricted Access to location")
+        case CLAuthorizationStatus.denied:
+            Debug.log( object: "User denied access to location")
+        case CLAuthorizationStatus.notDetermined:
+            Debug.log( object: "Status not determined")
         default:
-            Debug.log( "Allowed to location Access")
+
+            Debug.log( object: "Allowed to location Access")
             shouldIAllow = true
         }
-        NSNotificationCenter.defaultCenter().postNotificationName("LabelHasbeenUpdated", object: nil)
+
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "LabelHasbeenUpdated"), object: nil)
 
         if shouldIAllow == true {
-            Debug.log("Location to Allowed")
+
+            Debug.log(object: "Location to Allowed")
 
             self.locationmanager?.startUpdatingLocation()
         }
@@ -123,10 +123,10 @@ class UserData: NSObject, CLLocationManagerDelegate {
 
         var nbObjetCrées = 0
 
-        self.managedContext.performBlock {
+        self.managedContext.perform {
 
-            let entityRestaurant =  NSEntityDescription.entityForName("Restaurant", inManagedObjectContext: self.managedContext)
-            let entityTag =  NSEntityDescription.entityForName("Tag", inManagedObjectContext: self.managedContext)
+            let entityRestaurant =  NSEntityDescription.entity(forEntityName: "Restaurant", in: self.managedContext)
+            let entityTag =  NSEntityDescription.entity(forEntityName: "Tag", in: self.managedContext)
 
 
             let xml = SWXMLHash.parse(xml)
@@ -147,7 +147,7 @@ class UserData: NSObject, CLLocationManagerDelegate {
 
                     if let _identifier_to_int = Int(_identifer) {
 
-                        restaurant = self.getRestaurantWithIdentifier( _identifier_to_int )
+                        restaurant = self.getRestaurantWithIdentifier( identifier: _identifier_to_int )
                     }
 
                 }
@@ -155,23 +155,25 @@ class UserData: NSObject, CLLocationManagerDelegate {
                 //si il est nil je crée un objet dans mon contexte
                 if restaurant == nil {
 
-                    restaurant = NSManagedObject(entity: entityRestaurant!, insertIntoManagedObjectContext: self.managedContext) as? Restaurant
+                    restaurant = NSManagedObject(entity: entityRestaurant!, insertInto: self.managedContext) as? Restaurant
 
                 }
+
 
 
 
                 // remplisssage de l'objet (ou mise à jour)
                 if let _name = elem["titre"].element?.text {
-                    restaurant?.name = self.cleanString(_name)
+                    restaurant?.name = self.cleanString(str: _name)
                 }
 
                 if let _adress = elem["adresse"].element?.text {
-                    restaurant?.address = self.cleanString(_adress)
+                    restaurant?.address = self.cleanString(str: _adress)
                 }
 
+
                 if let _resume = elem["description"].element?.text?.html2String {
-                    restaurant?.resume = self.cleanString(_resume)
+                    restaurant?.resume = self.cleanString(str: _resume)
                 }
 
                 restaurant?.website = elem["site_internet"].element?.text
@@ -184,55 +186,86 @@ class UserData: NSObject, CLLocationManagerDelegate {
                 restaurant?.moyens_de_paiement = elem["moyens_de_paiement"].element?.text
                 restaurant?.influence_gastronomique = elem["influence_gastronomique"].element?.text
                 restaurant?.ambiance = elem["ambiance"].element?.text
-                restaurant?.fermeture = elem["fermeture"].element?.text
+                //restaurant?.fermeture = elem["fermeture"].element?.text
                 restaurant?.image = elem["image"].element?.text
 
-                restaurant?.h_lundi = elem["lundi"].element?.text
-                restaurant?.h_mardi = elem["mardi"].element?.text
-                restaurant?.h_mercredi = elem["mercredi"].element?.text
-                restaurant?.h_jeudi = elem["jeudi"].element?.text
-                restaurant?.h_vendredi = elem["vendredi"].element?.text
-                restaurant?.h_samedi = elem["samedi"].element?.text
-                restaurant?.h_dimanche = elem["dimanche"].element?.text
+                var dicoDays = [ String : String ]()
 
-                restaurant?.h_matin = elem["horaires_matin"].element?.text
-                restaurant?.h_midi = elem["horaires_midi"].element?.text
-                restaurant?.h_ap_midi = elem["horaires_am"].element?.text
-                restaurant?.h_soir = elem["horaires_soir"].element?.text
-                restaurant?.h_nuit = elem["horaires_nuit"].element?.text
+                for elemHoraire in elem["horaires"]["h"] {
+
+                    if let day_str = elemHoraire.element?.attribute(by: "day")?.text,
+                        let start_str = elemHoraire.element?.attribute(by: "s")?.text,
+                        let end_str = elemHoraire.element?.attribute(by: "e")?.text /*,
+                         let text_str = elemHoraire.element?.text */{
+
+
+                            if start_str.characters.count == 4 && end_str.characters.count == 4 {
+
+                                var start_str_updated = start_str
+                                start_str_updated.insert("h", at: start_str_updated.index(start_str_updated.startIndex, offsetBy: 2)  )
+
+                                var end_str_updated = end_str
+                                end_str_updated.insert("h", at: end_str_updated.index(end_str_updated.startIndex, offsetBy: 2)  )
+
+
+                                var infoDay = "De " + start_str_updated + " à " + end_str_updated
+
+                                if let previousInfoDay = dicoDays[day_str] {
+
+                                    infoDay = previousInfoDay + " & " + infoDay
+
+                                }
+
+                                dicoDays[day_str] = infoDay
+
+                            }
+
+                    }
+                }
+
+
+                restaurant?.h_lundi = dicoDays["lundi"]
+                restaurant?.h_mardi = dicoDays["mardi"]
+                restaurant?.h_mercredi = dicoDays["mercredi"]
+                restaurant?.h_jeudi = dicoDays["jeudi"]
+                restaurant?.h_vendredi = dicoDays["vendredi"]
+                restaurant?.h_samedi = dicoDays["samedi"]
+                restaurant?.h_dimanche = dicoDays["dimanche"]
+
+
                 restaurant?.mail = elem["mel_public"].element?.text
 
 
-                restaurant?.animaux_bienvenus = ( (elem["animaux_bienvenus"].element?.text) == "oui")
-                restaurant?.terrasse = ( (elem["terrasse"].element?.text) == "oui")
+                restaurant?.animaux_bienvenus =   NSNumber(value:  ( (elem["animaux_bienvenus"].element?.text) == "oui")   )
+                restaurant?.terrasse = NSNumber(value: ( (elem["terrasse"].element?.text) == "oui"))
 
 
                 if let _identifer = identifer {
-                    restaurant?.identifier = Int(_identifer)
+                    restaurant?.identifier = Int(_identifer) as NSNumber?
                 }
 
                 if let _latitude = elem["lat"].element?.text {
-                    restaurant?.lat = Double(_latitude)
+                    restaurant?.lat = Double(_latitude) as NSNumber?
                 }
 
                 if let _longitude = elem["lon"].element?.text {
-                    restaurant?.lon = Double(_longitude)
+                    restaurant?.lon = Double(_longitude) as NSNumber?
                 }
 
                 restaurant?.tags = NSSet()
 
                 if let categories_culinaires = elem["categories_culinaires"].element?.text {
 
-                    let arrayOfTags = categories_culinaires.componentsSeparatedByString("|")
+                    let arrayOfTags = categories_culinaires.components(separatedBy: "|")
 
                     for strTag in arrayOfTags {
 
-                        if let new_tag = (NSManagedObject(entity: entityTag!, insertIntoManagedObjectContext: self.managedContext) as? Tag) {
+                        if let new_tag = (NSManagedObject(entity: entityTag!, insertInto: self.managedContext) as? Tag) {
 
                             new_tag.name = strTag
                             new_tag.restaurants = NSSet()
 
-                            restaurant?.addTag(new_tag)
+                            restaurant?.addTag(tag: new_tag)
                         }
                     }
                 }
@@ -240,13 +273,13 @@ class UserData: NSObject, CLLocationManagerDelegate {
                 nbObjetCrées = nbObjetCrées + 1
             }
 
-            Debug.log("Parser XML : \(nbObjetCrées) element(s)")
+            Debug.log(object: "Parser XML : \(nbObjetCrées) element(s)")
 
 
             do {
                 try self.managedContext.save()
             } catch _ {
-                Debug.log("erreur save managedContext")
+                Debug.log(object: "erreur save managedContext")
             }
 
 
@@ -255,114 +288,110 @@ class UserData: NSObject, CLLocationManagerDelegate {
 
                 SwiftSpinner.show("Chargement des données...")
 
-                if let path = NSBundle.mainBundle().pathForResource("restaurants", ofType: "xml") {
+                if let path = Bundle.main.path(forResource: "restaurants", ofType: "xml") {
 
                     if let fileContents: NSData = NSData(contentsOfFile: path) {
 
-                        if let xml = String(data: fileContents, encoding: NSUTF8StringEncoding) {
+                        if let xml = String(data: fileContents as Data, encoding: String.Encoding.utf8) {
 
                             SwiftSpinner.show("Chargement des données...")
 
-                            self.parseXML(xml)
+
+                            self.parseXML(xml: xml)
                         }
                     }
 
                 }
 
-
             } else {
 
                 SwiftSpinner.hide()
-                NSNotificationCenter.defaultCenter().postNotificationName("CHARGEMENT_TERMINE", object: nil)
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "CHARGEMENT_TERMINE"), object: nil)
 
-                Debug.log("fin chargement des données depuis URL")
+                Debug.log(object: "fin chargement des données depuis URL")
 
             }
 
         }
 
-
-
     }
-
 
 
     func cleanString(str: String) -> String {
 
-        var strResult = str.stringByReplacingOccurrencesOfString("<br />", withString: "\n")
-        strResult = strResult.stringByReplacingOccurrencesOfString("<p>", withString: "")
-        strResult = strResult.stringByReplacingOccurrencesOfString("</p>", withString: "")
-        strResult = strResult.stringByReplacingOccurrencesOfString("&#039;", withString: "'")
-        strResult = strResult.stringByReplacingOccurrencesOfString("&rsquo;", withString: "'")
-        strResult = strResult.stringByReplacingOccurrencesOfString("&#8211;", withString: "–")
-        strResult = strResult.stringByReplacingOccurrencesOfString("&amp;#038;", withString: "&")
+        var strResult = str.replacingOccurrences(of: "<br />", with: "\n")
+
+        strResult = strResult.replacingOccurrences(of:"<p>", with: "")
+        strResult = strResult.replacingOccurrences(of:"</p>", with: "")
+        strResult = strResult.replacingOccurrences(of:"&#039;", with: "'")
+        strResult = strResult.replacingOccurrences(of:"&rsquo;", with: "'")
+        strResult = strResult.replacingOccurrences(of:"&#8211;", with: "–")
+        strResult = strResult.replacingOccurrences(of:"&amp;#038;", with: "&")
 
         return strResult
     }
 
 
-
-
-
-
-
     func getRestaurantWithIdentifier(identifier: Int) -> Restaurant? {
 
 
-        let fetchRequest: NSFetchRequest = NSFetchRequest(entityName: "Restaurant")
+        let fetchRequest: NSFetchRequest<Restaurant> = NSFetchRequest(entityName: "Restaurant")
         let predicate: NSPredicate = NSPredicate(format: "identifier = %@", String(identifier) )
         fetchRequest.predicate = predicate
 
         do {
 
-            let results = try self.managedContext.executeFetchRequest(fetchRequest)
+            let results = try self.managedContext.fetch(fetchRequest)
 
-            if let resultats_restaurants = (results as? [Restaurant]) {
+            if results.count > 0 {
 
-                if resultats_restaurants.count > 0 {
-
-                    return resultats_restaurants[0]
-                }
+                return results[0]
             }
 
         } catch _ {
 
-
-
         }
 
-
         return nil
+
     }
 
 
     func loadDataOnVegorestoURL() {
 
-        Alamofire.request(.GET, "http://vegoresto.fr/restos-fichier-xml/", parameters: nil)
-            .responseData { ( response ) in
+        Alamofire.request("http://vegoresto.fr/restos-fichier-xml/").responseData { (response) in
 
-                Debug.log("Téléchargement page : http://vegoresto.fr/restos-fichier-xml/")
+            Debug.log(object: "Téléchargement page : http://vegoresto.fr/restos-fichier-xml/")
 
-                switch response.result {
-                case .Success:
-                    Debug.log("Validation Successful")
-                case .Failure(let error):
-                    Debug.log(error)
-                }
+            switch response.result {
+            case .success:
+                Debug.log(object: "Validation Successful")
+            case .failure(let error):
+                Debug.log(object: error)
+            }
 
 
-                if let decompressedData: NSData = response.data?.gunzippedData() {
 
-                    if let decompressedXML: String = String(data: decompressedData, encoding: NSUTF8StringEncoding) {
 
-                        Debug.log("Decompression XML : OK")
+            if let dataCompressed = response.data {
+
+
+                if let decompressedData = NSData(data: dataCompressed).gunzipped() {
+
+
+                    if let decompressedXML: String = String(data: decompressedData as Data, encoding: String.Encoding.utf8) {
+
+                        Debug.log(object: "Decompression XML : OK")
 
                         SwiftSpinner.show("Chargement des données...")
 
-                        self.parseXML(decompressedXML)
+                        self.parseXML(xml: decompressedXML)
 
                     }
+
                 }
+
+            }
         }
     }
 
@@ -372,14 +401,21 @@ class UserData: NSObject, CLLocationManagerDelegate {
 extension String {
 
     var html2AttributedString: NSAttributedString? {
+
         guard
-            let data = dataUsingEncoding(NSUTF8StringEncoding)
+            let data = data(using: String.Encoding.utf8)
             else { return nil }
         do {
-            let options: [String : AnyObject ] = [NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType, NSCharacterEncodingDocumentAttribute : NSUTF8StringEncoding]
-            return try NSAttributedString(data: data, options: options, documentAttributes: nil)
+
+
+            let attributedOptions: [String: AnyObject] = [
+                NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType as AnyObject,
+                NSCharacterEncodingDocumentAttribute: NSNumber(value: String.Encoding.utf8.rawValue) as AnyObject
+            ]
+
+            return try NSAttributedString(data: data, options: attributedOptions, documentAttributes: nil)
         } catch let error as NSError {
-            Debug.log(error.localizedDescription)
+            Debug.log(object: error.localizedDescription)
             return  nil
         }
     }

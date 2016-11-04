@@ -18,12 +18,12 @@ class ImageAnnotationView: MKAnnotationView {
         super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
 
         self.bounds = CGRect(x: 0, y: 0, width: 56, height: 56)
-        self.backgroundColor = UIColor.clearColor()
+        self.backgroundColor = UIColor.clear
 
         annotationImageView = UIImageView(frame: bounds)
         annotationImageView.layer.cornerRadius = 28
         annotationImageView.layer.masksToBounds = true
-        annotationImageView.backgroundColor = UIColor.blueColor()
+        annotationImageView.backgroundColor = UIColor.blue
         self.addSubview(annotationImageView)
     }
 

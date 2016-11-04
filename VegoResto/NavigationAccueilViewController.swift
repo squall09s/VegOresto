@@ -34,32 +34,34 @@ class NavigationAccueilViewController: UIViewController {
         self.maps_viewController = StoryboardScene.Main.instantiateMapsViewController()
 
 
-        self.varIB_button_tabbar_list.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.3)
-        self.varIB_button_tabbar_maps.backgroundColor = UIColor.clearColor()
+        self.varIB_button_tabbar_list.backgroundColor = UIColor.white.withAlphaComponent(0.3)
+        self.varIB_button_tabbar_maps.backgroundColor = UIColor.clear
 
-        self.varIB_contrainte_y_chevron_tabbar.constant = Device.LARGEUR * 0.25 - 15
+        self.varIB_contrainte_y_chevron_tabbar.constant = Device.WIDTH * 0.25 - 15
 
 
 
 
     }
 
-    override func viewDidAppear(animated: Bool) {
+
+    override func viewDidAppear(_ animated: Bool) {
 
         super.viewDidAppear(animated)
 
-        self.varIB_scrollView.contentSize = CGSize(width : Device.LARGEUR * 2.0, height : self.varIB_scrollView.frame.height  )
+        self.varIB_scrollView.contentSize = CGSize(width : Device.WIDTH * 2.0, height : self.varIB_scrollView.frame.height  )
 
 
 
         if let vc: RechercheViewController = self.recherche_viewController {
 
-            if vc.parentViewController != self {
+            if vc.parent != self {
 
             self.addChildViewController(vc)
-            self.varIB_scrollView.addSubview(vc.view)
-            vc.didMoveToParentViewController(self)
-            vc.view.frame = CGRect(x : Device.LARGEUR, y : 0, width : Device.LARGEUR, height : Device.HAUTEUR - HAUTEUR_HEADER_BAR - HAUTEUR_TABBAR )
+
+                self.varIB_scrollView.addSubview(vc.view)
+            vc.didMove(toParentViewController: self)
+            vc.view.frame = CGRect(x : Device.WIDTH, y : 0, width : Device.WIDTH, height : Device.HEIGHT - HAUTEUR_HEADER_BAR - HAUTEUR_TABBAR )
 
             }
 
@@ -67,12 +69,12 @@ class NavigationAccueilViewController: UIViewController {
 
         if let vc: MapsViewController = self.maps_viewController {
 
-            if vc.parentViewController != self {
+            if vc.parent != self {
 
             self.addChildViewController(vc)
             self.varIB_scrollView.addSubview(vc.view)
-            vc.didMoveToParentViewController(self)
-            vc.view.frame = CGRect(x : 0, y : 0, width : Device.LARGEUR, height : Device.HAUTEUR - HAUTEUR_HEADER_BAR - HAUTEUR_TABBAR )
+            vc.didMove(toParentViewController: self)
+            vc.view.frame = CGRect(x : 0, y : 0, width : Device.WIDTH, height : Device.HEIGHT - HAUTEUR_HEADER_BAR - HAUTEUR_TABBAR )
 
             }
         }
@@ -104,16 +106,16 @@ class NavigationAccueilViewController: UIViewController {
 
         if self.varIB_button_tabbar_maps == sender {
 
-            let frame = CGRect( x : 0, y : 0, width : Device.LARGEUR, height : Device.HAUTEUR - HAUTEUR_HEADER_BAR - HAUTEUR_TABBAR )
+            let frame = CGRect( x : 0, y : 0, width : Device.WIDTH, height : Device.HEIGHT - HAUTEUR_HEADER_BAR - HAUTEUR_TABBAR )
 
             self.varIB_scrollView.scrollRectToVisible( frame, animated: true )
 
-            self.varIB_contrainte_y_chevron_tabbar.constant = Device.LARGEUR * 0.25 - 15
+            self.varIB_contrainte_y_chevron_tabbar.constant = Device.WIDTH * 0.25 - 15
 
-            UIView.animateWithDuration(0.2, animations: {
+            UIView.animate(withDuration: 0.2, animations: {
 
-                self.varIB_button_tabbar_list.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.3)
-                self.varIB_button_tabbar_maps.backgroundColor = UIColor.clearColor()
+                self.varIB_button_tabbar_list.backgroundColor = UIColor.white.withAlphaComponent(0.3)
+                self.varIB_button_tabbar_maps.backgroundColor = UIColor.clear
 
             })
 
@@ -122,22 +124,22 @@ class NavigationAccueilViewController: UIViewController {
         } else if self.varIB_button_tabbar_list == sender {
 
 
-            let frame = CGRect(x : Device.LARGEUR, y : 0, width : Device.LARGEUR, height :Device.HAUTEUR - HAUTEUR_HEADER_BAR - HAUTEUR_TABBAR )
+            let frame = CGRect(x : Device.WIDTH, y : 0, width : Device.WIDTH, height :Device.HEIGHT - HAUTEUR_HEADER_BAR - HAUTEUR_TABBAR )
 
             self.varIB_scrollView.scrollRectToVisible( frame, animated: true )
 
-            self.varIB_contrainte_y_chevron_tabbar.constant = Device.LARGEUR * 0.75 - 15
+            self.varIB_contrainte_y_chevron_tabbar.constant = Device.WIDTH * 0.75 - 15
 
-            UIView.animateWithDuration(0.2, animations: {
+            UIView.animate(withDuration: 0.2, animations: {
 
-                self.varIB_button_tabbar_maps.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.3)
-                self.varIB_button_tabbar_list.backgroundColor = UIColor.clearColor()
+                self.varIB_button_tabbar_maps.backgroundColor = UIColor.white.withAlphaComponent(0.3)
+                self.varIB_button_tabbar_list.backgroundColor = UIColor.clear
 
             })
 
         }
 
-        UIView.animateWithDuration(0.25) {
+        UIView.animate(withDuration: 0.25) {
             self.view.layoutIfNeeded()
         }
     }

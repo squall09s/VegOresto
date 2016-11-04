@@ -39,10 +39,6 @@ class DetailRestaurantViewController: UIViewController {
     @IBOutlet weak var varIB_label_h_samedi: UILabel?
     @IBOutlet weak var varIB_label_h_dimanche: UILabel?
 
-    @IBOutlet weak var varIB_label_h_midi: UILabel?
-    @IBOutlet weak var varIB_label_h_soir: UILabel?
-    @IBOutlet weak var varIB_label_h_fermeture: UILabel?
-
 
     @IBOutlet weak var varIB_button_favoris: UIButton?
 
@@ -87,58 +83,52 @@ class DetailRestaurantViewController: UIViewController {
             self.varIB_label_h_samedi?.text = _current_restaurant.h_samedi
             self.varIB_label_h_dimanche?.text = _current_restaurant.h_dimanche
 
-            self.varIB_label_h_midi?.text = _current_restaurant.h_midi
-            self.varIB_label_h_soir?.text = _current_restaurant.h_soir
-            self.varIB_label_h_fermeture?.text = _current_restaurant.fermeture
 
-            if _current_restaurant.animaux_bienvenus?.boolValue == true {
-                self.varIB_label_animaux?.text = "Oui !"
-            }
-
-            if _current_restaurant.terrasse?.boolValue == true {
-                self.varIB_label_terrasse?.text = "Oui !"
-            }
+            self.varIB_label_animaux?.text = _current_restaurant.animaux_bienvenus?.boolValue == true ? "Oui !" : "Non"
+            self.varIB_label_terrasse?.text = _current_restaurant.terrasse?.boolValue == true ? "Oui !" : "Non"
 
             self.refreshBt_favoris()
 
 
             if  _current_restaurant.website != nil &&  _current_restaurant.website != "" {
-                self.varIB_button_website?.setImage(UIImage(asset: .Img_bt_web_orange_on), forState: UIControlState())
-                self.varIB_button_website?.userInteractionEnabled = true
+                self.varIB_button_website?.setImage( Asset.imgBtWebOrangeOn.image, for: UIControlState())
+                self.varIB_button_website?.isUserInteractionEnabled = true
                 self.varIB_label_website?.text = _current_restaurant.website
             }
 
 
             if  _current_restaurant.phone != nil &&  _current_restaurant.phone != "" {
-                self.varIB_button_phone?.setImage(UIImage(asset: .Img_bt_tel_orange_on), forState: UIControlState())
-                self.varIB_button_phone?.userInteractionEnabled = true
+                self.varIB_button_phone?.setImage( Asset.imgBtTelOrangeOn.image, for: UIControlState())
+                self.varIB_button_phone?.isUserInteractionEnabled = true
                 self.varIB_label_phone?.text = _current_restaurant.phone
             }
 
 
             if  _current_restaurant.facebook != nil &&  _current_restaurant.facebook != "" {
-                self.varIB_button_facebook?.setImage(UIImage(asset: .Img_bt_fb_orange_on), forState: UIControlState())
-                self.varIB_button_facebook?.userInteractionEnabled = true
+                self.varIB_button_facebook?.setImage( Asset.imgBtFbOrangeOn.image, for: UIControlState())
+                self.varIB_button_facebook?.isUserInteractionEnabled = true
                 self.varIB_label_facebook?.text = _current_restaurant.facebook
             }
 
 
             if  _current_restaurant.mail != nil &&  _current_restaurant.mail != "" {
-                self.varIB_button_mail?.setImage(UIImage(asset: .Img_bt_mail_orange_on), forState: UIControlState())
-                self.varIB_button_mail?.userInteractionEnabled = true
+                self.varIB_button_mail?.setImage( Asset.imgBtMailOrangeOn.image, for: UIControlState())
+                self.varIB_button_mail?.isUserInteractionEnabled = true
                 self.varIB_label_mail?.text = _current_restaurant.mail
             }
 
 
             if  _current_restaurant.address != nil &&  _current_restaurant.address != "" {
-                self.varIB_button_maps?.setImage(UIImage(asset: .Img_bt_maps_orange_on), forState: UIControlState())
-                self.varIB_button_maps?.userInteractionEnabled = true
+                self.varIB_button_maps?.setImage( Asset.imgBtMapsOrangeOn.image, for: UIControlState())
+                self.varIB_button_maps?.isUserInteractionEnabled = true
                 self.varIB_label_adresse?.text = _current_restaurant.address
             }
 
             if let imageString = _current_restaurant.image {
-                if let imageURL = NSURL(string: imageString) {
-                    self.varIB_image_presentation?.setImageWithURL(imageURL, placeholder: UIImage(asset: .Img_no_images), crossFadePlaceholder: false)
+                if let imgURL = URL(string: imageString) {
+
+                    self.varIB_image_presentation?.setImage(withUrl: imgURL, placeholder: Asset.imgNoImages.image, crossFadePlaceholder: false, cacheScaled: false, completion: nil)
+
                 }
             }
 
@@ -153,8 +143,7 @@ class DetailRestaurantViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
 
         super.viewDidAppear(animated)
 
@@ -164,7 +153,7 @@ class DetailRestaurantViewController: UIViewController {
 
     @IBAction func touch_bt_back(sender: AnyObject) {
 
-       self.navigationController?.popViewControllerAnimated( true)
+       _ = self.navigationController?.popViewController( animated: true)
     }
 
 
@@ -172,12 +161,14 @@ class DetailRestaurantViewController: UIViewController {
 
         if let phone: String = self.current_restaurant?.phone {
 
-            var phoneClean = phone.stringByReplacingOccurrencesOfString(" ", withString: "")
-            phoneClean = phoneClean.stringByReplacingOccurrencesOfString(".", withString: "")
+            var phoneClean = phone.replacingOccurrences(of: " ", with: "")
 
-            if let urltmp = NSURL(string: "telprompt://" + phoneClean) {
+            phoneClean = phoneClean.replacingOccurrences(of : ".", with: "")
 
-                UIApplication.sharedApplication().openURL(urltmp)
+            if let destination_url = URL(string: "telprompt://" + phoneClean) {
+
+                UIApplication.shared.open(destination_url, options: [:], completionHandler: nil)
+
             }
         }
     }
@@ -185,19 +176,19 @@ class DetailRestaurantViewController: UIViewController {
 
     @IBAction func touch_bt_maps(sender: AnyObject) {
 
-        if let latitude = self.current_restaurant?.lat?.doubleValue, longitude = self.current_restaurant?.lon?.doubleValue {
+        if let latitude = self.current_restaurant?.lat?.doubleValue, let longitude = self.current_restaurant?.lon?.doubleValue {
 
             let regionDistance: CLLocationDistance = 10000
             let coordinates = CLLocationCoordinate2DMake(latitude, longitude)
             let regionSpan = MKCoordinateRegionMakeWithDistance(coordinates, regionDistance, regionDistance)
             let options = [
-                MKLaunchOptionsMapCenterKey: NSValue(MKCoordinate: regionSpan.center),
-                MKLaunchOptionsMapSpanKey: NSValue(MKCoordinateSpan: regionSpan.span)
+                MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: regionSpan.center),
+                MKLaunchOptionsMapSpanKey: NSValue(mkCoordinateSpan: regionSpan.span)
             ]
             let placemark = MKPlacemark(coordinate: coordinates, addressDictionary: nil)
             let mapItem = MKMapItem(placemark: placemark)
             mapItem.name = self.current_restaurant?.name
-            mapItem.openInMapsWithLaunchOptions(options)
+            mapItem.openInMaps(launchOptions: options)
 
         }
     }
@@ -209,7 +200,7 @@ class DetailRestaurantViewController: UIViewController {
 
             let objectsToShare = [textToShare]
             let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
-            self.presentViewController(activityVC, animated: true, completion: nil)
+            self.present(activityVC, animated: true, completion: nil)
         }
     }
 
@@ -222,15 +213,15 @@ class DetailRestaurantViewController: UIViewController {
 
             if !(notificationManager.isNotificationActive) {
 
-            _current_restaurant.favoris = !(_current_restaurant.favoris.boolValue)
+            _current_restaurant.favoris = !(_current_restaurant.favoris.boolValue) as NSNumber
 
 
 
-            notificationManager.notificationsPosition = LNRNotificationPosition.Top
+            notificationManager.notificationsPosition = LNRNotificationPosition.top
             notificationManager.notificationsBackgroundColor = COLOR_ORANGE
-            notificationManager.notificationsTitleTextColor = UIColor.whiteColor()
-            notificationManager.notificationsBodyTextColor = UIColor.whiteColor()
-            notificationManager.notificationsSeperatorColor = UIColor.whiteColor()
+            notificationManager.notificationsTitleTextColor = UIColor.white
+            notificationManager.notificationsBodyTextColor = UIColor.white
+            notificationManager.notificationsSeperatorColor = UIColor.white
 
             notificationManager.notificationsTitleFont = UIFont(name: "URWGothicL-Book", size: 15)!
             notificationManager.notificationsBodyFont = UIFont(name: "URWGothicL-Book", size: 11)!
@@ -238,8 +229,9 @@ class DetailRestaurantViewController: UIViewController {
 
             let message = _current_restaurant.favoris.boolValue ? "Vous avez bien ajouté ce restaurant à vos favoris" : "Vous avez bien retiré ce restaurant de vos favoris"
 
-            notificationManager.showNotification("Favoris", body: message, onTap: { () -> Void in
-                    notificationManager.dismissActiveNotification({ () -> Void in
+            notificationManager.showNotification(title: "Favoris", body: message, onTap: { () -> Void in
+
+                _ = notificationManager.dismissActiveNotification(completion: { () -> Void in
                         print("Notification dismissed")
                     })
                 })
@@ -256,9 +248,9 @@ class DetailRestaurantViewController: UIViewController {
         if let _current_restaurant = self.current_restaurant {
 
             if _current_restaurant.favoris.boolValue {
-                self.varIB_button_favoris?.setImage(  UIImage(asset: .Img_favoris_orange_on ), forState: UIControlState())
+                self.varIB_button_favoris?.setImage(  Asset.imgFavorisOrangeOn.image, for: UIControlState())
             } else {
-                self.varIB_button_favoris?.setImage(  UIImage(asset: .Img_favoris_orange_off ), forState: UIControlState())
+                self.varIB_button_favoris?.setImage(  Asset.imgFavorisOrangeOff.image, for: UIControlState())
             }
         }
 
@@ -269,12 +261,13 @@ class DetailRestaurantViewController: UIViewController {
 
         if let mail = self.current_restaurant?.mail {
 
-        if let sujet = "Prise de contact".stringByAddingPercentEncodingWithAllowedCharacters( NSCharacterSet.URLQueryAllowedCharacterSet() ) {
+        if let sujet = "Prise de contact".addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) {
 
-            let str = "mailto:" + mail + "?subject=" + sujet
+            if let destination_url = URL(string:  "mailto:" + mail + "?subject=" + sujet ) {
 
-            let url = NSURL(string: str)
-            UIApplication.sharedApplication().openURL(url!)
+                UIApplication.shared.open(destination_url, options: [:], completionHandler: nil)
+
+            }
 
         }
         }
@@ -283,23 +276,24 @@ class DetailRestaurantViewController: UIViewController {
 
     @IBAction func touch_bt_weburl(sender: AnyObject) {
 
-
         if let url_str = self.current_restaurant?.website {
 
-            var url_str_avec_prefix = url_str
+            var destination_url_str = url_str
 
-            if !(url_str_avec_prefix.hasPrefix("http")) {
+            if !(url_str.hasPrefix("http")) {
 
-                url_str_avec_prefix = "http://\(url_str_avec_prefix)"
+                destination_url_str = "http://\(url_str)"
+            }
 
+            if let destination_url = URL(string:  destination_url_str ) {
+
+                UIApplication.shared.open(destination_url, options: [:], completionHandler: nil)
 
             }
 
-            if let url = NSURL(string: url_str_avec_prefix) {
 
-                UIApplication.sharedApplication().openURL( url )
-            }
         }
+
 
     }
 
@@ -308,21 +302,21 @@ class DetailRestaurantViewController: UIViewController {
 
         if let url_str = self.current_restaurant?.facebook {
 
-            var url_str_avec_prefix = url_str
+            var destination_url_str = url_str
 
-            if !(url_str_avec_prefix.hasPrefix("http")) {
+            if !(url_str.hasPrefix("http")) {
 
-                url_str_avec_prefix = "http://\(url_str_avec_prefix)"
+                destination_url_str = "http://\(url_str)"
+            }
 
+            if let destination_url = URL(string:  destination_url_str ) {
+
+                UIApplication.shared.open(destination_url, options: [:], completionHandler: nil)
 
             }
 
-            if let url = NSURL(string: url_str_avec_prefix) {
 
-                UIApplication.sharedApplication().openURL( url )
-            }
         }
-
     }
 
 

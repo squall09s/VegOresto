@@ -17,8 +17,6 @@ class MenuLateral: UIViewController, UITableViewDelegate, UITableViewDataSource 
     @IBOutlet weak var varIB_tableView: UITableView!
 
 
-
-
     override func viewDidLoad() {
 
         super.viewDidLoad()
@@ -28,9 +26,7 @@ class MenuLateral: UIViewController, UITableViewDelegate, UITableViewDataSource 
 
     }
 
-
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
         return array_titres.count
 
@@ -41,14 +37,13 @@ class MenuLateral: UIViewController, UITableViewDelegate, UITableViewDataSource 
         return 1
     }
 
-
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
 
         var reuseIdentifier: String = "cell"
 
 
-        let mainController: MainViewController? = UIApplication.sharedApplication().delegate?.window??.rootViewController as? MainViewController
+        let mainController: MainViewController? = UIApplication.shared.delegate?.window??.rootViewController as? MainViewController
 
         let kNavigationController: UITabBarController? = mainController?.rootViewController as? UITabBarController
 
@@ -59,7 +54,7 @@ class MenuLateral: UIViewController, UITableViewDelegate, UITableViewDataSource 
 
         }
 
-        let cell: UITableViewCell = tableView.dequeueReusableCellWithIdentifier(reuseIdentifier, forIndexPath: indexPath)
+        let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath as IndexPath)
 
 
         let label_titre: UILabel? = cell.viewWithTag(TAG_CELL_TITRE) as? UILabel
@@ -70,13 +65,13 @@ class MenuLateral: UIViewController, UITableViewDelegate, UITableViewDataSource 
 
         switch (indexPath as NSIndexPath).row {
         case 0:
-            image_view?.image = UIImage(asset: .Img_menu_0)
+            image_view?.image = Asset.imgMenu0.image // UIImage(asset: .Img_menu_0)
         case 1:
-            image_view?.image = UIImage(asset: .Img_menu_1)
+            image_view?.image = Asset.imgMenu1.image //UIImage(asset: .Img_menu_1)
         case 2:
-            image_view?.image = UIImage(asset: .Img_menu_2)
+            image_view?.image = Asset.imgMenu2.image //UIImage(asset: .Img_menu_2)
         case 3:
-            image_view?.image = UIImage(asset: .Img_menu_3)
+            image_view?.image = Asset.imgMenu3.image //UIImage(asset: .Img_menu_3)
 
         default:
             break
@@ -84,29 +79,27 @@ class MenuLateral: UIViewController, UITableViewDelegate, UITableViewDataSource 
 
 
 
-        cell.tintColor = UIColor.blackColor()
-
+        cell.tintColor = UIColor.black
         return cell
 
     }
 
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 
         return 44
 
     }
 
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
 
-
-        let mainController: MainViewController? = UIApplication.sharedApplication().delegate?.window??.rootViewController as? MainViewController
+        let mainController: MainViewController? = UIApplication.shared.delegate?.window??.rootViewController as? MainViewController
 
         let kNavigationController: UITabBarController? = mainController?.rootViewController as? UITabBarController
 
         kNavigationController?.selectedIndex = (indexPath as NSIndexPath).row
 
-        mainController?.hideLeftViewAnimated(true, completionHandler: nil)
+        mainController?.hideLeftView(animated: true, completionHandler: nil)
 
         if (indexPath as NSIndexPath).row == 0 {
 
@@ -126,10 +119,10 @@ class MenuLateral: UIViewController, UITableViewDelegate, UITableViewDataSource 
 
         }
 
-        runAfterDelay(0.3) {
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
 
             self.varIB_tableView.reloadData()
-
         }
 
     }
@@ -137,7 +130,7 @@ class MenuLateral: UIViewController, UITableViewDelegate, UITableViewDataSource 
 
     func updateDataOnCV() {
 
-            let mainController: MainViewController? = UIApplication.sharedApplication().delegate?.window??.rootViewController as? MainViewController
+            let mainController: MainViewController? = UIApplication.shared.delegate?.window??.rootViewController as? MainViewController
 
             let kNavigationController: UITabBarController? = mainController?.rootViewController as? UITabBarController
 

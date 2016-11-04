@@ -16,8 +16,8 @@ class Tag: NSManagedObject {
 
     func addRestaurant(restaurant: Restaurant) {
 
-        let restaurants = self.mutableSetValueForKey("restaurants")
-        restaurants.addObject(restaurant)
+        let restaurants = self.mutableSetValue(forKey: "restaurants")
+        restaurants.add(restaurant)
 
     }
 }

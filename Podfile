@@ -1,19 +1,23 @@
-platform :ios, '9.0'
+platform :ios, '10.0'
 use_frameworks!
 
 target 'VegoResto' do
+    
 
-pod 'FBAnnotationClusteringSwift'
-pod 'Pushwoosh', '~> 3.1.2'
-pod 'SVPulsingAnnotationView', '~> 0.3.0'
+pod 'Pushwoosh'
+pod 'SVPulsingAnnotationView'
 pod 'SwiftGen'
-pod 'Alamofire', '~> 3.3'
-pod 'GZIP', '~> 1.1.1'
-pod 'SWXMLHash', '~> 2.3.1'
-pod 'MGSwipeTableCell', '~> 1.5.5'
-pod 'SwiftSpinner', '~> 0.9.5'
+pod 'Alamofire'
+pod 'GZIP'
+pod 'SWXMLHash'
+pod 'MGSwipeTableCell'
+pod 'SwiftSpinner'
 pod 'MapleBacon'
 pod 'VTAcknowledgementsViewController'
 pod 'LNRSimpleNotifications'
 
+
+
 end
+
+

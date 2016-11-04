@@ -26,7 +26,7 @@ class MainViewController: LGSideMenuController {
     }
 
 
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
 
 
         self.setup()
@@ -36,19 +36,21 @@ class MainViewController: LGSideMenuController {
 
     func setup() {
 
+        Debug.log(object: "[ Setup MainViewController ]")
+
         MainViewController.sharedInstance = self
 
         let navigationController: UITabBarController = StoryboardScene.Main.instantiateNavigationController()
 
         self.rootViewController = navigationController
 
-        navigationController.tabBar.hidden = true
+        navigationController.tabBar.isHidden = true
 
 
-        self.setLeftViewEnabledWithWidth(250.0, presentationStyle: .SlideAbove, alwaysVisibleOptions: .OnNone )
+        self.setLeftViewEnabledWithWidth(250.0, presentationStyle: .slideAbove, alwaysVisibleOptions: [] )
 
-        self.leftViewStatusBarStyle = .Default
-        self.leftViewStatusBarVisibleOptions = .OnAll
+        self.leftViewStatusBarStyle = .default
+        self.leftViewStatusBarVisibleOptions = .onAll
 
 
         self.leftView().addSubview( self.controllerMenuLateral.view )
@@ -59,9 +61,9 @@ class MainViewController: LGSideMenuController {
 
 
 
-    override func leftViewWillLayoutSubviewsWithSize(size: CGSize) {
+    override func leftViewWillLayoutSubviews(with size: CGSize) {
 
-        super.leftViewWillLayoutSubviewsWithSize(size)
+        super.leftViewWillLayoutSubviews(with: size)
 
         self.controllerMenuLateral.varIB_tableView.frame = CGRect(x: 0.0, y: 0.0, width: size.width, height: size.height)
 

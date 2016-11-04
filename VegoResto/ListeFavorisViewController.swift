@@ -26,19 +26,18 @@ class ListeFavorisViewController: UIViewController {
     }
 
 
-
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
 
         super.viewDidAppear(animated)
 
         if let vc: RechercheViewController = self.recherche_viewController {
 
-            if vc.parentViewController != self {
+            if vc.parent != self {
 
             self.addChildViewController(vc)
             self.view.addSubview(vc.view)
-            vc.didMoveToParentViewController(self)
-            vc.view.frame = CGRect(x : 0, y : HAUTEUR_HEADER_BAR, width : Device.LARGEUR, height : Device.HAUTEUR - HAUTEUR_HEADER_BAR )
+            vc.didMove(toParentViewController: self)
+            vc.view.frame = CGRect(x : 0, y : HAUTEUR_HEADER_BAR, width : Device.WIDTH, height : Device.HEIGHT - HAUTEUR_HEADER_BAR )
 
             } else {
 

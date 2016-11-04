@@ -8,7 +8,6 @@
 
 import UIKit
 import MapKit
-import FBAnnotationClusteringSwift
 import SVPulsingAnnotationView
 
 class MapsViewController: UIViewController, MKMapViewDelegate {
@@ -30,7 +29,7 @@ class MapsViewController: UIViewController, MKMapViewDelegate {
 
         self.updateData()
 
-         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MapsViewController.updateDataAfterDelay), name: "CHARGEMENT_TERMINE", object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(MapsViewController.updateDataAfterDelay), name: NSNotification.Name(rawValue: "CHARGEMENT_TERMINE"), object: nil)
 
         // Do any additional setup after loading the view, typically from a nib.
     }
@@ -41,36 +40,33 @@ class MapsViewController: UIViewController, MKMapViewDelegate {
     }
 
 
+    func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
 
-    func mapView(mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
-        NSOperationQueue().addOperationWithBlock({
+
+        OperationQueue().addOperation({
             let mapBoundsWidth = Double(self.varIB_mapView.bounds.size.width)
             let mapRectWidth: Double = self.varIB_mapView.visibleMapRect.size.width
             let scale: Double = mapBoundsWidth / mapRectWidth
-            let annotationArray = self.clusteringManager.clusteredAnnotationsWithinMapRect(self.varIB_mapView.visibleMapRect, withZoomScale:scale)
-            self.clusteringManager.displayAnnotations(annotationArray, onMapView:self.varIB_mapView)
+            let annotationArray = self.clusteringManager.clusteredAnnotationsWithinMapRect(rect: self.varIB_mapView.visibleMapRect, withZoomScale:scale)
+            self.clusteringManager.displayAnnotations(annotations: annotationArray, onMapView:self.varIB_mapView)
         })
     }
 
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
 
-    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
 
-        var reuseId = ""
+        if annotation is  FBAnnotationCluster {
 
-        if annotation.isKindOfClass(FBAnnotationCluster) {
-
-            reuseId = "Cluster"
-
-            let clusterView = FBAnnotationClusterView(annotation: annotation, reuseIdentifier: reuseId, options: nil)
-            clusterView.backgroundColor = UIColor.redColor()
+            let clusterView = FBAnnotationClusterView(annotation: annotation, reuseIdentifier: "Cluster", options: nil)
+            clusterView.backgroundColor = UIColor.red
 
             return clusterView
 
-        } else if annotation.isKindOfClass(RestaurantAnnotation) {
+        } else if annotation is RestaurantAnnotation {
 
-            reuseId = "myIdentifier"
+            let reuseId = "myIdentifier"
 
-            var pinView: MKAnnotationView? = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId)
+            var pinView: MKAnnotationView? = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId)
 
             if pinView == nil {
 
@@ -81,66 +77,53 @@ class MapsViewController: UIViewController, MKMapViewDelegate {
             }
 
 
-
-
             if let restaurantAnnotation = annotation as? RestaurantAnnotation {
 
                 let myView = UIView()
-                myView.backgroundColor = UIColor.clearColor()
+                myView.backgroundColor = UIColor.clear
 
-                let widthConstraint = NSLayoutConstraint(item: myView, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1, constant: 220)
+                let widthConstraint = NSLayoutConstraint(item: myView, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 220)
                 myView.addConstraint(widthConstraint)
 
-                let heightConstraint = NSLayoutConstraint(item: myView, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1, constant: 80)
+                let heightConstraint = NSLayoutConstraint(item: myView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 80)
 
                 myView.addConstraint(heightConstraint)
 
                 myView.frame.size = CGSize(width: 220, height: 80)
 
-                self.configurerViewAnnotation( myView, currentAnnotation: restaurantAnnotation )
+                self.configurerViewAnnotation( view_support: myView, currentAnnotation: restaurantAnnotation )
 
                 pinView?.detailCalloutAccessoryView = myView
 
                 if let categorie = restaurantAnnotation.restaurant?.categorie() {
 
-                switch categorie {
+                    switch categorie {
 
-                case CategorieRestaurant.Vegan :
-                    pinView?.image = UIImage(asset: .Img_anotation_0)
+                    case CategorieRestaurant.Vegan :
+                        pinView?.image = Asset.imgAnotation0.image //  UIImage(asset: .Img_anotation_0)
 
-                case CategorieRestaurant.Végétarien :
-                    pinView?.image = UIImage(asset: .Img_anotation_1)
+                    case CategorieRestaurant.Végétarien :
+                        pinView?.image = Asset.imgAnotation1.image //UIImage(asset: .Img_anotation_1)
 
-                case CategorieRestaurant.Traditionnel :
-                    pinView?.image = UIImage(asset: .Img_anotation_2)
+                    case CategorieRestaurant.Traditionnel :
+                        pinView?.image = Asset.imgAnotation2.image //UIImage(asset: .Img_anotation_2)
 
+                    }
                 }
-                }
-
-
             }
 
 
-
-
-
-
-
-
             pinView?.frame.size = CGSize(width: 144.0/4.0, height: 208.0/4.0)
-
             pinView?.centerOffset = CGPoint(x : 0, y : -(pinView!.frame.size.height*0.5) )
-
-
 
             return pinView
 
         } else {
 
 
-            reuseId = "currentLocation"
+            let reuseId = "currentLocation"
 
-            var pulsingView: SVPulsingAnnotationView? =  mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId) as? SVPulsingAnnotationView
+            var pulsingView: SVPulsingAnnotationView? =  mapView.dequeueReusableAnnotationView(withIdentifier: reuseId) as? SVPulsingAnnotationView
 
             if pulsingView == nil {
 
@@ -170,7 +153,8 @@ class MapsViewController: UIViewController, MKMapViewDelegate {
 
         let layer_barre_separation: CALayer = CALayer()
         layer_barre_separation.frame = CGRect( x : view_width * 0.1, y : position_y, width : view_width * 0.8, height : largeur_barre_separation )
-        layer_barre_separation.backgroundColor = UIColor.grayColor().CGColor
+        layer_barre_separation.backgroundColor = UIColor.gray
+            .cgColor
 
         view_support.layer.addSublayer(layer_barre_separation)
 
@@ -185,7 +169,7 @@ class MapsViewController: UIViewController, MKMapViewDelegate {
         position_y += hauteur_label_adresse  + espacement_y
 
         let image_label1: UIImageView = UIImageView(frame: CGRect( x : 0, y : position_y, width : img_width, height : img_width) )
-        image_label1.image =  UIImage(asset: .Img_ic_phone_black)
+        image_label1.image = Asset.imgIcPhoneBlack.image // UIImage(asset: .Img_ic_phone_black)
         view_support.addSubview(image_label1)
 
 
@@ -198,16 +182,16 @@ class MapsViewController: UIViewController, MKMapViewDelegate {
         position_y += img_width  + espacement_y
 
         let image_label2: UIImageView = UIImageView(frame: CGRect( x : 0, y : position_y, width : img_width, height : img_width) )
-        image_label2.image = UIImage(asset: .Img_ic_more_black)
+        image_label2.image = Asset.imgIcMoreBlack.image //UIImage(asset: .Img_ic_more_black)
         view_support.addSubview(image_label2)
 
         let bt_info = BTTransitionVersDetailsRestaurant(frame: CGRect( x : img_width + espacement_x, y : position_y, width : view_width - img_width - espacement_x, height : img_width) )
         bt_info.titleLabel?.font = UIFont(name: "URWGothicL-Book", size: 12)!
-        bt_info.contentHorizontalAlignment = UIControlContentHorizontalAlignment.Left
-        bt_info.setTitle("Plus d'informations", forState: UIControlState.Normal)
-        bt_info.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
+        bt_info.contentHorizontalAlignment = UIControlContentHorizontalAlignment.left
+        bt_info.setTitle("Plus d'informations", for: UIControlState.normal)
+        bt_info.setTitleColor(UIColor.black, for: UIControlState.normal)
         bt_info.restaurant = currentAnnotation.restaurant
-        bt_info.addTarget(self, action: #selector(MapsViewController.touch_bt_more_info(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        bt_info.addTarget(self, action: #selector(MapsViewController.touch_bt_more_info(sender:)), for: UIControlEvents.touchUpInside)
         view_support.addSubview(bt_info)
 
 
@@ -216,19 +200,20 @@ class MapsViewController: UIViewController, MKMapViewDelegate {
 
     func touch_bt_more_info(sender: BTTransitionVersDetailsRestaurant) {
 
-        self.performSegue(StoryboardSegue.Main.Segue_to_detail, sender : sender.restaurant )
+        self.performSegue(withIdentifier: StoryboardSegue.Main.segueToDetail.rawValue, sender : sender.restaurant )
     }
 
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
-    switch StoryboardSegue.Main(rawValue: segue.identifier! )! {
 
-        case .Segue_to_detail:
-        // Prepare for your custom segue transition
+        switch StoryboardSegue.Main(rawValue: segue.identifier! )! {
 
-            if let detailRestaurantVC: DetailRestaurantViewController = segue.destinationViewController as? DetailRestaurantViewController {
+        case .segueToDetail:
+            // Prepare for your custom segue transition
+
+            if let detailRestaurantVC: DetailRestaurantViewController = segue.destination as? DetailRestaurantViewController {
 
                 if let restaurantCible = sender as? Restaurant {
 
@@ -244,15 +229,13 @@ class MapsViewController: UIViewController, MKMapViewDelegate {
 
 
 
-
-    func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
-
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
 
         if let annotation = view.annotation {
 
-            if annotation.isKindOfClass(FBAnnotationCluster) {
+            if annotation is FBAnnotationCluster {
 
-            } else if annotation.isKindOfClass(RestaurantAnnotation) {
+            } else if annotation is RestaurantAnnotation {
 
                 //if let restaurantAnnotation = annotation as? RestaurantAnnotation {
 
@@ -267,15 +250,16 @@ class MapsViewController: UIViewController, MKMapViewDelegate {
 
 
     // permet de conserver l'annotation de la position de l'user toujours au dessus des autres (Z-Index).
-    func mapView(mapView: MKMapView, didAddAnnotationViews views: [MKAnnotationView]) {
+
+    func mapView(_ mapView: MKMapView, didAdd views: [MKAnnotationView]) {
 
         for view: MKAnnotationView in views {
             if let annotation = view.annotation {
 
-                if annotation.isKindOfClass(MKUserLocation) {
-                    view.superview?.bringSubviewToFront(view)
+                if annotation is MKUserLocation {
+                    view.superview?.bringSubview(toFront: view)
                 } else {
-                    view.superview?.sendSubviewToBack(view)
+                    view.superview?.sendSubview(toBack: view)
                 }
             }
         }
@@ -331,19 +315,19 @@ class MapsViewController: UIViewController, MKMapViewDelegate {
         if self.filtre_categorie == CategorieRestaurant.Végétarien {
 
             self.varIB_bt_filtre_categorie_1.backgroundColor = COLOR_VIOLET
-            self.varIB_bt_filtre_categorie_2.backgroundColor = COLOR_GRIS_FONCÉ.colorWithAlphaComponent(0.6)
-            self.varIB_bt_filtre_categorie_3.backgroundColor = COLOR_GRIS_FONCÉ.colorWithAlphaComponent(0.6)
+            self.varIB_bt_filtre_categorie_2.backgroundColor = COLOR_GRIS_FONCÉ.withAlphaComponent(0.6)
+            self.varIB_bt_filtre_categorie_3.backgroundColor = COLOR_GRIS_FONCÉ.withAlphaComponent(0.6)
 
         } else if self.filtre_categorie == CategorieRestaurant.Vegan {
 
-            self.varIB_bt_filtre_categorie_1.backgroundColor = COLOR_GRIS_FONCÉ.colorWithAlphaComponent(0.6)
+            self.varIB_bt_filtre_categorie_1.backgroundColor = COLOR_GRIS_FONCÉ.withAlphaComponent(0.6)
             self.varIB_bt_filtre_categorie_2.backgroundColor = COLOR_VERT
-            self.varIB_bt_filtre_categorie_3.backgroundColor = COLOR_GRIS_FONCÉ.colorWithAlphaComponent(0.6)
+            self.varIB_bt_filtre_categorie_3.backgroundColor = COLOR_GRIS_FONCÉ.withAlphaComponent(0.6)
 
         } else if self.filtre_categorie == CategorieRestaurant.Traditionnel {
 
-            self.varIB_bt_filtre_categorie_1.backgroundColor = COLOR_GRIS_FONCÉ.colorWithAlphaComponent(0.6)
-            self.varIB_bt_filtre_categorie_2.backgroundColor = COLOR_GRIS_FONCÉ.colorWithAlphaComponent(0.6)
+            self.varIB_bt_filtre_categorie_1.backgroundColor = COLOR_GRIS_FONCÉ.withAlphaComponent(0.6)
+            self.varIB_bt_filtre_categorie_2.backgroundColor = COLOR_GRIS_FONCÉ.withAlphaComponent(0.6)
             self.varIB_bt_filtre_categorie_3.backgroundColor = COLOR_BLEU
 
         } else {
@@ -379,7 +363,7 @@ class MapsViewController: UIViewController, MKMapViewDelegate {
 
         for restaurant in restaurants {
 
-            if let lat = restaurant.lat, lon = restaurant.lon {
+            if let lat = restaurant.lat, let lon = restaurant.lon {
 
                 let current_pin = RestaurantAnnotation(_restaurant : restaurant)
 
@@ -388,13 +372,13 @@ class MapsViewController: UIViewController, MKMapViewDelegate {
             }
         }
 
-        clusteringManager.setAnnotations(array)
+        clusteringManager.setAnnotations(annotations: array)
 
         let mapBoundsWidth = Double(self.varIB_mapView.bounds.size.width)
         let mapRectWidth: Double = self.varIB_mapView.visibleMapRect.size.width
         let scale: Double = mapBoundsWidth / mapRectWidth
-        let annotationArray = self.clusteringManager.clusteredAnnotationsWithinMapRect(self.varIB_mapView.visibleMapRect, withZoomScale:scale)
-        self.clusteringManager.displayAnnotations(annotationArray, onMapView:self.varIB_mapView)
+        let annotationArray = self.clusteringManager.clusteredAnnotationsWithinMapRect(rect: self.varIB_mapView.visibleMapRect, withZoomScale:scale)
+        self.clusteringManager.displayAnnotations(annotations: annotationArray, onMapView:self.varIB_mapView)
 
 
     }
@@ -402,10 +386,9 @@ class MapsViewController: UIViewController, MKMapViewDelegate {
 
     func updateDataAfterDelay() {
 
-        runAfterDelay(0.3) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
 
             self.updateData()
-
         }
 
     }
