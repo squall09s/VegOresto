@@ -8,9 +8,7 @@
 
 import UIKit
 
-
 /// Device check
-
 
 /// Device check
 struct Device {
@@ -31,8 +29,6 @@ struct Device {
     static let IS_TV      = UIDevice.current.userInterfaceIdiom == .tv
 }
 
-
-
 struct Debug {
 
     /**
@@ -48,7 +44,6 @@ struct Debug {
         }
     }
 }
-
 
 let COLOR_ORANGE: UIColor = UIColor(hexString: "F79F21")
 let COLOR_BLEU: UIColor = UIColor(hexString: "37A8DA")

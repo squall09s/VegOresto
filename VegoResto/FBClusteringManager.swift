@@ -1,4 +1,3 @@
-
 //
 //  FBClusteringManager.swift
 //  FBAnnotationClusteringSwift
@@ -18,9 +17,9 @@ public protocol FBClusteringManagerDelegate {
 
 public class FBClusteringManager: NSObject {
 
-    public var delegate: FBClusteringManagerDelegate? = nil
+    public var delegate: FBClusteringManagerDelegate?
 
-    var tree: FBQuadTree? = nil
+    var tree: FBQuadTree?
 
     var lock: NSRecursiveLock = NSRecursiveLock()
 
@@ -116,7 +115,6 @@ public class FBClusteringManager: NSObject {
 
         }
 
-
         lock.unlock()
 
         return clusteredAnnotations
@@ -127,7 +125,7 @@ public class FBClusteringManager: NSObject {
         var annotations = [MKAnnotation]()
 
         lock.lock()
-        tree?.enumerateAnnotationsUsingBlock() { obj in
+        tree?.enumerateAnnotationsUsingBlock { obj in
             annotations.append(obj)
         }
         lock.unlock()
@@ -138,7 +136,6 @@ public class FBClusteringManager: NSObject {
     public func displayAnnotations(annotations: [MKAnnotation], onMapView mapView: MKMapView) {
 
         DispatchQueue.main.async {
-
 
             let before = NSMutableSet(array: mapView.annotations)
             before.remove(mapView.userLocation)

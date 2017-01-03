@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11232" systemVersion="15F34" minimumToolsVersion="Xcode 7.3" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11759" systemVersion="15F34" minimumToolsVersion="Xcode 7.3" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
+    <entity name="CategorieCulinaire" representedClassName="CategorieCulinaire" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="restaurants" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Restaurant" inverseName="categoriesCulinaire" inverseEntity="Restaurant" syncable="YES"/>
+    </entity>
     <entity name="Restaurant" representedClassName="Restaurant" syncable="YES">
         <attribute name="absolute_url" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
@@ -29,14 +33,10 @@
         <attribute name="type_etablissement" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="ville" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="website" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="tags" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Tag" inverseName="restaurants" inverseEntity="Tag" syncable="YES"/>
-    </entity>
-    <entity name="Tag" representedClassName="Tag" syncable="YES">
-        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="restaurants" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Restaurant" inverseName="tags" inverseEntity="Restaurant" syncable="YES"/>
+        <relationship name="categoriesCulinaire" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CategorieCulinaire" inverseName="restaurants" inverseEntity="CategorieCulinaire" syncable="YES"/>
     </entity>
     <elements>
         <element name="Restaurant" positionX="-1469" positionY="18" width="128" height="480"/>
-        <element name="Tag" positionX="-1127" positionY="369" width="128" height="73"/>
+        <element name="CategorieCulinaire" positionX="-1127" positionY="369" width="128" height="75"/>
     </elements>
 </model>

@@ -17,7 +17,6 @@ class DetailRestaurantViewController: UIViewController {
     @IBOutlet weak var varIB_label_name: UILabel?
     @IBOutlet weak var varIB_label_resume: UILabel?
 
-
     @IBOutlet weak var varIB_label_adresse: UILabel?
     @IBOutlet weak var varIB_label_phone: UILabel?
     @IBOutlet weak var varIB_label_ambiance: UILabel?
@@ -26,10 +25,11 @@ class DetailRestaurantViewController: UIViewController {
     @IBOutlet weak var varIB_label_mail: UILabel?
     @IBOutlet weak var varIB_label_website: UILabel?
     @IBOutlet weak var varIB_label_montant_moyen: UILabel?
+    @IBOutlet weak var varIB_label_influences: UILabel?
+    @IBOutlet weak var varIB_label_moyens_de_paiement: UILabel?
 
     @IBOutlet weak var varIB_label_terrasse: UILabel?
     @IBOutlet weak var varIB_label_animaux: UILabel?
-
 
     @IBOutlet weak var varIB_label_h_lundi: UILabel?
     @IBOutlet weak var varIB_label_h_mardi: UILabel?
@@ -39,19 +39,14 @@ class DetailRestaurantViewController: UIViewController {
     @IBOutlet weak var varIB_label_h_samedi: UILabel?
     @IBOutlet weak var varIB_label_h_dimanche: UILabel?
 
-
     @IBOutlet weak var varIB_button_favoris: UIButton?
-
 
     @IBOutlet weak var varIB_image_vegan: UIImageView?
     @IBOutlet weak var varIB_image_gluten_free: UIImageView?
-
-
+    @IBOutlet weak var varIB_label_categories: UILabel?
 
     @IBOutlet weak var varIB_scroll: UIScrollView?
     @IBOutlet weak var varIB_image_presentation: UIImageView?
-
-
 
     @IBOutlet weak var varIB_button_maps: UIButton?
     @IBOutlet weak var varIB_button_phone: UIButton?
@@ -59,8 +54,7 @@ class DetailRestaurantViewController: UIViewController {
     @IBOutlet weak var varIB_button_website: UIButton?
     @IBOutlet weak var varIB_button_facebook: UIButton?
 
-
-    var current_restaurant: Restaurant? = nil
+    var current_restaurant: Restaurant?
 
     override func viewDidLoad() {
 
@@ -68,12 +62,14 @@ class DetailRestaurantViewController: UIViewController {
 
         if let _current_restaurant =  self.current_restaurant {
 
-
             self.varIB_label_name?.text = _current_restaurant.name
             self.varIB_label_resume?.text = _current_restaurant.resume
             self.varIB_label_ambiance?.text = _current_restaurant.ambiance
             self.varIB_label_type_etablissement?.text = _current_restaurant.type_etablissement
             self.varIB_label_montant_moyen?.text = _current_restaurant.montant_moyen
+            self.varIB_label_influences?.text = _current_restaurant.influence_gastronomique
+
+            self.varIB_label_moyens_de_paiement?.text = _current_restaurant.moyens_de_paiement
 
             self.varIB_label_h_lundi?.text = _current_restaurant.h_lundi
             self.varIB_label_h_mardi?.text = _current_restaurant.h_mardi
@@ -82,13 +78,30 @@ class DetailRestaurantViewController: UIViewController {
             self.varIB_label_h_vendredi?.text = _current_restaurant.h_vendredi
             self.varIB_label_h_samedi?.text = _current_restaurant.h_samedi
             self.varIB_label_h_dimanche?.text = _current_restaurant.h_dimanche
-
-
             self.varIB_label_animaux?.text = _current_restaurant.animaux_bienvenus?.boolValue == true ? "Oui !" : "Non"
             self.varIB_label_terrasse?.text = _current_restaurant.terrasse?.boolValue == true ? "Oui !" : "Non"
 
-            self.refreshBt_favoris()
+            var categoriesCulinaireString = ""
+            var i = 0
 
+            for cat in self.current_restaurant?.getCategoriesCulinaireAsArray() ?? [] {
+
+                if let catName = cat.name {
+
+                    if i > 0 {
+                        categoriesCulinaireString =  categoriesCulinaireString + ", "
+                    }
+
+                    categoriesCulinaireString = categoriesCulinaireString + catName
+
+                    i = i + 1
+
+                }
+            }
+
+            self.varIB_label_categories?.text = categoriesCulinaireString
+
+            self.refreshBt_favoris()
 
             if  _current_restaurant.website != nil &&  _current_restaurant.website != "" {
                 self.varIB_button_website?.setImage( Asset.imgBtWebOrangeOn.image, for: UIControlState())
@@ -96,13 +109,11 @@ class DetailRestaurantViewController: UIViewController {
                 self.varIB_label_website?.text = _current_restaurant.website
             }
 
-
             if  _current_restaurant.phone != nil &&  _current_restaurant.phone != "" {
                 self.varIB_button_phone?.setImage( Asset.imgBtTelOrangeOn.image, for: UIControlState())
                 self.varIB_button_phone?.isUserInteractionEnabled = true
                 self.varIB_label_phone?.text = _current_restaurant.phone
             }
-
 
             if  _current_restaurant.facebook != nil &&  _current_restaurant.facebook != "" {
                 self.varIB_button_facebook?.setImage( Asset.imgBtFbOrangeOn.image, for: UIControlState())
@@ -110,13 +121,11 @@ class DetailRestaurantViewController: UIViewController {
                 self.varIB_label_facebook?.text = _current_restaurant.facebook
             }
 
-
             if  _current_restaurant.mail != nil &&  _current_restaurant.mail != "" {
                 self.varIB_button_mail?.setImage( Asset.imgBtMailOrangeOn.image, for: UIControlState())
                 self.varIB_button_mail?.isUserInteractionEnabled = true
                 self.varIB_label_mail?.text = _current_restaurant.mail
             }
-
 
             if  _current_restaurant.address != nil &&  _current_restaurant.address != "" {
                 self.varIB_button_maps?.setImage( Asset.imgBtMapsOrangeOn.image, for: UIControlState())
@@ -132,6 +141,7 @@ class DetailRestaurantViewController: UIViewController {
                 }
             }
 
+            self.varIB_image_vegan?.isHidden = _current_restaurant.categorie() != .Vegan
 
         }
 
@@ -149,13 +159,10 @@ class DetailRestaurantViewController: UIViewController {
 
     }
 
-
-
     @IBAction func touch_bt_back(sender: AnyObject) {
 
        _ = self.navigationController?.popViewController( animated: true)
     }
-
 
     @IBAction func touch_bt_phone(sender: AnyObject) {
 
@@ -172,7 +179,6 @@ class DetailRestaurantViewController: UIViewController {
             }
         }
     }
-
 
     @IBAction func touch_bt_maps(sender: AnyObject) {
 
@@ -193,7 +199,6 @@ class DetailRestaurantViewController: UIViewController {
         }
     }
 
-
     @IBAction func touch_bt_share(sender: AnyObject) {
 
         if let textToShare = self.current_restaurant?.absolute_url {
@@ -204,7 +209,6 @@ class DetailRestaurantViewController: UIViewController {
         }
     }
 
-
     @IBAction func touch_bt_favoris(sender: AnyObject) {
 
         if let _current_restaurant = self.current_restaurant {
@@ -214,8 +218,6 @@ class DetailRestaurantViewController: UIViewController {
             if !(notificationManager.isNotificationActive) {
 
             _current_restaurant.favoris = !(_current_restaurant.favoris.boolValue) as NSNumber
-
-
 
             notificationManager.notificationsPosition = LNRNotificationPosition.top
             notificationManager.notificationsBackgroundColor = COLOR_ORANGE
@@ -242,7 +244,6 @@ class DetailRestaurantViewController: UIViewController {
         self.refreshBt_favoris()
     }
 
-
     func refreshBt_favoris() {
 
         if let _current_restaurant = self.current_restaurant {
@@ -255,7 +256,6 @@ class DetailRestaurantViewController: UIViewController {
         }
 
     }
-
 
     @IBAction func touch_bt_mail(sender: AnyObject) {
 
@@ -291,14 +291,11 @@ class DetailRestaurantViewController: UIViewController {
 
             }
 
-
         }
-
 
     }
 
     @IBAction func touch_bt_facebook(sender: AnyObject) {
-
 
         if let url_str = self.current_restaurant?.facebook {
 
@@ -315,9 +312,7 @@ class DetailRestaurantViewController: UIViewController {
 
             }
 
-
         }
     }
-
 
 }

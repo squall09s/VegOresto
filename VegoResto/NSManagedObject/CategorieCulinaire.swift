@@ -1,5 +1,5 @@
 //
-//  Tag.swift
+//  CategorieCulinaire
 //  VegoResto
 //
 //  Created by Laurent Nicolas on 16/04/2016.
@@ -9,8 +9,8 @@
 import Foundation
 import CoreData
 
-@objc(Tag)
-class Tag: NSManagedObject {
+@objc(CategorieCulinaire)
+class CategorieCulinaire: NSManagedObject {
 
 // Insert code here to add functionality to your managed object subclass
 

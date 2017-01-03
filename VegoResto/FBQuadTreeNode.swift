@@ -11,12 +11,12 @@ import MapKit
 
 public class FBQuadTreeNode: NSObject {
 
-    var boundingBox: FBBoundingBox? = nil
+    var boundingBox: FBBoundingBox?
 
-    var northEast: FBQuadTreeNode? = nil
-    var northWest: FBQuadTreeNode? = nil
-    var southEast: FBQuadTreeNode? = nil
-    var southWest: FBQuadTreeNode? = nil
+    var northEast: FBQuadTreeNode?
+    var northWest: FBQuadTreeNode?
+    var southEast: FBQuadTreeNode?
+    var southWest: FBQuadTreeNode?
 
     var count = 0
 
@@ -50,7 +50,6 @@ public class FBQuadTreeNode: NSObject {
 
         let xMid: CGFloat = (box.xf + box.x0) / 2.0
         let yMid: CGFloat = (box.yf + box.y0) / 2.0
-
 
         northEast!.boundingBox = FBQuadTreeNode.FBBoundingBoxMake(x0: xMid, y0:box.y0, xf:box.xf, yf:yMid)
         northWest!.boundingBox = FBQuadTreeNode.FBBoundingBoxMake(x0: box.x0, y0:box.y0, xf:xMid, yf:yMid)

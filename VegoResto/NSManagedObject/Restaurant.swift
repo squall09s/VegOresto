@@ -17,7 +17,6 @@ enum CategorieRestaurant {
     case Traditionnel
 }
 
-
 @objc(Restaurant)
 class Restaurant: NSManagedObject {
 
@@ -25,21 +24,20 @@ class Restaurant: NSManagedObject {
 
     var distance: Double = -1
 
-    func addTag(tag: Tag) {
+    func addCategorieCulinaire(newCategorie: CategorieCulinaire) {
 
-        let tags = self.mutableSetValue(forKey: "tags")
-        tags.add(tag)
+        let categoriesCulinaire = self.mutableSetValue(forKey: "categoriesCulinaire")
+        categoriesCulinaire.add(newCategorie)
 
     }
 
+    func getCategoriesCulinaireAsArray() -> [CategorieCulinaire]? {
 
-    func getTagsAsArray() -> [Tag]? {
-        var tmpTags: [Tag]?
-        tmpTags = (self.tags?.allObjects) as? [Tag]
+        var tmpCategorieCulinaires: [CategorieCulinaire]?
+        tmpCategorieCulinaires = (self.categoriesCulinaire?.allObjects) as? [CategorieCulinaire]
 
-        return tmpTags
+        return tmpCategorieCulinaires
     }
-
 
     func update_distance_avec_localisation(seconde_localisation: CLLocationCoordinate2D) {
 
@@ -50,17 +48,15 @@ class Restaurant: NSManagedObject {
 
             self.distance = seconde_localisation.distance( from: localisation_restaurant )
         }
-
     }
-
 
     func is_glutonFree() -> Bool {
 
-        let array_tags: [Tag] = self.getTagsAsArray() ?? []
+        let array_cats: [CategorieCulinaire] = self.getCategoriesCulinaireAsArray() ?? []
 
-            for tag in array_tags {
+            for current_cat in array_cats {
 
-                if tag.name == "gluten-free"{
+                if current_cat.name == "gluten-free"{
 
                     return true
 
@@ -74,21 +70,20 @@ class Restaurant: NSManagedObject {
 
     func categorie() -> CategorieRestaurant {
 
-            let tags = self.getTagsAsArray() ?? []
+            let array_cats = self.getCategoriesCulinaireAsArray() ?? []
 
-            for tag in tags {
+            for current_cat in array_cats {
 
-                if tag.name == "vegan" {
+                if current_cat.name == "Végétalien, végane" {
 
                     return CategorieRestaurant.Vegan
                 }
 
             }
 
+            for current_cat in array_cats {
 
-            for tag in tags {
-
-                if tag.name == "vege" {
+                if current_cat.name == "Végétarien" {
 
                     return CategorieRestaurant.Végétarien
                 }
@@ -97,8 +92,6 @@ class Restaurant: NSManagedObject {
 
         return CategorieRestaurant.Traditionnel
 
-
     }
-
 
 }

@@ -10,7 +10,6 @@ import UIKit
 
 class NavigationAccueilViewController: UIViewController {
 
-
     @IBOutlet weak var varIB_scrollView: UIScrollView!
 
     @IBOutlet weak var varIB_button_tabbar_list: UIButton!
@@ -29,29 +28,21 @@ class NavigationAccueilViewController: UIViewController {
 
         // Do any additional setup after loading the view.
 
-
         self.recherche_viewController = StoryboardScene.Main.instantiateRechercheViewController()
         self.maps_viewController = StoryboardScene.Main.instantiateMapsViewController()
-
 
         self.varIB_button_tabbar_list.backgroundColor = UIColor.white.withAlphaComponent(0.3)
         self.varIB_button_tabbar_maps.backgroundColor = UIColor.clear
 
         self.varIB_contrainte_y_chevron_tabbar.constant = Device.WIDTH * 0.25 - 15
 
-
-
-
     }
-
 
     override func viewDidAppear(_ animated: Bool) {
 
         super.viewDidAppear(animated)
 
         self.varIB_scrollView.contentSize = CGSize(width : Device.WIDTH * 2.0, height : self.varIB_scrollView.frame.height  )
-
-
 
         if let vc: RechercheViewController = self.recherche_viewController {
 
@@ -79,8 +70,6 @@ class NavigationAccueilViewController: UIViewController {
             }
         }
 
-
-
     }
 
     override func didReceiveMemoryWarning() {
@@ -103,7 +92,6 @@ class NavigationAccueilViewController: UIViewController {
 
     @IBAction func touch_bt_tabbar(sender: UIButton) {
 
-
         if self.varIB_button_tabbar_maps == sender {
 
             let frame = CGRect( x : 0, y : 0, width : Device.WIDTH, height : Device.HEIGHT - HAUTEUR_HEADER_BAR - HAUTEUR_TABBAR )
@@ -119,10 +107,7 @@ class NavigationAccueilViewController: UIViewController {
 
             })
 
-
-
         } else if self.varIB_button_tabbar_list == sender {
-
 
             let frame = CGRect(x : Device.WIDTH, y : 0, width : Device.WIDTH, height :Device.HEIGHT - HAUTEUR_HEADER_BAR - HAUTEUR_TABBAR )
 
@@ -144,7 +129,6 @@ class NavigationAccueilViewController: UIViewController {
         }
     }
 
-
     @IBAction func touch_bt_location(sender: UIButton) {
 
         if let nc_maps = self.maps_viewController {
@@ -160,6 +144,5 @@ class NavigationAccueilViewController: UIViewController {
         }
 
     }
-
 
 }

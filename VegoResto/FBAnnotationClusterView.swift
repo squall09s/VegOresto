@@ -20,7 +20,7 @@ public class FBAnnotationClusterView: MKAnnotationView {
 
     var borderWidth: CGFloat = 3
 
-    var countLabel: UILabel? = nil
+    var countLabel: UILabel?
 
     //var option : FBAnnotationClusterViewOptions? = nil
 
@@ -133,7 +133,6 @@ public class FBAnnotationClusterViewOptions: NSObject {
     var smallClusterImage: String
     var mediumClusterImage: String
     var largeClusterImage: String
-
 
     public init (smallClusterImage: String, mediumClusterImage: String, largeClusterImage: String) {
         self.smallClusterImage = smallClusterImage

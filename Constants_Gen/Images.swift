@@ -82,6 +82,7 @@ enum Asset: String {
   case imgVeganOff = "img_vegan_off"
   case imgVeganOffWhite = "img_vegan_off_white"
   case imgVeganOn = "img_vegan_on"
+  case pastilleV = "PastilleV"
 
   var image: Image {
     return Image(asset: self)

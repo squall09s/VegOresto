@@ -9,7 +9,6 @@
 import UIKit
 import MapKit
 
-
 class ImageAnnotationView: MKAnnotationView {
 
     var annotationImageView: UIImageView!

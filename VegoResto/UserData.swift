@@ -6,7 +6,6 @@
 //  Copyright © 2016 Nicolas Laurent. All rights reserved.
 //
 
-
 import SwiftSpinner
 import UIKit
 import CoreData
@@ -21,16 +20,14 @@ class UserData: NSObject, CLLocationManagerDelegate {
 
     private var locationmanager: CLLocationManager?
 
-    var location: CLLocationCoordinate2D? = nil
+    var location: CLLocationCoordinate2D?
 
     // swiftlint:disable:next force_cast
     var managedContext = ( UIApplication.shared.delegate as! AppDelegate ).managedObjectContext
 
-
     private override init() {
 
         super.init()
-
 
         self.locationmanager = CLLocationManager()
         //locationmanager?.startUpdatingLocation()
@@ -39,10 +36,7 @@ class UserData: NSObject, CLLocationManagerDelegate {
         self.locationmanager?.startUpdatingLocation()
         self.locationmanager?.delegate = self
 
-
     }
-
-
 
     func getRestaurants() -> [Restaurant] {
 
@@ -54,7 +48,6 @@ class UserData: NSObject, CLLocationManagerDelegate {
 
             return results
 
-
         } catch _ {
 
             return [Restaurant]()
@@ -62,17 +55,6 @@ class UserData: NSObject, CLLocationManagerDelegate {
         }
 
     }
-
-
-
-    func chargerDonnees() {
-
-
-        self.loadDataOnVegorestoURL()
-
-    }
-
-
 
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
 
@@ -117,8 +99,6 @@ class UserData: NSObject, CLLocationManagerDelegate {
         }
     }
 
-
-
     func parseXML(xml: String) {
 
         var nbObjetCrées = 0
@@ -126,8 +106,7 @@ class UserData: NSObject, CLLocationManagerDelegate {
         self.managedContext.perform {
 
             let entityRestaurant =  NSEntityDescription.entity(forEntityName: "Restaurant", in: self.managedContext)
-            let entityTag =  NSEntityDescription.entity(forEntityName: "Tag", in: self.managedContext)
-
+            let entityCategorieCulinaire =  NSEntityDescription.entity(forEntityName: "CategorieCulinaire", in: self.managedContext)
 
             let xml = SWXMLHash.parse(xml)
 
@@ -135,12 +114,9 @@ class UserData: NSObject, CLLocationManagerDelegate {
 
                 // récupération des éléments dans le XML)
 
-
                 var restaurant: Restaurant? = nil
 
-
                 let identifer = elem["id"].element?.text
-
 
                 // si le restaurant existe déjà je le charge dans l'objet courrant
                 if let _identifer = identifer {
@@ -159,9 +135,6 @@ class UserData: NSObject, CLLocationManagerDelegate {
 
                 }
 
-
-
-
                 // remplisssage de l'objet (ou mise à jour)
                 if let _name = elem["titre"].element?.text {
                     restaurant?.name = self.cleanString(str: _name)
@@ -170,7 +143,6 @@ class UserData: NSObject, CLLocationManagerDelegate {
                 if let _adress = elem["adresse"].element?.text {
                     restaurant?.address = self.cleanString(str: _adress)
                 }
-
 
                 if let _resume = elem["description"].element?.text?.html2String {
                     restaurant?.resume = self.cleanString(str: _resume)
@@ -186,10 +158,10 @@ class UserData: NSObject, CLLocationManagerDelegate {
                 restaurant?.moyens_de_paiement = elem["moyens_de_paiement"].element?.text
                 restaurant?.influence_gastronomique = elem["influence_gastronomique"].element?.text
                 restaurant?.ambiance = elem["ambiance"].element?.text
-                //restaurant?.fermeture = elem["fermeture"].element?.text
+
                 restaurant?.image = elem["image"].element?.text
 
-                var dicoDays = [ String : String ]()
+                var dicoDays = [ String: String ]()
 
                 for elemHoraire in elem["horaires"]["h"] {
 
@@ -198,7 +170,6 @@ class UserData: NSObject, CLLocationManagerDelegate {
                         let end_str = elemHoraire.element?.attribute(by: "e")?.text /*,
                          let text_str = elemHoraire.element?.text */{
 
-
                             if start_str.characters.count == 4 && end_str.characters.count == 4 {
 
                                 var start_str_updated = start_str
@@ -206,7 +177,6 @@ class UserData: NSObject, CLLocationManagerDelegate {
 
                                 var end_str_updated = end_str
                                 end_str_updated.insert("h", at: end_str_updated.index(end_str_updated.startIndex, offsetBy: 2)  )
-
 
                                 var infoDay = "De " + start_str_updated + " à " + end_str_updated
 
@@ -223,7 +193,6 @@ class UserData: NSObject, CLLocationManagerDelegate {
                     }
                 }
 
-
                 restaurant?.h_lundi = dicoDays["lundi"]
                 restaurant?.h_mardi = dicoDays["mardi"]
                 restaurant?.h_mercredi = dicoDays["mercredi"]
@@ -232,13 +201,10 @@ class UserData: NSObject, CLLocationManagerDelegate {
                 restaurant?.h_samedi = dicoDays["samedi"]
                 restaurant?.h_dimanche = dicoDays["dimanche"]
 
-
                 restaurant?.mail = elem["mel_public"].element?.text
-
 
                 restaurant?.animaux_bienvenus =   NSNumber(value:  ( (elem["animaux_bienvenus"].element?.text) == "oui")   )
                 restaurant?.terrasse = NSNumber(value: ( (elem["terrasse"].element?.text) == "oui"))
-
 
                 if let _identifer = identifer {
                     restaurant?.identifier = Int(_identifer) as NSNumber?
@@ -252,7 +218,7 @@ class UserData: NSObject, CLLocationManagerDelegate {
                     restaurant?.lon = Double(_longitude) as NSNumber?
                 }
 
-                restaurant?.tags = NSSet()
+                restaurant?.categoriesCulinaire = NSSet()
 
                 if let categories_culinaires = elem["categories_culinaires"].element?.text {
 
@@ -260,14 +226,24 @@ class UserData: NSObject, CLLocationManagerDelegate {
 
                     for strTag in arrayOfTags {
 
-                        if let new_tag = (NSManagedObject(entity: entityTag!, insertInto: self.managedContext) as? Tag) {
+                        if let new_cat = (NSManagedObject(entity: entityCategorieCulinaire!, insertInto: self.managedContext) as? CategorieCulinaire) {
 
-                            new_tag.name = strTag
-                            new_tag.restaurants = NSSet()
+                            new_cat.name = self.updateDataCategorieCulinaire(_cat:  strTag )
+                            new_cat.restaurants = NSSet()
 
-                            restaurant?.addTag(tag: new_tag)
+                            restaurant?.addCategorieCulinaire(newCategorie: new_cat)
                         }
                     }
+                }
+
+                if let _restaurant = restaurant {
+
+                    self.updateDataMontantMoyen(resto: _restaurant)
+                    self.updateDataTypeEtablissement(resto: _restaurant)
+                    self.updateDataTypeAmbiance(resto: _restaurant)
+                    self.updateDataInfluenceGastro(resto: _restaurant)
+                    self.updateDataMoyensDePaiement(resto: _restaurant)
+
                 }
 
                 nbObjetCrées = nbObjetCrées + 1
@@ -275,14 +251,11 @@ class UserData: NSObject, CLLocationManagerDelegate {
 
             Debug.log(object: "Parser XML : \(nbObjetCrées) element(s)")
 
-
             do {
                 try self.managedContext.save()
             } catch _ {
                 Debug.log(object: "erreur save managedContext")
             }
-
-
 
             if nbObjetCrées == 0 && self.getRestaurants().count == 0 {
 
@@ -295,7 +268,6 @@ class UserData: NSObject, CLLocationManagerDelegate {
                         if let xml = String(data: fileContents as Data, encoding: String.Encoding.utf8) {
 
                             SwiftSpinner.show("Chargement des données...")
-
 
                             self.parseXML(xml: xml)
                         }
@@ -316,24 +288,249 @@ class UserData: NSObject, CLLocationManagerDelegate {
 
     }
 
+    func updateDataCategorieCulinaire(_cat: String) -> String? {
+
+        let dico : [ String : String ] = ["bio": "Bio",
+                                          "brasserie": "Brasserie",
+                                          "brunch": "Brunch",
+                                          "bouchon": "Bouchon lyonnais",
+                                          "bar_vin": "Bar à vin",
+                                          "cru": "Cru",
+                                          "glacier": "Glacier",
+                                          "gastro": "Gastronomique",
+                                          "local": "Local",
+                                          "monde": "Cuisine du monde",
+                                          "sans_gluten": "Sans gluten",
+                                          "tapas": "Tapas",
+                                          "tradi": "Traditionnel",
+                                          "pizza": "Pizzeria",
+                                          "vegan": "Végétalien, végane",
+                                          "vege": "Végétarien",
+                                          "pub": "Pub",
+                                          "bistro": "Bistro",
+                                          "crepe": "Crêperie",
+                                          "moderne": "Moderne, créatif",
+                                          "bar_jus": "Bar à jus",
+                                          "tarte_vrai": "Tartes",
+                                          "tarte": "Salades" ]
+
+        if let val = dico[_cat] {
+
+            return val
+
+        } else {
+
+            Debug.log(object: "ERROR - [updateDataCategorieCulinaire] key \(_cat) not found")
+            return nil
+        }
+    }
+
+    func updateDataMoyensDePaiement(resto: Restaurant) {
+
+        let dico : [ String : String ] = ["cb": "Carte Bleue",
+                                          "cheque": "Chèque",
+                                          "espece": "Espèces",
+                                          "ticket": "Ticket resto",
+                                          "ae": "American Express",
+                                          "vacances": "Chèque vacances"]
+
+        var i = 0
+
+        var resultat = ""
+
+        if let _moyenPaiement = resto.moyens_de_paiement {
+
+            if _moyenPaiement.characters.count > 0 {
+
+                let moyensPaiement = _moyenPaiement.components(separatedBy: "|")
+
+                for _key in moyensPaiement {
+
+                    if let val = dico[_key] {
+
+                        if i > 0 {
+
+                            resultat = resultat + ", "
+                        }
+
+                        resultat = resultat + val
+
+                        i = i + 1
+
+                    } else {
+
+                        Debug.log(object: "ERROR - [updateDataMoyensDePaiement] key \(_key) not found")
+                    }
+                }
+            }
+        }
+
+        resto.moyens_de_paiement = resultat
+    }
+
+    func updateDataMontantMoyen(resto: Restaurant) {
+
+        let dico : [ String : String ] = ["montant_8": "inférieur à 8€",
+                                          "montant_15": "inférieur à 15€",
+                                          "montant_1530": "15-30€",
+                                          "montant_3060": "30-60€",
+                                          "montant_60": "plus de 60€"]
+
+        if let _key = resto.montant_moyen {
+
+            if let val = dico[_key] {
+
+                resto.montant_moyen = val
+
+            } else {
+
+                Debug.log(object: "ERROR - [updateDataMontantMoyen] key \(_key) not found")
+            }
+
+        }
+    }
+
+    func updateDataTypeEtablissement(resto: Restaurant) {
+
+        let dico : [ String : String ] = ["vpc": "Restauration rapide, à emporter ou à domicile",
+                                          "chambre": "Chambre d'hôtes",
+                                          "resto": "Restaurant",
+                                          "hotel": "Hôtel-restaurant"]
+
+        if let _key = resto.type_etablissement {
+
+            if let val = dico[_key] {
+
+                resto.type_etablissement = val
+
+            } else {
+
+                Debug.log(object: "ERROR - [updateDataTypeEtablissement] key \(_key) not found")
+            }
+
+        }
+    }
+
+    func updateDataTypeAmbiance(resto: Restaurant) {
+
+        let dico : [ String : String ] = ["branche": "Branché",
+                                          "bistro": "Bistrot de caractère",
+                                          "cosy": "Cosy",
+                                          "spectacle": "Spectacle",
+                                          "patrimoine": "Patrimoine",
+                                          "vintage": "Vintage",
+                                          "jardin": "Jardin",
+                                          "hote": "Table d’hôte",
+                                          "romantique": "Romantique",
+                                          "dansant": "Dansant",
+                                          "eau": "Au bord de l'eau"]
+        var i = 0
+
+        var resultat = ""
+
+        if let _ambiance = resto.ambiance {
+
+            if _ambiance.characters.count > 0 {
+
+                let ambiances = _ambiance.components(separatedBy: "|")
+
+                for _key in ambiances {
+
+                    if let val = dico[_key] {
+
+                        if i > 0 {
+
+                            resultat = resultat + ", "
+                        }
+
+                        resultat = resultat + val
+
+                        i = i + 1
+
+                    } else {
+
+                        Debug.log(object: "ERROR - [updateDataTypeAmbiance] key \(_key) not found")
+                    }
+                }
+            }
+        }
+
+        resto.ambiance = resultat
+
+    }
+
+    func updateDataInfluenceGastro(resto: Restaurant) {
+
+        let dico : [ String : String ] = ["francais_gastro": "Gastronomique français",
+                                          "francais_region": "Régional français",
+                                          "indien": "Indien",
+                                          "italien": "Italien",
+                                          "libanais": "Libanais",
+                                          "marocain": "Marocain",
+                                          "mexicain": "Mexicain",
+                                          "turc": "Turc",
+                                          "vietnamien": "Vietnamien",
+                                          "thai": "Thailandais",
+                                          "japonais": "Japonais",
+                                          "autre": "Autre",
+                                          "espagnol": "Espagnol",
+                                          "tunisien": "Tunisien",
+                                          "chinois": "Chinois",
+                                          "coreen": "Coréen",
+                                          "creole": "Créole"]
+
+        var i = 0
+
+        var resultat = ""
+
+        if let _influence = resto.influence_gastronomique {
+
+            if _influence.characters.count > 0 {
+
+                let influences = _influence.components(separatedBy: "|")
+
+                for _key in influences {
+
+                    if let val = dico[_key] {
+
+                        if i > 0 {
+
+                            resultat = resultat + ", "
+                        }
+
+                        resultat = resultat + val
+
+                        i = i + 1
+
+                    } else {
+
+                        Debug.log(object: "ERROR - [updateDataInfluenceGastro] key \(_key) not found")
+                    }
+                }
+            }
+        }
+
+        resto.influence_gastronomique = resultat
+
+    }
 
     func cleanString(str: String) -> String {
 
-        var strResult = str.replacingOccurrences(of: "<br />", with: "\n")
+        var strResult = str.replacingOccurrences(of: "<br />", with: "")
 
         strResult = strResult.replacingOccurrences(of:"<p>", with: "")
         strResult = strResult.replacingOccurrences(of:"</p>", with: "")
         strResult = strResult.replacingOccurrences(of:"&#039;", with: "'")
         strResult = strResult.replacingOccurrences(of:"&rsquo;", with: "'")
         strResult = strResult.replacingOccurrences(of:"&#8211;", with: "–")
+        strResult = strResult.replacingOccurrences(of:"&#8211;", with: "–")
         strResult = strResult.replacingOccurrences(of:"&amp;#038;", with: "&")
+        strResult = strResult.replacingOccurrences(of:"&#038;", with: "&")
 
         return strResult
     }
 
-
     func getRestaurantWithIdentifier(identifier: Int) -> Restaurant? {
-
 
         let fetchRequest: NSFetchRequest<Restaurant> = NSFetchRequest(entityName: "Restaurant")
         let predicate: NSPredicate = NSPredicate(format: "identifier = %@", String(identifier) )
@@ -356,12 +553,13 @@ class UserData: NSObject, CLLocationManagerDelegate {
 
     }
 
-
     func loadDataOnVegorestoURL() {
 
-        Alamofire.request("http://vegoresto.fr/restos-fichier-xml/").responseData { (response) in
+        Debug.log(object: "Téléchargement page : https://vegoresto.fr/restos-fichier-xml/")
 
-            Debug.log(object: "Téléchargement page : http://vegoresto.fr/restos-fichier-xml/")
+        Alamofire.request("https://vegoresto.fr/restos-fichier-xml/").responseData { (response) in
+
+            Debug.log(object: "Debut téléchargement page : https://vegoresto.fr/restos-fichier-xml/")
 
             switch response.result {
             case .success:
@@ -370,33 +568,23 @@ class UserData: NSObject, CLLocationManagerDelegate {
                 Debug.log(object: error)
             }
 
-
-
-
             if let dataCompressed = response.data {
 
-
                 if let decompressedData = NSData(data: dataCompressed).gunzipped() {
-
 
                     if let decompressedXML: String = String(data: decompressedData as Data, encoding: String.Encoding.utf8) {
 
                         Debug.log(object: "Decompression XML : OK")
-
                         SwiftSpinner.show("Chargement des données...")
 
                         self.parseXML(xml: decompressedXML)
 
                     }
-
                 }
-
             }
         }
     }
-
 }
-
 
 extension String {
 
@@ -406,7 +594,6 @@ extension String {
             let data = data(using: String.Encoding.utf8)
             else { return nil }
         do {
-
 
             let attributedOptions: [String: AnyObject] = [
                 NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType as AnyObject,

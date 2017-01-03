@@ -3,6 +3,9 @@ PODS:
   - GZIP (1.1.1)
   - LNRSimpleNotifications (0.5.3)
   - MapleBacon (3.0.1)
+  - MarqueeLabel (3.0.1):
+    - MarqueeLabel/ObjC (= 3.0.1)
+  - MarqueeLabel/ObjC (3.0.1)
   - MGSwipeTableCell (1.5.6)
   - Pushwoosh (4.2.0)
   - SVPulsingAnnotationView (0.3.0)
@@ -16,6 +19,7 @@ DEPENDENCIES:
   - GZIP
   - LNRSimpleNotifications
   - MapleBacon
+  - MarqueeLabel
   - MGSwipeTableCell
   - Pushwoosh
   - SVPulsingAnnotationView
@@ -29,6 +33,7 @@ SPEC CHECKSUMS:
   GZIP: f8beb59597f651e6970a45b816508a9c6d700b77
   LNRSimpleNotifications: 13aa05e2f65ccf196f736def89178007f30a5182
   MapleBacon: 8fb0c45a0f147049ad49af6b36ac04a649baa74d
+  MarqueeLabel: 80ba85d2b76a9f5fa6c13de337db80bcd94feb1d
   MGSwipeTableCell: 616700eb0ffd1c611ba909066cb7fd739790a0a7
   Pushwoosh: fb67da969b9e3e3ffb020ec302ab541984bbb81b
   SVPulsingAnnotationView: f1a8dc7a57ebb5fa231d0ef8b0da59a250005511
@@ -37,6 +42,6 @@ SPEC CHECKSUMS:
   SWXMLHash: e0f6935971f01b06fb228cf435510d998ecde647
   VTAcknowledgementsViewController: 62d2b3979b6d86677246967cf880d14b13ee7ac4
 
-PODFILE CHECKSUM: 69f030f036d4c2afd3e9deb2ab78accc5eaa8c69
+PODFILE CHECKSUM: 5b04d3729f6d0d0d6fe7ea0335abc033a41799b0
 
 COCOAPODS: 1.1.1

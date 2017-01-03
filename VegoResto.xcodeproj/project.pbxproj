@@ -26,8 +26,8 @@
 		3978B2771CAC088400D82040 /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3978B2761CAC088400D82040 /* libstdc++.tbd */; };
 		397D33991D18222E00BA7708 /* ListeFavorisViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397D33981D18222E00BA7708 /* ListeFavorisViewController.swift */; };
 		39848B081CB4231300D718FD /* NavigationAccueilViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39848B071CB4231300D718FD /* NavigationAccueilViewController.swift */; };
-		398857E61CC2B97600B05F64 /* Tag+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398857E41CC2B97600B05F64 /* Tag+CoreDataProperties.swift */; };
-		398857E71CC2B97600B05F64 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398857E51CC2B97600B05F64 /* Tag.swift */; };
+		398857E61CC2B97600B05F64 /* CategorieCulinaire+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398857E41CC2B97600B05F64 /* CategorieCulinaire+CoreDataProperties.swift */; };
+		398857E71CC2B97600B05F64 /* CategorieCulinaire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398857E51CC2B97600B05F64 /* CategorieCulinaire.swift */; };
 		398857EA1CC2BA1000B05F64 /* Restaurant+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398857E81CC2BA1000B05F64 /* Restaurant+CoreDataProperties.swift */; };
 		398857EB1CC2BA1000B05F64 /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398857E91CC2BA1000B05F64 /* Restaurant.swift */; };
 		398AA7E51D17F90600FA7E0A /* LGSideMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 398AA7E01D17F90600FA7E0A /* LGSideMenuController.m */; };
@@ -73,8 +73,8 @@
 		3978B2761CAC088400D82040 /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
 		397D33981D18222E00BA7708 /* ListeFavorisViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListeFavorisViewController.swift; sourceTree = "<group>"; };
 		39848B071CB4231300D718FD /* NavigationAccueilViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationAccueilViewController.swift; sourceTree = "<group>"; };
-		398857E41CC2B97600B05F64 /* Tag+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Tag+CoreDataProperties.swift"; path = "NSManagedObject/Tag+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		398857E51CC2B97600B05F64 /* Tag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Tag.swift; path = NSManagedObject/Tag.swift; sourceTree = "<group>"; };
+		398857E41CC2B97600B05F64 /* CategorieCulinaire+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CategorieCulinaire+CoreDataProperties.swift"; path = "NSManagedObject/CategorieCulinaire+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		398857E51CC2B97600B05F64 /* CategorieCulinaire.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CategorieCulinaire.swift; path = NSManagedObject/CategorieCulinaire.swift; sourceTree = "<group>"; };
 		398857E81CC2BA1000B05F64 /* Restaurant+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Restaurant+CoreDataProperties.swift"; path = "NSManagedObject/Restaurant+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		398857E91CC2BA1000B05F64 /* Restaurant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Restaurant.swift; path = NSManagedObject/Restaurant.swift; sourceTree = "<group>"; };
 		398AA7DF1D17F90500FA7E0A /* VegoResto-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "VegoResto-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -214,8 +214,8 @@
 			children = (
 				398857E81CC2BA1000B05F64 /* Restaurant+CoreDataProperties.swift */,
 				398857E91CC2BA1000B05F64 /* Restaurant.swift */,
-				398857E41CC2B97600B05F64 /* Tag+CoreDataProperties.swift */,
-				398857E51CC2B97600B05F64 /* Tag.swift */,
+				398857E41CC2B97600B05F64 /* CategorieCulinaire+CoreDataProperties.swift */,
+				398857E51CC2B97600B05F64 /* CategorieCulinaire.swift */,
 			);
 			name = CoreData;
 			sourceTree = "<group>";
@@ -328,7 +328,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "Nicolas Laurent";
 				TargetAttributes = {
 					39968D3A1CABFFBA0085C61F = {
@@ -454,7 +454,7 @@
 				398AA7E51D17F90600FA7E0A /* LGSideMenuController.m in Sources */,
 				39848B081CB4231300D718FD /* NavigationAccueilViewController.swift in Sources */,
 				391D6D7C1D7060A50023733E /* ParametresViewController.swift in Sources */,
-				398857E61CC2B97600B05F64 /* Tag+CoreDataProperties.swift in Sources */,
+				398857E61CC2B97600B05F64 /* CategorieCulinaire+CoreDataProperties.swift in Sources */,
 				390909DF1DCB3E52005F77CB /* FBAnnotation.swift in Sources */,
 				398857EA1CC2BA1000B05F64 /* Restaurant+CoreDataProperties.swift in Sources */,
 				398857EB1CC2BA1000B05F64 /* Restaurant.swift in Sources */,
@@ -473,7 +473,7 @@
 				390909E41DCB3E52005F77CB /* FBQuadTree.swift in Sources */,
 				390909E21DCB3E52005F77CB /* FBBoundingBox.swift in Sources */,
 				390909E31DCB3E52005F77CB /* FBClusteringManager.swift in Sources */,
-				398857E71CC2B97600B05F64 /* Tag.swift in Sources */,
+				398857E71CC2B97600B05F64 /* CategorieCulinaire.swift in Sources */,
 				39C50EFC1CC8D9670019FA2B /* Images.swift in Sources */,
 				396BD9751CAE62670071DF07 /* DetailRestaurantViewController.swift in Sources */,
 				396BD9801CAEB8640071DF07 /* ColorExtension.swift in Sources */,
@@ -598,7 +598,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 93153D050B7028EFD7E7B3D1 /* Pods-VegoResto.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -618,7 +618,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F6942C8EF250C97DF4559C29 /* Pods-VegoResto.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: nicolas laurent (G9B2LM6D3L)";

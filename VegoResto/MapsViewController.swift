@@ -20,7 +20,7 @@ class MapsViewController: UIViewController, MKMapViewDelegate {
     @IBOutlet weak var varIB_bt_filtre_categorie_2: UIButton!
     @IBOutlet weak var varIB_bt_filtre_categorie_3: UIButton!
 
-    var filtre_categorie: CategorieRestaurant? = nil
+    var filtre_categorie: CategorieRestaurant?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,9 +39,7 @@ class MapsViewController: UIViewController, MKMapViewDelegate {
         // Dispose of any resources that can be recreated.
     }
 
-
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
-
 
         OperationQueue().addOperation({
             let mapBoundsWidth = Double(self.varIB_mapView.bounds.size.width)
@@ -53,7 +51,6 @@ class MapsViewController: UIViewController, MKMapViewDelegate {
     }
 
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-
 
         if annotation is  FBAnnotationCluster {
 
@@ -75,7 +72,6 @@ class MapsViewController: UIViewController, MKMapViewDelegate {
                 pinView?.canShowCallout = true
 
             }
-
 
             if let restaurantAnnotation = annotation as? RestaurantAnnotation {
 
@@ -112,14 +108,12 @@ class MapsViewController: UIViewController, MKMapViewDelegate {
                 }
             }
 
-
             pinView?.frame.size = CGSize(width: 144.0/4.0, height: 208.0/4.0)
             pinView?.centerOffset = CGPoint(x : 0, y : -(pinView!.frame.size.height*0.5) )
 
             return pinView
 
         } else {
-
 
             let reuseId = "currentLocation"
 
@@ -136,7 +130,6 @@ class MapsViewController: UIViewController, MKMapViewDelegate {
             return pulsingView
         }
     }
-
 
     func configurerViewAnnotation(view_support: UIView, currentAnnotation: RestaurantAnnotation) {
 
@@ -172,7 +165,6 @@ class MapsViewController: UIViewController, MKMapViewDelegate {
         image_label1.image = Asset.imgIcPhoneBlack.image // UIImage(asset: .Img_ic_phone_black)
         view_support.addSubview(image_label1)
 
-
         let label1: UILabel = UILabel(frame: CGRect( x : img_width + espacement_x, y : position_y, width : view_width - img_width - espacement_x, height : img_width) )
         label1.font = UIFont(name: "URWGothicL-Book", size: 12)!
         view_support.addSubview(label1)
@@ -194,8 +186,6 @@ class MapsViewController: UIViewController, MKMapViewDelegate {
         bt_info.addTarget(self, action: #selector(MapsViewController.touch_bt_more_info(sender:)), for: UIControlEvents.touchUpInside)
         view_support.addSubview(bt_info)
 
-
-
     }
 
     func touch_bt_more_info(sender: BTTransitionVersDetailsRestaurant) {
@@ -203,10 +193,8 @@ class MapsViewController: UIViewController, MKMapViewDelegate {
         self.performSegue(withIdentifier: StoryboardSegue.Main.segueToDetail.rawValue, sender : sender.restaurant )
     }
 
-
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-
 
         switch StoryboardSegue.Main(rawValue: segue.identifier! )! {
 
@@ -223,11 +211,7 @@ class MapsViewController: UIViewController, MKMapViewDelegate {
             }
         }
 
-
-
     }
-
-
 
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
 
@@ -245,9 +229,7 @@ class MapsViewController: UIViewController, MKMapViewDelegate {
 
         }
 
-
     }
-
 
     // permet de conserver l'annotation de la position de l'user toujours au dessus des autres (Z-Index).
 
@@ -264,10 +246,7 @@ class MapsViewController: UIViewController, MKMapViewDelegate {
             }
         }
 
-
     }
-
-
 
     func update_region_for_user_location() {
 
@@ -280,8 +259,6 @@ class MapsViewController: UIViewController, MKMapViewDelegate {
 
         }
     }
-
-
 
     @IBAction func touch_bt_categorie(sender: UIButton) {
 
@@ -311,7 +288,6 @@ class MapsViewController: UIViewController, MKMapViewDelegate {
 
         }
 
-
         if self.filtre_categorie == CategorieRestaurant.Végétarien {
 
             self.varIB_bt_filtre_categorie_1.backgroundColor = COLOR_VIOLET
@@ -337,13 +313,10 @@ class MapsViewController: UIViewController, MKMapViewDelegate {
             self.varIB_bt_filtre_categorie_3.backgroundColor = COLOR_BLEU
         }
 
-
         self.updateData()
     }
 
-
     func updateData() {
-
 
         var array: [FBAnnotation] = [FBAnnotation]()
 
@@ -380,9 +353,7 @@ class MapsViewController: UIViewController, MKMapViewDelegate {
         let annotationArray = self.clusteringManager.clusteredAnnotationsWithinMapRect(rect: self.varIB_mapView.visibleMapRect, withZoomScale:scale)
         self.clusteringManager.displayAnnotations(annotations: annotationArray, onMapView:self.varIB_mapView)
 
-
     }
-
 
     func updateDataAfterDelay() {
 
@@ -393,17 +364,10 @@ class MapsViewController: UIViewController, MKMapViewDelegate {
 
     }
 
-
-
-
 }
-
-
-
-
 
 class BTTransitionVersDetailsRestaurant: UIButton {
 
-    var restaurant: Restaurant? = nil
+    var restaurant: Restaurant?
 
 }

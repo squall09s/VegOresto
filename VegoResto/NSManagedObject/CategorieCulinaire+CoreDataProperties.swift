@@ -1,5 +1,5 @@
 //
-//  Tag+CoreDataProperties.swift
+//  CategorieCulinaire+CoreDataProperties.swift
 //  VegoResto
 //
 //  Created by Laurent Nicolas on 16/04/2016.
@@ -12,7 +12,7 @@
 import Foundation
 import CoreData
 
-extension Tag {
+extension CategorieCulinaire {
 
     @NSManaged var name: String?
     @NSManaged var restaurants: NSSet?

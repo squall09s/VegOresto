@@ -9,7 +9,6 @@
 import UIKit
 import MGSwipeTableCell
 
-
 class RechercheViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
 
     @IBOutlet weak var varIB_searchBar: UISearchBar?
@@ -20,7 +19,7 @@ class RechercheViewController: UIViewController, UITableViewDelegate, UITableVie
     @IBOutlet weak var varIB_bt_filtre_categorie_3: UIButton!
 
     var afficherUniquementFavoris = false
-    var filtre_categorie: CategorieRestaurant? = nil
+    var filtre_categorie: CategorieRestaurant?
 
     let TAG_CELL_LABEL_NAME = 501
     let TAG_CELL_LABEL_ADRESS = 502
@@ -38,9 +37,7 @@ class RechercheViewController: UIViewController, UITableViewDelegate, UITableVie
 
         self.varIB_searchBar?.backgroundImage = UIImage()
 
-
         self.loadRestaurantsWithWord(key: nil)
-
 
         NotificationCenter.default.addObserver(self, selector: #selector(RechercheViewController.updateDataAfterDelay), name: NSNotification.Name(rawValue: "CHARGEMENT_TERMINE"), object: nil)
 
@@ -52,10 +49,7 @@ class RechercheViewController: UIViewController, UITableViewDelegate, UITableVie
         // Dispose of any resources that can be recreated.
     }
 
-
-
     // MARK: - Navigation
-
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
 
@@ -76,13 +70,7 @@ class RechercheViewController: UIViewController, UITableViewDelegate, UITableVie
             }
         }
 
-
-
     }
-
-
-
-
 
     // MARK: UITableViewDelegate Delegate
 
@@ -90,21 +78,16 @@ class RechercheViewController: UIViewController, UITableViewDelegate, UITableVie
 
         let current_restaurant: Restaurant = self.array_restaurants[indexPath.row]
 
-
         let reuseIdentifier = current_restaurant.favoris.boolValue ? "cell_restaurant_identifer_favoris_on" : "cell_restaurant_identifer_favoris_off"
 
-
         var cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as? MGSwipeTableCell
-
 
         if cell == nil {
             cell = MGSwipeTableCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: reuseIdentifier)
 
         }
 
-
         // Configure the cell...
-
 
         let label_name = cell?.viewWithTag(TAG_CELL_LABEL_NAME) as? UILabel
         let label_adress = cell?.viewWithTag(TAG_CELL_LABEL_ADRESS) as? UILabel
@@ -112,14 +95,12 @@ class RechercheViewController: UIViewController, UITableViewDelegate, UITableVie
         let label_ville = cell?.viewWithTag(TAG_CELL_LABEL_VILLE) as? UILabel
         let image_loc = cell?.viewWithTag(TAG_CELL_IMAGE_LOC) as? UIImageView
 
-
         label_name?.text = current_restaurant.name
         label_adress?.text = current_restaurant.address
         label_ville?.text = current_restaurant.ville
 
         let view_color_categorie = cell?.viewWithTag(TAG_CELL_VIEW_CATEGORIE_COLOR)
         let imageview_favoris = cell?.viewWithTag(TAG_CELL_IMAGE_FAVORIS) as? UIImageView
-
 
         var imageSwipe: UIImage = Asset.imgFavorisOff.image
 
@@ -141,7 +122,6 @@ class RechercheViewController: UIViewController, UITableViewDelegate, UITableVie
                 imageSwipe = Asset.imgFavorisOn1.image
             }
 
-
         case CategorieRestaurant.Traditionnel :
             view_color_categorie?.backgroundColor = COLOR_BLEU
             if current_restaurant.favoris.boolValue {
@@ -152,9 +132,7 @@ class RechercheViewController: UIViewController, UITableViewDelegate, UITableVie
 
         }
 
-
-
-        let bt1 = MGSwipeButton(title: "", icon: imageSwipe, backgroundColor: COLOR_GRIS_BACKGROUND ) { (cell) -> Bool in
+        let bt1 = MGSwipeButton(title: "", icon: imageSwipe, backgroundColor: COLOR_GRIS_BACKGROUND ) { (_) -> Bool in
 
             current_restaurant.favoris = !(current_restaurant.favoris.boolValue) as NSNumber
 
@@ -163,7 +141,6 @@ class RechercheViewController: UIViewController, UITableViewDelegate, UITableVie
             return true
         }
 
-
         bt1.buttonWidth = 110
 
         cell?.rightButtons = [ bt1]
@@ -171,7 +148,6 @@ class RechercheViewController: UIViewController, UITableViewDelegate, UITableVie
         cell?.rightSwipeSettings.threshold = 10
         cell?.rightExpansion.buttonIndex = 0
         cell?.rightExpansion.fillOnTrigger = true
-
 
         label_distance?.text = ""
         image_loc?.isHidden = true
@@ -191,7 +167,6 @@ class RechercheViewController: UIViewController, UITableViewDelegate, UITableVie
 
     }
 
-
     func numberOfSections(in tableView: UITableView) -> Int {
 
         return 1
@@ -201,9 +176,6 @@ class RechercheViewController: UIViewController, UITableViewDelegate, UITableVie
 
         return self.array_restaurants.count
     }
-
-
-
 
     // MARK: UISearchBar Delegate
 
@@ -246,8 +218,6 @@ class RechercheViewController: UIViewController, UITableViewDelegate, UITableVie
         searchBar.resignFirstResponder()
     }
 
-
-
     func findTextFieldInView(view: UIView) -> UITextField? {
 
         if view is UITextField {
@@ -255,7 +225,6 @@ class RechercheViewController: UIViewController, UITableViewDelegate, UITableVie
             return view as? UITextField
 
         }
-
 
         for subview: UIView in view.subviews {
 
@@ -273,14 +242,9 @@ class RechercheViewController: UIViewController, UITableViewDelegate, UITableVie
 
     }
 
-
-
     func loadRestaurantsWithWord(key: String?) {
 
-
-
         self.array_restaurants = UserData.sharedInstance.getRestaurants()
-
 
         if self.afficherUniquementFavoris {
 
@@ -299,14 +263,11 @@ class RechercheViewController: UIViewController, UITableViewDelegate, UITableVie
 
         self.varIB_tableView?.reloadData()
 
-
-
         if let _key = key {
 
             if _key.characters.count > 3 {
 
                 self.array_restaurants = self.array_restaurants.flatMap({ (current_restaurant: Restaurant) -> Restaurant? in
-
 
                     if let clean_name: String = current_restaurant.name?.folding(options : .diacriticInsensitive, locale: Locale.current ) {
 
@@ -314,9 +275,7 @@ class RechercheViewController: UIViewController, UITableViewDelegate, UITableVie
                             return current_restaurant
                         }
 
-
                     }
-
 
                     if let clean_adress: String = current_restaurant.address?.folding(options: .diacriticInsensitive, locale: Locale.current ) {
 
@@ -325,10 +284,7 @@ class RechercheViewController: UIViewController, UITableViewDelegate, UITableVie
                         }
                     }
 
-
-
                     return nil
-
 
                 })
 
@@ -336,13 +292,9 @@ class RechercheViewController: UIViewController, UITableViewDelegate, UITableVie
 
         }
 
-
         if let _filtre_categorie = filtre_categorie {
 
-
             self.array_restaurants = self.array_restaurants.flatMap({ (current_restaurant: Restaurant) -> Restaurant? in
-
-
 
                 if current_restaurant.categorie() == _filtre_categorie {
                     return current_restaurant
@@ -350,12 +302,9 @@ class RechercheViewController: UIViewController, UITableViewDelegate, UITableVie
 
                 return nil
 
-
             })
 
         }
-
-
 
     }
 
@@ -412,10 +361,8 @@ class RechercheViewController: UIViewController, UITableViewDelegate, UITableVie
             self.varIB_bt_filtre_categorie_3.backgroundColor = COLOR_BLEU
         }
 
-
         self.updateData()
     }
-
 
     func update_resultats_for_user_location() {
 
@@ -440,20 +387,14 @@ class RechercheViewController: UIViewController, UITableViewDelegate, UITableVie
 
     }
 
-
-
-
     func updateDataAfterDelay() {
-
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
 
             self.updateData()
         }
 
-
     }
-
 
     func updateData() {
 
@@ -462,6 +403,5 @@ class RechercheViewController: UIViewController, UITableViewDelegate, UITableVie
         self.loadRestaurantsWithWord(key: self.varIB_searchBar?.text)
         self.varIB_tableView?.reloadData()
     }
-
 
 }

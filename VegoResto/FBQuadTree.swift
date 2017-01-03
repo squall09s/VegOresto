@@ -1,4 +1,3 @@
-
 //
 //  FBQuadTree.swift
 //  FBAnnotationClusteringSwift
@@ -12,7 +11,7 @@ import MapKit
 
 public class FBQuadTree: NSObject {
 
-    var rootNode: FBQuadTreeNode? = nil
+    var rootNode: FBQuadTreeNode?
 
     let nodeCapacity = 8
 
@@ -59,7 +58,6 @@ public class FBQuadTree: NSObject {
             return true
         }
 
-
         return false
 
     }
@@ -86,7 +84,6 @@ public class FBQuadTree: NSObject {
         }
 
         if node.isLeaf() {
-
 
             return
         }

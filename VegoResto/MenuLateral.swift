@@ -16,12 +16,11 @@ class MenuLateral: UIViewController, UITableViewDelegate, UITableViewDataSource 
 
     @IBOutlet weak var varIB_tableView: UITableView!
 
-
     override func viewDidLoad() {
 
         super.viewDidLoad()
 
-        self.varIB_tableView.contentInset = UIEdgeInsetsMake(44.0, 0.0, 44.0, 0.0)
+        self.varIB_tableView.contentInset = UIEdgeInsets(top: 44.0, left: 0.0, bottom: 44.0, right: 0.0)
         self.varIB_tableView?.reloadData()
 
     }
@@ -39,14 +38,11 @@ class MenuLateral: UIViewController, UITableViewDelegate, UITableViewDataSource 
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-
         var reuseIdentifier: String = "cell"
-
 
         let mainController: MainViewController? = UIApplication.shared.delegate?.window??.rootViewController as? MainViewController
 
         let kNavigationController: UITabBarController? = mainController?.rootViewController as? UITabBarController
-
 
         if (indexPath as NSIndexPath).row == kNavigationController?.selectedIndex {
 
@@ -56,12 +52,10 @@ class MenuLateral: UIViewController, UITableViewDelegate, UITableViewDataSource 
 
         let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath as IndexPath)
 
-
         let label_titre: UILabel? = cell.viewWithTag(TAG_CELL_TITRE) as? UILabel
         label_titre?.text = array_titres[(indexPath as NSIndexPath).row]
 
         let image_view: UIImageView? = cell.viewWithTag(TAG_CELL_IMAGE) as? UIImageView
-
 
         switch (indexPath as NSIndexPath).row {
         case 0:
@@ -77,8 +71,6 @@ class MenuLateral: UIViewController, UITableViewDelegate, UITableViewDataSource 
             break
         }
 
-
-
         cell.tintColor = UIColor.black
         return cell
 
@@ -91,7 +83,6 @@ class MenuLateral: UIViewController, UITableViewDelegate, UITableViewDataSource 
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
 
         let mainController: MainViewController? = UIApplication.shared.delegate?.window??.rootViewController as? MainViewController
 
@@ -119,7 +110,6 @@ class MenuLateral: UIViewController, UITableViewDelegate, UITableViewDataSource 
 
         }
 
-
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
 
             self.varIB_tableView.reloadData()
@@ -127,14 +117,11 @@ class MenuLateral: UIViewController, UITableViewDelegate, UITableViewDataSource 
 
     }
 
-
     func updateDataOnCV() {
 
             let mainController: MainViewController? = UIApplication.shared.delegate?.window??.rootViewController as? MainViewController
 
             let kNavigationController: UITabBarController? = mainController?.rootViewController as? UITabBarController
-
-
 
             let accueilNVC: UINavigationController? = (kNavigationController?.viewControllers?[0]) as? UINavigationController
 
@@ -142,18 +129,12 @@ class MenuLateral: UIViewController, UITableViewDelegate, UITableViewDataSource 
 
             accueilVC?.recherche_viewController?.updateData()
 
-
-
             let listeControllersFavorisNC: UINavigationController? = (kNavigationController?.viewControllers?[1]) as? UINavigationController
 
             let listeControllersFavoris: ListeFavorisViewController? = listeControllersFavorisNC?.viewControllers[0] as? ListeFavorisViewController
 
             listeControllersFavoris?.recherche_viewController?.updateData()
 
-
-
     }
-
-
 
 }

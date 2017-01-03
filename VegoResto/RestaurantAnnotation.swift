@@ -11,7 +11,7 @@ import UIKit
 
 class RestaurantAnnotation: FBAnnotation {
 
-    var restaurant: Restaurant? = nil
+    var restaurant: Restaurant?
 
 init(_restaurant: Restaurant) {
 
@@ -21,8 +21,6 @@ init(_restaurant: Restaurant) {
 
     self.title = _restaurant.name
 
-
     }
-
 
 }

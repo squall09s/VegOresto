@@ -15,8 +15,7 @@ pod 'SwiftSpinner'
 pod 'MapleBacon'
 pod 'VTAcknowledgementsViewController'
 pod 'LNRSimpleNotifications'
-
-
+pod 'MarqueeLabel'
 
 end
 

@@ -14,35 +14,35 @@ import CoreData
 
 extension Restaurant {
 
-    @NSManaged var absolute_url: String?
-    @NSManaged var address: String?
-    @NSManaged var identifier: NSNumber?
+    @NSManaged var absolute_url: String?    //ok
+    @NSManaged var address: String?    //ok
+    @NSManaged var identifier: NSNumber?    //ok
     @NSManaged var terrasse: NSNumber?
-    @NSManaged var lat: NSNumber?
-    @NSManaged var lon: NSNumber?
-    @NSManaged var name: String?
-    @NSManaged var phone: String?
-    @NSManaged var ville: String?
-    @NSManaged var resume: String?
-    @NSManaged var type_etablissement: String?
-    @NSManaged var facebook: String?
-    @NSManaged var website: String?
-    @NSManaged var montant_moyen: String?
-    @NSManaged var tags: NSSet?
-    @NSManaged var moyens_de_paiement: String?
+    @NSManaged var lat: NSNumber?    //ok
+    @NSManaged var lon: NSNumber?    //ok
+    @NSManaged var name: String?    //ok
+    @NSManaged var phone: String?    //ok
+    @NSManaged var ville: String?    //ok
+    @NSManaged var resume: String?    //ok
+    @NSManaged var type_etablissement: String?    //ok
+    @NSManaged var facebook: String?    //ok
+    @NSManaged var website: String?    //ok
+    @NSManaged var montant_moyen: String?    //ok
+    @NSManaged var categoriesCulinaire: NSSet?    //ok
+    @NSManaged var moyens_de_paiement: String?    //ok
     @NSManaged var animaux_bienvenus: NSNumber?
-    @NSManaged var favoris: NSNumber
-    @NSManaged var influence_gastronomique: String?
-    @NSManaged var ambiance: String?
+    @NSManaged var favoris: NSNumber    //ok
+    @NSManaged var influence_gastronomique: String?    //ok
+    @NSManaged var ambiance: String?    //ok
     @NSManaged var image: String?
-    @NSManaged var mail: String?
+    @NSManaged var mail: String?    //ok
 
-    @NSManaged var h_lundi: String?
-    @NSManaged var h_mardi: String?
-    @NSManaged var h_mercredi: String?
-    @NSManaged var h_jeudi: String?
-    @NSManaged var h_vendredi: String?
-    @NSManaged var h_samedi: String?
-    @NSManaged var h_dimanche: String?
+    @NSManaged var h_lundi: String?    //ok
+    @NSManaged var h_mardi: String?    //ok
+    @NSManaged var h_mercredi: String?    //ok
+    @NSManaged var h_jeudi: String?    //ok
+    @NSManaged var h_vendredi: String?    //ok
+    @NSManaged var h_samedi: String?    //ok
+    @NSManaged var h_dimanche: String?    //ok
 
 }

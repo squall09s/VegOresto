@@ -10,7 +10,7 @@ import UIKit
 
 class MainViewController: LGSideMenuController {
 
-    static var sharedInstance: MainViewController? = nil
+    static var sharedInstance: MainViewController?
 
     var controllerMenuLateral: MenuLateral = StoryboardScene.Main.instantiateMenuLateral()
 
@@ -25,14 +25,11 @@ class MainViewController: LGSideMenuController {
         // Dispose of any resources that can be recreated.
     }
 
-
     override func viewDidAppear(_ animated: Bool) {
-
 
         self.setup()
 
     }
-
 
     func setup() {
 
@@ -46,20 +43,14 @@ class MainViewController: LGSideMenuController {
 
         navigationController.tabBar.isHidden = true
 
-
         self.setLeftViewEnabledWithWidth(250.0, presentationStyle: .slideAbove, alwaysVisibleOptions: [] )
 
         self.leftViewStatusBarStyle = .default
         self.leftViewStatusBarVisibleOptions = .onAll
 
-
         self.leftView().addSubview( self.controllerMenuLateral.view )
 
-
-
     }
-
-
 
     override func leftViewWillLayoutSubviews(with size: CGSize) {
 
@@ -67,10 +58,6 @@ class MainViewController: LGSideMenuController {
 
         self.controllerMenuLateral.varIB_tableView.frame = CGRect(x: 0.0, y: 0.0, width: size.width, height: size.height)
 
-
     }
-
-
-
 
 }
