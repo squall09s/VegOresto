@@ -1,22 +1,24 @@
 PODS:
-  - Alamofire (4.0.1)
+  - Alamofire (4.2.0)
   - GZIP (1.1.1)
+  - Kanna (2.0.0)
   - LNRSimpleNotifications (0.5.3)
   - MapleBacon (3.0.1)
   - MarqueeLabel (3.0.1):
     - MarqueeLabel/ObjC (= 3.0.1)
   - MarqueeLabel/ObjC (3.0.1)
   - MGSwipeTableCell (1.5.6)
-  - Pushwoosh (4.2.0)
+  - Pushwoosh (4.2.1)
   - SVPulsingAnnotationView (0.3.0)
-  - SwiftGen (3.0.0)
-  - SwiftSpinner (1.0.2)
-  - SWXMLHash (3.0.2)
+  - SwiftGen (4.0.0)
+  - SwiftSpinner (1.1.0)
+  - SWXMLHash (3.0.3)
   - VTAcknowledgementsViewController (1.2)
 
 DEPENDENCIES:
   - Alamofire
   - GZIP
+  - Kanna
   - LNRSimpleNotifications
   - MapleBacon
   - MarqueeLabel
@@ -29,19 +31,20 @@ DEPENDENCIES:
   - VTAcknowledgementsViewController
 
 SPEC CHECKSUMS:
-  Alamofire: 7682d43245de14874acd142ec137b144aa1dd335
+  Alamofire: aa2e09d871c9160ac53c90e83c68064a94e3dfbe
   GZIP: f8beb59597f651e6970a45b816508a9c6d700b77
+  Kanna: 9a6637f72f5c77fe9c045b1efb2a5bb074754af8
   LNRSimpleNotifications: 13aa05e2f65ccf196f736def89178007f30a5182
   MapleBacon: 8fb0c45a0f147049ad49af6b36ac04a649baa74d
   MarqueeLabel: 80ba85d2b76a9f5fa6c13de337db80bcd94feb1d
   MGSwipeTableCell: 616700eb0ffd1c611ba909066cb7fd739790a0a7
-  Pushwoosh: fb67da969b9e3e3ffb020ec302ab541984bbb81b
+  Pushwoosh: 46a876d16f4c38606c086b7e19779a15990326a1
   SVPulsingAnnotationView: f1a8dc7a57ebb5fa231d0ef8b0da59a250005511
-  SwiftGen: f679cd0ed4173a5da3b01efd0da23542bf82f6ab
-  SwiftSpinner: 1c80ff6ea1c47e2faa1dfce0fcd5e6b39a47fd51
-  SWXMLHash: e0f6935971f01b06fb228cf435510d998ecde647
+  SwiftGen: 1590785599faa3d073235fc86c48aa40ba7a65ae
+  SwiftSpinner: c03815614599b91eea46594bd52ba742849d0414
+  SWXMLHash: 80d2529d74891bb2f15305a0b9e08f2a4f229ee7
   VTAcknowledgementsViewController: 62d2b3979b6d86677246967cf880d14b13ee7ac4
 
-PODFILE CHECKSUM: 5b04d3729f6d0d0d6fe7ea0335abc033a41799b0
+PODFILE CHECKSUM: a843344aa036975d2cc11764e2746fcbe05f4d52
 
 COCOAPODS: 1.1.1

@@ -373,7 +373,7 @@
                                 <rect key="frame" x="26" y="49" width="268" height="30"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZG3-bO-0ES">
-                                        <rect key="frame" x="0.0" y="0.0" width="85" height="30"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="85.5" height="30"/>
                                         <color key="backgroundColor" red="0.82352941176470584" green="0.32156862745098036" blue="0.72549019607843135" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" name="olivier" family="olivier" pointSize="17"/>
                                         <state key="normal" title="Végétarien">
@@ -384,7 +384,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XYQ-11-ljx">
-                                        <rect key="frame" x="183" y="0.0" width="85" height="30"/>
+                                        <rect key="frame" x="182.5" y="0.0" width="85.5" height="30"/>
                                         <color key="backgroundColor" red="0.21568627450980393" green="0.6588235294117647" blue="0.85490196078431369" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" name="olivier" family="olivier" pointSize="17"/>
                                         <state key="normal" title="Traditonnel">
@@ -395,7 +395,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CP2-2M-UDa">
-                                        <rect key="frame" x="91" y="0.0" width="86" height="30"/>
+                                        <rect key="frame" x="91.5" y="0.0" width="85" height="30"/>
                                         <color key="backgroundColor" red="0.4392156862745098" green="0.69803921568627447" blue="0.066666666666666666" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" name="olivier" family="olivier" pointSize="17"/>
                                         <state key="normal" title="Vegan">

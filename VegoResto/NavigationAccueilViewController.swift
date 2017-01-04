@@ -70,6 +70,21 @@ class NavigationAccueilViewController: UIViewController {
             }
         }
 
+        if UserData.sharedInstance.getLastUpdateData() >= INTERVAL_REFRESH_DATA {
+
+            if UserData.sharedInstance.getRestaurants().count == 0 {
+
+                //print("aucune donnée -> chargement des données locale")
+
+                UserData.sharedInstance.loadLocalData()
+            }
+
+            //print(" chargement des données distante")
+
+            UserData.sharedInstance.loadDataOnVegorestoURL()
+
+        }
+
     }
 
     override func didReceiveMemoryWarning() {

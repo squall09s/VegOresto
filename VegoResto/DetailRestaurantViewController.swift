@@ -145,6 +145,9 @@ class DetailRestaurantViewController: UIViewController {
 
         }
 
+        if let restaurant = self.current_restaurant {
+            UserData.sharedInstance.loadComments(from: restaurant )
+        }
         // Do any additional setup after loading the view.
     }
 
@@ -234,7 +237,7 @@ class DetailRestaurantViewController: UIViewController {
             notificationManager.showNotification(title: "Favoris", body: message, onTap: { () -> Void in
 
                 _ = notificationManager.dismissActiveNotification(completion: { () -> Void in
-                        print("Notification dismissed")
+                        //print("Notification dismissed")
                     })
                 })
 

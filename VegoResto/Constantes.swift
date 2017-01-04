@@ -51,3 +51,6 @@ let COLOR_VERT: UIColor = UIColor(hexString: "70B211")
 let COLOR_VIOLET: UIColor = UIColor(hexString: "D252B9")
 let COLOR_GRIS_BACKGROUND: UIColor = UIColor(hexString: "EDEDED")
 let COLOR_GRIS_FONCÉ: UIColor = UIColor(hexString: "898989")
+
+let KEY_LAST_SYNCHRO = "DateLastShynchro"
+let INTERVAL_REFRESH_DATA: Int = 24*60*60*3

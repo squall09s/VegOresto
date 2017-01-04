@@ -13,6 +13,7 @@ import CoreLocation
 import Alamofire
 import GZIP
 import SWXMLHash
+import Kanna
 
 class UserData: NSObject, CLLocationManagerDelegate {
 
@@ -30,11 +31,31 @@ class UserData: NSObject, CLLocationManagerDelegate {
         super.init()
 
         self.locationmanager = CLLocationManager()
-        //locationmanager?.startUpdatingLocation()
-        //locationmanager?.requestWhenInUseAuthorization()
         self.locationmanager?.requestWhenInUseAuthorization()
         self.locationmanager?.startUpdatingLocation()
         self.locationmanager?.delegate = self
+
+    }
+
+    func getLastUpdateData() -> Int {
+
+        let defaults = UserDefaults.standard
+
+        if let date = defaults.object(forKey: KEY_LAST_SYNCHRO) as? Date {
+
+            return Int(date.timeIntervalSinceNow)
+
+        }
+
+        return INTERVAL_REFRESH_DATA + 1
+
+    }
+
+    func saveSynchroDate() {
+
+        let defaults = UserDefaults.standard
+
+        defaults.set( Date(), forKey: KEY_LAST_SYNCHRO)
 
     }
 
@@ -100,6 +121,8 @@ class UserData: NSObject, CLLocationManagerDelegate {
     }
 
     func parseXML(xml: String) {
+
+        Debug.log(object: "Func[parseXML]")
 
         var nbObjetCrées = 0
 
@@ -252,36 +275,47 @@ class UserData: NSObject, CLLocationManagerDelegate {
             Debug.log(object: "Parser XML : \(nbObjetCrées) element(s)")
 
             do {
+
                 try self.managedContext.save()
+
             } catch _ {
+
                 Debug.log(object: "erreur save managedContext")
+
             }
 
-            if nbObjetCrées == 0 && self.getRestaurants().count == 0 {
+            //if nbObjetCrées == 0 && self.getRestaurants().count == 0 {
 
-                SwiftSpinner.show("Chargement des données...")
+            //    self.loadLocalData()
 
-                if let path = Bundle.main.path(forResource: "restaurants", ofType: "xml") {
-
-                    if let fileContents: NSData = NSData(contentsOfFile: path) {
-
-                        if let xml = String(data: fileContents as Data, encoding: String.Encoding.utf8) {
-
-                            SwiftSpinner.show("Chargement des données...")
-
-                            self.parseXML(xml: xml)
-                        }
-                    }
-
-                }
-
-            } else {
+            //} else {
 
                 SwiftSpinner.hide()
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "CHARGEMENT_TERMINE"), object: nil)
 
                 Debug.log(object: "fin chargement des données depuis URL")
 
+                self.saveSynchroDate()
+
+            //}
+
+        }
+
+    }
+
+    func loadLocalData() {
+
+        SwiftSpinner.show("Chargement des données en local...")
+
+        if let path = Bundle.main.path(forResource: "restaurants", ofType: "xml") {
+
+            if let fileContents: NSData = NSData(contentsOfFile: path) {
+
+                if let xml = String(data: fileContents as Data, encoding: String.Encoding.utf8) {
+
+                    //SwiftSpinner.show("Chargement des données...")
+                    self.parseXML(xml: xml)
+                }
             }
 
         }
@@ -584,6 +618,81 @@ class UserData: NSObject, CLLocationManagerDelegate {
             }
         }
     }
+
+    func loadComments(from restaurant: Restaurant) {
+
+        if let url = restaurant.absolute_url {
+
+        Debug.log(object: "Téléchargement page : \(url)")
+
+        Alamofire.request(url).responseData { (response) in
+
+            Debug.log(object: "Debut téléchargement page : \(url)")
+
+            switch response.result {
+            case .success:
+                Debug.log(object: "Validation Successful")
+            case .failure(let error):
+                Debug.log(object: "Faillure loadComments\(error)")
+            }
+
+            if let dataCompressed = response.data {
+
+                if let decompressedData = NSData(data: dataCompressed).gunzipped() {
+
+                    if let decompressedXML: String = String(data: decompressedData as Data, encoding: String.Encoding.utf8) {
+
+                        Debug.log(object: "Decompression XML : OK")
+
+                        print("resultat = \(decompressedXML)")
+
+                        self.parseHtmlCommentPage(html: decompressedXML)
+
+                    }
+                }
+            }
+            }
+        }
+
+    }
+
+    func parseHtmlCommentPage(html: String) {
+
+        Debug.log(object: "Func[parseXMLCommentPage]")
+
+        let indexStartComment = html.localizedStandardRange(of: "<div id=\"comments\" class=\"comments-area\">")
+
+        let indexEndComment = html.localizedStandardRange(of: "<!-- #comments -->")
+
+        print("start = \(indexStartComment) end = \(indexEndComment)")
+
+        if let doc = Kanna.HTML(html : html, encoding: String.Encoding.utf8) {
+
+            // Search for nodes by XPath
+
+            for article in doc.xpath("//article") {
+
+                let identifiant: String? = (article["id"])
+
+                if let _nouvel_identifiant = identifiant {
+
+                    let auteur = doc.xpath("//article[contains(@id,'\(_nouvel_identifiant)')]/div/h3").first?.text
+
+                    let time = doc.xpath("//article[contains(@id,'\(_nouvel_identifiant)')]/div/time").first?.text
+
+                    let (contentComment) = doc.xpath("//article[contains(@id,'\(_nouvel_identifiant)')]/div/p").first?.text
+
+                }
+            }
+
+            //let note = doc.xpath("//img[contains(@src,'https://vegoresto.fr/wp-content/plugins/wp-postratings/images/stars/rating_on.gif')]").first?["title"]
+
+            //print("note = \(note)")
+
+        }
+
+    }
+
 }
 
 extension String {

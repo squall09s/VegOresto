@@ -16,6 +16,7 @@ pod 'MapleBacon'
 pod 'VTAcknowledgementsViewController'
 pod 'LNRSimpleNotifications'
 pod 'MarqueeLabel'
+pod 'Kanna'
 
 end
 
