@@ -104,6 +104,7 @@ struct StoryboardScene {
 
 struct StoryboardSegue {
   enum Main: String, StoryboardSegueType {
+    case segueToComments = "segue_to_comments"
     case segueToDetail = "segue_to_detail"
   }
 }

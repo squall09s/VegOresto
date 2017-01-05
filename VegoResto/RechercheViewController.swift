@@ -68,6 +68,9 @@ class RechercheViewController: UIViewController, UITableViewDelegate, UITableVie
                 }
 
             }
+
+        default :
+            break
         }
 
     }

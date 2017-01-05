@@ -242,6 +242,7 @@ class UserData: NSObject, CLLocationManagerDelegate {
                 }
 
                 restaurant?.categoriesCulinaire = NSSet()
+                restaurant?.comments = NSSet()
 
                 if let categories_culinaires = elem["categories_culinaires"].element?.text {
 
@@ -305,7 +306,7 @@ class UserData: NSObject, CLLocationManagerDelegate {
 
     func loadLocalData() {
 
-        SwiftSpinner.show("Chargement des données en local...")
+        SwiftSpinner.show("Chargement des données...")
 
         if let path = Bundle.main.path(forResource: "restaurants", ofType: "xml") {
 
@@ -619,7 +620,7 @@ class UserData: NSObject, CLLocationManagerDelegate {
         }
     }
 
-    func loadComments(from restaurant: Restaurant) {
+    func loadComments(from restaurant: Restaurant, completion :  @escaping () -> Void ) {
 
         if let url = restaurant.absolute_url {
 
@@ -644,9 +645,11 @@ class UserData: NSObject, CLLocationManagerDelegate {
 
                         Debug.log(object: "Decompression XML : OK")
 
-                        print("resultat = \(decompressedXML)")
+                        //print("resultat = \(decompressedXML)")
 
-                        self.parseHtmlCommentPage(html: decompressedXML)
+                        self.parseHtmlCommentPage(html: decompressedXML, restaurant: restaurant)
+
+                        completion()
 
                     }
                 }
@@ -656,19 +659,21 @@ class UserData: NSObject, CLLocationManagerDelegate {
 
     }
 
-    func parseHtmlCommentPage(html: String) {
+    func parseHtmlCommentPage(html: String, restaurant: Restaurant) {
 
         Debug.log(object: "Func[parseXMLCommentPage]")
 
-        let indexStartComment = html.localizedStandardRange(of: "<div id=\"comments\" class=\"comments-area\">")
+        //let indexStartComment = html.localizedStandardRange(of: "<div id=\"comments\" class=\"comments-area\">")
 
-        let indexEndComment = html.localizedStandardRange(of: "<!-- #comments -->")
+        //let indexEndComment = html.localizedStandardRange(of: "<!-- #comments -->")
 
-        print("start = \(indexStartComment) end = \(indexEndComment)")
+        //print("start = \(indexStartComment) end = \(indexEndComment)")
 
         if let doc = Kanna.HTML(html : html, encoding: String.Encoding.utf8) {
 
             // Search for nodes by XPath
+
+            let entityComment =  NSEntityDescription.entity(forEntityName: "Comment", in: self.managedContext)
 
             for article in doc.xpath("//article") {
 
@@ -676,18 +681,48 @@ class UserData: NSObject, CLLocationManagerDelegate {
 
                 if let _nouvel_identifiant = identifiant {
 
-                    let auteur = doc.xpath("//article[contains(@id,'\(_nouvel_identifiant)')]/div/h3").first?.text
+                    print("news comment 0")
 
-                    let time = doc.xpath("//article[contains(@id,'\(_nouvel_identifiant)')]/div/time").first?.text
+                    if let new_comment = (NSManagedObject(entity: entityComment!, insertInto: self.managedContext) as? Comment) {
 
-                    let (contentComment) = doc.xpath("//article[contains(@id,'\(_nouvel_identifiant)')]/div/p").first?.text
+                        print("news comment")
 
+                        let author = doc.xpath("//article[contains(@id,'\(_nouvel_identifiant)')]/div/h3").first?.text
+
+                        let time = doc.xpath("//article[contains(@id,'\(_nouvel_identifiant)')]/div/time").first?.text
+
+                        let contentComment = doc.xpath("//article[contains(@id,'\(_nouvel_identifiant)')]/div/p").first?.text
+
+                        new_comment.time = time
+                        new_comment.author = author
+                        new_comment.content = contentComment
+
+                        restaurant.addComment(newComment: new_comment)
+
+                        new_comment.restaurant =  restaurant
+
+                    }
                 }
             }
 
-            //let note = doc.xpath("//img[contains(@src,'https://vegoresto.fr/wp-content/plugins/wp-postratings/images/stars/rating_on.gif')]").first?["title"]
+            var numberStars: Double = Double(html.countInstances(of: "https://vegoresto.fr/wp-content/plugins/wp-postratings/images/stars/rating_on.gif"))
 
-            //print("note = \(note)")
+            if html.countInstances(of: "https://vegoresto.fr/wp-content/plugins/wp-postratings/images/stars/rating_half.gif") >= 1 {
+
+                numberStars = numberStars + 0.5
+            }
+
+            restaurant.rating = NSNumber(value: numberStars)
+
+            do {
+
+                try self.managedContext.save()
+
+            } catch _ {
+
+                Debug.log(object: "erreur save managedContext")
+
+            }
 
         }
 
@@ -715,8 +750,23 @@ extension String {
             return  nil
         }
     }
+
     var html2String: String {
         return html2AttributedString?.string ?? ""
+    }
+
+    func countInstances(of stringToFind: String) -> Int {
+            var stringToSearch = self
+            var count = 0
+            repeat {
+                guard let foundRange = stringToSearch.range(of: stringToFind, options: .diacriticInsensitive)
+                    else { break }
+                stringToSearch = stringToSearch.replacingCharacters(in: foundRange, with: "")
+                count += 1
+
+            } while (true)
+
+            return count
     }
 
 }

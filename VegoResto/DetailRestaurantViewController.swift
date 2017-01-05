@@ -48,11 +48,21 @@ class DetailRestaurantViewController: UIViewController {
     @IBOutlet weak var varIB_scroll: UIScrollView?
     @IBOutlet weak var varIB_image_presentation: UIImageView?
 
+    @IBOutlet weak var varIB_image_rating_1: UIImageView?
+    @IBOutlet weak var varIB_image_rating_2: UIImageView?
+    @IBOutlet weak var varIB_image_rating_3: UIImageView?
+    @IBOutlet weak var varIB_image_rating_4: UIImageView?
+    @IBOutlet weak var varIB_image_rating_5: UIImageView?
+
     @IBOutlet weak var varIB_button_maps: UIButton?
     @IBOutlet weak var varIB_button_phone: UIButton?
     @IBOutlet weak var varIB_button_mail: UIButton?
     @IBOutlet weak var varIB_button_website: UIButton?
     @IBOutlet weak var varIB_button_facebook: UIButton?
+
+    @IBOutlet weak var varIB_button_comment: UIButton?
+    @IBOutlet weak var varIB_label_number_comment: UILabel?
+    @IBOutlet weak var varIB_activity_indicator: UIActivityIndicatorView?
 
     var current_restaurant: Restaurant?
 
@@ -145,9 +155,36 @@ class DetailRestaurantViewController: UIViewController {
 
         }
 
-        if let restaurant = self.current_restaurant {
-            UserData.sharedInstance.loadComments(from: restaurant )
+        self.varIB_activity_indicator?.isHidden = false
+        self.varIB_button_comment?.isHidden = true
+        self.varIB_activity_indicator?.startAnimating()
+
+        if ((self.current_restaurant?.rating) != nil) {
+
+            self.updateRatingImage()
+            self.updateLabelComment()
+
         }
+
+        if let restaurant = self.current_restaurant {
+
+            UserData.sharedInstance.loadComments(from: restaurant, completion : {
+
+                self.updateRatingImage()
+                self.updateLabelComment()
+
+                self.varIB_activity_indicator?.stopAnimating()
+
+                UIView.animate(withDuration: 0.5, animations: {
+
+                    self.varIB_activity_indicator?.isHidden = true
+                    self.varIB_button_comment?.isHidden = false
+
+                })
+            })
+
+        }
+
         // Do any additional setup after loading the view.
     }
 
@@ -316,6 +353,85 @@ class DetailRestaurantViewController: UIViewController {
             }
 
         }
+    }
+
+    func updateLabelComment() {
+
+        if let nbComment = self.current_restaurant?.getCommentsAsArray()?.count {
+
+            if nbComment > 0 {
+            self.varIB_label_number_comment?.text = "Tous les avis [\(nbComment)]"
+            } else {
+                self.varIB_label_number_comment?.text = "Aucun avis pour le moment"
+            }
+
+        } else {
+
+            self.varIB_label_number_comment?.text = "Aucun avis pour le moment"
+
+        }
+    }
+
+    func updateRatingImage() {
+
+        if let rating = self.current_restaurant?.rating?.doubleValue {
+
+            if rating == 0.5 {
+                self.varIB_image_rating_1?.image = Asset.imgFavorisStarHalf.image
+            } else if rating > 0.5 {
+                self.varIB_image_rating_1?.image = Asset.imgFavorisStarOn.image
+            } else {
+                self.varIB_image_rating_1?.image = Asset.imgFavorisStarOff.image
+            }
+
+            if rating == 1.5 {
+                self.varIB_image_rating_2?.image = Asset.imgFavorisStarHalf.image
+            } else if rating > 1.5 {
+                self.varIB_image_rating_2?.image = Asset.imgFavorisStarOn.image
+            } else {
+                self.varIB_image_rating_2?.image = Asset.imgFavorisStarOff.image
+            }
+
+            if rating == 2.5 {
+                self.varIB_image_rating_3?.image = Asset.imgFavorisStarHalf.image
+            } else if rating > 2.5 {
+                self.varIB_image_rating_3?.image = Asset.imgFavorisStarOn.image
+            } else {
+                self.varIB_image_rating_3?.image = Asset.imgFavorisStarOff.image
+            }
+
+            if rating == 3.5 {
+                self.varIB_image_rating_4?.image = Asset.imgFavorisStarHalf.image
+            } else if rating > 3.5 {
+                self.varIB_image_rating_4?.image = Asset.imgFavorisStarOn.image
+            } else {
+                self.varIB_image_rating_4?.image = Asset.imgFavorisStarOff.image
+            }
+
+            if rating == 4.5 {
+                self.varIB_image_rating_5?.image = Asset.imgFavorisStarHalf.image
+            } else if rating > 4.5 {
+                self.varIB_image_rating_5?.image = Asset.imgFavorisStarOn.image
+            } else {
+                self.varIB_image_rating_5?.image = Asset.imgFavorisStarOff.image
+            }
+
+        }
+
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+
+        if segue.identifier == "segue_to_comments" {
+
+            if let destination: TableCommentsViewController = segue.destination as? TableCommentsViewController {
+
+                destination.comments = self.current_restaurant?.getCommentsAsArray() ?? []
+
+            }
+
+        }
+
     }
 
 }

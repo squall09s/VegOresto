@@ -29,6 +29,7 @@ extension Restaurant {
     @NSManaged var website: String?    //ok
     @NSManaged var montant_moyen: String?    //ok
     @NSManaged var categoriesCulinaire: NSSet?    //ok
+    @NSManaged var comments: NSSet?    //ok
     @NSManaged var moyens_de_paiement: String?    //ok
     @NSManaged var animaux_bienvenus: NSNumber?
     @NSManaged var favoris: NSNumber    //ok
@@ -36,6 +37,7 @@ extension Restaurant {
     @NSManaged var ambiance: String?    //ok
     @NSManaged var image: String?
     @NSManaged var mail: String?    //ok
+    @NSManaged var rating: NSNumber?
 
     @NSManaged var h_lundi: String?    //ok
     @NSManaged var h_mardi: String?    //ok

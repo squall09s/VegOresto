@@ -20,6 +20,10 @@
 		391D6D7C1D7060A50023733E /* ParametresViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391D6D7B1D7060A50023733E /* ParametresViewController.swift */; };
 		3939F3921D6B9889006786D6 /* olivier_01.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3939F3911D6B9889006786D6 /* olivier_01.ttf */; };
 		3939F3941D6B98B8006786D6 /* ufonts.com_urw-gothic-l-book.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3939F3931D6B98B8006786D6 /* ufonts.com_urw-gothic-l-book.ttf */; };
+		39610F511E1DB62A005F7053 /* TableCommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39610F501E1DB62A005F7053 /* TableCommentsViewController.swift */; };
+		39610F531E1DB6C1005F7053 /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39610F521E1DB6C1005F7053 /* CommentTableViewCell.swift */; };
+		39610F561E1DBF4A005F7053 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39610F541E1DBF4A005F7053 /* Comment.swift */; };
+		39610F571E1DBF4A005F7053 /* Comment+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39610F551E1DBF4A005F7053 /* Comment+CoreDataProperties.swift */; };
 		396BD9751CAE62670071DF07 /* DetailRestaurantViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396BD9741CAE62670071DF07 /* DetailRestaurantViewController.swift */; };
 		396BD97E1CAEB8410071DF07 /* Constantes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396BD97D1CAEB8410071DF07 /* Constantes.swift */; };
 		396BD9801CAEB8640071DF07 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396BD97F1CAEB8640071DF07 /* ColorExtension.swift */; };
@@ -66,6 +70,10 @@
 		391D6D7B1D7060A50023733E /* ParametresViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParametresViewController.swift; sourceTree = "<group>"; };
 		3939F3911D6B9889006786D6 /* olivier_01.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = olivier_01.ttf; sourceTree = "<group>"; };
 		3939F3931D6B98B8006786D6 /* ufonts.com_urw-gothic-l-book.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ufonts.com_urw-gothic-l-book.ttf"; sourceTree = "<group>"; };
+		39610F501E1DB62A005F7053 /* TableCommentsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableCommentsViewController.swift; sourceTree = "<group>"; };
+		39610F521E1DB6C1005F7053 /* CommentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
+		39610F541E1DBF4A005F7053 /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Comment.swift; path = NSManagedObject/Comment.swift; sourceTree = "<group>"; };
+		39610F551E1DBF4A005F7053 /* Comment+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Comment+CoreDataProperties.swift"; path = "NSManagedObject/Comment+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		396BD9741CAE62670071DF07 /* DetailRestaurantViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailRestaurantViewController.swift; sourceTree = "<group>"; };
 		396BD97D1CAEB8410071DF07 /* Constantes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constantes.swift; sourceTree = "<group>"; };
 		396BD97F1CAEB8640071DF07 /* ColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
@@ -179,6 +187,8 @@
 				396BD9741CAE62670071DF07 /* DetailRestaurantViewController.swift */,
 				391D6D7B1D7060A50023733E /* ParametresViewController.swift */,
 				39848B071CB4231300D718FD /* NavigationAccueilViewController.swift */,
+				39610F501E1DB62A005F7053 /* TableCommentsViewController.swift */,
+				39610F521E1DB6C1005F7053 /* CommentTableViewCell.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -214,6 +224,8 @@
 			children = (
 				398857E81CC2BA1000B05F64 /* Restaurant+CoreDataProperties.swift */,
 				398857E91CC2BA1000B05F64 /* Restaurant.swift */,
+				39610F541E1DBF4A005F7053 /* Comment.swift */,
+				39610F551E1DBF4A005F7053 /* Comment+CoreDataProperties.swift */,
 				398857E41CC2B97600B05F64 /* CategorieCulinaire+CoreDataProperties.swift */,
 				398857E51CC2B97600B05F64 /* CategorieCulinaire.swift */,
 			);
@@ -454,15 +466,18 @@
 				398AA7E51D17F90600FA7E0A /* LGSideMenuController.m in Sources */,
 				39848B081CB4231300D718FD /* NavigationAccueilViewController.swift in Sources */,
 				391D6D7C1D7060A50023733E /* ParametresViewController.swift in Sources */,
+				39610F511E1DB62A005F7053 /* TableCommentsViewController.swift in Sources */,
 				398857E61CC2B97600B05F64 /* CategorieCulinaire+CoreDataProperties.swift in Sources */,
 				390909DF1DCB3E52005F77CB /* FBAnnotation.swift in Sources */,
 				398857EA1CC2BA1000B05F64 /* Restaurant+CoreDataProperties.swift in Sources */,
+				39610F531E1DB6C1005F7053 /* CommentTableViewCell.swift in Sources */,
 				398857EB1CC2BA1000B05F64 /* Restaurant.swift in Sources */,
 				396BD97E1CAEB8410071DF07 /* Constantes.swift in Sources */,
 				398AA7E61D17F90600FA7E0A /* MenuLateral.swift in Sources */,
 				39C50EFD1CC8D9670019FA2B /* Storyboards.swift in Sources */,
 				390909E11DCB3E52005F77CB /* FBAnnotationClusterView.swift in Sources */,
 				390909E01DCB3E52005F77CB /* FBAnnotationCluster.swift in Sources */,
+				39610F571E1DBF4A005F7053 /* Comment+CoreDataProperties.swift in Sources */,
 				39968D471CABFFBB0085C61F /* VegoResto.xcdatamodeld in Sources */,
 				39EC7FF61CAC1F9F002AD862 /* UserData.swift in Sources */,
 				398AA7E71D17F90600FA7E0A /* UIViewControllerExtension.swift in Sources */,
@@ -476,6 +491,7 @@
 				398857E71CC2B97600B05F64 /* CategorieCulinaire.swift in Sources */,
 				39C50EFC1CC8D9670019FA2B /* Images.swift in Sources */,
 				396BD9751CAE62670071DF07 /* DetailRestaurantViewController.swift in Sources */,
+				39610F561E1DBF4A005F7053 /* Comment.swift in Sources */,
 				396BD9801CAEB8640071DF07 /* ColorExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

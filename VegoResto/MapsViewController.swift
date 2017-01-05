@@ -209,6 +209,9 @@ class MapsViewController: UIViewController, MKMapViewDelegate {
                 }
 
             }
+        default :
+            break
+
         }
 
     }

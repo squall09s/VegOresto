@@ -47,6 +47,7 @@ enum Asset: String {
   case imgFavorisOn = "img_favoris_on"
   case imgFavorisOrangeOff = "img_favoris_orange_off"
   case imgFavorisOrangeOn = "img_favoris_orange_on"
+  case imgFavorisStarHalf = "img_favoris_star_half"
   case imgFavorisStarOff = "img_favoris_star_off"
   case imgFavorisStarOn = "img_favoris_star_on"
   case imgFavorisWh = "img_favoris_wh"

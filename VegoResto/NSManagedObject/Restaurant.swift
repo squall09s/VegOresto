@@ -31,6 +31,21 @@ class Restaurant: NSManagedObject {
 
     }
 
+    func addComment(newComment: Comment) {
+
+        let comments = self.mutableSetValue(forKey: "comments")
+        comments.add(newComment)
+
+    }
+
+    func getCommentsAsArray() -> [Comment]? {
+
+        var tmpComments: [Comment]?
+        tmpComments = (self.comments?.allObjects) as? [Comment]
+
+        return tmpComments
+    }
+
     func getCategoriesCulinaireAsArray() -> [CategorieCulinaire]? {
 
         var tmpCategorieCulinaires: [CategorieCulinaire]?
