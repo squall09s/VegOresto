@@ -72,6 +72,8 @@ class DetailRestaurantViewController: UIViewController {
 
         if let _current_restaurant =  self.current_restaurant {
 
+            print("ident = \(_current_restaurant.identifier)")
+
             self.varIB_label_name?.text = _current_restaurant.name
             self.varIB_label_resume?.text = _current_restaurant.resume
             self.varIB_label_ambiance?.text = _current_restaurant.ambiance
@@ -99,12 +101,12 @@ class DetailRestaurantViewController: UIViewController {
                 if let catName = cat.name {
 
                     if i > 0 {
-                        categoriesCulinaireString =  categoriesCulinaireString + ", "
+                        categoriesCulinaireString += ", "
                     }
 
-                    categoriesCulinaireString = categoriesCulinaireString + catName
+                    categoriesCulinaireString += catName
 
-                    i = i + 1
+                    i += 1
 
                 }
             }
@@ -159,28 +161,35 @@ class DetailRestaurantViewController: UIViewController {
         self.varIB_button_comment?.isHidden = true
         self.varIB_activity_indicator?.startAnimating()
 
-        if ((self.current_restaurant?.rating) != nil) {
+        self.varIB_activity_indicator?.isHidden = true
+        self.varIB_button_comment?.isHidden = false
+
+        WebRequestManager.shared.listComment(restaurant : self.current_restaurant, success: { (_) in
 
             self.updateRatingImage()
             self.updateLabelComment()
 
-        }
+            self.varIB_activity_indicator?.stopAnimating()
 
-        if let restaurant = self.current_restaurant {
+            UIView.animate(withDuration: 0.5, animations: {
 
-            UserData.sharedInstance.loadComments(from: restaurant, completion : {
+                self.varIB_activity_indicator?.isHidden = true
+                self.varIB_button_comment?.isHidden = false
 
-                self.updateRatingImage()
-                self.updateLabelComment()
+            })
 
-                self.varIB_activity_indicator?.stopAnimating()
+        }) { (_) in
 
-                UIView.animate(withDuration: 0.5, animations: {
+            self.updateRatingImage()
+            self.updateLabelComment()
 
-                    self.varIB_activity_indicator?.isHidden = true
-                    self.varIB_button_comment?.isHidden = false
+            self.varIB_activity_indicator?.stopAnimating()
 
-                })
+            UIView.animate(withDuration: 0.5, animations: {
+
+                self.varIB_activity_indicator?.isHidden = true
+                self.varIB_button_comment?.isHidden = false
+
             })
 
         }

@@ -14,6 +14,12 @@ class CommentTableViewCell: UITableViewCell {
 
     @IBOutlet var varIB_subtitle_label: UILabel!
 
+    @IBOutlet var varIB_starRating0: UIImageView?
+    @IBOutlet var varIB_starRating1: UIImageView?
+    @IBOutlet var varIB_starRating2: UIImageView?
+    @IBOutlet var varIB_starRating3: UIImageView?
+    @IBOutlet var varIB_starRating4: UIImageView?
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -23,6 +29,36 @@ class CommentTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+
+    func setRating(ratting: Int?) {
+
+        self.varIB_starRating0?.image = UIImage(named: "img_favoris_star_off")
+        self.varIB_starRating1?.image = UIImage(named: "img_favoris_star_off")
+        self.varIB_starRating2?.image = UIImage(named: "img_favoris_star_off")
+        self.varIB_starRating3?.image = UIImage(named: "img_favoris_star_off")
+        self.varIB_starRating4?.image = UIImage(named: "img_favoris_star_off")
+
+        if let _ratting = ratting {
+
+            if _ratting > 0 {
+                    self.varIB_starRating0?.image = UIImage(named: "img_favoris_star_on")
+            }
+            if _ratting > 1 {
+                self.varIB_starRating1?.image = UIImage(named: "img_favoris_star_on")
+            }
+            if _ratting > 2 {
+                self.varIB_starRating2?.image = UIImage(named: "img_favoris_star_on")
+            }
+            if _ratting > 3 {
+                self.varIB_starRating3?.image = UIImage(named: "img_favoris_star_on")
+            }
+            if _ratting > 4 {
+                self.varIB_starRating4?.image = UIImage(named: "img_favoris_star_on")
+            }
+
+        }
+
     }
 
 }

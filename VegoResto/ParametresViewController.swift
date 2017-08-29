@@ -40,7 +40,7 @@ class ParametresViewController: UIViewController {
 
                     if let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
 
-                        sujet2 = sujet2 + "[" + version + "]"
+                        sujet2 += "[" + version + "]"
 
                     }
 

@@ -122,7 +122,7 @@ class UserData: NSObject, CLLocationManagerDelegate {
 
     func parseXML(xml: String) {
 
-        Debug.log(object: "Func[parseXML]")
+        //Debug.log(object: "Func[parseXML] \(xml)")
 
         var nbObjetCrées = 0
 
@@ -131,17 +131,21 @@ class UserData: NSObject, CLLocationManagerDelegate {
             let entityRestaurant =  NSEntityDescription.entity(forEntityName: "Restaurant", in: self.managedContext)
             let entityCategorieCulinaire =  NSEntityDescription.entity(forEntityName: "CategorieCulinaire", in: self.managedContext)
 
-            let xml = SWXMLHash.parse(xml)
+            let xml_parsed = SWXMLHash.parse(xml)
 
-            for elem in xml["root"]["item"] {
+            //print("xml = \(xml_parsed)")
 
-                // récupération des éléments dans le XML)
+            for elem in xml_parsed["root"]["item"] {
+
+                // récupération des éléments dans le XML
 
                 var restaurant: Restaurant? = nil
 
                 let identifer = elem["id"].element?.text
 
                 // si le restaurant existe déjà je le charge dans l'objet courrant
+                //print("insert resto : \(identifer)")
+
                 if let _identifer = identifer {
 
                     if let _identifier_to_int = Int(_identifer) {
@@ -184,6 +188,9 @@ class UserData: NSObject, CLLocationManagerDelegate {
 
                 restaurant?.image = elem["image"].element?.text
 
+                restaurant?.comments = NSSet()
+                restaurant?.rating = NSNumber(value: arc4random() % 5 )
+
                 var dicoDays = [ String: String ]()
 
                 for elemHoraire in elem["horaires"]["h"] {
@@ -191,27 +198,27 @@ class UserData: NSObject, CLLocationManagerDelegate {
                     if let day_str = elemHoraire.element?.attribute(by: "day")?.text,
                         let start_str = elemHoraire.element?.attribute(by: "s")?.text,
                         let end_str = elemHoraire.element?.attribute(by: "e")?.text /*,
-                         let text_str = elemHoraire.element?.text */{
+                     let text_str = elemHoraire.element?.text */{
 
-                            if start_str.characters.count == 4 && end_str.characters.count == 4 {
+                        if start_str.characters.count == 4 && end_str.characters.count == 4 {
 
-                                var start_str_updated = start_str
-                                start_str_updated.insert("h", at: start_str_updated.index(start_str_updated.startIndex, offsetBy: 2)  )
+                            var start_str_updated = start_str
+                            start_str_updated.insert("h", at: start_str_updated.index(start_str_updated.startIndex, offsetBy: 2)  )
 
-                                var end_str_updated = end_str
-                                end_str_updated.insert("h", at: end_str_updated.index(end_str_updated.startIndex, offsetBy: 2)  )
+                            var end_str_updated = end_str
+                            end_str_updated.insert("h", at: end_str_updated.index(end_str_updated.startIndex, offsetBy: 2)  )
 
-                                var infoDay = "De " + start_str_updated + " à " + end_str_updated
+                            var infoDay = "De " + start_str_updated + " à " + end_str_updated
 
-                                if let previousInfoDay = dicoDays[day_str] {
+                            if let previousInfoDay = dicoDays[day_str] {
 
-                                    infoDay = previousInfoDay + " & " + infoDay
-
-                                }
-
-                                dicoDays[day_str] = infoDay
+                                infoDay = previousInfoDay + " & " + infoDay
 
                             }
+
+                            dicoDays[day_str] = infoDay
+
+                        }
 
                     }
                 }
@@ -242,7 +249,6 @@ class UserData: NSObject, CLLocationManagerDelegate {
                 }
 
                 restaurant?.categoriesCulinaire = NSSet()
-                restaurant?.comments = NSSet()
 
                 if let categories_culinaires = elem["categories_culinaires"].element?.text {
 
@@ -270,7 +276,7 @@ class UserData: NSObject, CLLocationManagerDelegate {
 
                 }
 
-                nbObjetCrées = nbObjetCrées + 1
+                nbObjetCrées += 1
             }
 
             Debug.log(object: "Parser XML : \(nbObjetCrées) element(s)")
@@ -291,12 +297,12 @@ class UserData: NSObject, CLLocationManagerDelegate {
 
             //} else {
 
-                SwiftSpinner.hide()
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "CHARGEMENT_TERMINE"), object: nil)
+            SwiftSpinner.hide()
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "CHARGEMENT_TERMINE"), object: nil)
 
-                Debug.log(object: "fin chargement des données depuis URL")
+            Debug.log(object: "fin chargement des données depuis URL")
 
-                self.saveSynchroDate()
+            self.saveSynchroDate()
 
             //}
 
@@ -385,12 +391,12 @@ class UserData: NSObject, CLLocationManagerDelegate {
 
                         if i > 0 {
 
-                            resultat = resultat + ", "
+                            resultat += ", "
                         }
 
-                        resultat = resultat + val
+                        resultat += val
 
-                        i = i + 1
+                        i += 1
 
                     } else {
 
@@ -475,12 +481,12 @@ class UserData: NSObject, CLLocationManagerDelegate {
 
                         if i > 0 {
 
-                            resultat = resultat + ", "
+                            resultat += ", "
                         }
 
-                        resultat = resultat + val
+                        resultat += val
 
-                        i = i + 1
+                        i += 1
 
                     } else {
 
@@ -530,12 +536,12 @@ class UserData: NSObject, CLLocationManagerDelegate {
 
                         if i > 0 {
 
-                            resultat = resultat + ", "
+                            resultat += ", "
                         }
 
-                        resultat = resultat + val
+                        resultat += val
 
-                        i = i + 1
+                        i += 1
 
                     } else {
 
@@ -567,6 +573,7 @@ class UserData: NSObject, CLLocationManagerDelegate {
 
     func getRestaurantWithIdentifier(identifier: Int) -> Restaurant? {
 
+        print("getRestaurantWithIdentifier \(identifier)")
         let fetchRequest: NSFetchRequest<Restaurant> = NSFetchRequest(entityName: "Restaurant")
         let predicate: NSPredicate = NSPredicate(format: "identifier = %@", String(identifier) )
         fetchRequest.predicate = predicate
@@ -577,30 +584,31 @@ class UserData: NSObject, CLLocationManagerDelegate {
 
             if results.count > 0 {
 
+                print("already exist")
                 return results[0]
             }
 
         } catch _ {
 
         }
-
+        print("resto not found")
         return nil
 
     }
 
     func loadDataOnVegorestoURL() {
 
-        Debug.log(object: "Téléchargement page : https://vegoresto.fr/restos-fichier-xml/")
+        Debug.log(object: "Téléchargement page : \(URL_SERVEUR())/restos-fichier-xml/")
 
-        Alamofire.request("https://vegoresto.fr/restos-fichier-xml/").responseData { (response) in
+        Alamofire.request(URL_SERVEUR() + "/restos-fichier-xml/").authenticate(user: "pp", password: "pp").responseData { (response) in
 
-            Debug.log(object: "Debut téléchargement page : https://vegoresto.fr/restos-fichier-xml/")
+            Debug.log(object: "Debut téléchargement page : \(URL_SERVEUR())/restos-fichier-xml/")
 
             switch response.result {
             case .success:
                 Debug.log(object: "Validation Successful")
             case .failure(let error):
-                Debug.log(object: error)
+                Debug.log(object: "error validation \(error)")
             }
 
             if let dataCompressed = response.data {
@@ -624,36 +632,36 @@ class UserData: NSObject, CLLocationManagerDelegate {
 
         if let url = restaurant.absolute_url {
 
-        Debug.log(object: "Téléchargement page : \(url)")
+            Debug.log(object: "Téléchargement page : \(url)")
 
-        Alamofire.request(url).responseData { (response) in
+            Alamofire.request(url).authenticate(user: "pp", password: "pp").responseData { (response) in
 
-            Debug.log(object: "Debut téléchargement page : \(url)")
+                Debug.log(object: "Debut téléchargement page : \(url)")
 
-            switch response.result {
-            case .success:
-                Debug.log(object: "Validation Successful")
-            case .failure(let error):
-                Debug.log(object: "Faillure loadComments\(error)")
-            }
+                switch response.result {
+                case .success:
+                    Debug.log(object: "Validation Successful")
+                case .failure(let error):
+                    Debug.log(object: "Faillure loadComments\(error)")
+                }
 
-            if let dataCompressed = response.data {
+                if let dataCompressed = response.data {
 
-                if let decompressedData = NSData(data: dataCompressed).gunzipped() {
+                    if let decompressedData = NSData(data: dataCompressed).gunzipped() {
 
-                    if let decompressedXML: String = String(data: decompressedData as Data, encoding: String.Encoding.utf8) {
+                        if let decompressedXML: String = String(data: decompressedData as Data, encoding: String.Encoding.utf8) {
 
-                        Debug.log(object: "Decompression XML : OK")
+                            Debug.log(object: "Decompression XML : OK")
 
-                        //print("resultat = \(decompressedXML)")
+                            //print("resultat = \(decompressedXML)")
 
-                        self.parseHtmlCommentPage(html: decompressedXML, restaurant: restaurant)
+                            self.parseHtmlCommentPage(html: decompressedXML, restaurant: restaurant)
 
-                        completion()
+                            completion()
 
+                        }
                     }
                 }
-            }
             }
         }
 
@@ -705,11 +713,11 @@ class UserData: NSObject, CLLocationManagerDelegate {
                 }
             }
 
-            var numberStars: Double = Double(html.countInstances(of: "https://vegoresto.fr/wp-content/plugins/wp-postratings/images/stars/rating_on.gif"))
+            var numberStars: Double = Double(html.countInstances(of: URL_SERVEUR() + "/wp-content/plugins/wp-postratings/images/stars/rating_on.gif"))
 
-            if html.countInstances(of: "https://vegoresto.fr/wp-content/plugins/wp-postratings/images/stars/rating_half.gif") >= 1 {
+            if html.countInstances(of: URL_SERVEUR() + "/wp-content/plugins/wp-postratings/images/stars/rating_half.gif") >= 1 {
 
-                numberStars = numberStars + 0.5
+                numberStars += 0.5
             }
 
             restaurant.rating = NSNumber(value: numberStars)
@@ -756,17 +764,17 @@ extension String {
     }
 
     func countInstances(of stringToFind: String) -> Int {
-            var stringToSearch = self
-            var count = 0
-            repeat {
-                guard let foundRange = stringToSearch.range(of: stringToFind, options: .diacriticInsensitive)
-                    else { break }
-                stringToSearch = stringToSearch.replacingCharacters(in: foundRange, with: "")
-                count += 1
+        var stringToSearch = self
+        var count = 0
+        repeat {
+            guard let foundRange = stringToSearch.range(of: stringToFind, options: .diacriticInsensitive)
+                else { break }
+            stringToSearch = stringToSearch.replacingCharacters(in: foundRange, with: "")
+            count += 1
 
-            } while (true)
+        } while (true)
 
-            return count
+        return count
     }
 
 }

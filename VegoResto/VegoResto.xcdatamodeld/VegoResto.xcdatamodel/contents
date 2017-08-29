@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11759" systemVersion="15F34" minimumToolsVersion="Xcode 7.3" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="12141" systemVersion="16G29" minimumToolsVersion="Xcode 7.3" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
     <entity name="CategorieCulinaire" representedClassName="CategorieCulinaire" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="restaurants" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Restaurant" inverseName="categoriesCulinaire" inverseEntity="Restaurant" syncable="YES"/>
@@ -7,7 +7,9 @@
     <entity name="Comment" representedClassName="Comment" syncable="YES">
         <attribute name="author" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="content" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="rating" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="time" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="childsComments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Comment" syncable="YES"/>
         <relationship name="restaurant" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Restaurant" inverseName="comments" inverseEntity="Restaurant" syncable="YES"/>
     </entity>
     <entity name="Restaurant" representedClassName="Restaurant" syncable="YES">
@@ -45,7 +47,7 @@
     </entity>
     <elements>
         <element name="CategorieCulinaire" positionX="-1127" positionY="369" width="128" height="75"/>
+        <element name="Comment" positionX="-1172" positionY="90" width="128" height="133"/>
         <element name="Restaurant" positionX="-1469" positionY="18" width="128" height="508"/>
-        <element name="Comment" positionX="-1226" positionY="153" width="128" height="103"/>
     </elements>
 </model>

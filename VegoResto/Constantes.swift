@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 /// Device check
 
@@ -53,4 +54,42 @@ let COLOR_GRIS_BACKGROUND: UIColor = UIColor(hexString: "EDEDED")
 let COLOR_GRIS_FONCÉ: UIColor = UIColor(hexString: "898989")
 
 let KEY_LAST_SYNCHRO = "DateLastShynchro"
-let INTERVAL_REFRESH_DATA: Int = 24*60*60*3
+let INTERVAL_REFRESH_DATA: Int = 2 //24*60*60*3
+
+private let URL_SERVEUR_PROD = "https://vegoresto.fr"
+private let URL_SERVEUR_PREPROD = "https://vegoresto.fr"
+
+private let HTTPHEADER_PREPROD = [ "____": "_____"]
+private let HTTPHEADER_PROD = SessionManager.defaultHTTPHeaders
+
+func URL_SERVEUR() -> String {
+
+    if env_var_exist(name: "PREPROD") {
+        return URL_SERVEUR_PREPROD
+    } else {
+        return URL_SERVEUR_PROD
+    }
+
+}
+
+func HTTPHEADER() -> [String:String] {
+
+    if env_var_exist(name: "PREPROD") {
+        return HTTPHEADER_PREPROD
+    } else {
+        return HTTPHEADER_PROD
+    }
+
+}
+
+func env_var_exist(name: String) -> Bool {
+
+    let dic = ProcessInfo.processInfo.environment
+
+    if dic[name] != nil {
+
+        return true
+    }
+
+    return false
+}

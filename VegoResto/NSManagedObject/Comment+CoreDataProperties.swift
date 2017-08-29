@@ -17,7 +17,9 @@ extension Comment {
     @NSManaged var content: String?
     @NSManaged var time: String?
     @NSManaged var author: String?
+    @NSManaged var rating: NSNumber?
 
     @NSManaged var restaurant: Restaurant?
+    @NSManaged var childsComments: NSSet?
 
 }

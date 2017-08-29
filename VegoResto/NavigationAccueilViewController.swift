@@ -77,11 +77,13 @@ class NavigationAccueilViewController: UIViewController {
                 //print("aucune donnée -> chargement des données locale")
 
                 UserData.sharedInstance.loadLocalData()
-            }
+
+            } else {
 
             //print(" chargement des données distante")
 
-            UserData.sharedInstance.loadDataOnVegorestoURL()
+                UserData.sharedInstance.loadDataOnVegorestoURL()
+            }
 
         }
 

@@ -55,6 +55,15 @@ struct StoryboardScene {
       return vc
     }
 
+    case addCommentPopUpScene = "AddCommentPopUp"
+    static func instantiateAddCommentPopUp() -> AddCommentPopUp {
+      guard let vc = StoryboardScene.Main.addCommentPopUpScene.viewController() as? AddCommentPopUp
+      else {
+        fatalError("ViewController 'AddCommentPopUp' is not of the expected class AddCommentPopUp.")
+      }
+      return vc
+    }
+
     case mainViewControllerScene = "MainViewController"
     static func instantiateMainViewController() -> MainViewController {
       guard let vc = StoryboardScene.Main.mainViewControllerScene.viewController() as? MainViewController

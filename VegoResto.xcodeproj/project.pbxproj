@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		37201FF01F55A25E00D7D1AB /* WebRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37201FED1F55A25E00D7D1AB /* WebRequestManager.swift */; };
+		37201FF11F55A25E00D7D1AB /* WebRequestServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37201FEE1F55A25E00D7D1AB /* WebRequestServices.swift */; };
+		37201FF21F55A25E00D7D1AB /* RequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37201FEF1F55A25E00D7D1AB /* RequestManager.swift */; };
+		375E8D471F544CE500A20276 /* AAPopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375E8D441F544CE500A20276 /* AAPopUp.swift */; };
+		375E8D481F544CE500A20276 /* AAPopUp+Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375E8D451F544CE500A20276 /* AAPopUp+Global.swift */; };
+		375E8D491F544CE500A20276 /* AAPopUp+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375E8D461F544CE500A20276 /* AAPopUp+Helper.swift */; };
+		375E8D4B1F545F7600A20276 /* AddCommentPopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375E8D4A1F545F7600A20276 /* AddCommentPopUp.swift */; };
 		390909DF1DCB3E52005F77CB /* FBAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390909D81DCB3E52005F77CB /* FBAnnotation.swift */; };
 		390909E01DCB3E52005F77CB /* FBAnnotationCluster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390909D91DCB3E52005F77CB /* FBAnnotationCluster.swift */; };
 		390909E11DCB3E52005F77CB /* FBAnnotationClusterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390909DA1DCB3E52005F77CB /* FBAnnotationClusterView.swift */; };
@@ -57,6 +64,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		37201FED1F55A25E00D7D1AB /* WebRequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebRequestManager.swift; sourceTree = "<group>"; };
+		37201FEE1F55A25E00D7D1AB /* WebRequestServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebRequestServices.swift; sourceTree = "<group>"; };
+		37201FEF1F55A25E00D7D1AB /* RequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestManager.swift; sourceTree = "<group>"; };
+		375E8D441F544CE500A20276 /* AAPopUp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AAPopUp.swift; sourceTree = "<group>"; };
+		375E8D451F544CE500A20276 /* AAPopUp+Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AAPopUp+Global.swift"; sourceTree = "<group>"; };
+		375E8D461F544CE500A20276 /* AAPopUp+Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AAPopUp+Helper.swift"; sourceTree = "<group>"; };
+		375E8D4A1F545F7600A20276 /* AddCommentPopUp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddCommentPopUp.swift; sourceTree = "<group>"; };
 		390909D81DCB3E52005F77CB /* FBAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBAnnotation.swift; sourceTree = "<group>"; };
 		390909D91DCB3E52005F77CB /* FBAnnotationCluster.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBAnnotationCluster.swift; sourceTree = "<group>"; };
 		390909DA1DCB3E52005F77CB /* FBAnnotationClusterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBAnnotationClusterView.swift; sourceTree = "<group>"; };
@@ -189,6 +203,7 @@
 				39848B071CB4231300D718FD /* NavigationAccueilViewController.swift */,
 				39610F501E1DB62A005F7053 /* TableCommentsViewController.swift */,
 				39610F521E1DB6C1005F7053 /* CommentTableViewCell.swift */,
+				375E8D4A1F545F7600A20276 /* AddCommentPopUp.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -197,6 +212,9 @@
 			isa = PBXGroup;
 			children = (
 				39EC7FF51CAC1F9F002AD862 /* UserData.swift */,
+				37201FED1F55A25E00D7D1AB /* WebRequestManager.swift */,
+				37201FEE1F55A25E00D7D1AB /* WebRequestServices.swift */,
+				37201FEF1F55A25E00D7D1AB /* RequestManager.swift */,
 				397901751CADC62900597DCD /* CoreData */,
 			);
 			name = Models;
@@ -215,6 +233,9 @@
 			isa = PBXGroup;
 			children = (
 				396BD97F1CAEB8640071DF07 /* ColorExtension.swift */,
+				375E8D441F544CE500A20276 /* AAPopUp.swift */,
+				375E8D451F544CE500A20276 /* AAPopUp+Global.swift */,
+				375E8D461F544CE500A20276 /* AAPopUp+Helper.swift */,
 			);
 			name = "Tools and Services";
 			sourceTree = "<group>";
@@ -347,7 +368,7 @@
 						CreatedOnToolsVersion = 7.3;
 						DevelopmentTeam = G9B2LM6D3L;
 						LastSwiftMigration = 0800;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.Push = {
 								enabled = 1;
@@ -449,7 +470,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -462,9 +483,11 @@
 				397D33991D18222E00BA7708 /* ListeFavorisViewController.swift in Sources */,
 				398AA7E81D17F90600FA7E0A /* MainViewController.swift in Sources */,
 				39EC80061CAD5ED2002AD862 /* RestaurantAnnotation.swift in Sources */,
+				375E8D491F544CE500A20276 /* AAPopUp+Helper.swift in Sources */,
 				39968D3F1CABFFBB0085C61F /* AppDelegate.swift in Sources */,
 				398AA7E51D17F90600FA7E0A /* LGSideMenuController.m in Sources */,
 				39848B081CB4231300D718FD /* NavigationAccueilViewController.swift in Sources */,
+				37201FF01F55A25E00D7D1AB /* WebRequestManager.swift in Sources */,
 				391D6D7C1D7060A50023733E /* ParametresViewController.swift in Sources */,
 				39610F511E1DB62A005F7053 /* TableCommentsViewController.swift in Sources */,
 				398857E61CC2B97600B05F64 /* CategorieCulinaire+CoreDataProperties.swift in Sources */,
@@ -475,18 +498,23 @@
 				396BD97E1CAEB8410071DF07 /* Constantes.swift in Sources */,
 				398AA7E61D17F90600FA7E0A /* MenuLateral.swift in Sources */,
 				39C50EFD1CC8D9670019FA2B /* Storyboards.swift in Sources */,
+				375E8D471F544CE500A20276 /* AAPopUp.swift in Sources */,
 				390909E11DCB3E52005F77CB /* FBAnnotationClusterView.swift in Sources */,
 				390909E01DCB3E52005F77CB /* FBAnnotationCluster.swift in Sources */,
 				39610F571E1DBF4A005F7053 /* Comment+CoreDataProperties.swift in Sources */,
+				37201FF11F55A25E00D7D1AB /* WebRequestServices.swift in Sources */,
 				39968D471CABFFBB0085C61F /* VegoResto.xcdatamodeld in Sources */,
 				39EC7FF61CAC1F9F002AD862 /* UserData.swift in Sources */,
 				398AA7E71D17F90600FA7E0A /* UIViewControllerExtension.swift in Sources */,
 				39EC7FF01CAC0E15002AD862 /* MapsViewController.swift in Sources */,
 				390909E51DCB3E52005F77CB /* FBQuadTreeNode.swift in Sources */,
+				37201FF21F55A25E00D7D1AB /* RequestManager.swift in Sources */,
 				39EC80041CAC4787002AD862 /* RechercheViewController.swift in Sources */,
 				399C06001CB8F86700885C0B /* ImageAnnotationView.swift in Sources */,
 				390909E41DCB3E52005F77CB /* FBQuadTree.swift in Sources */,
 				390909E21DCB3E52005F77CB /* FBBoundingBox.swift in Sources */,
+				375E8D4B1F545F7600A20276 /* AddCommentPopUp.swift in Sources */,
+				375E8D481F544CE500A20276 /* AAPopUp+Global.swift in Sources */,
 				390909E31DCB3E52005F77CB /* FBClusteringManager.swift in Sources */,
 				398857E71CC2B97600B05F64 /* CategorieCulinaire.swift in Sources */,
 				39C50EFC1CC8D9670019FA2B /* Images.swift in Sources */,
@@ -619,11 +647,14 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = G9B2LM6D3L;
 				INFOPLIST_FILE = VegoResto/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.NicolasLaurent.VegOresto;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "827956a2-5d6a-4404-93fe-86a1aa202ad4";
+				PROVISIONING_PROFILE_SPECIFIER = Dev_all_2017;
 				SWIFT_OBJC_BRIDGING_HEADER = "VegoResto/VegoResto-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -638,15 +669,15 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: nicolas laurent (G9B2LM6D3L)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				DEVELOPMENT_TEAM = G9B2LM6D3L;
 				INFOPLIST_FILE = VegoResto/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.NicolasLaurent.VegOresto;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "7616c05d-afba-4f33-a543-aab88ed8e42b";
+				PROVISIONING_PROFILE_SPECIFIER = AppStoreVegoresto;
 				SWIFT_OBJC_BRIDGING_HEADER = "VegoResto/VegoResto-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 3.0;
