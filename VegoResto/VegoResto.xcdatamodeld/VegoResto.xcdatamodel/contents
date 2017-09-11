@@ -29,8 +29,9 @@
         <attribute name="identifier" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" indexed="YES" syncable="YES"/>
         <attribute name="image" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="influence_gastronomique" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="lat" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="lon" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="isVegan" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="lat" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="lon" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="mail" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="montant_moyen" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="moyens_de_paiement" optional="YES" attributeType="String" syncable="YES"/>
@@ -46,8 +47,8 @@
         <relationship name="comments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Comment" inverseName="restaurant" inverseEntity="Comment" syncable="YES"/>
     </entity>
     <elements>
-        <element name="CategorieCulinaire" positionX="-1127" positionY="369" width="128" height="75"/>
+        <element name="CategorieCulinaire" positionX="-1127" positionY="369" width="128" height="73"/>
         <element name="Comment" positionX="-1172" positionY="90" width="128" height="133"/>
-        <element name="Restaurant" positionX="-1469" positionY="18" width="128" height="508"/>
+        <element name="Restaurant" positionX="-1469" positionY="18" width="128" height="525"/>
     </elements>
 </model>

@@ -164,9 +164,10 @@ class DetailRestaurantViewController: UIViewController {
         self.varIB_activity_indicator?.isHidden = true
         self.varIB_button_comment?.isHidden = false
 
+        self.updateRatingImage()
+
         WebRequestManager.shared.listComment(restaurant : self.current_restaurant, success: { (_) in
 
-            self.updateRatingImage()
             self.updateLabelComment()
 
             self.varIB_activity_indicator?.stopAnimating()
@@ -180,7 +181,6 @@ class DetailRestaurantViewController: UIViewController {
 
         }) { (_) in
 
-            self.updateRatingImage()
             self.updateLabelComment()
 
             self.varIB_activity_indicator?.stopAnimating()

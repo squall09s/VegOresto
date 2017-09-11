@@ -27,6 +27,9 @@ xcuserdata
 *.hmap
 *.ipa
 
+##Config
+Constantes.swift
+
 ## Playgrounds
 timeline.xctimeline
 playground.xcworkspace

@@ -40,4 +40,15 @@ class WebRequestManager {
 
     }
 
+    func listRestaurant(  success: @escaping ([Restaurant]) -> Void,
+                          failure: @escaping (Error?) -> Void) {
+
+        WebRequestServices.listRestaurant(urlPath: URL_SERVEUR() + "/wp-content/cache/full-1023.json", success: { (listRestaurants) in
+
+            success(listRestaurants)
+
+        }, failure: failure)
+
+    }
+
 }

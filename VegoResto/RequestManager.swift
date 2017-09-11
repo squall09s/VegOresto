@@ -58,13 +58,13 @@ class RequestManager: NSObject {
                 .responseObject( keyPath: keyPath,
                                  completionHandler: { (response: DataResponse<T>) -> Void in
 
-                    if response.result.isSuccess {
-                        if let data = response.result.value {
-                            completion(data)
-                        } else {
-                            failure(nil)
-                        }
-                    }
+                                    if response.result.isSuccess {
+                                        if let data = response.result.value {
+                                            completion(data)
+                                        } else {
+                                            failure(nil)
+                                        }
+                                    }
 
                 })
         }
@@ -102,6 +102,10 @@ class RequestManager: NSObject {
                 .responseArray( keyPath: keyPath,
                                 completionHandler: { (response: DataResponse<[T]>) -> Void in
 
+                                    print("response =\(response) ")
+                                    print("code =\(response.response?.statusCode) ")
+                                    print("desc =\(response.response?.description) ")
+
                                     if response.result.isSuccess {
                                         if let data = response.result.value {
                                             completion(data)
@@ -111,6 +115,48 @@ class RequestManager: NSObject {
                                     }
 
                 })
+        }
+
+        request()
+
+    }
+
+    static func doRequestList(method: HTTPMethod,
+                              path: String,
+                              parameters: Parameters? = nil,
+                              keyPath: String? = nil,
+                              completion: @escaping ([String : Any]) -> Void,
+                              failure: @escaping (Error?) -> Void) {
+
+        let urlPath: URLConvertible!
+
+        do {
+            try urlPath = (path).asURL()
+        } catch {
+
+            return
+        }
+
+        var request:() -> Void = {}
+        request = {
+
+            RequestManager.manager.request(urlPath,
+                                           method: method,
+                                           parameters: parameters,
+                                           encoding: JSONEncoding.default,
+                                           headers: HTTPHEADER()).responseJSON(completionHandler: { (dataResponse) in
+
+                                            if let result = dataResponse.result.value as? [String:Any] {
+
+                                                completion(result)
+
+                                            } else {
+
+                                                failure(nil)
+
+                                            }
+
+                                           })
         }
 
         request()

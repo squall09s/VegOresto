@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MBProgressHUD
 
 class NavigationAccueilViewController: UIViewController {
 
@@ -35,6 +36,23 @@ class NavigationAccueilViewController: UIViewController {
         self.varIB_button_tabbar_maps.backgroundColor = UIColor.clear
 
         self.varIB_contrainte_y_chevron_tabbar.constant = Device.WIDTH * 0.25 - 15
+
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+
+        WebRequestManager.shared.listRestaurant(success: { (listRestaurant) in
+
+            print("WebRequestManager.shared.listRestaurant success : \(listRestaurant)")
+            MBProgressHUD.hide(for: self.view, animated: true)
+
+            self.maps_viewController?.updateDataAfterDelay()
+            self.recherche_viewController?.updateDataAfterDelay()
+
+        }, failure: { (_) in
+
+            print("WebRequestManager.shared.listRestaurant Error")
+            MBProgressHUD.hide(for: self.view, animated: true)
+
+        })
 
     }
 
@@ -68,23 +86,6 @@ class NavigationAccueilViewController: UIViewController {
             vc.view.frame = CGRect(x : 0, y : 0, width : Device.WIDTH, height : Device.HEIGHT - HAUTEUR_HEADER_BAR - HAUTEUR_TABBAR )
 
             }
-        }
-
-        if UserData.sharedInstance.getLastUpdateData() >= INTERVAL_REFRESH_DATA {
-
-            if UserData.sharedInstance.getRestaurants().count == 0 {
-
-                //print("aucune donnée -> chargement des données locale")
-
-                UserData.sharedInstance.loadLocalData()
-
-            } else {
-
-            //print(" chargement des données distante")
-
-                UserData.sharedInstance.loadDataOnVegorestoURL()
-            }
-
         }
 
     }

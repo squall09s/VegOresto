@@ -14,6 +14,9 @@
 		375E8D481F544CE500A20276 /* AAPopUp+Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375E8D451F544CE500A20276 /* AAPopUp+Global.swift */; };
 		375E8D491F544CE500A20276 /* AAPopUp+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375E8D461F544CE500A20276 /* AAPopUp+Helper.swift */; };
 		375E8D4B1F545F7600A20276 /* AddCommentPopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375E8D4A1F545F7600A20276 /* AddCommentPopUp.swift */; };
+		37DD9C081F5DE3A1007B3E2B /* Comment+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DD9C061F5DE3A1007B3E2B /* Comment+CoreDataProperties.swift */; };
+		37DD9C091F5DE3A1007B3E2B /* Restaurant+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DD9C071F5DE3A1007B3E2B /* Restaurant+CoreDataProperties.swift */; };
+		37DD9C0A1F5DE3C9007B3E2B /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398857E91CC2BA1000B05F64 /* Restaurant.swift */; };
 		390909DF1DCB3E52005F77CB /* FBAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390909D81DCB3E52005F77CB /* FBAnnotation.swift */; };
 		390909E01DCB3E52005F77CB /* FBAnnotationCluster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390909D91DCB3E52005F77CB /* FBAnnotationCluster.swift */; };
 		390909E11DCB3E52005F77CB /* FBAnnotationClusterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390909DA1DCB3E52005F77CB /* FBAnnotationClusterView.swift */; };
@@ -30,7 +33,6 @@
 		39610F511E1DB62A005F7053 /* TableCommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39610F501E1DB62A005F7053 /* TableCommentsViewController.swift */; };
 		39610F531E1DB6C1005F7053 /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39610F521E1DB6C1005F7053 /* CommentTableViewCell.swift */; };
 		39610F561E1DBF4A005F7053 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39610F541E1DBF4A005F7053 /* Comment.swift */; };
-		39610F571E1DBF4A005F7053 /* Comment+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39610F551E1DBF4A005F7053 /* Comment+CoreDataProperties.swift */; };
 		396BD9751CAE62670071DF07 /* DetailRestaurantViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396BD9741CAE62670071DF07 /* DetailRestaurantViewController.swift */; };
 		396BD97E1CAEB8410071DF07 /* Constantes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396BD97D1CAEB8410071DF07 /* Constantes.swift */; };
 		396BD9801CAEB8640071DF07 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396BD97F1CAEB8640071DF07 /* ColorExtension.swift */; };
@@ -39,8 +41,6 @@
 		39848B081CB4231300D718FD /* NavigationAccueilViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39848B071CB4231300D718FD /* NavigationAccueilViewController.swift */; };
 		398857E61CC2B97600B05F64 /* CategorieCulinaire+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398857E41CC2B97600B05F64 /* CategorieCulinaire+CoreDataProperties.swift */; };
 		398857E71CC2B97600B05F64 /* CategorieCulinaire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398857E51CC2B97600B05F64 /* CategorieCulinaire.swift */; };
-		398857EA1CC2BA1000B05F64 /* Restaurant+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398857E81CC2BA1000B05F64 /* Restaurant+CoreDataProperties.swift */; };
-		398857EB1CC2BA1000B05F64 /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398857E91CC2BA1000B05F64 /* Restaurant.swift */; };
 		398AA7E51D17F90600FA7E0A /* LGSideMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 398AA7E01D17F90600FA7E0A /* LGSideMenuController.m */; };
 		398AA7E61D17F90600FA7E0A /* MenuLateral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398AA7E21D17F90600FA7E0A /* MenuLateral.swift */; };
 		398AA7E71D17F90600FA7E0A /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398AA7E31D17F90600FA7E0A /* UIViewControllerExtension.swift */; };
@@ -54,7 +54,6 @@
 		39C50EFD1CC8D9670019FA2B /* Storyboards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C50EFB1CC8D9670019FA2B /* Storyboards.swift */; };
 		39C50EFF1CC8DE100019FA2B /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 39C50EFE1CC8DE100019FA2B /* Media.xcassets */; };
 		39C50F0A1CCAD7C20019FA2B /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3978B2741CAC087A00D82040 /* libz.tbd */; };
-		39C50F0C1CCB7B620019FA2B /* restaurants.xml in Resources */ = {isa = PBXBuildFile; fileRef = 39C50F0B1CCB7B620019FA2B /* restaurants.xml */; };
 		39EC7FF01CAC0E15002AD862 /* MapsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EC7FEF1CAC0E15002AD862 /* MapsViewController.swift */; };
 		39EC7FF21CAC0EAF002AD862 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39EC7FF11CAC0EAF002AD862 /* MapKit.framework */; };
 		39EC7FF61CAC1F9F002AD862 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EC7FF51CAC1F9F002AD862 /* UserData.swift */; };
@@ -71,6 +70,8 @@
 		375E8D451F544CE500A20276 /* AAPopUp+Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AAPopUp+Global.swift"; sourceTree = "<group>"; };
 		375E8D461F544CE500A20276 /* AAPopUp+Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AAPopUp+Helper.swift"; sourceTree = "<group>"; };
 		375E8D4A1F545F7600A20276 /* AddCommentPopUp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddCommentPopUp.swift; sourceTree = "<group>"; };
+		37DD9C061F5DE3A1007B3E2B /* Comment+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Comment+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		37DD9C071F5DE3A1007B3E2B /* Restaurant+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Restaurant+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		390909D81DCB3E52005F77CB /* FBAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBAnnotation.swift; sourceTree = "<group>"; };
 		390909D91DCB3E52005F77CB /* FBAnnotationCluster.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBAnnotationCluster.swift; sourceTree = "<group>"; };
 		390909DA1DCB3E52005F77CB /* FBAnnotationClusterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBAnnotationClusterView.swift; sourceTree = "<group>"; };
@@ -87,7 +88,6 @@
 		39610F501E1DB62A005F7053 /* TableCommentsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableCommentsViewController.swift; sourceTree = "<group>"; };
 		39610F521E1DB6C1005F7053 /* CommentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
 		39610F541E1DBF4A005F7053 /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Comment.swift; path = NSManagedObject/Comment.swift; sourceTree = "<group>"; };
-		39610F551E1DBF4A005F7053 /* Comment+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Comment+CoreDataProperties.swift"; path = "NSManagedObject/Comment+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		396BD9741CAE62670071DF07 /* DetailRestaurantViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailRestaurantViewController.swift; sourceTree = "<group>"; };
 		396BD97D1CAEB8410071DF07 /* Constantes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constantes.swift; sourceTree = "<group>"; };
 		396BD97F1CAEB8640071DF07 /* ColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
@@ -97,7 +97,6 @@
 		39848B071CB4231300D718FD /* NavigationAccueilViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationAccueilViewController.swift; sourceTree = "<group>"; };
 		398857E41CC2B97600B05F64 /* CategorieCulinaire+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CategorieCulinaire+CoreDataProperties.swift"; path = "NSManagedObject/CategorieCulinaire+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		398857E51CC2B97600B05F64 /* CategorieCulinaire.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CategorieCulinaire.swift; path = NSManagedObject/CategorieCulinaire.swift; sourceTree = "<group>"; };
-		398857E81CC2BA1000B05F64 /* Restaurant+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Restaurant+CoreDataProperties.swift"; path = "NSManagedObject/Restaurant+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		398857E91CC2BA1000B05F64 /* Restaurant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Restaurant.swift; path = NSManagedObject/Restaurant.swift; sourceTree = "<group>"; };
 		398AA7DF1D17F90500FA7E0A /* VegoResto-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "VegoResto-Bridging-Header.h"; sourceTree = "<group>"; };
 		398AA7E01D17F90600FA7E0A /* LGSideMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGSideMenuController.m; sourceTree = "<group>"; };
@@ -116,7 +115,6 @@
 		39C50EFB1CC8D9670019FA2B /* Storyboards.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Storyboards.swift; path = Constants_Gen/Storyboards.swift; sourceTree = SOURCE_ROOT; };
 		39C50EFE1CC8DE100019FA2B /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Media.xcassets; path = Ressources/Media.xcassets; sourceTree = "<group>"; };
 		39C50F011CCAC5610019FA2B /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
-		39C50F0B1CCB7B620019FA2B /* restaurants.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = restaurants.xml; sourceTree = "<group>"; };
 		39EC7FEF1CAC0E15002AD862 /* MapsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapsViewController.swift; sourceTree = "<group>"; };
 		39EC7FF11CAC0EAF002AD862 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		39EC7FF51CAC1F9F002AD862 /* UserData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
@@ -174,7 +172,6 @@
 				390909E61DCB3E85005F77CB /* ImagesClusters.xcassets */,
 				391D6D791D7060780023733E /* Pods-VegoResto-acknowledgements.plist */,
 				3939F3901D6B9874006786D6 /* Fonts */,
-				39C50F0B1CCB7B620019FA2B /* restaurants.xml */,
 				39C50F001CC8E02D0019FA2B /* SwiftGen */,
 				396BD9791CAEB76C0071DF07 /* images */,
 			);
@@ -243,10 +240,10 @@
 		397901751CADC62900597DCD /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				398857E81CC2BA1000B05F64 /* Restaurant+CoreDataProperties.swift */,
 				398857E91CC2BA1000B05F64 /* Restaurant.swift */,
 				39610F541E1DBF4A005F7053 /* Comment.swift */,
-				39610F551E1DBF4A005F7053 /* Comment+CoreDataProperties.swift */,
+				37DD9C061F5DE3A1007B3E2B /* Comment+CoreDataProperties.swift */,
+				37DD9C071F5DE3A1007B3E2B /* Restaurant+CoreDataProperties.swift */,
 				398857E41CC2B97600B05F64 /* CategorieCulinaire+CoreDataProperties.swift */,
 				398857E51CC2B97600B05F64 /* CategorieCulinaire.swift */,
 			);
@@ -403,7 +400,6 @@
 				3939F3941D6B98B8006786D6 /* ufonts.com_urw-gothic-l-book.ttf in Resources */,
 				391D6D7A1D7060780023733E /* Pods-VegoResto-acknowledgements.plist in Resources */,
 				3939F3921D6B9889006786D6 /* olivier_01.ttf in Resources */,
-				39C50F0C1CCB7B620019FA2B /* restaurants.xml in Resources */,
 				39C50EFF1CC8DE100019FA2B /* Media.xcassets in Resources */,
 				39968D4C1CABFFBB0085C61F /* LaunchScreen.storyboard in Resources */,
 				390909E71DCB3E85005F77CB /* ImagesClusters.xcassets in Resources */,
@@ -482,6 +478,7 @@
 			files = (
 				397D33991D18222E00BA7708 /* ListeFavorisViewController.swift in Sources */,
 				398AA7E81D17F90600FA7E0A /* MainViewController.swift in Sources */,
+				37DD9C0A1F5DE3C9007B3E2B /* Restaurant.swift in Sources */,
 				39EC80061CAD5ED2002AD862 /* RestaurantAnnotation.swift in Sources */,
 				375E8D491F544CE500A20276 /* AAPopUp+Helper.swift in Sources */,
 				39968D3F1CABFFBB0085C61F /* AppDelegate.swift in Sources */,
@@ -492,22 +489,20 @@
 				39610F511E1DB62A005F7053 /* TableCommentsViewController.swift in Sources */,
 				398857E61CC2B97600B05F64 /* CategorieCulinaire+CoreDataProperties.swift in Sources */,
 				390909DF1DCB3E52005F77CB /* FBAnnotation.swift in Sources */,
-				398857EA1CC2BA1000B05F64 /* Restaurant+CoreDataProperties.swift in Sources */,
 				39610F531E1DB6C1005F7053 /* CommentTableViewCell.swift in Sources */,
-				398857EB1CC2BA1000B05F64 /* Restaurant.swift in Sources */,
 				396BD97E1CAEB8410071DF07 /* Constantes.swift in Sources */,
 				398AA7E61D17F90600FA7E0A /* MenuLateral.swift in Sources */,
 				39C50EFD1CC8D9670019FA2B /* Storyboards.swift in Sources */,
 				375E8D471F544CE500A20276 /* AAPopUp.swift in Sources */,
 				390909E11DCB3E52005F77CB /* FBAnnotationClusterView.swift in Sources */,
 				390909E01DCB3E52005F77CB /* FBAnnotationCluster.swift in Sources */,
-				39610F571E1DBF4A005F7053 /* Comment+CoreDataProperties.swift in Sources */,
 				37201FF11F55A25E00D7D1AB /* WebRequestServices.swift in Sources */,
 				39968D471CABFFBB0085C61F /* VegoResto.xcdatamodeld in Sources */,
 				39EC7FF61CAC1F9F002AD862 /* UserData.swift in Sources */,
 				398AA7E71D17F90600FA7E0A /* UIViewControllerExtension.swift in Sources */,
 				39EC7FF01CAC0E15002AD862 /* MapsViewController.swift in Sources */,
 				390909E51DCB3E52005F77CB /* FBQuadTreeNode.swift in Sources */,
+				37DD9C091F5DE3A1007B3E2B /* Restaurant+CoreDataProperties.swift in Sources */,
 				37201FF21F55A25E00D7D1AB /* RequestManager.swift in Sources */,
 				39EC80041CAC4787002AD862 /* RechercheViewController.swift in Sources */,
 				399C06001CB8F86700885C0B /* ImageAnnotationView.swift in Sources */,
@@ -516,6 +511,7 @@
 				375E8D4B1F545F7600A20276 /* AddCommentPopUp.swift in Sources */,
 				375E8D481F544CE500A20276 /* AAPopUp+Global.swift in Sources */,
 				390909E31DCB3E52005F77CB /* FBClusteringManager.swift in Sources */,
+				37DD9C081F5DE3A1007B3E2B /* Comment+CoreDataProperties.swift in Sources */,
 				398857E71CC2B97600B05F64 /* CategorieCulinaire.swift in Sources */,
 				39C50EFC1CC8D9670019FA2B /* Images.swift in Sources */,
 				396BD9751CAE62670071DF07 /* DetailRestaurantViewController.swift in Sources */,
