@@ -47,6 +47,12 @@ class NavigationAccueilViewController: UIViewController {
             self.maps_viewController?.updateDataAfterDelay()
             self.recherche_viewController?.updateDataAfterDelay()
 
+            WebRequestManager.shared.loadHoraires(success: {
+
+            }, failure: { (_) in
+
+            })
+
         }, failure: { (_) in
 
             print("WebRequestManager.shared.listRestaurant Error")

@@ -102,10 +102,6 @@ class RequestManager: NSObject {
                 .responseArray( keyPath: keyPath,
                                 completionHandler: { (response: DataResponse<[T]>) -> Void in
 
-                                    print("response =\(response) ")
-                                    print("code =\(response.response?.statusCode) ")
-                                    print("desc =\(response.response?.description) ")
-
                                     if response.result.isSuccess {
                                         if let data = response.result.value {
                                             completion(data)

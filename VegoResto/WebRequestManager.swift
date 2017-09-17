@@ -51,4 +51,15 @@ class WebRequestManager {
 
     }
 
+    func loadHoraires(  success: @escaping () -> Void,
+                          failure: @escaping (Error?) -> Void) {
+
+        WebRequestServices.loadHoraires(urlPath: URL_SERVEUR() + "/wp-content/cache/horaires.json", success: { (_) in
+
+            success()
+
+        }, failure: failure)
+
+    }
+
 }

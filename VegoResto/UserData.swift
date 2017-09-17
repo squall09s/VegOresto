@@ -98,6 +98,24 @@ class UserData: NSObject, CLLocationManagerDelegate {
 
     }
 
+    func getHoraires() -> [Horaire] {
+
+        let fetchRequest: NSFetchRequest<Horaire> = NSFetchRequest(entityName: "Horaire")
+
+        do {
+
+            let results = try self.managedContext.fetch(fetchRequest )
+
+            return results
+
+        } catch _ {
+
+            return [Horaire]()
+
+        }
+
+    }
+
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
 
         self.locationmanager?.stopUpdatingLocation()
@@ -141,7 +159,6 @@ class UserData: NSObject, CLLocationManagerDelegate {
         }
     }
 
-    
     func cleanString(str: String) -> String {
 
         var strResult = str.replacingOccurrences(of: "<br />", with: "")
@@ -162,7 +179,7 @@ class UserData: NSObject, CLLocationManagerDelegate {
 
         print("getRestaurantWithIdentifier \(identifier)")
         let fetchRequest: NSFetchRequest<Restaurant> = NSFetchRequest(entityName: "Restaurant")
-        let predicate: NSPredicate = NSPredicate(format: "identifier = %@", String(identifier) )
+        let predicate: NSPredicate = NSPredicate(format: "identifier == %@", String(identifier) )
         fetchRequest.predicate = predicate
 
         do {
@@ -179,6 +196,27 @@ class UserData: NSObject, CLLocationManagerDelegate {
 
         }
         print("resto not found")
+        return nil
+
+    }
+
+    func getHoraires(for restaurant: Restaurant) -> Horaire? {
+
+        if let identifier: Int = restaurant.identifier?.intValue {
+
+            for horaire in self.getHoraires() {
+
+                if (horaire.idResto?.intValue ?? -1) == identifier {
+
+                    return horaire
+
+                }
+
+            }
+
+        }
+
+        print("horaire not found")
         return nil
 
     }

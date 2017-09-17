@@ -17,6 +17,8 @@
 		37DD9C081F5DE3A1007B3E2B /* Comment+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DD9C061F5DE3A1007B3E2B /* Comment+CoreDataProperties.swift */; };
 		37DD9C091F5DE3A1007B3E2B /* Restaurant+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DD9C071F5DE3A1007B3E2B /* Restaurant+CoreDataProperties.swift */; };
 		37DD9C0A1F5DE3C9007B3E2B /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398857E91CC2BA1000B05F64 /* Restaurant.swift */; };
+		37E9D7A91F6EE42700D39672 /* Horaire+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E9D7A71F6EE42700D39672 /* Horaire+CoreDataClass.swift */; };
+		37E9D7AA1F6EE42700D39672 /* Horaire+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E9D7A81F6EE42700D39672 /* Horaire+CoreDataProperties.swift */; };
 		390909DF1DCB3E52005F77CB /* FBAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390909D81DCB3E52005F77CB /* FBAnnotation.swift */; };
 		390909E01DCB3E52005F77CB /* FBAnnotationCluster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390909D91DCB3E52005F77CB /* FBAnnotationCluster.swift */; };
 		390909E11DCB3E52005F77CB /* FBAnnotationClusterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390909DA1DCB3E52005F77CB /* FBAnnotationClusterView.swift */; };
@@ -72,6 +74,8 @@
 		375E8D4A1F545F7600A20276 /* AddCommentPopUp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddCommentPopUp.swift; sourceTree = "<group>"; };
 		37DD9C061F5DE3A1007B3E2B /* Comment+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Comment+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		37DD9C071F5DE3A1007B3E2B /* Restaurant+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Restaurant+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		37E9D7A71F6EE42700D39672 /* Horaire+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Horaire+CoreDataClass.swift"; sourceTree = "<group>"; };
+		37E9D7A81F6EE42700D39672 /* Horaire+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Horaire+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		390909D81DCB3E52005F77CB /* FBAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBAnnotation.swift; sourceTree = "<group>"; };
 		390909D91DCB3E52005F77CB /* FBAnnotationCluster.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBAnnotationCluster.swift; sourceTree = "<group>"; };
 		390909DA1DCB3E52005F77CB /* FBAnnotationClusterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBAnnotationClusterView.swift; sourceTree = "<group>"; };
@@ -240,6 +244,8 @@
 		397901751CADC62900597DCD /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				37E9D7A71F6EE42700D39672 /* Horaire+CoreDataClass.swift */,
+				37E9D7A81F6EE42700D39672 /* Horaire+CoreDataProperties.swift */,
 				398857E91CC2BA1000B05F64 /* Restaurant.swift */,
 				39610F541E1DBF4A005F7053 /* Comment.swift */,
 				37DD9C061F5DE3A1007B3E2B /* Comment+CoreDataProperties.swift */,
@@ -482,6 +488,7 @@
 				39EC80061CAD5ED2002AD862 /* RestaurantAnnotation.swift in Sources */,
 				375E8D491F544CE500A20276 /* AAPopUp+Helper.swift in Sources */,
 				39968D3F1CABFFBB0085C61F /* AppDelegate.swift in Sources */,
+				37E9D7AA1F6EE42700D39672 /* Horaire+CoreDataProperties.swift in Sources */,
 				398AA7E51D17F90600FA7E0A /* LGSideMenuController.m in Sources */,
 				39848B081CB4231300D718FD /* NavigationAccueilViewController.swift in Sources */,
 				37201FF01F55A25E00D7D1AB /* WebRequestManager.swift in Sources */,
@@ -508,6 +515,7 @@
 				399C06001CB8F86700885C0B /* ImageAnnotationView.swift in Sources */,
 				390909E41DCB3E52005F77CB /* FBQuadTree.swift in Sources */,
 				390909E21DCB3E52005F77CB /* FBBoundingBox.swift in Sources */,
+				37E9D7A91F6EE42700D39672 /* Horaire+CoreDataClass.swift in Sources */,
 				375E8D4B1F545F7600A20276 /* AddCommentPopUp.swift in Sources */,
 				375E8D481F544CE500A20276 /* AAPopUp+Global.swift in Sources */,
 				390909E31DCB3E52005F77CB /* FBClusteringManager.swift in Sources */,

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="12141" systemVersion="16G29" minimumToolsVersion="Xcode 7.3" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="12141" systemVersion="16G29" minimumToolsVersion="Xcode 7.3" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="CategorieCulinaire" representedClassName="CategorieCulinaire" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="restaurants" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Restaurant" inverseName="categoriesCulinaire" inverseEntity="Restaurant" syncable="YES"/>
@@ -12,6 +12,16 @@
         <relationship name="childsComments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Comment" syncable="YES"/>
         <relationship name="restaurant" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Restaurant" inverseName="comments" inverseEntity="Restaurant" syncable="YES"/>
     </entity>
+    <entity name="Horaire" representedClassName="Horaire" syncable="YES">
+        <attribute name="dataD" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="dataJ" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="dataL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="dataMa" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="dataMe" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="dataS" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="dataV" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="idResto" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" indexed="YES" syncable="YES"/>
+    </entity>
     <entity name="Restaurant" representedClassName="Restaurant" syncable="YES">
         <attribute name="absolute_url" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
@@ -19,13 +29,6 @@
         <attribute name="animaux_bienvenus" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="facebook" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="favoris" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="h_dimanche" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="h_jeudi" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="h_lundi" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="h_mardi" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="h_mercredi" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="h_samedi" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="h_vendredi" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="identifier" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" indexed="YES" syncable="YES"/>
         <attribute name="image" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="influence_gastronomique" optional="YES" attributeType="String" syncable="YES"/>
@@ -49,6 +52,7 @@
     <elements>
         <element name="CategorieCulinaire" positionX="-1127" positionY="369" width="128" height="73"/>
         <element name="Comment" positionX="-1172" positionY="90" width="128" height="133"/>
-        <element name="Restaurant" positionX="-1469" positionY="18" width="128" height="525"/>
+        <element name="Restaurant" positionX="-1469" positionY="18" width="128" height="420"/>
+        <element name="Horaire" positionX="-1296" positionY="171" width="128" height="165"/>
     </elements>
 </model>

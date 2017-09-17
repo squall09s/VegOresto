@@ -72,8 +72,6 @@ class DetailRestaurantViewController: UIViewController {
 
         if let _current_restaurant =  self.current_restaurant {
 
-            print("ident = \(_current_restaurant.identifier)")
-
             self.varIB_label_name?.text = _current_restaurant.name
             self.varIB_label_resume?.text = _current_restaurant.resume
             self.varIB_label_ambiance?.text = _current_restaurant.ambiance
@@ -83,13 +81,16 @@ class DetailRestaurantViewController: UIViewController {
 
             self.varIB_label_moyens_de_paiement?.text = _current_restaurant.moyens_de_paiement
 
-            self.varIB_label_h_lundi?.text = _current_restaurant.h_lundi
-            self.varIB_label_h_mardi?.text = _current_restaurant.h_mardi
-            self.varIB_label_h_mercredi?.text = _current_restaurant.h_mercredi
-            self.varIB_label_h_jeudi?.text = _current_restaurant.h_jeudi
-            self.varIB_label_h_vendredi?.text = _current_restaurant.h_vendredi
-            self.varIB_label_h_samedi?.text = _current_restaurant.h_samedi
-            self.varIB_label_h_dimanche?.text = _current_restaurant.h_dimanche
+            if let horaire = UserData.sharedInstance.getHoraires(for: _current_restaurant) {
+                self.varIB_label_h_lundi?.text = horaire.dataL
+                self.varIB_label_h_mardi?.text = horaire.dataMa
+                self.varIB_label_h_mercredi?.text = horaire.dataMe
+                self.varIB_label_h_jeudi?.text = horaire.dataJ
+                self.varIB_label_h_vendredi?.text = horaire.dataV
+                self.varIB_label_h_samedi?.text = horaire.dataS
+                self.varIB_label_h_dimanche?.text = horaire.dataD
+            }
+
             self.varIB_label_animaux?.text = _current_restaurant.animaux_bienvenus?.boolValue == true ? "Oui !" : "Non"
             self.varIB_label_terrasse?.text = _current_restaurant.terrasse?.boolValue == true ? "Oui !" : "Non"
 
@@ -157,6 +158,25 @@ class DetailRestaurantViewController: UIViewController {
 
         }
 
+        switch self.getDayOfWeek() {
+        case 2:
+            self.varIB_label_h_lundi?.textColor = COLOR_ORANGE
+        case 3:
+            self.varIB_label_h_mardi?.textColor = COLOR_ORANGE
+        case 4:
+            self.varIB_label_h_mercredi?.textColor = COLOR_ORANGE
+        case 5:
+            self.varIB_label_h_jeudi?.textColor = COLOR_ORANGE
+        case 6:
+            self.varIB_label_h_vendredi?.textColor = COLOR_ORANGE
+        case 7:
+            self.varIB_label_h_samedi?.textColor = COLOR_ORANGE
+        case 1:
+            self.varIB_label_h_dimanche?.textColor = COLOR_ORANGE
+        default:
+            break
+        }
+
         self.varIB_activity_indicator?.isHidden = false
         self.varIB_button_comment?.isHidden = true
         self.varIB_activity_indicator?.startAnimating()
@@ -208,9 +228,17 @@ class DetailRestaurantViewController: UIViewController {
 
     }
 
+    func getDayOfWeek() -> Int {
+
+        let todayDate = Date()
+        let myCalendar = Calendar(identifier: .gregorian)
+        let weekDay = myCalendar.component(.weekday, from: todayDate)
+        return weekDay
+    }
+
     @IBAction func touch_bt_back(sender: AnyObject) {
 
-       _ = self.navigationController?.popViewController( animated: true)
+        _ = self.navigationController?.popViewController( animated: true)
     }
 
     @IBAction func touch_bt_phone(sender: AnyObject) {
@@ -266,23 +294,23 @@ class DetailRestaurantViewController: UIViewController {
 
             if !(notificationManager.isNotificationActive) {
 
-            _current_restaurant.favoris = !(_current_restaurant.favoris.boolValue) as NSNumber
+                _current_restaurant.favoris = !(_current_restaurant.favoris.boolValue) as NSNumber
 
-            notificationManager.notificationsPosition = LNRNotificationPosition.top
-            notificationManager.notificationsBackgroundColor = COLOR_ORANGE
-            notificationManager.notificationsTitleTextColor = UIColor.white
-            notificationManager.notificationsBodyTextColor = UIColor.white
-            notificationManager.notificationsSeperatorColor = UIColor.white
+                notificationManager.notificationsPosition = LNRNotificationPosition.top
+                notificationManager.notificationsBackgroundColor = COLOR_ORANGE
+                notificationManager.notificationsTitleTextColor = UIColor.white
+                notificationManager.notificationsBodyTextColor = UIColor.white
+                notificationManager.notificationsSeperatorColor = UIColor.white
 
-            notificationManager.notificationsTitleFont = UIFont(name: "URWGothicL-Book", size: 15)!
-            notificationManager.notificationsBodyFont = UIFont(name: "URWGothicL-Book", size: 11)!
-            //notificationManager.notificationsIcon = UIImage(asset: .Img_favoris_wh)
+                notificationManager.notificationsTitleFont = UIFont(name: "URWGothicL-Book", size: 15)!
+                notificationManager.notificationsBodyFont = UIFont(name: "URWGothicL-Book", size: 11)!
+                //notificationManager.notificationsIcon = UIImage(asset: .Img_favoris_wh)
 
-            let message = _current_restaurant.favoris.boolValue ? "Vous avez bien ajouté ce restaurant à vos favoris" : "Vous avez bien retiré ce restaurant de vos favoris"
+                let message = _current_restaurant.favoris.boolValue ? "Vous avez bien ajouté ce restaurant à vos favoris" : "Vous avez bien retiré ce restaurant de vos favoris"
 
-            notificationManager.showNotification(title: "Favoris", body: message, onTap: { () -> Void in
+                notificationManager.showNotification(title: "Favoris", body: message, onTap: { () -> Void in
 
-                _ = notificationManager.dismissActiveNotification(completion: { () -> Void in
+                    _ = notificationManager.dismissActiveNotification(completion: { () -> Void in
                         //print("Notification dismissed")
                     })
                 })
@@ -310,15 +338,15 @@ class DetailRestaurantViewController: UIViewController {
 
         if let mail = self.current_restaurant?.mail {
 
-        if let sujet = "Prise de contact".addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) {
+            if let sujet = "Prise de contact".addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) {
 
-            if let destination_url = URL(string:  "mailto:" + mail + "?subject=" + sujet ) {
+                if let destination_url = URL(string:  "mailto:" + mail + "?subject=" + sujet ) {
 
-                UIApplication.shared.open(destination_url, options: [:], completionHandler: nil)
+                    UIApplication.shared.open(destination_url, options: [:], completionHandler: nil)
+
+                }
 
             }
-
-        }
         }
 
     }
@@ -369,7 +397,7 @@ class DetailRestaurantViewController: UIViewController {
         if let nbComment = self.current_restaurant?.getCommentsAsArray()?.count {
 
             if nbComment > 0 {
-            self.varIB_label_number_comment?.text = "Tous les avis [\(nbComment)]"
+                self.varIB_label_number_comment?.text = "Tous les avis [\(nbComment)]"
             } else {
                 self.varIB_label_number_comment?.text = "Aucun avis pour le moment"
             }

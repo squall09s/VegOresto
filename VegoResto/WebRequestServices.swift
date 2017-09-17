@@ -48,4 +48,28 @@ class WebRequestServices {
 
     }
 
+    static func loadHoraires(urlPath: String,
+                              success: @escaping () -> Void,
+                              failure: @escaping (Error?) -> Void) {
+
+        RequestManager.doRequestList(method: .get, path: urlPath, completion: { (result : [String : Any]) in
+
+            var listHoraire = [Horaire]()
+
+            for (_, dico) in result {
+
+                if let _dicoJSON = dico as? [String : Any] {
+
+                    if let _newHoraire = Horaire(JSON: _dicoJSON) {
+                        listHoraire.append( _newHoraire )
+                    }
+                }
+            }
+
+            success()
+
+        }, failure: failure)
+
+    }
+
 }

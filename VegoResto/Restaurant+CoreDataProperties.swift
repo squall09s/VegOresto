@@ -41,12 +41,4 @@ extension Restaurant {
 
     @NSManaged var isVegan: NSNumber
 
-    @NSManaged var h_lundi: String?
-    @NSManaged var h_mardi: String?
-    @NSManaged var h_mercredi: String?
-    @NSManaged var h_jeudi: String?
-    @NSManaged var h_vendredi: String?
-    @NSManaged var h_samedi: String?
-    @NSManaged var h_dimanche: String?
-
 }
