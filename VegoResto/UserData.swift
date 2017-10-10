@@ -36,25 +36,6 @@ class UserData: NSObject, CLLocationManagerDelegate {
         self.locationmanager?.startUpdatingLocation()
         self.locationmanager?.delegate = self
 
-        /*
-        let fetchRequest: NSFetchRequest<Restaurant> = NSFetchRequest(entityName: "Restaurant")
-
-        do {
-
-            let results = try self.managedContext.fetch(fetchRequest)
-
-            for resto: Restaurant in results {
-
-                if let _ident = resto.identifier?.intValue {
-                    self.allRestaurants[_ident] = resto
-                }
-
-            }
-
-        } catch _ {
-
-        }*/
-
     }
 
     func getLastUpdateData() -> Int {
