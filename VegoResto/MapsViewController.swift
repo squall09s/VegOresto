@@ -177,20 +177,36 @@ class MapsViewController: UIViewController, MKMapViewDelegate {
         image_label2.image = Asset.imgIcMoreBlack.image //UIImage(asset: .Img_ic_more_black)
         view_support.addSubview(image_label2)
 
-        let bt_info = BTTransitionVersDetailsRestaurant(frame: CGRect( x : img_width + espacement_x, y : position_y, width : view_width - img_width - espacement_x, height : img_width) )
-        bt_info.titleLabel?.font = UIFont(name: "URWGothicL-Book", size: 12)!
-        bt_info.contentHorizontalAlignment = UIControlContentHorizontalAlignment.left
-        bt_info.setTitle("Plus d'informations", for: UIControlState.normal)
-        bt_info.setTitleColor(UIColor.black, for: UIControlState.normal)
-        bt_info.restaurant = currentAnnotation.restaurant
-        bt_info.addTarget(self, action: #selector(MapsViewController.touch_bt_more_info(sender:)), for: UIControlEvents.touchUpInside)
-        view_support.addSubview(bt_info)
+        let label_info = UILabel(frame: CGRect( x : img_width + espacement_x, y : position_y, width : view_width - img_width - espacement_x, height : img_width) )
+        label_info.font = UIFont(name: "URWGothicL-Book", size: 12)!
+        label_info.textAlignment = .left
+        label_info.text = "Plus d'informations"
+        label_info.textColor = UIColor.black
+
+        view_support.addSubview(label_info)
+
+        let tapReconizer = UITapGestureRecognizer(target: self, action: #selector(MapsViewController.touch_bt_more_info(sender:)))
+        view_support.addGestureRecognizer(tapReconizer)
+        view_support.tag = currentAnnotation.restaurant?.identifier?.intValue ?? 0
 
     }
 
-    func touch_bt_more_info(sender: BTTransitionVersDetailsRestaurant) {
+    func touch_bt_more_info(sender: UITapGestureRecognizer) {
 
-        self.performSegue(withIdentifier: StoryboardSegue.Main.segueToDetail.rawValue, sender : sender.restaurant )
+        if let ident = sender.view?.tag, ident > 0 {
+
+                for currentRestaurant in self.clusteringManager.allAnnotations().flatMap({ (annotation) -> Restaurant? in
+
+                        return (annotation as? RestaurantAnnotation)?.restaurant
+
+                }) where  (currentRestaurant.identifier?.intValue ?? -1) == ident {
+
+                         self.performSegue(withIdentifier: StoryboardSegue.Main.segueToDetail.rawValue, sender : currentRestaurant )
+
+                    break
+
+                }
+        }
     }
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -366,11 +382,5 @@ class MapsViewController: UIViewController, MKMapViewDelegate {
         }
 
     }
-
-}
-
-class BTTransitionVersDetailsRestaurant: UIButton {
-
-    var restaurant: Restaurant?
 
 }

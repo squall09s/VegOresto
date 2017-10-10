@@ -42,8 +42,10 @@ class WebRequestServices {
                     (_dicoJSON["id"] as? NSNumber )?.intValue ?? -1 ) {
 
                         currentRestau.mapping(map: Map(mappingType: .fromJSON, JSON: _dicoJSON))
+                        listRestaurant.append( currentRestau )
 
                     } else {
+
                         if let _newRestaurant = Restaurant(JSON: _dicoJSON) {
                             listRestaurant.append( _newRestaurant )
                         }

@@ -216,7 +216,9 @@ class UserData: NSObject, CLLocationManagerDelegate {
                 return results[0]
             }
 
-        } catch _ {
+        } catch let error as NSError {
+
+            print("error = \(error)")
 
         }
         print("resto not found")
