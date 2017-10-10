@@ -308,12 +308,11 @@ class DetailRestaurantViewController: UIViewController {
 
                 let message = _current_restaurant.favoris.boolValue ? "Vous avez bien ajouté ce restaurant à vos favoris" : "Vous avez bien retiré ce restaurant de vos favoris"
 
-                notificationManager.showNotification(title: "Favoris", body: message, onTap: { () -> Void in
+                notificationManager.showNotification(notification: LNRNotification(title: "Favoris", body: message, duration: 1.5, onTap: { () in
 
-                    _ = notificationManager.dismissActiveNotification(completion: { () -> Void in
-                        //print("Notification dismissed")
-                    })
-                })
+                }, onTimeout: { () in
+
+                }))
 
             }
         }
@@ -411,7 +410,7 @@ class DetailRestaurantViewController: UIViewController {
 
     func updateRatingImage() {
 
-        if let rating = self.current_restaurant?.rating?.doubleValue {
+            let rating = self.current_restaurant?.rating?.doubleValue ?? 1
 
             if rating == 0.5 {
                 self.varIB_image_rating_1?.image = Asset.imgFavorisStarHalf.image
@@ -453,8 +452,6 @@ class DetailRestaurantViewController: UIViewController {
                 self.varIB_image_rating_5?.image = Asset.imgFavorisStarOff.image
             }
 
-        }
-
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -464,6 +461,7 @@ class DetailRestaurantViewController: UIViewController {
             if let destination: TableCommentsViewController = segue.destination as? TableCommentsViewController {
 
                 destination.comments = self.current_restaurant?.getCommentsAsArray() ?? []
+                destination.currentRestaurant = self.current_restaurant
 
             }
 

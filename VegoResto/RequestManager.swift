@@ -159,4 +159,45 @@ class RequestManager: NSObject {
 
     }
 
+    static func postRequest(  path: String,
+                              parameters: Parameters? = nil,
+                              keyPath: String? = nil,
+                              completion: @escaping (Bool) -> Void,
+                              failure: @escaping (Error?) -> Void) {
+
+        let urlPath: URLConvertible!
+
+        do {
+            try urlPath = (path).asURL()
+        } catch {
+
+            return
+        }
+
+        var request:() -> Void = {}
+        request = {
+
+            RequestManager.manager.request(urlPath,
+                                           method: .post,
+                                           parameters: parameters,
+                                           encoding: JSONEncoding.default,
+                                           headers: HTTPHEADER()).responseJSON(completionHandler: { (dataResponse) in
+
+                                            if let result = dataResponse.result.value as? [String:Any] {
+
+                                                completion(true)
+
+                                            } else {
+
+                                                failure(nil)
+
+                                            }
+
+                                           })
+        }
+
+        request()
+
+    }
+
 }

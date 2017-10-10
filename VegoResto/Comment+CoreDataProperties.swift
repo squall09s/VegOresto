@@ -14,6 +14,7 @@ import CoreData
 
 extension Comment {
 
+    @NSManaged var ident: NSNumber?
     @NSManaged var content: String?
     @NSManaged var time: String?
     @NSManaged var author: String?

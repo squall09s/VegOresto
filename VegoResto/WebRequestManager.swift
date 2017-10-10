@@ -20,10 +20,15 @@ class WebRequestManager {
 
         WebRequestServices.listComment(urlPath: urlPath, success: { (listComment) in
 
+            restaurant?.comments = nil
+
             for comment: Comment in restaurant?.getCommentsAsArray() ?? [] {
 
                 UserData.sharedInstance.managedContext.delete(comment)
+
             }
+
+            restaurant?.comments = NSSet()
 
             for comment in listComment as [Comment] {
 
@@ -59,6 +64,22 @@ class WebRequestManager {
             success()
 
         }, failure: failure)
+
+    }
+
+    func uploadComment(restaurant: Restaurant, comment: Comment, tokenCaptcha: String,
+                              success: @escaping () -> Void,
+                              failure: @escaping (Error?) -> Void) {
+
+        WebRequestServices.uploadComment(urlPath: URL_SERVEUR() + "/wp-json/vegoresto/v1/comments", restaurant: restaurant, comment: comment, tokenCaptcha: tokenCaptcha, success: {
+
+            success()
+
+        }) { (error) in
+
+            failure(error)
+
+        }
 
     }
 

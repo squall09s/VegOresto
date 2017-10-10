@@ -19,7 +19,7 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>8.0</string>
+	<string>10</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 	<key>LSRequiresIPhoneOS</key>
@@ -37,6 +37,10 @@
 	<string>This application requires location services to work</string>
 	<key>Pushwoosh_APPID</key>
 	<string>XXXXXXXXXX</string>
+	<key>ReCaptchaDomain</key>
+	<string>http://l214.in</string>
+	<key>ReCaptchaKey</key>
+	<string>6Lct8DEUAAAAAEF2qpx-3H0f2GTB3Kjpv2XcIWGv</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>olivier_01.ttf</string>

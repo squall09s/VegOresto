@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import ObjectMapper
 
 class WebRequestServices {
 
@@ -36,9 +37,18 @@ class WebRequestServices {
 
                 if let _dicoJSON = dico as? [String : Any] {
 
-                    if let _newRestaurant = Restaurant(JSON: _dicoJSON) {
-                        listRestaurant.append( _newRestaurant )
+                    if let currentRestau : Restaurant = UserData.sharedInstance.getRestaurantWithIdentifier(identifier:
+
+                    (_dicoJSON["id"] as? NSNumber )?.intValue ?? -1 ) {
+
+                        currentRestau.mapping(map: Map(mappingType: .fromJSON, JSON: _dicoJSON))
+
+                    } else {
+                        if let _newRestaurant = Restaurant(JSON: _dicoJSON) {
+                            listRestaurant.append( _newRestaurant )
+                        }
                     }
+
                 }
             }
 
@@ -49,8 +59,8 @@ class WebRequestServices {
     }
 
     static func loadHoraires(urlPath: String,
-                              success: @escaping () -> Void,
-                              failure: @escaping (Error?) -> Void) {
+                             success: @escaping () -> Void,
+                             failure: @escaping (Error?) -> Void) {
 
         RequestManager.doRequestList(method: .get, path: urlPath, completion: { (result : [String : Any]) in
 
@@ -69,6 +79,43 @@ class WebRequestServices {
             success()
 
         }, failure: failure)
+
+    }
+
+    static func uploadComment(urlPath: String, restaurant: Restaurant, comment: Comment, tokenCaptcha: String,
+                              success: @escaping () -> Void,
+                              failure: @escaping (Error?) -> Void) {
+
+        //var params = [ String: String]()
+        //params["g-recaptcha-response"] = tokenCaptcha
+        //params["post"] = String(restaurant.identifier?.intValue ?? -1)
+        //params["content"] = comment.content
+        //params["vote"] = String(comment.rating?.intValue ?? 1)
+        //params["author_email"] = "test@mail.fr"
+
+        var _urlPathWithParam = urlPath + "?"
+        _urlPathWithParam += "g-recaptcha-response=" + tokenCaptcha
+        _urlPathWithParam += "&post=" + String(restaurant.identifier?.intValue ?? -1)
+        _urlPathWithParam += "&content=" + (comment.content?.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? "")
+
+        if let vote = comment.rating?.intValue {
+            _urlPathWithParam += "&vote=" + String(vote)
+        }
+
+        _urlPathWithParam += "&author_email=" + "test@mail.fr"
+        _urlPathWithParam += "&author_name=" + (comment.author?.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? "Invite")
+
+        print("url = \(_urlPathWithParam)")
+
+        RequestManager.postRequest(path: _urlPathWithParam, parameters : nil, completion: { (_) in
+
+            success()
+
+        }) { (error) in
+
+            failure(error)
+
+        }
 
     }
 

@@ -10,6 +10,7 @@
 		37201FF01F55A25E00D7D1AB /* WebRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37201FED1F55A25E00D7D1AB /* WebRequestManager.swift */; };
 		37201FF11F55A25E00D7D1AB /* WebRequestServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37201FEE1F55A25E00D7D1AB /* WebRequestServices.swift */; };
 		37201FF21F55A25E00D7D1AB /* RequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37201FEF1F55A25E00D7D1AB /* RequestManager.swift */; };
+		37255B7F1F818D28006B501C /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37255B7E1F818CC3006B501C /* Media.xcassets */; };
 		375E8D471F544CE500A20276 /* AAPopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375E8D441F544CE500A20276 /* AAPopUp.swift */; };
 		375E8D481F544CE500A20276 /* AAPopUp+Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375E8D451F544CE500A20276 /* AAPopUp+Global.swift */; };
 		375E8D491F544CE500A20276 /* AAPopUp+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375E8D461F544CE500A20276 /* AAPopUp+Helper.swift */; };
@@ -54,7 +55,6 @@
 		399C06001CB8F86700885C0B /* ImageAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399C05FF1CB8F86700885C0B /* ImageAnnotationView.swift */; };
 		39C50EFC1CC8D9670019FA2B /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C50EFA1CC8D9670019FA2B /* Images.swift */; };
 		39C50EFD1CC8D9670019FA2B /* Storyboards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C50EFB1CC8D9670019FA2B /* Storyboards.swift */; };
-		39C50EFF1CC8DE100019FA2B /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 39C50EFE1CC8DE100019FA2B /* Media.xcassets */; };
 		39C50F0A1CCAD7C20019FA2B /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3978B2741CAC087A00D82040 /* libz.tbd */; };
 		39EC7FF01CAC0E15002AD862 /* MapsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EC7FEF1CAC0E15002AD862 /* MapsViewController.swift */; };
 		39EC7FF21CAC0EAF002AD862 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39EC7FF11CAC0EAF002AD862 /* MapKit.framework */; };
@@ -68,6 +68,7 @@
 		37201FED1F55A25E00D7D1AB /* WebRequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebRequestManager.swift; sourceTree = "<group>"; };
 		37201FEE1F55A25E00D7D1AB /* WebRequestServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebRequestServices.swift; sourceTree = "<group>"; };
 		37201FEF1F55A25E00D7D1AB /* RequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestManager.swift; sourceTree = "<group>"; };
+		37255B7E1F818CC3006B501C /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Media.xcassets; path = Ressources/Media.xcassets; sourceTree = "<group>"; };
 		375E8D441F544CE500A20276 /* AAPopUp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AAPopUp.swift; sourceTree = "<group>"; };
 		375E8D451F544CE500A20276 /* AAPopUp+Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AAPopUp+Global.swift"; sourceTree = "<group>"; };
 		375E8D461F544CE500A20276 /* AAPopUp+Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AAPopUp+Helper.swift"; sourceTree = "<group>"; };
@@ -117,7 +118,6 @@
 		399C05FF1CB8F86700885C0B /* ImageAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageAnnotationView.swift; sourceTree = "<group>"; };
 		39C50EFA1CC8D9670019FA2B /* Images.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Images.swift; path = Constants_Gen/Images.swift; sourceTree = SOURCE_ROOT; };
 		39C50EFB1CC8D9670019FA2B /* Storyboards.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Storyboards.swift; path = Constants_Gen/Storyboards.swift; sourceTree = SOURCE_ROOT; };
-		39C50EFE1CC8DE100019FA2B /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Media.xcassets; path = Ressources/Media.xcassets; sourceTree = "<group>"; };
 		39C50F011CCAC5610019FA2B /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		39EC7FEF1CAC0E15002AD862 /* MapsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapsViewController.swift; sourceTree = "<group>"; };
 		39EC7FF11CAC0EAF002AD862 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -174,6 +174,7 @@
 				390909DD1DCB3E52005F77CB /* FBQuadTree.swift */,
 				390909DE1DCB3E52005F77CB /* FBQuadTreeNode.swift */,
 				390909E61DCB3E85005F77CB /* ImagesClusters.xcassets */,
+				37255B7E1F818CC3006B501C /* Media.xcassets */,
 				391D6D791D7060780023733E /* Pods-VegoResto-acknowledgements.plist */,
 				3939F3901D6B9874006786D6 /* Fonts */,
 				39C50F001CC8E02D0019FA2B /* SwiftGen */,
@@ -185,7 +186,6 @@
 		396BD9791CAEB76C0071DF07 /* images */ = {
 			isa = PBXGroup;
 			children = (
-				39C50EFE1CC8DE100019FA2B /* Media.xcassets */,
 			);
 			name = images;
 			sourceTree = "<group>";
@@ -405,8 +405,8 @@
 			files = (
 				3939F3941D6B98B8006786D6 /* ufonts.com_urw-gothic-l-book.ttf in Resources */,
 				391D6D7A1D7060780023733E /* Pods-VegoResto-acknowledgements.plist in Resources */,
+				37255B7F1F818D28006B501C /* Media.xcassets in Resources */,
 				3939F3921D6B9889006786D6 /* olivier_01.ttf in Resources */,
-				39C50EFF1CC8DE100019FA2B /* Media.xcassets in Resources */,
 				39968D4C1CABFFBB0085C61F /* LaunchScreen.storyboard in Resources */,
 				390909E71DCB3E85005F77CB /* ImagesClusters.xcassets in Resources */,
 				39968D441CABFFBB0085C61F /* Main.storyboard in Resources */,
@@ -443,7 +443,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\nswiftlint autocorrect\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n\nif which ./Pods/SwiftGen/bin/swiftgen >/dev/null; then\n\nrm -r ./Constants_Gen\n\nmkdir ./Constants_Gen\n\ntouch ./Constants_Gen/Images.swift\ntouch ./Constants_Gen/Storyboards.swift\n\n\n./Pods/SwiftGen/bin/swiftgen storyboards \"$PROJECT_DIR\" --output \"$PROJECT_DIR/Constants_Gen/Storyboards.swift\"  -t swift3\n./Pods/SwiftGen/bin/swiftgen images \"$PROJECT_DIR/VegoResto/Ressources/Media.xcassets/\" --output \"$PROJECT_DIR/Constants_Gen/Images.swift\"  -t swift3\nelse\necho \"warning: SwiftGen not installed, download it from https://github.com/AliSoftware/SwiftGen\"\nfi\n";
+			shellScript = "if which swiftlint >/dev/null; then\nswiftlint autocorrect\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n\nif which ./Pods/SwiftGen/bin/swiftgen >/dev/null; then\n\nrm -r ./Constants_Gen\n\nmkdir ./Constants_Gen\n\ntouch ./Constants_Gen/Images.swift\ntouch ./Constants_Gen/Storyboards.swift\n\n\n./Pods/SwiftGen/bin/swiftgen storyboards \"$PROJECT_DIR\" --output \"$PROJECT_DIR/Constants_Gen/Storyboards.swift\"  -t swift3\n./Pods/SwiftGen/bin/swiftgen xcassets \"$PROJECT_DIR/VegoResto/Ressources/Media.xcassets/\" --output \"$PROJECT_DIR/Constants_Gen/Images.swift\"  -t swift3\nelse\necho \"warning: SwiftGen not installed, download it from https://github.com/AliSoftware/SwiftGen\"\nfi\n";
 		};
 		7456CB99CF266BB1E3D84AE3 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -451,9 +451,40 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-VegoResto/Pods-VegoResto-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/AlamofireObjectMapper/AlamofireObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/GZIP/GZIP.framework",
+				"${BUILT_PRODUCTS_DIR}/Kanna/Kanna.framework",
+				"${BUILT_PRODUCTS_DIR}/LNRSimpleNotifications/LNRSimpleNotifications.framework",
+				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/MGSwipeTableCell/MGSwipeTableCell.framework",
+				"${BUILT_PRODUCTS_DIR}/MapleBacon/MapleBacon.framework",
+				"${BUILT_PRODUCTS_DIR}/MarqueeLabel/MarqueeLabel.framework",
+				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/ReCaptcha/ReCaptcha.framework",
+				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
+				"${BUILT_PRODUCTS_DIR}/SVPulsingAnnotationView/SVPulsingAnnotationView.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftSpinner/SwiftSpinner.framework",
+				"${BUILT_PRODUCTS_DIR}/VTAcknowledgementsViewController/VTAcknowledgementsViewController.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GZIP.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kanna.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LNRSimpleNotifications.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MGSwipeTableCell.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MapleBacon.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MarqueeLabel.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReCaptcha.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVPulsingAnnotationView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftSpinner.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/VTAcknowledgementsViewController.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -466,13 +497,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-VegoResto-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

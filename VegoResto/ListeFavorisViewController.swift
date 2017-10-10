@@ -17,7 +17,7 @@ class ListeFavorisViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.recherche_viewController = StoryboardScene.Main.instantiateRechercheViewController()
+        self.recherche_viewController = StoryboardScene.Main.rechercheViewController.instantiate()
         self.recherche_viewController?.afficherUniquementFavoris = true
 
         // Do any additional setup after loading the view.

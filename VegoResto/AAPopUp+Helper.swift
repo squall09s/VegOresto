@@ -7,16 +7,18 @@
 //
 
 // MARK: - AAPopUps
-class AAPopUps<S, V, W>: AAPopUp {
+class AAPopUps<S, V, W, X>: AAPopUp {
 
     let _storyboard: String?
     let _id: String
     let _currentComment: Comment?
+    let _currentRestaurant: Restaurant?
 
-    public init(_ storyboard: String? = nil, identifier: String, currentComment: Comment?) {
+    public init(_ storyboard: String? = nil, identifier: String, currentComment: Comment?, currentRestaurant: Restaurant?) {
         self._storyboard = storyboard
         self._id = identifier
         self._currentComment = currentComment
+        self._currentRestaurant = currentRestaurant
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -44,7 +46,7 @@ extension AAPopUp {
     ///
     /// - Parameter popup: AAPopUps object
     /// - Returns: UIViewController
-    func getViewController(_ popup: AAPopUps<String?, String, Comment?>) -> UIViewController {
+    func getViewController(_ popup: AAPopUps<String?, String, Comment?, Restaurant?>) -> UIViewController {
 
         var storyboard_id: String!
         if let storyboard = popup._storyboard {
@@ -60,6 +62,7 @@ extension AAPopUp {
         let vc = storyboard.instantiateViewController(withIdentifier: popup._id)
 
         self.currentComment = popup._currentComment
+        self.currentRestaurant = popup._currentRestaurant
 
         return vc
     }

@@ -408,3 +408,15 @@ class RechercheViewController: UIViewController, UITableViewDelegate, UITableVie
     }
 
 }
+
+// -----------------------------------------
+// MARK: Protocol - UIScrollViewDelegate
+// -----------------------------------------
+
+extension RechercheViewController: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView.contentOffset.y > 50 {
+            self.view.endEditing(true)
+        }
+    }
+}

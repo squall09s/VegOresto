@@ -19,6 +19,7 @@ class AAPopUp: UIViewController {
     /// Popup View controller
     var viewController: UIViewController!
     var currentComment: Comment?
+    var currentRestaurant: Restaurant?
 
     /// Keyboard visibility flag
     var keyboardIsVisible = false
@@ -28,7 +29,7 @@ class AAPopUp: UIViewController {
     /// - Parameters:
     ///   - popup: AAPopUps object
     ///   - options: AAPopUpOptions (optional)
-    public convenience init(popup: AAPopUps<String?, String, Comment?>,
+    public convenience init(popup: AAPopUps<String?, String, Comment?, Restaurant?>,
                             withOptions options: AAPopUpOptions? = nil) {
 
         self.init()
@@ -102,6 +103,7 @@ class AAPopUp: UIViewController {
     func initPopUp() {
 
         (self.viewController as? AddCommentPopUp)?.currentComment = self.currentComment
+        (self.viewController as? AddCommentPopUp)?.currentRestaurant = self.currentRestaurant
 
         let contentView = viewController.view.subviews.first!.bounds
         viewController.view.bounds = contentView

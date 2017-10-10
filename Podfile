@@ -8,7 +8,6 @@ pod 'Pushwoosh'
 pod 'SVPulsingAnnotationView'
 pod 'SwiftGen'
 pod 'GZIP'
-pod 'SWXMLHash'
 pod 'MGSwipeTableCell'
 pod 'SwiftSpinner'
 pod 'MapleBacon'
@@ -19,8 +18,11 @@ pod 'Kanna'
 
 
 # Webservices
-pod 'Alamofire', '~> 4.0'
-pod 'AlamofireObjectMapper', '~> 4.0'
+pod 'Alamofire'
+pod 'AlamofireObjectMapper'
+
+# Captcha
+pod 'ReCaptcha'
 
 #UX/UI
 pod 'MBProgressHUD', '~> 1.0.0'

@@ -12,7 +12,7 @@ class MainViewController: LGSideMenuController {
 
     static var sharedInstance: MainViewController?
 
-    var controllerMenuLateral: MenuLateral = StoryboardScene.Main.instantiateMenuLateral()
+    var controllerMenuLateral: MenuLateral = StoryboardScene.Main.menuLateral.instantiate()
 
     override func viewDidLoad() {
 
@@ -37,7 +37,7 @@ class MainViewController: LGSideMenuController {
 
         MainViewController.sharedInstance = self
 
-        let navigationController: UITabBarController = StoryboardScene.Main.instantiateNavigationController()
+        let navigationController: UITabBarController = StoryboardScene.Main.navigationController.instantiate()
 
         self.rootViewController = navigationController
 

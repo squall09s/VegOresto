@@ -14,6 +14,7 @@ class TableCommentsViewController: UIViewController, UITableViewDelegate, UITabl
     @IBOutlet var varIB_tableView: UITableView?
 
     var comments: [Comment] = [Comment]()
+    var currentRestaurant: Restaurant?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -107,7 +108,7 @@ class TableCommentsViewController: UIViewController, UITableViewDelegate, UITabl
             currentComment = self.comments[indexPath.section].getChildsCommentsAsArray()?[indexPath.row - 1 ]
         }
 
-        let popUps = AAPopUps<String?, String, Comment?>("Main", identifier: "AddCommentPopUp", currentComment: currentComment)
+        let popUps = AAPopUps<String?, String, Comment?, Restaurant?>("Main", identifier: "AddCommentPopUp", currentComment: currentComment, currentRestaurant : currentRestaurant)
 
         let popup: AAPopUp = AAPopUp(popup: popUps )
 
@@ -147,7 +148,7 @@ class TableCommentsViewController: UIViewController, UITableViewDelegate, UITabl
         options.animationDuration = 0.3
         options.backgroundColor = UIColor.black.withAlphaComponent(0.7)
 
-        let popUps = AAPopUps<String?, String, Comment?>("Main", identifier: "AddCommentPopUp", currentComment: nil)
+        let popUps = AAPopUps<String?, String, Comment?, Restaurant?>("Main", identifier: "AddCommentPopUp", currentComment: nil, currentRestaurant : self.currentRestaurant)
 
         let popup: AAPopUp = AAPopUp(popup: popUps )
 

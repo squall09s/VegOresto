@@ -12,7 +12,6 @@ import CoreData
 import CoreLocation
 import Alamofire
 import GZIP
-import SWXMLHash
 import Kanna
 
 class UserData: NSObject, CLLocationManagerDelegate {
@@ -173,6 +172,31 @@ class UserData: NSObject, CLLocationManagerDelegate {
         strResult = strResult.replacingOccurrences(of:"&#038;", with: "&")
 
         return strResult
+    }
+
+    func getCommentWithIdentifier(identifier: Int) -> Comment? {
+
+        print("getCommentWithIdentifier \(identifier)")
+        let fetchRequest: NSFetchRequest<Comment> = NSFetchRequest(entityName: "Comment")
+        let predicate: NSPredicate = NSPredicate(format: "ident == %@", String(identifier) )
+        fetchRequest.predicate = predicate
+
+        do {
+
+            let results = try self.managedContext.fetch(fetchRequest)
+
+            if results.count > 0 {
+
+                print("already exist")
+                return results[0]
+            }
+
+        } catch _ {
+
+        }
+        print("Comment not found")
+        return nil
+
     }
 
     func getRestaurantWithIdentifier(identifier: Int) -> Restaurant? {
