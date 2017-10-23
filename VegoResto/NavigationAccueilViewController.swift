@@ -8,6 +8,7 @@
 
 import UIKit
 import MBProgressHUD
+import DGElasticPullToRefresh
 
 class NavigationAccueilViewController: UIViewController {
 
@@ -27,38 +28,49 @@ class NavigationAccueilViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.navigationController?.navigationBar.barTintColor = COLOR_ORANGE
+        self.navigationController?.navigationBar.tintColor = UIColor.white
+        self.navigationItem.backBarButtonItem?.title = "Retour"
+        self.navigationController?.navigationBar.isTranslucent = true
+
         // Do any additional setup after loading the view.
 
         self.recherche_viewController = StoryboardScene.Main.rechercheViewController.instantiate()
         self.maps_viewController = StoryboardScene.Main.mapsViewController.instantiate()
 
-        self.varIB_button_tabbar_list.backgroundColor = UIColor.white.withAlphaComponent(0.3)
-        self.varIB_button_tabbar_maps.backgroundColor = UIColor.clear
+        self.varIB_button_tabbar_maps.backgroundColor = UIColor.white.withAlphaComponent(0.3)
+        self.varIB_button_tabbar_list.backgroundColor = UIColor.clear
 
         self.varIB_contrainte_y_chevron_tabbar.constant = Device.WIDTH * 0.25 - 15
 
         MBProgressHUD.showAdded(to: self.view, animated: true)
 
-        WebRequestManager.shared.listRestaurant(success: { (listRestaurant) in
+        self.updateData(forced: false) { (_) in
 
-            print("WebRequestManager.shared.listRestaurant success : \(listRestaurant)")
             MBProgressHUD.hide(for: self.view, animated: true)
+        }
 
-            self.maps_viewController?.updateDataAfterDelay()
-            self.recherche_viewController?.updateDataAfterDelay()
+    }
 
-            WebRequestManager.shared.loadHoraires(success: {
+    func updateData(forced: Bool, completion : (( Bool ) -> Void)? ) {
 
-            }, failure: { (_) in
+        UserData.sharedInstance.updateDatabaseIfNeeded(forced: forced) { (success) in
 
-            })
+            if success {
 
-        }, failure: { (_) in
+                self.maps_viewController?.updateDataAfterDelay()
+                self.recherche_viewController?.updateDataAfterDelay()
 
-            print("WebRequestManager.shared.listRestaurant Error")
-            MBProgressHUD.hide(for: self.view, animated: true)
+                WebRequestManager.shared.loadHoraires(success: {
 
-        })
+                }, failure: { (_) in
+
+                })
+            }
+
+            completion?(success)
+
+        }
 
     }
 
@@ -74,9 +86,9 @@ class NavigationAccueilViewController: UIViewController {
 
             self.addChildViewController(vc)
 
-                self.varIB_scrollView.addSubview(vc.view)
+            self.varIB_scrollView.addSubview(vc.view)
             vc.didMove(toParentViewController: self)
-            vc.view.frame = CGRect(x : Device.WIDTH, y : 0, width : Device.WIDTH, height : Device.HEIGHT - HAUTEUR_HEADER_BAR - HAUTEUR_TABBAR )
+            vc.view.frame = CGRect(x : 0, y : 0, width : Device.WIDTH, height : Device.HEIGHT - HAUTEUR_HEADER_BAR - HAUTEUR_TABBAR )
 
             }
 
@@ -89,7 +101,21 @@ class NavigationAccueilViewController: UIViewController {
             self.addChildViewController(vc)
             self.varIB_scrollView.addSubview(vc.view)
             vc.didMove(toParentViewController: self)
-            vc.view.frame = CGRect(x : 0, y : 0, width : Device.WIDTH, height : Device.HEIGHT - HAUTEUR_HEADER_BAR - HAUTEUR_TABBAR )
+            vc.view.frame = CGRect(x : Device.WIDTH, y : 0, width : Device.WIDTH, height : Device.HEIGHT - HAUTEUR_HEADER_BAR - HAUTEUR_TABBAR )
+
+            let loadingView = DGElasticPullToRefreshLoadingViewCircle()
+            loadingView.tintColor = COLOR_ORANGE
+            self.recherche_viewController?.varIB_tableView?.dg_addPullToRefreshWithActionHandler({ () -> Void in
+                    // Add your logic here
+                    // Do not forget to call dg_stopLoading() at the end
+                    self.updateData(forced: true) { (_) in
+                        self.recherche_viewController?.varIB_tableView?.dg_stopLoading()
+                    }
+
+            }, loadingView: loadingView)
+
+            self.recherche_viewController?.varIB_tableView?.dg_setPullToRefreshFillColor( UIColor(hexString: "EDEDED") )
+            self.recherche_viewController?.varIB_tableView?.dg_setPullToRefreshBackgroundColor(UIColor.white)
 
             }
         }
@@ -102,6 +128,17 @@ class NavigationAccueilViewController: UIViewController {
 
         // Dispose of any resources that can be recreated.
 
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+
+        self.navigationController?.setNavigationBarHidden(false, animated: animated)
+        super.viewWillDisappear(animated)
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: animated)
     }
 
     /*
@@ -118,11 +155,11 @@ class NavigationAccueilViewController: UIViewController {
 
         if self.varIB_button_tabbar_maps == sender {
 
-            let frame = CGRect( x : 0, y : 0, width : Device.WIDTH, height : Device.HEIGHT - HAUTEUR_HEADER_BAR - HAUTEUR_TABBAR )
+            let frame = CGRect( x : Device.WIDTH, y : 0, width : Device.WIDTH, height : Device.HEIGHT - HAUTEUR_HEADER_BAR - HAUTEUR_TABBAR )
 
             self.varIB_scrollView.scrollRectToVisible( frame, animated: true )
 
-            self.varIB_contrainte_y_chevron_tabbar.constant = Device.WIDTH * 0.25 - 15
+            self.varIB_contrainte_y_chevron_tabbar.constant = Device.WIDTH * 0.75 - 15
 
             UIView.animate(withDuration: 0.2, animations: {
 
@@ -133,11 +170,11 @@ class NavigationAccueilViewController: UIViewController {
 
         } else if self.varIB_button_tabbar_list == sender {
 
-            let frame = CGRect(x : Device.WIDTH, y : 0, width : Device.WIDTH, height :Device.HEIGHT - HAUTEUR_HEADER_BAR - HAUTEUR_TABBAR )
+            let frame = CGRect(x : 0, y : 0, width : Device.WIDTH, height :Device.HEIGHT - HAUTEUR_HEADER_BAR - HAUTEUR_TABBAR )
 
             self.varIB_scrollView.scrollRectToVisible( frame, animated: true )
 
-            self.varIB_contrainte_y_chevron_tabbar.constant = Device.WIDTH * 0.75 - 15
+            self.varIB_contrainte_y_chevron_tabbar.constant = Device.WIDTH * 0.25 - 15
 
             UIView.animate(withDuration: 0.2, animations: {
 

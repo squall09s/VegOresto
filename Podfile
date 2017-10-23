@@ -26,6 +26,8 @@ pod 'ReCaptcha'
 
 #UX/UI
 pod 'MBProgressHUD', '~> 1.0.0'
+pod 'DGElasticPullToRefresh'
+pod 'FaveButton'
 
 end
 

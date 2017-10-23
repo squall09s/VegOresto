@@ -38,13 +38,45 @@ class UserData: NSObject, CLLocationManagerDelegate {
 
     }
 
-    func getLastUpdateData() -> Int {
+    func updateDatabaseIfNeeded( forced: Bool, completion : (( Bool ) -> Void)? ) {
+
+        if self.updateDatabaseIsNeeded() || (self.getRestaurants().count == 0 || forced) {
+
+            WebRequestManager.shared.listRestaurant(success: { (_) in
+
+                self.saveSynchroDate()
+                completion?(true)
+
+            }, failure: { (_) in
+
+                completion?(false)
+            })
+
+        } else {
+
+            completion?(true)
+
+        }
+
+    }
+
+    private func updateDatabaseIsNeeded() -> Bool {
+
+        if self.getLastUpdateData() < INTERVAL_REFRESH_DATA {
+            return false
+        } else {
+            return true
+        }
+
+    }
+
+    private func getLastUpdateData() -> Int {
 
         let defaults = UserDefaults.standard
 
         if let date = defaults.object(forKey: KEY_LAST_SYNCHRO) as? Date {
 
-            return Int(date.timeIntervalSinceNow)
+            return abs(Int(date.timeIntervalSinceNow))
 
         }
 

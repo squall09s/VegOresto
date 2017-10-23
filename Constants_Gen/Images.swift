@@ -45,7 +45,12 @@ struct ColorAsset {
 
 // swiftlint:disable identifier_name line_length nesting type_body_length type_name
 enum Asset {
+  static let addPost = ImageAsset(name: "add_post")
   static let error = ImageAsset(name: "error")
+  static let imageResto0 = ImageAsset(name: "image_resto_0")
+  static let imageResto1 = ImageAsset(name: "image_resto_1")
+  static let imageRestoPlaceolder = ImageAsset(name: "image_resto_placeolder")
+  static let imageRestoSliderCache = ImageAsset(name: "image_resto_slider_cache")
   static let imgAnotation0 = ImageAsset(name: "img_anotation_0")
   static let imgAnotation1 = ImageAsset(name: "img_anotation_1")
   static let imgAnotation2 = ImageAsset(name: "img_anotation_2")
@@ -123,7 +128,12 @@ enum Asset {
   static let allColors: [ColorAsset] = [
   ]
   static let allImages: [ImageAsset] = [
+    addPost,
     error,
+    imageResto0,
+    imageResto1,
+    imageRestoPlaceolder,
+    imageRestoSliderCache,
     imgAnotation0,
     imgAnotation1,
     imgAnotation2,

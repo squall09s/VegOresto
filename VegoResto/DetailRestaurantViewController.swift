@@ -11,10 +11,11 @@ import CoreLocation
 import MapKit
 import MapleBacon
 import LNRSimpleNotifications
+import FaveButton
 
 class DetailRestaurantViewController: UIViewController {
 
-    @IBOutlet weak var varIB_label_name: UILabel?
+    //@IBOutlet weak var varIB_label_name: UILabel?
     @IBOutlet weak var varIB_label_resume: UILabel?
 
     @IBOutlet weak var varIB_label_adresse: UILabel?
@@ -39,26 +40,24 @@ class DetailRestaurantViewController: UIViewController {
     @IBOutlet weak var varIB_label_h_samedi: UILabel?
     @IBOutlet weak var varIB_label_h_dimanche: UILabel?
 
-    @IBOutlet weak var varIB_button_favoris: UIButton?
+    @IBOutlet weak var varIB_button_favoris: FaveButton?
 
-    @IBOutlet weak var varIB_image_vegan: UIImageView?
-    @IBOutlet weak var varIB_image_gluten_free: UIImageView?
     @IBOutlet weak var varIB_label_categories: UILabel?
+    @IBOutlet weak var varIB_scrollViewImages: UIScrollView?
+
+    @IBOutlet weak var varIB_constraintWidthLine_maps: NSLayoutConstraint?
+    @IBOutlet weak var varIB_constraintWidthLine_phone: NSLayoutConstraint?
+    @IBOutlet weak var varIB_constraintWidthLine_mail: NSLayoutConstraint?
+    @IBOutlet weak var varIB_constraintWidthLine_website: NSLayoutConstraint?
+    @IBOutlet weak var varIB_constraintWidthLine_facebook: NSLayoutConstraint?
 
     @IBOutlet weak var varIB_scroll: UIScrollView?
-    @IBOutlet weak var varIB_image_presentation: UIImageView?
 
     @IBOutlet weak var varIB_image_rating_1: UIImageView?
     @IBOutlet weak var varIB_image_rating_2: UIImageView?
     @IBOutlet weak var varIB_image_rating_3: UIImageView?
     @IBOutlet weak var varIB_image_rating_4: UIImageView?
     @IBOutlet weak var varIB_image_rating_5: UIImageView?
-
-    @IBOutlet weak var varIB_button_maps: UIButton?
-    @IBOutlet weak var varIB_button_phone: UIButton?
-    @IBOutlet weak var varIB_button_mail: UIButton?
-    @IBOutlet weak var varIB_button_website: UIButton?
-    @IBOutlet weak var varIB_button_facebook: UIButton?
 
     @IBOutlet weak var varIB_button_comment: UIButton?
     @IBOutlet weak var varIB_label_number_comment: UILabel?
@@ -70,9 +69,14 @@ class DetailRestaurantViewController: UIViewController {
 
         super.viewDidLoad()
 
+        self.varIB_button_favoris?.normalColor = UIColor(hexString: "F1EFF2")
+        self.varIB_button_favoris?.selectedColor = COLOR_ORANGE
+
         if let _current_restaurant =  self.current_restaurant {
 
-            self.varIB_label_name?.text = _current_restaurant.name
+            self.title = _current_restaurant.name
+
+            //self.varIB_label_name?.text = _current_restaurant.name
             self.varIB_label_resume?.text = _current_restaurant.resume
             self.varIB_label_ambiance?.text = _current_restaurant.ambiance
             self.varIB_label_type_etablissement?.text = _current_restaurant.type_etablissement
@@ -82,13 +86,13 @@ class DetailRestaurantViewController: UIViewController {
             self.varIB_label_moyens_de_paiement?.text = _current_restaurant.moyens_de_paiement
 
             if let horaire = UserData.sharedInstance.getHoraires(for: _current_restaurant) {
-                self.varIB_label_h_lundi?.text = horaire.dataL
-                self.varIB_label_h_mardi?.text = horaire.dataMa
-                self.varIB_label_h_mercredi?.text = horaire.dataMe
-                self.varIB_label_h_jeudi?.text = horaire.dataJ
-                self.varIB_label_h_vendredi?.text = horaire.dataV
-                self.varIB_label_h_samedi?.text = horaire.dataS
-                self.varIB_label_h_dimanche?.text = horaire.dataD
+                self.varIB_label_h_lundi?.text = ((horaire.dataL ?? "").count > 0) ? horaire.dataL : "Fermé"
+                self.varIB_label_h_mardi?.text = ((horaire.dataMa ?? "").count > 0) ? horaire.dataMa : "Fermé"
+                self.varIB_label_h_mercredi?.text = ((horaire.dataMe ?? "").count > 0) ? horaire.dataMe : "Fermé"
+                self.varIB_label_h_jeudi?.text = ((horaire.dataJ ?? "").count > 0) ? horaire.dataJ : "Fermé"
+                self.varIB_label_h_vendredi?.text = ((horaire.dataV ?? "").count > 0) ? horaire.dataV : "Fermé"
+                self.varIB_label_h_samedi?.text = ((horaire.dataS ?? "").count > 0) ? horaire.dataS : "Fermé"
+                self.varIB_label_h_dimanche?.text = ((horaire.dataD ?? "").count > 0) ? horaire.dataD : "Fermé"
             }
 
             self.varIB_label_animaux?.text = _current_restaurant.animaux_bienvenus?.boolValue == true ? "Oui !" : "Non"
@@ -117,44 +121,45 @@ class DetailRestaurantViewController: UIViewController {
             self.refreshBt_favoris()
 
             if  _current_restaurant.website != nil &&  _current_restaurant.website != "" {
-                self.varIB_button_website?.setImage( Asset.imgBtWebOrangeOn.image, for: UIControlState())
-                self.varIB_button_website?.isUserInteractionEnabled = true
                 self.varIB_label_website?.text = _current_restaurant.website
+            } else {
+                self.varIB_constraintWidthLine_website?.constant = 0
             }
 
             if  _current_restaurant.phone != nil &&  _current_restaurant.phone != "" {
-                self.varIB_button_phone?.setImage( Asset.imgBtTelOrangeOn.image, for: UIControlState())
-                self.varIB_button_phone?.isUserInteractionEnabled = true
                 self.varIB_label_phone?.text = _current_restaurant.phone
+            } else {
+                self.varIB_constraintWidthLine_phone?.constant = 0
             }
 
             if  _current_restaurant.facebook != nil &&  _current_restaurant.facebook != "" {
-                self.varIB_button_facebook?.setImage( Asset.imgBtFbOrangeOn.image, for: UIControlState())
-                self.varIB_button_facebook?.isUserInteractionEnabled = true
                 self.varIB_label_facebook?.text = _current_restaurant.facebook
+            } else {
+                self.varIB_constraintWidthLine_facebook?.constant = 0
             }
 
             if  _current_restaurant.mail != nil &&  _current_restaurant.mail != "" {
-                self.varIB_button_mail?.setImage( Asset.imgBtMailOrangeOn.image, for: UIControlState())
-                self.varIB_button_mail?.isUserInteractionEnabled = true
                 self.varIB_label_mail?.text = _current_restaurant.mail
+            } else {
+                self.varIB_constraintWidthLine_mail?.constant = 0
             }
 
             if  _current_restaurant.address != nil &&  _current_restaurant.address != "" {
-                self.varIB_button_maps?.setImage( Asset.imgBtMapsOrangeOn.image, for: UIControlState())
-                self.varIB_button_maps?.isUserInteractionEnabled = true
                 self.varIB_label_adresse?.text = _current_restaurant.address
+            } else {
+                self.varIB_constraintWidthLine_maps?.constant = 0
             }
 
-            if let imageString = _current_restaurant.image {
-                if let imgURL = URL(string: imageString) {
+            self.varIB_scrollViewImages?.contentSize = CGSize(width: 3 * Device.WIDTH, height: Device.WIDTH * (300.0/720.0) )
 
-                    self.varIB_image_presentation?.setImage(withUrl: imgURL, placeholder: Asset.imgNoImages.image, crossFadePlaceholder: false, cacheScaled: false, completion: nil)
+            for i in 0...2 {
 
-                }
+                let imageView = UIImageView(frame: CGRect(x: CGFloat(i) * Device.WIDTH, y: 0, width: Device.WIDTH, height: Device.WIDTH * (300.0/720.0)))
+                imageView.image = UIImage(named:  [ "image_resto_0", "image_resto_1", "image_resto_placeolder" ][i] )
+
+                self.varIB_scrollViewImages?.addSubview(imageView)
+
             }
-
-            self.varIB_image_vegan?.isHidden = _current_restaurant.categorie() != .Vegan
 
         }
 
@@ -290,12 +295,14 @@ class DetailRestaurantViewController: UIViewController {
 
         if let _current_restaurant = self.current_restaurant {
 
+             _current_restaurant.favoris = !(_current_restaurant.favoris.boolValue) as NSNumber
+
+            /*
             let notificationManager = LNRNotificationManager()
 
             if !(notificationManager.isNotificationActive) {
 
-                _current_restaurant.favoris = !(_current_restaurant.favoris.boolValue) as NSNumber
-
+             
                 notificationManager.notificationsPosition = LNRNotificationPosition.top
                 notificationManager.notificationsBackgroundColor = COLOR_ORANGE
                 notificationManager.notificationsTitleTextColor = UIColor.white
@@ -314,7 +321,7 @@ class DetailRestaurantViewController: UIViewController {
 
                 }))
 
-            }
+            }*/
         }
 
         self.refreshBt_favoris()
@@ -324,10 +331,8 @@ class DetailRestaurantViewController: UIViewController {
 
         if let _current_restaurant = self.current_restaurant {
 
-            if _current_restaurant.favoris.boolValue {
-                self.varIB_button_favoris?.setImage(  Asset.imgFavorisOrangeOn.image, for: UIControlState())
-            } else {
-                self.varIB_button_favoris?.setImage(  Asset.imgFavorisOrangeOff.image, for: UIControlState())
+            if self.varIB_button_favoris!.isSelected != _current_restaurant.favoris.boolValue {
+                self.varIB_button_favoris?.isSelected = _current_restaurant.favoris.boolValue
             }
         }
 

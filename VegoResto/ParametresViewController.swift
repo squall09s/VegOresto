@@ -14,6 +14,11 @@ class ParametresViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.navigationController?.navigationBar.barTintColor = COLOR_ORANGE
+        self.navigationController?.navigationBar.tintColor = UIColor.white
+        self.navigationItem.backBarButtonItem?.title = "Retour"
+        self.navigationController?.navigationBar.isTranslucent = true
+
         // Do any additional setup after loading the view.
     }
 

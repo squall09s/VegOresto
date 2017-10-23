@@ -10,7 +10,7 @@ import UIKit
 
 private let TAG_CELL_TITRE = 509
 private let TAG_CELL_IMAGE = 510
-private let array_titres: [String] = [ "LES RESTAURANTS", "MES FAVORIS", "PARAMÈTRES", "A PROPOS" ]
+private let array_titres: [String] = [ "LES RESTAURANTS", "MES FAVORIS", "PARAMÈTRES"]
 
 class MenuLateral: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -64,8 +64,6 @@ class MenuLateral: UIViewController, UITableViewDelegate, UITableViewDataSource 
             image_view?.image = Asset.imgMenu1.image //UIImage(asset: .Img_menu_1)
         case 2:
             image_view?.image = Asset.imgMenu2.image //UIImage(asset: .Img_menu_2)
-        case 3:
-            image_view?.image = Asset.imgMenu3.image //UIImage(asset: .Img_menu_3)
 
         default:
             break

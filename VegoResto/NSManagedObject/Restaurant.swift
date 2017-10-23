@@ -15,7 +15,7 @@ enum CategorieRestaurant {
 
     case Vegan
     case Végétarien
-    case Traditionnel
+    case VeganFriendly
 }
 
 @objc(Restaurant)
@@ -60,6 +60,7 @@ class Restaurant: NSManagedObject, Mappable {
         self.montant_moyen <- map["prix"]
         self.updateDataMontantMoyen()
 
+        self.absolute_url <- map["data.permalink"]
         self.type_etablissement <- map["type"]
         self.updateDataTypeEtablissement()
 
@@ -207,7 +208,7 @@ class Restaurant: NSManagedObject, Mappable {
 
         }
 
-        return CategorieRestaurant.Traditionnel
+        return CategorieRestaurant.VeganFriendly
 
     }
 
@@ -355,7 +356,7 @@ class Restaurant: NSManagedObject, Mappable {
                                           "monde": "Cuisine du monde",
                                           "sans_gluten": "Sans gluten",
                                           "tapas": "Tapas",
-                                          "tradi": "Traditionnel",
+                                          "tradi": "Vegan-friendly",
                                           "pizza": "Pizzeria",
                                           "vegan": "Végétalien, végane",
                                           "vege": "Végétarien",

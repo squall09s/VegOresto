@@ -10,7 +10,6 @@ import UIKit
 
 class TableCommentsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-    @IBOutlet var varIB_title_label: UILabel!
     @IBOutlet var varIB_tableView: UITableView?
 
     var comments: [Comment] = [Comment]()
@@ -19,7 +18,7 @@ class TableCommentsViewController: UIViewController, UITableViewDelegate, UITabl
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.varIB_title_label.text = "Avis (\(self.comments.count))"
+        self.title = "Avis (\(self.comments.count))"
 
         // Do any additional setup after loading the view.
     }
@@ -31,11 +30,22 @@ class TableCommentsViewController: UIViewController, UITableViewDelegate, UITabl
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 
+        if indexPath.section == self.comments.count {
+
+            return 100
+
+        }
+
         return UITableViewAutomaticDimension
 
     }
 
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+
+        if indexPath.section == self.comments.count {
+
+            return 60
+        }
 
         return UITableViewAutomaticDimension
 
@@ -43,17 +53,28 @@ class TableCommentsViewController: UIViewController, UITableViewDelegate, UITabl
 
     func numberOfSections(in tableView: UITableView) -> Int {
 
-        return self.comments.count
+        return self.comments.count + 1
 
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+
+        if section == self.comments.count {
+
+            return 1
+        }
 
         return (self.comments[section].getChildsCommentsAsArray()?.count ?? 0 ) + 1
     }
 
     // swiftlint:disable:next cyclomatic_complexity
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+
+        if indexPath.section == self.comments.count {
+
+            return tableView.dequeueReusableCell(withIdentifier: "AddCommentCell", for: indexPath)
+
+        }
 
         let reuseIdentifier: String
 
@@ -88,6 +109,13 @@ class TableCommentsViewController: UIViewController, UITableViewDelegate, UITabl
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
+        if indexPath.section == self.comments.count {
+
+            self.clic_new_comment()
+            return
+
+        }
 
         if indexPath.row > 0 {
             return
@@ -139,7 +167,7 @@ class TableCommentsViewController: UIViewController, UITableViewDelegate, UITabl
 
     }
 
-    @IBAction func clic_new_comment(_ sender : Any ) {
+    func clic_new_comment() {
 
         let options = AAPopUp.globalOptions
         options.storyboardName = "Main"

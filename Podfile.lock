@@ -3,6 +3,8 @@ PODS:
   - AlamofireObjectMapper (5.0.0):
     - Alamofire (~> 4.1)
     - ObjectMapper (~> 3.0)
+  - DGElasticPullToRefresh (1.1)
+  - FaveButton (2.0.3)
   - GZIP (1.2.1)
   - Kanna (2.2.1)
   - LNRSimpleNotifications (0.6.1)
@@ -27,6 +29,8 @@ PODS:
 DEPENDENCIES:
   - Alamofire
   - AlamofireObjectMapper
+  - DGElasticPullToRefresh
+  - FaveButton
   - GZIP
   - Kanna
   - LNRSimpleNotifications
@@ -44,6 +48,8 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
   AlamofireObjectMapper: 5fafc816351cbbc0d486611aaeba7461c0cbad49
+  DGElasticPullToRefresh: 28f11a6026302a90f8ffebbc6e24748e584dddd3
+  FaveButton: cfcbc5e73da159c4f916613da5687357b5bb4783
   GZIP: 7ee835f989fb3c6ea79005fc90b8fa6af710a70d
   Kanna: 182789ab065e8f9a6ccc2a74ce6283d3401c0c4a
   LNRSimpleNotifications: 4602ddc63444b42b1653681730678af1585c5fa3
@@ -60,6 +66,6 @@ SPEC CHECKSUMS:
   SwiftSpinner: bf7c13332ad008952a09358cadf24a186510ae31
   VTAcknowledgementsViewController: 0bc8149be64f0d5b7f398e146353af8fde04b313
 
-PODFILE CHECKSUM: cbe89b6f454880d3ce5329d93e1020aed2dfd239
+PODFILE CHECKSUM: 4282e8d69c115a5d3c94d47e59190ef3981ff531
 
 COCOAPODS: 1.3.1

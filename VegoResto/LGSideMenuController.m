@@ -707,7 +707,10 @@
                   presentationStyle:(LGSideMenuPresentationStyle)presentationStyle
                alwaysVisibleOptions:(LGSideMenuAlwaysVisibleOptions)alwaysVisibleOptions
 {
-    NSAssert(_leftView == nil, @"Left view already exists");
+    //NSAssert(_leftView == nil, @"Left view already exists");
+    if( _leftView != nil ){
+        return;
+    }
     
     _rootViewCoverViewForLeftView = [UIView new];
     _rootViewCoverViewForLeftView.hidden = YES;

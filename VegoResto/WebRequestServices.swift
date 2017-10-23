@@ -54,6 +54,15 @@ class WebRequestServices {
                 }
             }
 
+            do {
+                try UserData.sharedInstance.managedContext.save()
+            } catch {
+
+                let nserror = error as NSError
+                Debug.log(object: "listRestaurant : saveContext - Unresolved error \(nserror), \(nserror.userInfo)")
+                abort()
+            }
+
             success(listRestaurant)
 
         }, failure: failure)

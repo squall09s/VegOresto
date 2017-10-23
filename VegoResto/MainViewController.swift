@@ -11,6 +11,7 @@ import UIKit
 class MainViewController: LGSideMenuController {
 
     static var sharedInstance: MainViewController?
+    var isAlreadySet = false
 
     var controllerMenuLateral: MenuLateral = StoryboardScene.Main.menuLateral.instantiate()
 
@@ -33,6 +34,10 @@ class MainViewController: LGSideMenuController {
 
     func setup() {
 
+        if isAlreadySet {
+            return
+        }
+
         Debug.log(object: "[ Setup MainViewController ]")
 
         MainViewController.sharedInstance = self
@@ -49,6 +54,8 @@ class MainViewController: LGSideMenuController {
         self.leftViewStatusBarVisibleOptions = .onAll
 
         self.leftView().addSubview( self.controllerMenuLateral.view )
+
+        isAlreadySet = true
 
     }
 

@@ -20,10 +20,16 @@ class MapsViewController: UIViewController, MKMapViewDelegate {
     @IBOutlet weak var varIB_bt_filtre_categorie_2: UIButton!
     @IBOutlet weak var varIB_bt_filtre_categorie_3: UIButton!
 
-    var filtre_categorie: CategorieRestaurant?
+    var filtre_categorie_Vegetarien_active = true
+    var filtre_categorie_Vegan_active = true
+    var filtre_categorie_VeganFriendly_active = true
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        self.varIB_bt_filtre_categorie_1?.layer.cornerRadius = 15.0
+        self.varIB_bt_filtre_categorie_2?.layer.cornerRadius = 15.0
+        self.varIB_bt_filtre_categorie_3?.layer.cornerRadius = 15.0
 
         self.varIB_mapView.showsUserLocation = true
 
@@ -101,7 +107,7 @@ class MapsViewController: UIViewController, MKMapViewDelegate {
                     case CategorieRestaurant.Végétarien :
                         pinView?.image = Asset.imgAnotation1.image //UIImage(asset: .Img_anotation_1)
 
-                    case CategorieRestaurant.Traditionnel :
+                    case CategorieRestaurant.VeganFriendly :
                         pinView?.image = Asset.imgAnotation2.image //UIImage(asset: .Img_anotation_2)
 
                     }
@@ -283,53 +289,40 @@ class MapsViewController: UIViewController, MKMapViewDelegate {
 
         if sender == self.varIB_bt_filtre_categorie_1 {
 
-            if self.filtre_categorie != CategorieRestaurant.Végétarien {
-                self.filtre_categorie = CategorieRestaurant.Végétarien
-            } else {
-                self.filtre_categorie = nil
+            if self.filtre_categorie_Vegetarien_active == false || ( self.filtre_categorie_Vegan_active || self.filtre_categorie_VeganFriendly_active ) {
+                self.filtre_categorie_Vegetarien_active = !(self.filtre_categorie_Vegetarien_active)
             }
 
         } else if sender == self.varIB_bt_filtre_categorie_2 {
 
-            if self.filtre_categorie != CategorieRestaurant.Vegan {
-                self.filtre_categorie = CategorieRestaurant.Vegan
-            } else {
-                self.filtre_categorie = nil
+            if self.filtre_categorie_Vegan_active == false || ( self.filtre_categorie_Vegetarien_active || self.filtre_categorie_VeganFriendly_active ) {
+                self.filtre_categorie_Vegan_active = !(self.filtre_categorie_Vegan_active)
             }
 
         } else if sender == self.varIB_bt_filtre_categorie_3 {
 
-            if self.filtre_categorie != CategorieRestaurant.Traditionnel {
-                self.filtre_categorie = CategorieRestaurant.Traditionnel
-            } else {
-                self.filtre_categorie = nil
+            if self.filtre_categorie_VeganFriendly_active == false || ( self.filtre_categorie_Vegan_active || self.filtre_categorie_Vegetarien_active ) {
+                self.filtre_categorie_VeganFriendly_active = !(self.filtre_categorie_VeganFriendly_active)
             }
 
         }
 
-        if self.filtre_categorie == CategorieRestaurant.Végétarien {
-
+        if self.filtre_categorie_Vegetarien_active {
             self.varIB_bt_filtre_categorie_1.backgroundColor = COLOR_VIOLET
-            self.varIB_bt_filtre_categorie_2.backgroundColor = COLOR_GRIS_FONCÉ.withAlphaComponent(0.6)
-            self.varIB_bt_filtre_categorie_3.backgroundColor = COLOR_GRIS_FONCÉ.withAlphaComponent(0.6)
-
-        } else if self.filtre_categorie == CategorieRestaurant.Vegan {
-
-            self.varIB_bt_filtre_categorie_1.backgroundColor = COLOR_GRIS_FONCÉ.withAlphaComponent(0.6)
-            self.varIB_bt_filtre_categorie_2.backgroundColor = COLOR_VERT
-            self.varIB_bt_filtre_categorie_3.backgroundColor = COLOR_GRIS_FONCÉ.withAlphaComponent(0.6)
-
-        } else if self.filtre_categorie == CategorieRestaurant.Traditionnel {
-
-            self.varIB_bt_filtre_categorie_1.backgroundColor = COLOR_GRIS_FONCÉ.withAlphaComponent(0.6)
-            self.varIB_bt_filtre_categorie_2.backgroundColor = COLOR_GRIS_FONCÉ.withAlphaComponent(0.6)
-            self.varIB_bt_filtre_categorie_3.backgroundColor = COLOR_BLEU
-
         } else {
+            self.varIB_bt_filtre_categorie_1.backgroundColor = COLOR_GRIS_FONCÉ.withAlphaComponent(0.6)
+        }
 
-            self.varIB_bt_filtre_categorie_1.backgroundColor = COLOR_VIOLET
+        if self.filtre_categorie_Vegan_active {
             self.varIB_bt_filtre_categorie_2.backgroundColor = COLOR_VERT
+        } else {
+            self.varIB_bt_filtre_categorie_2.backgroundColor = COLOR_GRIS_FONCÉ.withAlphaComponent(0.6)
+        }
+
+        if self.filtre_categorie_VeganFriendly_active {
             self.varIB_bt_filtre_categorie_3.backgroundColor = COLOR_BLEU
+        } else {
+            self.varIB_bt_filtre_categorie_3.backgroundColor = COLOR_GRIS_FONCÉ.withAlphaComponent(0.6)
         }
 
         self.updateData()
@@ -341,11 +334,33 @@ class MapsViewController: UIViewController, MKMapViewDelegate {
 
         let restaurants = UserData.sharedInstance.getRestaurants().flatMap { (currentResto) -> Restaurant? in
 
-            if currentResto.categorie() == self.filtre_categorie || self.filtre_categorie == nil {
+            if self.filtre_categorie_VeganFriendly_active && self.filtre_categorie_Vegetarien_active && self.filtre_categorie_Vegan_active {
 
                 return currentResto
 
             } else {
+
+                    switch currentResto.categorie() {
+
+                    case CategorieRestaurant.Vegan :
+
+                        if self.filtre_categorie_Vegan_active {
+                            return currentResto
+                        }
+
+                    case CategorieRestaurant.Végétarien :
+
+                        if self.filtre_categorie_Vegetarien_active {
+                            return currentResto
+                        }
+
+                    case CategorieRestaurant.VeganFriendly :
+
+                        if self.filtre_categorie_VeganFriendly_active {
+                            return currentResto
+                        }
+
+                    }
 
                 return nil
 

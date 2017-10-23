@@ -27,6 +27,11 @@ class ListeFavorisViewController: UIViewController {
 
         super.viewDidAppear(animated)
 
+        self.navigationController?.navigationBar.barTintColor = COLOR_ORANGE
+        self.navigationController?.navigationBar.tintColor = UIColor.white
+        self.navigationItem.backBarButtonItem?.title = "Retour"
+        self.navigationController?.navigationBar.isTranslucent = true
+
         if let vc: RechercheViewController = self.recherche_viewController {
 
             if vc.parent != self {
@@ -48,6 +53,17 @@ class ListeFavorisViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+
+        self.navigationController?.setNavigationBarHidden(false, animated: animated)
+        super.viewWillDisappear(animated)
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: animated)
     }
 
     /*

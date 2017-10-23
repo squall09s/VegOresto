@@ -19,7 +19,10 @@ class RechercheViewController: UIViewController, UITableViewDelegate, UITableVie
     @IBOutlet weak var varIB_bt_filtre_categorie_3: UIButton!
 
     var afficherUniquementFavoris = false
-    var filtre_categorie: CategorieRestaurant?
+
+    var filtre_categorie_Vegetarien_active = true
+    var filtre_categorie_Vegan_active = true
+    var filtre_categorie_VeganFriendly_active = true
 
     let TAG_CELL_LABEL_NAME = 501
     let TAG_CELL_LABEL_ADRESS = 502
@@ -41,6 +44,9 @@ class RechercheViewController: UIViewController, UITableViewDelegate, UITableVie
 
         NotificationCenter.default.addObserver(self, selector: #selector(RechercheViewController.updateDataAfterDelay), name: NSNotification.Name(rawValue: "CHARGEMENT_TERMINE"), object: nil)
 
+        self.varIB_bt_filtre_categorie_1?.layer.cornerRadius = 15.0
+        self.varIB_bt_filtre_categorie_2?.layer.cornerRadius = 15.0
+        self.varIB_bt_filtre_categorie_3?.layer.cornerRadius = 15.0
         // Do any additional setup after loading the view.
     }
 
@@ -125,7 +131,7 @@ class RechercheViewController: UIViewController, UITableViewDelegate, UITableVie
                 imageSwipe = Asset.imgFavorisOn1.image
             }
 
-        case CategorieRestaurant.Traditionnel :
+        case CategorieRestaurant.VeganFriendly :
             view_color_categorie?.backgroundColor = COLOR_BLEU
             if current_restaurant.favoris.boolValue {
                 imageview_favoris?.image = Asset.imgFavoris2.image
@@ -266,13 +272,13 @@ class RechercheViewController: UIViewController, UITableViewDelegate, UITableVie
 
         self.varIB_tableView?.reloadData()
 
-        if let _key = key {
+        if let _key = key?.lowercased() {
 
             if _key.characters.count > 3 {
 
                 self.array_restaurants = self.array_restaurants.flatMap({ (current_restaurant: Restaurant) -> Restaurant? in
 
-                    if let clean_name: String = current_restaurant.name?.folding(options : .diacriticInsensitive, locale: Locale.current ) {
+                    if let clean_name: String = current_restaurant.name?.lowercased().folding(options : .diacriticInsensitive, locale: Locale.current ) {
 
                         if clean_name.contains(_key) {
                             return current_restaurant
@@ -280,7 +286,7 @@ class RechercheViewController: UIViewController, UITableViewDelegate, UITableVie
 
                     }
 
-                    if let clean_adress: String = current_restaurant.address?.folding(options: .diacriticInsensitive, locale: Locale.current ) {
+                    if let clean_adress: String = current_restaurant.address?.lowercased().folding(options: .diacriticInsensitive, locale: Locale.current ) {
 
                         if clean_adress.contains(_key) {
                             return current_restaurant
@@ -295,19 +301,41 @@ class RechercheViewController: UIViewController, UITableViewDelegate, UITableVie
 
         }
 
-        if let _filtre_categorie = filtre_categorie {
+            self.array_restaurants = self.array_restaurants.flatMap({ (currentResto: Restaurant) -> Restaurant? in
 
-            self.array_restaurants = self.array_restaurants.flatMap({ (current_restaurant: Restaurant) -> Restaurant? in
+                if self.filtre_categorie_VeganFriendly_active && self.filtre_categorie_Vegetarien_active && self.filtre_categorie_Vegan_active {
 
-                if current_restaurant.categorie() == _filtre_categorie {
-                    return current_restaurant
+                    return currentResto
+
+                } else {
+
+                    switch currentResto.categorie() {
+
+                    case CategorieRestaurant.Vegan :
+
+                        if self.filtre_categorie_Vegan_active {
+                            return currentResto
+                        }
+
+                    case CategorieRestaurant.Végétarien :
+
+                        if self.filtre_categorie_Vegetarien_active {
+                            return currentResto
+                        }
+
+                    case CategorieRestaurant.VeganFriendly :
+
+                        if self.filtre_categorie_VeganFriendly_active {
+                            return currentResto
+                        }
+
+                    }
+
+                    return nil
+
                 }
 
-                return nil
-
             })
-
-        }
 
     }
 
@@ -315,56 +343,41 @@ class RechercheViewController: UIViewController, UITableViewDelegate, UITableVie
 
         if sender == self.varIB_bt_filtre_categorie_1 {
 
-            if self.filtre_categorie != CategorieRestaurant.Végétarien {
-                self.filtre_categorie = CategorieRestaurant.Végétarien
-            } else {
-                self.filtre_categorie = nil
+            if self.filtre_categorie_Vegetarien_active == false || ( self.filtre_categorie_Vegan_active || self.filtre_categorie_VeganFriendly_active ) {
+                self.filtre_categorie_Vegetarien_active = !(self.filtre_categorie_Vegetarien_active)
             }
-
         } else if sender == self.varIB_bt_filtre_categorie_2 {
 
-            if self.filtre_categorie != CategorieRestaurant.Vegan {
-                self.filtre_categorie = CategorieRestaurant.Vegan
-            } else {
-                self.filtre_categorie = nil
+            if self.filtre_categorie_Vegan_active == false || ( self.filtre_categorie_Vegetarien_active || self.filtre_categorie_VeganFriendly_active ) {
+                self.filtre_categorie_Vegan_active = !(self.filtre_categorie_Vegan_active)
             }
-
         } else if sender == self.varIB_bt_filtre_categorie_3 {
 
-            if self.filtre_categorie != CategorieRestaurant.Traditionnel {
-                self.filtre_categorie = CategorieRestaurant.Traditionnel
-            } else {
-                self.filtre_categorie = nil
+            if self.filtre_categorie_VeganFriendly_active == false || ( self.filtre_categorie_Vegan_active || self.filtre_categorie_Vegetarien_active ) {
+                self.filtre_categorie_VeganFriendly_active = !(self.filtre_categorie_VeganFriendly_active)
             }
-
         }
 
-        if self.filtre_categorie == CategorieRestaurant.Végétarien {
-
+        if self.filtre_categorie_Vegetarien_active {
             self.varIB_bt_filtre_categorie_1.backgroundColor = COLOR_VIOLET
-            self.varIB_bt_filtre_categorie_2.backgroundColor = COLOR_GRIS_FONCÉ.withAlphaComponent(0.6)
-            self.varIB_bt_filtre_categorie_3.backgroundColor = COLOR_GRIS_FONCÉ.withAlphaComponent(0.6)
-
-        } else if self.filtre_categorie == CategorieRestaurant.Vegan {
-
-            self.varIB_bt_filtre_categorie_1.backgroundColor = COLOR_GRIS_FONCÉ.withAlphaComponent(0.6)
-            self.varIB_bt_filtre_categorie_2.backgroundColor = COLOR_VERT
-            self.varIB_bt_filtre_categorie_3.backgroundColor = COLOR_GRIS_FONCÉ.withAlphaComponent(0.6)
-
-        } else if self.filtre_categorie == CategorieRestaurant.Traditionnel {
-
-            self.varIB_bt_filtre_categorie_1.backgroundColor = COLOR_GRIS_FONCÉ.withAlphaComponent(0.6)
-            self.varIB_bt_filtre_categorie_2.backgroundColor = COLOR_GRIS_FONCÉ.withAlphaComponent(0.6)
-            self.varIB_bt_filtre_categorie_3.backgroundColor = COLOR_BLEU
-
         } else {
+            self.varIB_bt_filtre_categorie_1.backgroundColor = COLOR_GRIS_FONCÉ.withAlphaComponent(0.6)
+        }
 
-            self.varIB_bt_filtre_categorie_1.backgroundColor = COLOR_VIOLET
+        if self.filtre_categorie_Vegan_active {
             self.varIB_bt_filtre_categorie_2.backgroundColor = COLOR_VERT
+        } else {
+            self.varIB_bt_filtre_categorie_2.backgroundColor = COLOR_GRIS_FONCÉ.withAlphaComponent(0.6)
+        }
+
+        if self.filtre_categorie_VeganFriendly_active {
             self.varIB_bt_filtre_categorie_3.backgroundColor = COLOR_BLEU
+        } else {
+            self.varIB_bt_filtre_categorie_3.backgroundColor = COLOR_GRIS_FONCÉ.withAlphaComponent(0.6)
         }
 
         self.updateData()
+
     }
 
     func update_resultats_for_user_location() {
