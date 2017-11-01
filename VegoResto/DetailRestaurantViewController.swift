@@ -69,6 +69,8 @@ class DetailRestaurantViewController: UIViewController {
 
         super.viewDidLoad()
 
+        self.navigationController?.navigationBar.titleTextAttributes =  [NSForegroundColorAttributeName: UIColor.white]
+
         self.varIB_button_favoris?.normalColor = UIColor(hexString: "F1EFF2")
         self.varIB_button_favoris?.selectedColor = COLOR_ORANGE
 
@@ -108,11 +110,9 @@ class DetailRestaurantViewController: UIViewController {
                     if i > 0 {
                         categoriesCulinaireString += ", "
                     }
-
                     categoriesCulinaireString += catName
 
                     i += 1
-
                 }
             }
 
@@ -150,14 +150,30 @@ class DetailRestaurantViewController: UIViewController {
                 self.varIB_constraintWidthLine_maps?.constant = 0
             }
 
-            self.varIB_scrollViewImages?.contentSize = CGSize(width: 3 * Device.WIDTH, height: Device.WIDTH * (300.0/720.0) )
+            let imgsSrc: [String] = (self.current_restaurant?.image ?? "").components(separatedBy: "|")
 
-            for i in 0...2 {
+            self.varIB_scrollViewImages?.contentSize = CGSize(width: CGFloat(imgsSrc.count) * Device.WIDTH, height: Device.WIDTH * (300.0/720.0))
 
-                let imageView = UIImageView(frame: CGRect(x: CGFloat(i) * Device.WIDTH, y: 0, width: Device.WIDTH, height: Device.WIDTH * (300.0/720.0)))
-                imageView.image = UIImage(named:  [ "image_resto_0", "image_resto_1", "image_resto_placeolder" ][i] )
+            var j: Int = 0
+
+            for imgSrc in imgsSrc {
+
+                let imageView = UIImageView(frame: CGRect(x: CGFloat(j) * Device.WIDTH, y: 0, width: Device.WIDTH, height: Device.WIDTH * (300.0/720.0)))
+
+                imageView.image = UIImage(named: "image_resto_placeolder")
+                imageView.contentMode = .scaleAspectFit
 
                 self.varIB_scrollViewImages?.addSubview(imageView)
+
+                if let url = URL(string: imgSrc.replacingOccurrences(of: "https://vegoresto.l214.in", with: "https://vegoresto.fr")) {
+
+                    imageView.setImage(withUrl: url, placeholder: UIImage(named: "image_resto_placeolder"), crossFadePlaceholder: false, cacheScaled: false, completion: { (_, _) in
+
+                    })
+
+                }
+
+                j += 1
 
             }
 
@@ -263,6 +279,48 @@ class DetailRestaurantViewController: UIViewController {
     }
 
     @IBAction func touch_bt_maps(sender: AnyObject) {
+
+        if let latitude = self.current_restaurant?.lat?.doubleValue, let longitude = self.current_restaurant?.lon?.doubleValue {
+
+            let userLocation = UserData.sharedInstance.location
+
+            let alert = UIAlertController(title: "C'est parti !",
+                                          message: "Ouvrir l'itinéraire vers ce restaurant ?",
+                                          preferredStyle: .alert)
+
+            let action1 = UIAlertAction(title: "Utiliser Plan", style: .default, handler: { (_) -> Void in
+                self.launchApplePlan()
+            })
+            alert.addAction(action1)
+
+            if UIApplication.shared.canOpenURL(URL(string:"comgooglemaps://")!) {
+
+                let action2 = UIAlertAction(title: "Utiliser Google Maps", style: .default, handler: { (_) -> Void in
+                    self.launchGoogleMaps()
+                })
+
+                alert.addAction(action2)
+            }
+
+            // Cancel button
+            let cancel = UIAlertAction(title: "Annuler", style: .destructive, handler: { (_) -> Void in })
+
+            alert.addAction(cancel)
+            present(alert, animated: true, completion: nil)
+
+        }
+    }
+
+    func launchGoogleMaps() {
+
+        if let latitude = self.current_restaurant?.lat?.doubleValue, let longitude = self.current_restaurant?.lon?.doubleValue {
+
+                UIApplication.shared.openURL(URL(string:"comgooglemaps://?daddr=\(latitude),\(longitude)&directionsmode=driving&zoom=14&views=traffic")!)
+
+        }
+    }
+
+    func launchApplePlan() {
 
         if let latitude = self.current_restaurant?.lat?.doubleValue, let longitude = self.current_restaurant?.lon?.doubleValue {
 

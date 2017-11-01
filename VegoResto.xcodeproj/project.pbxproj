@@ -11,10 +11,12 @@
 		37201FF11F55A25E00D7D1AB /* WebRequestServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37201FEE1F55A25E00D7D1AB /* WebRequestServices.swift */; };
 		37201FF21F55A25E00D7D1AB /* RequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37201FEF1F55A25E00D7D1AB /* RequestManager.swift */; };
 		37255B7F1F818D28006B501C /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37255B7E1F818CC3006B501C /* Media.xcassets */; };
-		375E8D471F544CE500A20276 /* AAPopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375E8D441F544CE500A20276 /* AAPopUp.swift */; };
-		375E8D481F544CE500A20276 /* AAPopUp+Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375E8D451F544CE500A20276 /* AAPopUp+Global.swift */; };
-		375E8D491F544CE500A20276 /* AAPopUp+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375E8D461F544CE500A20276 /* AAPopUp+Helper.swift */; };
-		375E8D4B1F545F7600A20276 /* AddCommentPopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375E8D4A1F545F7600A20276 /* AddCommentPopUp.swift */; };
+		37D82FF61F9F10380037CD4B /* AddCommentContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D82FF51F9F10380037CD4B /* AddCommentContainerViewController.swift */; };
+		37D82FF81F9F10520037CD4B /* CreateCommentStep1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D82FF71F9F10520037CD4B /* CreateCommentStep1ViewController.swift */; };
+		37D82FFA1F9F10660037CD4B /* CreateCommentStep2UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D82FF91F9F10660037CD4B /* CreateCommentStep2UserViewController.swift */; };
+		37D82FFC1F9F107A0037CD4B /* CreateCommentStep3ImagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D82FFB1F9F107A0037CD4B /* CreateCommentStep3ImagesViewController.swift */; };
+		37D82FFE1F9F10900037CD4B /* CreateCommentStep4ResumeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D82FFD1F9F10900037CD4B /* CreateCommentStep4ResumeViewController.swift */; };
+		37D830001F9F28C00037CD4B /* SecurityServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D82FFF1F9F28C00037CD4B /* SecurityServices.swift */; };
 		37DD9C081F5DE3A1007B3E2B /* Comment+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DD9C061F5DE3A1007B3E2B /* Comment+CoreDataProperties.swift */; };
 		37DD9C091F5DE3A1007B3E2B /* Restaurant+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DD9C071F5DE3A1007B3E2B /* Restaurant+CoreDataProperties.swift */; };
 		37DD9C0A1F5DE3C9007B3E2B /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398857E91CC2BA1000B05F64 /* Restaurant.swift */; };
@@ -71,10 +73,12 @@
 		37201FEE1F55A25E00D7D1AB /* WebRequestServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebRequestServices.swift; sourceTree = "<group>"; };
 		37201FEF1F55A25E00D7D1AB /* RequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestManager.swift; sourceTree = "<group>"; };
 		37255B7E1F818CC3006B501C /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Media.xcassets; path = Ressources/Media.xcassets; sourceTree = "<group>"; };
-		375E8D441F544CE500A20276 /* AAPopUp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AAPopUp.swift; sourceTree = "<group>"; };
-		375E8D451F544CE500A20276 /* AAPopUp+Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AAPopUp+Global.swift"; sourceTree = "<group>"; };
-		375E8D461F544CE500A20276 /* AAPopUp+Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AAPopUp+Helper.swift"; sourceTree = "<group>"; };
-		375E8D4A1F545F7600A20276 /* AddCommentPopUp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddCommentPopUp.swift; sourceTree = "<group>"; };
+		37D82FF51F9F10380037CD4B /* AddCommentContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AddCommentContainerViewController.swift; path = Comment/AddCommentContainerViewController.swift; sourceTree = "<group>"; };
+		37D82FF71F9F10520037CD4B /* CreateCommentStep1ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CreateCommentStep1ViewController.swift; path = Comment/CreateCommentStep1ViewController.swift; sourceTree = "<group>"; };
+		37D82FF91F9F10660037CD4B /* CreateCommentStep2UserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CreateCommentStep2UserViewController.swift; path = Comment/CreateCommentStep2UserViewController.swift; sourceTree = "<group>"; };
+		37D82FFB1F9F107A0037CD4B /* CreateCommentStep3ImagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CreateCommentStep3ImagesViewController.swift; path = Comment/CreateCommentStep3ImagesViewController.swift; sourceTree = "<group>"; };
+		37D82FFD1F9F10900037CD4B /* CreateCommentStep4ResumeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CreateCommentStep4ResumeViewController.swift; path = Comment/CreateCommentStep4ResumeViewController.swift; sourceTree = "<group>"; };
+		37D82FFF1F9F28C00037CD4B /* SecurityServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SecurityServices.swift; path = Network/SecurityServices.swift; sourceTree = "<group>"; };
 		37DD9C061F5DE3A1007B3E2B /* Comment+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Comment+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		37DD9C071F5DE3A1007B3E2B /* Restaurant+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Restaurant+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		37E9D7A71F6EE42700D39672 /* Horaire+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Horaire+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -154,6 +158,18 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		37D82FF41F9F101A0037CD4B /* AddComment */ = {
+			isa = PBXGroup;
+			children = (
+				37D82FF51F9F10380037CD4B /* AddCommentContainerViewController.swift */,
+				37D82FF71F9F10520037CD4B /* CreateCommentStep1ViewController.swift */,
+				37D82FF91F9F10660037CD4B /* CreateCommentStep2UserViewController.swift */,
+				37D82FFB1F9F107A0037CD4B /* CreateCommentStep3ImagesViewController.swift */,
+				37D82FFD1F9F10900037CD4B /* CreateCommentStep4ResumeViewController.swift */,
+			);
+			name = AddComment;
+			sourceTree = "<group>";
+		};
 		3939F3901D6B9874006786D6 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -204,7 +220,7 @@
 				39848B071CB4231300D718FD /* NavigationAccueilViewController.swift */,
 				39610F501E1DB62A005F7053 /* TableCommentsViewController.swift */,
 				39610F521E1DB6C1005F7053 /* CommentTableViewCell.swift */,
-				375E8D4A1F545F7600A20276 /* AddCommentPopUp.swift */,
+				37D82FF41F9F101A0037CD4B /* AddComment */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -216,6 +232,7 @@
 				37201FED1F55A25E00D7D1AB /* WebRequestManager.swift */,
 				37201FEE1F55A25E00D7D1AB /* WebRequestServices.swift */,
 				37201FEF1F55A25E00D7D1AB /* RequestManager.swift */,
+				37D82FFF1F9F28C00037CD4B /* SecurityServices.swift */,
 				397901751CADC62900597DCD /* CoreData */,
 			);
 			name = Models;
@@ -234,9 +251,6 @@
 			isa = PBXGroup;
 			children = (
 				396BD97F1CAEB8640071DF07 /* ColorExtension.swift */,
-				375E8D441F544CE500A20276 /* AAPopUp.swift */,
-				375E8D451F544CE500A20276 /* AAPopUp+Global.swift */,
-				375E8D461F544CE500A20276 /* AAPopUp+Helper.swift */,
 			);
 			name = "Tools and Services";
 			sourceTree = "<group>";
@@ -457,6 +471,7 @@
 				"${BUILT_PRODUCTS_DIR}/DGElasticPullToRefresh/DGElasticPullToRefresh.framework",
 				"${BUILT_PRODUCTS_DIR}/FaveButton/FaveButton.framework",
 				"${BUILT_PRODUCTS_DIR}/GZIP/GZIP.framework",
+				"${BUILT_PRODUCTS_DIR}/JSONWebToken/JWT.framework",
 				"${BUILT_PRODUCTS_DIR}/Kanna/Kanna.framework",
 				"${BUILT_PRODUCTS_DIR}/LNRSimpleNotifications/LNRSimpleNotifications.framework",
 				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
@@ -468,6 +483,7 @@
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
 				"${BUILT_PRODUCTS_DIR}/SVPulsingAnnotationView/SVPulsingAnnotationView.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftSpinner/SwiftSpinner.framework",
+				"${BUILT_PRODUCTS_DIR}/TLPhotoPicker/TLPhotoPicker.framework",
 				"${BUILT_PRODUCTS_DIR}/VTAcknowledgementsViewController/VTAcknowledgementsViewController.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -477,6 +493,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DGElasticPullToRefresh.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FaveButton.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GZIP.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JWT.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kanna.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LNRSimpleNotifications.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
@@ -488,6 +505,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVPulsingAnnotationView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftSpinner.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TLPhotoPicker.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/VTAcknowledgementsViewController.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -524,9 +542,9 @@
 				398AA7E81D17F90600FA7E0A /* MainViewController.swift in Sources */,
 				37DD9C0A1F5DE3C9007B3E2B /* Restaurant.swift in Sources */,
 				39EC80061CAD5ED2002AD862 /* RestaurantAnnotation.swift in Sources */,
-				375E8D491F544CE500A20276 /* AAPopUp+Helper.swift in Sources */,
 				39968D3F1CABFFBB0085C61F /* AppDelegate.swift in Sources */,
 				37E9D7AA1F6EE42700D39672 /* Horaire+CoreDataProperties.swift in Sources */,
+				37D830001F9F28C00037CD4B /* SecurityServices.swift in Sources */,
 				398AA7E51D17F90600FA7E0A /* LGSideMenuController.m in Sources */,
 				39848B081CB4231300D718FD /* NavigationAccueilViewController.swift in Sources */,
 				37201FF01F55A25E00D7D1AB /* WebRequestManager.swift in Sources */,
@@ -538,30 +556,32 @@
 				396BD97E1CAEB8410071DF07 /* Constantes.swift in Sources */,
 				398AA7E61D17F90600FA7E0A /* MenuLateral.swift in Sources */,
 				39C50EFD1CC8D9670019FA2B /* Storyboards.swift in Sources */,
-				375E8D471F544CE500A20276 /* AAPopUp.swift in Sources */,
 				390909E11DCB3E52005F77CB /* FBAnnotationClusterView.swift in Sources */,
 				390909E01DCB3E52005F77CB /* FBAnnotationCluster.swift in Sources */,
 				37201FF11F55A25E00D7D1AB /* WebRequestServices.swift in Sources */,
 				39968D471CABFFBB0085C61F /* VegoResto.xcdatamodeld in Sources */,
 				39EC7FF61CAC1F9F002AD862 /* UserData.swift in Sources */,
 				398AA7E71D17F90600FA7E0A /* UIViewControllerExtension.swift in Sources */,
+				37D82FF81F9F10520037CD4B /* CreateCommentStep1ViewController.swift in Sources */,
 				39EC7FF01CAC0E15002AD862 /* MapsViewController.swift in Sources */,
 				390909E51DCB3E52005F77CB /* FBQuadTreeNode.swift in Sources */,
 				37DD9C091F5DE3A1007B3E2B /* Restaurant+CoreDataProperties.swift in Sources */,
+				37D82FF61F9F10380037CD4B /* AddCommentContainerViewController.swift in Sources */,
 				37201FF21F55A25E00D7D1AB /* RequestManager.swift in Sources */,
 				39EC80041CAC4787002AD862 /* RechercheViewController.swift in Sources */,
 				399C06001CB8F86700885C0B /* ImageAnnotationView.swift in Sources */,
 				390909E41DCB3E52005F77CB /* FBQuadTree.swift in Sources */,
+				37D82FFA1F9F10660037CD4B /* CreateCommentStep2UserViewController.swift in Sources */,
 				390909E21DCB3E52005F77CB /* FBBoundingBox.swift in Sources */,
 				37E9D7A91F6EE42700D39672 /* Horaire+CoreDataClass.swift in Sources */,
-				375E8D4B1F545F7600A20276 /* AddCommentPopUp.swift in Sources */,
-				375E8D481F544CE500A20276 /* AAPopUp+Global.swift in Sources */,
+				37D82FFC1F9F107A0037CD4B /* CreateCommentStep3ImagesViewController.swift in Sources */,
 				390909E31DCB3E52005F77CB /* FBClusteringManager.swift in Sources */,
 				37DD9C081F5DE3A1007B3E2B /* Comment+CoreDataProperties.swift in Sources */,
 				398857E71CC2B97600B05F64 /* CategorieCulinaire.swift in Sources */,
 				39C50EFC1CC8D9670019FA2B /* Images.swift in Sources */,
 				396BD9751CAE62670071DF07 /* DetailRestaurantViewController.swift in Sources */,
 				39610F561E1DBF4A005F7053 /* Comment.swift in Sources */,
+				37D82FFE1F9F10900037CD4B /* CreateCommentStep4ResumeViewController.swift in Sources */,
 				396BD9801CAEB8640071DF07 /* ColorExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

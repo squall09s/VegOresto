@@ -48,7 +48,7 @@ class WebRequestManager {
     func listRestaurant(  success: @escaping ([Restaurant]) -> Void,
                           failure: @escaping (Error?) -> Void) {
 
-        WebRequestServices.listRestaurant(urlPath: URL_SERVEUR() + "/wp-content/cache/full-1023.json", success: { (listRestaurants) in
+        WebRequestServices.listRestaurant(urlPath: URL_SERVEUR() +  "/wp-json/vg/v1/restos.json", success: { (listRestaurants) in
 
             success(listRestaurants)
 
@@ -67,11 +67,11 @@ class WebRequestManager {
 
     }
 
-    func uploadComment(restaurant: Restaurant, comment: Comment, tokenCaptcha: String,
+    func uploadComment(restaurant: Restaurant, comment: Comment,
                               success: @escaping () -> Void,
                               failure: @escaping (Error?) -> Void) {
 
-        WebRequestServices.uploadComment(urlPath: URL_SERVEUR() + "/wp-json/vegoresto/v1/comments", restaurant: restaurant, comment: comment, tokenCaptcha: tokenCaptcha, success: {
+        WebRequestServices.uploadComment(urlPath: URL_SERVEUR() + "/wp-json/vegoresto/v1/comments", restaurant: restaurant, comment: comment, success: {
 
             success()
 

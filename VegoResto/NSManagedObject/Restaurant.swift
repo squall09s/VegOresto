@@ -45,22 +45,45 @@ class Restaurant: NSManagedObject, Mappable {
 
         identifier <-  map["id"]
         name <-  map["title"]
-        ville <-  map["data.ville"]
-        image <- map["data.thumbnail"]
+        ville <-  map["ville"]
 
-        phone <- map["data.tel_public"]
+        if let _img: [String] = map.JSON["thumbnails"] as? [String] {
+
+            var image_str_array = ""
+
+            var _index = 0
+            for _imgTmp: String in _img {
+
+                if _index == 0 {
+                    image_str_array = _imgTmp
+                } else {
+                    image_str_array += ( "|" + _imgTmp)
+                }
+
+                _index += 1
+            }
+
+            self.image = image_str_array
+        }
+
+        phone <- map["tel_public"]
         montant_moyen <- map["prix"]
 
-        self.address <- map["data.adresse"]
+        self.facebook <- map["fb"]
+        self.website <- map["site"]
+        self.mail <- map["email"]
+
+        self.address <- map["adresse"]
         self.address = cleanString(str: self.address ?? "")
 
-        self.resume <- map["data.accroche"]
+        self.resume <- map["accroche"]
         self.resume = cleanString(str: self.resume ?? "")
 
         self.montant_moyen <- map["prix"]
+
         self.updateDataMontantMoyen()
 
-        self.absolute_url <- map["data.permalink"]
+        self.absolute_url <- map["permalink"]
         self.type_etablissement <- map["type"]
         self.updateDataTypeEtablissement()
 
@@ -78,33 +101,30 @@ class Restaurant: NSManagedObject, Mappable {
             self.updateDataInfluenceGastro(influances: _gast)
         }
 
+        if let _moyensPaiement = map.JSON["payment"] as? [String] {
+
+            self.updateDataMoyensDePaiement(moyensPaiement: _moyensPaiement)
+        }
+
         if let _data = map.JSON["data"] as? [String : Any ] {
 
             if let _ambiances = _data["ambiance"] as? [String] {
-
                 self.updateDataTypeAmbiance(ambiances: _ambiances)
-
             }
 
             if let _votes = _data["votes"] as? [String : Any] {
 
                 if let _avg = _votes["avg"] as? Double {
-
                     self.rating = NSNumber(value: _avg)
-
                 }
-
             }
-
         }
 
-        if let _lon: String = map.JSON["lon"] as? String, let _lat: String = map.JSON["lat"] as? String {
+        if let _lon: Double = map.JSON["lon"] as? Double, let _lat: Double = map.JSON["lat"] as? Double {
 
-            if let valueLat = Double(_lat), let valueLon = Double(_lon) {
+                self.lat = NSNumber(value: _lat)
+                self.lon = NSNumber(value: _lon)
 
-                self.lat = NSNumber(value: valueLat)
-                self.lon = NSNumber(value: valueLon)
-            }
         }
 
         if let _anim = map.JSON["anim"] as? String {

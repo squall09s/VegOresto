@@ -59,8 +59,6 @@ enum StoryboardScene {
 
     static let initialScene = InitialSceneType<VegoResto.MainViewController>(storyboard: Main.self)
 
-    static let addCommentPopUp = SceneType<VegoResto.AddCommentPopUp>(storyboard: Main.self, identifier: "AddCommentPopUp")
-
     static let mainViewController = SceneType<VegoResto.MainViewController>(storyboard: Main.self, identifier: "MainViewController")
 
     static let mapsViewController = SceneType<VegoResto.MapsViewController>(storyboard: Main.self, identifier: "MapsViewController")
@@ -75,6 +73,11 @@ enum StoryboardScene {
 
 enum StoryboardSegue {
   enum Main: String, SegueType {
+    case segueToCreateCommentStep1ViewController = "SegueToCreateCommentStep1ViewController"
+    case segueToCreateCommentStep2UserViewController = "SegueToCreateCommentStep2UserViewController"
+    case segueToCreateCommentStep3ImagesViewController = "SegueToCreateCommentStep3ImagesViewController"
+    case segueToCreateCommentStep4ResumeViewController = "SegueToCreateCommentStep4ResumeViewController"
+    case segueToAddComment = "segue_to_addComment"
     case segueToComments = "segue_to_comments"
     case segueToDetail = "segue_to_detail"
   }

@@ -20,6 +20,7 @@ pod 'Kanna'
 # Webservices
 pod 'Alamofire'
 pod 'AlamofireObjectMapper'
+pod 'JSONWebToken'
 
 # Captcha
 pod 'ReCaptcha'
@@ -28,6 +29,7 @@ pod 'ReCaptcha'
 pod 'MBProgressHUD', '~> 1.0.0'
 pod 'DGElasticPullToRefresh'
 pod 'FaveButton'
+pod 'TLPhotoPicker'
 
 end
 

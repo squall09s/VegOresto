@@ -418,6 +418,7 @@ class RechercheViewController: UIViewController, UITableViewDelegate, UITableVie
 
         self.loadRestaurantsWithWord(key: self.varIB_searchBar?.text)
         self.varIB_tableView?.reloadData()
+        self.varIB_tableView?.scrollRectToVisible(CGRect(x: 0, y: 0, width: 1, height: 1), animated: true)
     }
 
 }

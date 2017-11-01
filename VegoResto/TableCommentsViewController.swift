@@ -121,13 +121,6 @@ class TableCommentsViewController: UIViewController, UITableViewDelegate, UITabl
             return
         }
 
-        let options = AAPopUp.globalOptions
-        options.storyboardName = "Main"
-        options.dismissTag = 9
-        options.cornerRadius = 4.0
-        options.animationDuration = 0.3
-        options.backgroundColor = UIColor.black.withAlphaComponent(0.7)
-
         var currentComment: Comment? = nil
 
         if indexPath.row == 0 {
@@ -136,19 +129,8 @@ class TableCommentsViewController: UIViewController, UITableViewDelegate, UITabl
             currentComment = self.comments[indexPath.section].getChildsCommentsAsArray()?[indexPath.row - 1 ]
         }
 
-        let popUps = AAPopUps<String?, String, Comment?, Restaurant?>("Main", identifier: "AddCommentPopUp", currentComment: currentComment, currentRestaurant : currentRestaurant)
+        self.perform(segue: StoryboardSegue.Main.segueToAddComment, sender: currentComment)
 
-        let popup: AAPopUp = AAPopUp(popup: popUps )
-
-        AddCommentPopUp.completionSend = { newComment in
-
-            self.varIB_tableView?.reloadData()
-        }
-
-        popup.present { _ in
-            // MARK: - View Did Appear Here
-
-        }
     }
 
     /*
@@ -169,27 +151,22 @@ class TableCommentsViewController: UIViewController, UITableViewDelegate, UITabl
 
     func clic_new_comment() {
 
-        let options = AAPopUp.globalOptions
-        options.storyboardName = "Main"
-        options.dismissTag = 9
-        options.cornerRadius = 4.0
-        options.animationDuration = 0.3
-        options.backgroundColor = UIColor.black.withAlphaComponent(0.7)
+        self.perform(segue: StoryboardSegue.Main.segueToAddComment)
 
-        let popUps = AAPopUps<String?, String, Comment?, Restaurant?>("Main", identifier: "AddCommentPopUp", currentComment: nil, currentRestaurant : self.currentRestaurant)
+    }
 
-        let popup: AAPopUp = AAPopUp(popup: popUps )
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
-        AddCommentPopUp.completionSend = { newComment in
+        if let vc = segue.destination as? AddCommentContainerViewController {
 
-            self.comments.append(newComment)
-            self.varIB_tableView?.reloadData()
-        }
+            vc.currentRestaurant = self.currentRestaurant
 
-        popup.present { _ in
-            // MARK: - View Did Appear Here
+            if let parentComment = sender as? Comment {
+                vc.parentComment = parentComment
+            }
 
         }
 
     }
+
 }

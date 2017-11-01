@@ -29,7 +29,7 @@ class WebRequestServices {
                                success: @escaping ([Restaurant]) -> Void,
                                failure: @escaping (Error?) -> Void) {
 
-        RequestManager.doRequestList(method: .get, path: urlPath, completion: { (result : [String : Any]) in
+        RequestManager.doRequestListGzipped(method: .get, path: urlPath, completion: { (result : [String : Any]) in
 
             var listRestaurant = [Restaurant]()
 
@@ -93,7 +93,7 @@ class WebRequestServices {
 
     }
 
-    static func uploadComment(urlPath: String, restaurant: Restaurant, comment: Comment, tokenCaptcha: String,
+    static func uploadComment(urlPath: String, restaurant: Restaurant, comment: Comment,
                               success: @escaping () -> Void,
                               failure: @escaping (Error?) -> Void) {
 
@@ -105,13 +105,13 @@ class WebRequestServices {
         //params["author_email"] = "test@mail.fr"
 
         var _urlPathWithParam = urlPath + "?"
-        _urlPathWithParam += "g-recaptcha-response=" + tokenCaptcha
         _urlPathWithParam += "&post=" + String(restaurant.identifier?.intValue ?? -1)
         _urlPathWithParam += "&content=" + (comment.content?.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? "")
 
+        /*
         if let vote = comment.rating?.intValue {
             _urlPathWithParam += "&vote=" + String(vote)
-        }
+        }*/
 
         _urlPathWithParam += "&author_email=" + "test@mail.fr"
         _urlPathWithParam += "&author_name=" + (comment.author?.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? "Invite")
