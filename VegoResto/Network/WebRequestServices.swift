@@ -13,7 +13,7 @@ class WebRequestServices {
 
     static func listComment(urlPath: String,
                             success: @escaping ([Comment]) -> Void,
-                            failure: @escaping (Error?) -> Void) {
+                             failure: @escaping (Error?) -> Void) {
 
         RequestManager.doRequest(method: .get,
                                  path: urlPath,
