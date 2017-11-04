@@ -7,9 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		37201FF01F55A25E00D7D1AB /* WebRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37201FED1F55A25E00D7D1AB /* WebRequestManager.swift */; };
-		37201FF11F55A25E00D7D1AB /* WebRequestServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37201FEE1F55A25E00D7D1AB /* WebRequestServices.swift */; };
-		37201FF21F55A25E00D7D1AB /* RequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37201FEF1F55A25E00D7D1AB /* RequestManager.swift */; };
 		37255B7F1F818D28006B501C /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37255B7E1F818CC3006B501C /* Media.xcassets */; };
 		37D05B3A1FAC9C68005B3B9D /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37D05B391FAC9C68005B3B9D /* Photos.framework */; };
 		37D82FF61F9F10380037CD4B /* AddCommentContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D82FF51F9F10380037CD4B /* AddCommentContainerViewController.swift */; };
@@ -24,6 +21,9 @@
 		37E9D7A91F6EE42700D39672 /* Horaire+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E9D7A71F6EE42700D39672 /* Horaire+CoreDataClass.swift */; };
 		37E9D7AA1F6EE42700D39672 /* Horaire+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E9D7A81F6EE42700D39672 /* Horaire+CoreDataProperties.swift */; };
 		37F8801D1FADEF4C00F34F78 /* Keys.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37F8801E1FADEF4C00F34F78 /* Keys.framework */; };
+		37F880211FADF5FC00F34F78 /* WebRequestServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F8801F1FADF5FB00F34F78 /* WebRequestServices.swift */; };
+		37F880221FADF5FC00F34F78 /* WebRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F880201FADF5FC00F34F78 /* WebRequestManager.swift */; };
+		37F880241FADF6F100F34F78 /* RequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F880231FADF6F100F34F78 /* RequestManager.swift */; };
 		390909DF1DCB3E52005F77CB /* FBAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390909D81DCB3E52005F77CB /* FBAnnotation.swift */; };
 		390909E01DCB3E52005F77CB /* FBAnnotationCluster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390909D91DCB3E52005F77CB /* FBAnnotationCluster.swift */; };
 		390909E11DCB3E52005F77CB /* FBAnnotationClusterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390909DA1DCB3E52005F77CB /* FBAnnotationClusterView.swift */; };
@@ -71,9 +71,6 @@
 /* Begin PBXFileReference section */
 		370F7B491F97AA43008A4C8E /* fr */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = fr; path = fr.lproj/Main.storyboard; sourceTree = "<group>"; };
 		370F7B4B1F97AA67008A4C8E /* fr */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = fr; path = fr.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		37201FED1F55A25E00D7D1AB /* WebRequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebRequestManager.swift; sourceTree = "<group>"; };
-		37201FEE1F55A25E00D7D1AB /* WebRequestServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebRequestServices.swift; sourceTree = "<group>"; };
-		37201FEF1F55A25E00D7D1AB /* RequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestManager.swift; sourceTree = "<group>"; };
 		37255B7E1F818CC3006B501C /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Media.xcassets; path = Ressources/Media.xcassets; sourceTree = "<group>"; };
 		37D05B391FAC9C68005B3B9D /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
 		37D82FF51F9F10380037CD4B /* AddCommentContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AddCommentContainerViewController.swift; path = Comment/AddCommentContainerViewController.swift; sourceTree = "<group>"; };
@@ -82,18 +79,21 @@
 		37D82FFB1F9F107A0037CD4B /* CreateCommentStep3ImagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CreateCommentStep3ImagesViewController.swift; path = Comment/CreateCommentStep3ImagesViewController.swift; sourceTree = "<group>"; };
 		37D82FFD1F9F10900037CD4B /* CreateCommentStep4ResumeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CreateCommentStep4ResumeViewController.swift; path = Comment/CreateCommentStep4ResumeViewController.swift; sourceTree = "<group>"; };
 		37D82FFF1F9F28C00037CD4B /* SecurityServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SecurityServices.swift; path = Network/SecurityServices.swift; sourceTree = "<group>"; };
-		37DD9C061F5DE3A1007B3E2B /* Comment+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Comment+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		37DD9C071F5DE3A1007B3E2B /* Restaurant+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Restaurant+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		37E9D7A71F6EE42700D39672 /* Horaire+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Horaire+CoreDataClass.swift"; sourceTree = "<group>"; };
-		37E9D7A81F6EE42700D39672 /* Horaire+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Horaire+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		37DD9C061F5DE3A1007B3E2B /* Comment+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Comment+CoreDataProperties.swift"; path = "NSManagedObject/Comment+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		37DD9C071F5DE3A1007B3E2B /* Restaurant+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Restaurant+CoreDataProperties.swift"; path = "NSManagedObject/Restaurant+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		37E9D7A71F6EE42700D39672 /* Horaire+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Horaire+CoreDataClass.swift"; path = "NSManagedObject/Horaire+CoreDataClass.swift"; sourceTree = "<group>"; };
+		37E9D7A81F6EE42700D39672 /* Horaire+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Horaire+CoreDataProperties.swift"; path = "NSManagedObject/Horaire+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		37F8801E1FADEF4C00F34F78 /* Keys.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Keys.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		390909D81DCB3E52005F77CB /* FBAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBAnnotation.swift; sourceTree = "<group>"; };
-		390909D91DCB3E52005F77CB /* FBAnnotationCluster.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBAnnotationCluster.swift; sourceTree = "<group>"; };
-		390909DA1DCB3E52005F77CB /* FBAnnotationClusterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBAnnotationClusterView.swift; sourceTree = "<group>"; };
-		390909DB1DCB3E52005F77CB /* FBBoundingBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBBoundingBox.swift; sourceTree = "<group>"; };
-		390909DC1DCB3E52005F77CB /* FBClusteringManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBClusteringManager.swift; sourceTree = "<group>"; };
-		390909DD1DCB3E52005F77CB /* FBQuadTree.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBQuadTree.swift; sourceTree = "<group>"; };
-		390909DE1DCB3E52005F77CB /* FBQuadTreeNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBQuadTreeNode.swift; sourceTree = "<group>"; };
+		37F8801F1FADF5FB00F34F78 /* WebRequestServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WebRequestServices.swift; path = Network/WebRequestServices.swift; sourceTree = "<group>"; };
+		37F880201FADF5FC00F34F78 /* WebRequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WebRequestManager.swift; path = Network/WebRequestManager.swift; sourceTree = "<group>"; };
+		37F880231FADF6F100F34F78 /* RequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RequestManager.swift; path = Network/RequestManager.swift; sourceTree = "<group>"; };
+		390909D81DCB3E52005F77CB /* FBAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FBAnnotation.swift; path = Ressources/Lib/FBAnnotation/FBAnnotation.swift; sourceTree = "<group>"; };
+		390909D91DCB3E52005F77CB /* FBAnnotationCluster.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FBAnnotationCluster.swift; path = Ressources/Lib/FBAnnotation/FBAnnotationCluster.swift; sourceTree = "<group>"; };
+		390909DA1DCB3E52005F77CB /* FBAnnotationClusterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FBAnnotationClusterView.swift; path = Ressources/Lib/FBAnnotation/FBAnnotationClusterView.swift; sourceTree = "<group>"; };
+		390909DB1DCB3E52005F77CB /* FBBoundingBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FBBoundingBox.swift; path = Ressources/Lib/FBAnnotation/FBBoundingBox.swift; sourceTree = "<group>"; };
+		390909DC1DCB3E52005F77CB /* FBClusteringManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FBClusteringManager.swift; path = Ressources/Lib/FBAnnotation/FBClusteringManager.swift; sourceTree = "<group>"; };
+		390909DD1DCB3E52005F77CB /* FBQuadTree.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FBQuadTree.swift; path = Ressources/Lib/FBAnnotation/FBQuadTree.swift; sourceTree = "<group>"; };
+		390909DE1DCB3E52005F77CB /* FBQuadTreeNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FBQuadTreeNode.swift; path = Ressources/Lib/FBAnnotation/FBQuadTreeNode.swift; sourceTree = "<group>"; };
 		390909E61DCB3E85005F77CB /* ImagesClusters.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ImagesClusters.xcassets; sourceTree = "<group>"; };
 		39189F791CB5548500A64E5E /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		391D6D791D7060780023733E /* Pods-VegoResto-acknowledgements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "Pods-VegoResto-acknowledgements.plist"; path = "../Pods/Target Support Files/Pods-VegoResto/Pods-VegoResto-acknowledgements.plist"; sourceTree = "<group>"; };
@@ -114,10 +114,10 @@
 		398857E51CC2B97600B05F64 /* CategorieCulinaire.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CategorieCulinaire.swift; path = NSManagedObject/CategorieCulinaire.swift; sourceTree = "<group>"; };
 		398857E91CC2BA1000B05F64 /* Restaurant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Restaurant.swift; path = NSManagedObject/Restaurant.swift; sourceTree = "<group>"; };
 		398AA7DF1D17F90500FA7E0A /* VegoResto-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "VegoResto-Bridging-Header.h"; sourceTree = "<group>"; };
-		398AA7E01D17F90600FA7E0A /* LGSideMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGSideMenuController.m; sourceTree = "<group>"; };
-		398AA7E11D17F90600FA7E0A /* LGSideMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGSideMenuController.h; sourceTree = "<group>"; };
+		398AA7E01D17F90600FA7E0A /* LGSideMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LGSideMenuController.m; path = Ressources/Lib/LGSideMenuController.m; sourceTree = "<group>"; };
+		398AA7E11D17F90600FA7E0A /* LGSideMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LGSideMenuController.h; path = Ressources/Lib/LGSideMenuController.h; sourceTree = "<group>"; };
 		398AA7E21D17F90600FA7E0A /* MenuLateral.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuLateral.swift; sourceTree = "<group>"; };
-		398AA7E31D17F90600FA7E0A /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
+		398AA7E31D17F90600FA7E0A /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIViewControllerExtension.swift; path = Ressources/UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		398AA7E41D17F90600FA7E0A /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		39968D3B1CABFFBA0085C61F /* VegoResto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VegoResto.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		39968D3E1CABFFBB0085C61F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -235,10 +235,10 @@
 			isa = PBXGroup;
 			children = (
 				39EC7FF51CAC1F9F002AD862 /* UserData.swift */,
-				37201FED1F55A25E00D7D1AB /* WebRequestManager.swift */,
-				37201FEE1F55A25E00D7D1AB /* WebRequestServices.swift */,
-				37201FEF1F55A25E00D7D1AB /* RequestManager.swift */,
+				37F880201FADF5FC00F34F78 /* WebRequestManager.swift */,
+				37F8801F1FADF5FB00F34F78 /* WebRequestServices.swift */,
 				37D82FFF1F9F28C00037CD4B /* SecurityServices.swift */,
+				37F880231FADF6F100F34F78 /* RequestManager.swift */,
 				397901751CADC62900597DCD /* CoreData */,
 			);
 			name = Models;
@@ -561,18 +561,18 @@
 				37D830001F9F28C00037CD4B /* SecurityServices.swift in Sources */,
 				398AA7E51D17F90600FA7E0A /* LGSideMenuController.m in Sources */,
 				39848B081CB4231300D718FD /* NavigationAccueilViewController.swift in Sources */,
-				37201FF01F55A25E00D7D1AB /* WebRequestManager.swift in Sources */,
 				391D6D7C1D7060A50023733E /* ParametresViewController.swift in Sources */,
 				39610F511E1DB62A005F7053 /* TableCommentsViewController.swift in Sources */,
 				398857E61CC2B97600B05F64 /* CategorieCulinaire+CoreDataProperties.swift in Sources */,
 				390909DF1DCB3E52005F77CB /* FBAnnotation.swift in Sources */,
 				39610F531E1DB6C1005F7053 /* CommentTableViewCell.swift in Sources */,
 				396BD97E1CAEB8410071DF07 /* Constantes.swift in Sources */,
+				37F880241FADF6F100F34F78 /* RequestManager.swift in Sources */,
 				398AA7E61D17F90600FA7E0A /* MenuLateral.swift in Sources */,
 				39C50EFD1CC8D9670019FA2B /* Storyboards.swift in Sources */,
+				37F880211FADF5FC00F34F78 /* WebRequestServices.swift in Sources */,
 				390909E11DCB3E52005F77CB /* FBAnnotationClusterView.swift in Sources */,
 				390909E01DCB3E52005F77CB /* FBAnnotationCluster.swift in Sources */,
-				37201FF11F55A25E00D7D1AB /* WebRequestServices.swift in Sources */,
 				39968D471CABFFBB0085C61F /* VegoResto.xcdatamodeld in Sources */,
 				39EC7FF61CAC1F9F002AD862 /* UserData.swift in Sources */,
 				398AA7E71D17F90600FA7E0A /* UIViewControllerExtension.swift in Sources */,
@@ -581,7 +581,6 @@
 				390909E51DCB3E52005F77CB /* FBQuadTreeNode.swift in Sources */,
 				37DD9C091F5DE3A1007B3E2B /* Restaurant+CoreDataProperties.swift in Sources */,
 				37D82FF61F9F10380037CD4B /* AddCommentContainerViewController.swift in Sources */,
-				37201FF21F55A25E00D7D1AB /* RequestManager.swift in Sources */,
 				39EC80041CAC4787002AD862 /* RechercheViewController.swift in Sources */,
 				399C06001CB8F86700885C0B /* ImageAnnotationView.swift in Sources */,
 				390909E41DCB3E52005F77CB /* FBQuadTree.swift in Sources */,
@@ -590,6 +589,7 @@
 				37E9D7A91F6EE42700D39672 /* Horaire+CoreDataClass.swift in Sources */,
 				37D82FFC1F9F107A0037CD4B /* CreateCommentStep3ImagesViewController.swift in Sources */,
 				390909E31DCB3E52005F77CB /* FBClusteringManager.swift in Sources */,
+				37F880221FADF5FC00F34F78 /* WebRequestManager.swift in Sources */,
 				37DD9C081F5DE3A1007B3E2B /* Comment+CoreDataProperties.swift in Sources */,
 				398857E71CC2B97600B05F64 /* CategorieCulinaire.swift in Sources */,
 				39C50EFC1CC8D9670019FA2B /* Images.swift in Sources */,
