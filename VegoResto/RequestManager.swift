@@ -118,6 +118,59 @@ class RequestManager: NSObject {
 
     }
 
+    static func postImageMedia( path: String,
+                                imageMedia: UIImage,
+                                parameters: Parameters? = nil,
+                                completion: @escaping (String) -> Void,
+                                failure: @escaping (Error?) -> Void) {
+
+        var urlPath: URLConvertible!
+
+        var request:() -> Void = {}
+
+        request = {
+
+            var header = [ "Authorization": "Bearer " + SecurityServices.shared.getToken() ]
+            header["Content-Type"] = "image/jpeg"
+            header["Content-Disposition"] = "attachment; filename=\"commentaire.jpg\""
+
+            var urlRequest: URLRequest!
+
+            do {
+                try urlPath = (path).asURL()
+                urlRequest = try URLRequest(url: urlPath, method: .post, headers: header)
+
+                urlRequest.httpBody = imageMedia.convertToJpg(limiteSize: 2097150)
+
+            } catch {
+
+                return
+            }
+
+            RequestManager.manager.request(urlRequest).responseJSON(completionHandler: { (dataResponse) in
+
+                                            if let result = dataResponse.result.value as? [String:Any] {
+
+                                                if let identImage = result["id"] as? Int {
+                                                    completion(String(identImage))
+                                                } else {
+                                                    failure(nil)
+                                                }
+
+                                            } else {
+
+                                                print("result fail")
+                                                failure(nil)
+
+                                            }
+
+                                           })
+        }
+
+        request()
+
+    }
+
     static func doRequestListGzipped(method: HTTPMethod,
                               path: String,
                               parameters: Parameters? = nil,
@@ -152,7 +205,7 @@ class RequestManager: NSObject {
 
                                                     if let result: [String : Any] = RequestManager.convertToDictionary(text: stringValue ?? "") {
 
-                                                        print("--> result \(result)")
+                                                        //print("--> result \(result)")
                                                         completion(result)
 
                                                     }
@@ -194,12 +247,12 @@ class RequestManager: NSObject {
                                            encoding: JSONEncoding.default,
                                            headers: HTTPHEADER()).responseJSON(completionHandler: { (dataResponse) in
 
-                                            print("--> url \(urlPath)")
-                                            print("--> response \(dataResponse.result.value)")
+                                            //print("--> url \(urlPath)")
+                                            //print("--> response \(dataResponse.result.value)")
 
                                             if let result = dataResponse.result.value as? [String:Any] {
 
-                                                print("--> result \(result)")
+                                                //print("--> result \(result)")
                                                 completion(result)
 
                                             } else {
@@ -218,7 +271,7 @@ class RequestManager: NSObject {
     static func postRequest(  path: String,
                               parameters: Parameters? = nil,
                               keyPath: String? = nil,
-                              completion: @escaping (Bool) -> Void,
+                              completion: @escaping ([String : Any]) -> Void,
                               failure: @escaping (Error?) -> Void) {
 
         let urlPath: URLConvertible!
@@ -241,14 +294,28 @@ class RequestManager: NSObject {
                                            encoding: JSONEncoding.default,
                                            headers: header).responseJSON(completionHandler: { (dataResponse) in
 
-                                            if let result = dataResponse.result.value as? [String:Any] {
+                                            if dataResponse.response?.statusCode == 200 || dataResponse.response?.statusCode == 201 || dataResponse.response?.statusCode == 202 {
 
-                                                print("result success = \(result)")
-                                                completion(true)
+                                                if let result = dataResponse.result.value as? [String:Any] {
+
+                                                    completion(result)
+
+                                                } else {
+
+                                                    print("result fail")
+                                                    failure(nil)
+
+                                                }
 
                                             } else {
 
-                                                print("result fail")
+                                                if let result = dataResponse.result.value as? [String:Any] {
+
+                                                    let resultError = NSError(domain: (result["message"] as? String) ?? "", code: dataResponse.response?.statusCode ?? 404, userInfo: nil)
+
+                                                    failure(resultError)
+                                                }
+
                                                 failure(nil)
 
                                             }
@@ -269,6 +336,28 @@ class RequestManager: NSObject {
             }
         }
         return nil
+    }
+
+}
+
+extension UIImage {
+
+    func convertToJpg(limiteSize: Int) -> Data? {
+
+        // sourceImage is whatever image you're starting with
+
+        var imageData: Data? = nil
+
+        for i in 0...9 {
+
+            imageData = UIImageJPEGRepresentation(self, 1.0 - (0.1 * CGFloat(i)) )
+
+            if (imageData?.count ?? limiteSize) < limiteSize {
+                break
+            }
+        }
+
+        return imageData
     }
 
 }

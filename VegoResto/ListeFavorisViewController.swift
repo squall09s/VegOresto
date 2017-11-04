@@ -12,10 +12,14 @@ class ListeFavorisViewController: UIViewController {
 
     var recherche_viewController: RechercheViewController?
 
-    let HAUTEUR_HEADER_BAR: CGFloat = 70.0
+    var HAUTEUR_HEADER_BAR: CGFloat = 70.0
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        if UIDevice.current.userInterfaceIdiom == .phone && UIScreen.main.bounds.height == 812.0 {
+            HAUTEUR_HEADER_BAR += 40
+        }
 
         self.recherche_viewController = StoryboardScene.Main.rechercheViewController.instantiate()
         self.recherche_viewController?.afficherUniquementFavoris = true

@@ -14,7 +14,7 @@ class MapsViewController: UIViewController, MKMapViewDelegate {
 
     let clusteringManager = FBClusteringManager()
 
-    @IBOutlet weak var varIB_mapView: MKMapView!
+    @IBOutlet weak var varIB_mapView: MKMapView?
 
     @IBOutlet weak var varIB_bt_filtre_categorie_1: UIButton!
     @IBOutlet weak var varIB_bt_filtre_categorie_2: UIButton!
@@ -31,11 +31,11 @@ class MapsViewController: UIViewController, MKMapViewDelegate {
         self.varIB_bt_filtre_categorie_2?.layer.cornerRadius = 15.0
         self.varIB_bt_filtre_categorie_3?.layer.cornerRadius = 15.0
 
-        self.varIB_mapView.showsUserLocation = true
+        self.varIB_mapView?.showsUserLocation = true
 
         self.updateData()
 
-        NotificationCenter.default.addObserver(self, selector: #selector(MapsViewController.updateDataAfterDelay), name: NSNotification.Name(rawValue: "CHARGEMENT_TERMINE"), object: nil)
+        //NotificationCenter.default.addObserver(self, selector: #selector(MapsViewController.updateDataAfterDelay), name: NSNotification.Name(rawValue: "CHARGEMENT_TERMINE"), object: nil)
 
         // Do any additional setup after loading the view, typically from a nib.
     }
@@ -47,13 +47,17 @@ class MapsViewController: UIViewController, MKMapViewDelegate {
 
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
 
+        if let _varIB_mapView = self.varIB_mapView {
+
         OperationQueue().addOperation({
-            let mapBoundsWidth = Double(self.varIB_mapView.bounds.size.width)
-            let mapRectWidth: Double = self.varIB_mapView.visibleMapRect.size.width
+            let mapBoundsWidth = Double(_varIB_mapView.bounds.size.width)
+            let mapRectWidth: Double = _varIB_mapView.visibleMapRect.size.width
             let scale: Double = mapBoundsWidth / mapRectWidth
-            let annotationArray = self.clusteringManager.clusteredAnnotationsWithinMapRect(rect: self.varIB_mapView.visibleMapRect, withZoomScale:scale)
-            self.clusteringManager.displayAnnotations(annotations: annotationArray, onMapView:self.varIB_mapView)
+            let annotationArray = self.clusteringManager.clusteredAnnotationsWithinMapRect(rect: _varIB_mapView.visibleMapRect, withZoomScale:scale)
+            self.clusteringManager.displayAnnotations(annotations: annotationArray, onMapView:_varIB_mapView)
         })
+
+        }
     }
 
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
@@ -280,7 +284,7 @@ class MapsViewController: UIViewController, MKMapViewDelegate {
             let center = CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)
             let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
 
-            self.varIB_mapView.setRegion(region, animated: true)
+            self.varIB_mapView?.setRegion(region, animated: true)
 
         }
     }
@@ -379,14 +383,17 @@ class MapsViewController: UIViewController, MKMapViewDelegate {
             }
         }
 
+        if let _varIB_mapView = self.varIB_mapView {
+
         clusteringManager.setAnnotations(annotations: array)
 
-        let mapBoundsWidth = Double(self.varIB_mapView.bounds.size.width)
-        let mapRectWidth: Double = self.varIB_mapView.visibleMapRect.size.width
+        let mapBoundsWidth = Double(_varIB_mapView.bounds.size.width)
+        let mapRectWidth: Double = _varIB_mapView.visibleMapRect.size.width
         let scale: Double = mapBoundsWidth / mapRectWidth
-        let annotationArray = self.clusteringManager.clusteredAnnotationsWithinMapRect(rect: self.varIB_mapView.visibleMapRect, withZoomScale:scale)
-        self.clusteringManager.displayAnnotations(annotations: annotationArray, onMapView:self.varIB_mapView)
+        let annotationArray = self.clusteringManager.clusteredAnnotationsWithinMapRect(rect: _varIB_mapView.visibleMapRect, withZoomScale:scale)
+        self.clusteringManager.displayAnnotations(annotations: annotationArray, onMapView:_varIB_mapView)
 
+        }
     }
 
     func updateDataAfterDelay() {

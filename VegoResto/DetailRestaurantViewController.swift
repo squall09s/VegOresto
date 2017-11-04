@@ -523,7 +523,6 @@ class DetailRestaurantViewController: UIViewController {
 
             if let destination: TableCommentsViewController = segue.destination as? TableCommentsViewController {
 
-                destination.comments = self.current_restaurant?.getCommentsAsArray() ?? []
                 destination.currentRestaurant = self.current_restaurant
 
             }

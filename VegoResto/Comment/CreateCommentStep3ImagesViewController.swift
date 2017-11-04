@@ -7,13 +7,19 @@
 //
 
 import UIKit
-import TLPhotoPicker
+import ImagePicker
+import Photos
+import MBProgressHUD
 
 protocol  CreateCommentStep3ImagesViewControllerProtocol {
+
+    func getImage() -> UIImage?
 
 }
 
 class CreateCommentStep3ImagesViewController: UIViewController, CreateCommentStep3ImagesViewControllerProtocol {
+
+    var currentImage: UIImage?
 
     @IBOutlet weak var imageView: UIImageView?
     @IBOutlet weak var imageViewLabel: UIButton?
@@ -41,21 +47,18 @@ class CreateCommentStep3ImagesViewController: UIViewController, CreateCommentSte
 
     @IBAction func clicPhoto(_ sender: UIButton) {
 
-        let viewController = TLPhotosPickerViewController()
-        viewController.delegate = self
-        var configurateur = TLPhotosPickerConfigure()
-        configurateur.allowedLivePhotos = false
-        configurateur.allowedVideo = false
-        configurateur.maxSelectedAssets = 1
-        configurateur.defaultCameraRollTitle = "Mes images"
-        configurateur.tapHereToChange = "ici pour changer"
-        configurateur.cancelTitle = "Annuler"
-        configurateur.doneTitle = "Ok"
+        var configuration = Configuration()
+        configuration.doneButtonTitle = "OK"
+        configuration.noImagesTitle = "Aucune image disponible"
+        configuration.recordLocation = false
+        configuration.allowVideoSelection = false
+        configuration.allowMultiplePhotoSelection = false
 
-        viewController.configure = configurateur
-        //configure.nibSet = (nibName: "CustomCell_Instagram", bundle: Bundle.main) // If you want use your custom cell..
+        let imagePickerController = ImagePickerController(configuration: configuration)
+        imagePickerController.delegate = self
+        imagePickerController.imageLimit = 1
 
-        self.present(viewController, animated: true, completion: nil)
+        present(imagePickerController, animated: true, completion: nil)
 
     }
 
@@ -67,37 +70,79 @@ class CreateCommentStep3ImagesViewController: UIViewController, CreateCommentSte
 
     }
 
+    func getImage() -> UIImage? {
+
+       return self.currentImage
+
+    }
+
 }
 
-extension CreateCommentStep3ImagesViewController : TLPhotosPickerViewControllerDelegate {
+extension CreateCommentStep3ImagesViewController : ImagePickerDelegate {
 
-    //TLPhotosPickerViewControllerDelegate
-    func dismissPhotoPicker(withTLPHAssets: [TLPHAsset]) {
-        // use selected order, fullresolution image
+    func wrapperDidPress(_ imagePicker: ImagePickerController, images: [UIImage]) {
 
-        print("dismissPhotoPicker \(withTLPHAssets)")
+    }
 
-        if let image = withTLPHAssets.first?.fullResolutionImage {
+    func doneButtonDidPress(_ imagePicker: ImagePickerController, images: [UIImage]) {
+
+        if let image = images.first {
+
+            self.setImage(image:  image )
+
+            imagePicker.dismiss(animated: true, completion: {
+
+            })
+
+        } else {
+
+            let size = CGSize(width: 720, height: 1280)
+
+            let imageManager = PHImageManager.default()
+            let requestOptions = PHImageRequestOptions()
+            requestOptions.isSynchronous = false
+            requestOptions.isNetworkAccessAllowed = true
+
+            MBProgressHUD.showAdded(to: imagePicker.view, animated: true)
+
+            imageManager.requestImage(for: imagePicker.stack.assets.first!, targetSize: size, contentMode: .aspectFit, options: requestOptions) { image, _ in
+
+                print("imageManager.requestImage done")
+
+                MBProgressHUD.hide(for: imagePicker.view, animated: true)
+
+                if let image = image {
+
+                    self.setImage(image:  image )
+
+                    imagePicker.dismiss(animated: true, completion: {
+
+                    })
+
+                }
+
+            }
+
+        }
+    }
+
+    func setImage(image: UIImage) {
+
             self.imageView?.image = image
             self.imageView?.layer.cornerRadius = 64
             self.imageView?.layer.borderWidth = 2
             self.imageView?.layer.borderColor = UIColor.white.cgColor
-            self.imageView?.contentMode = .center
+            self.imageView?.contentMode = .scaleAspectFill
             self.imageViewLabel?.setTitle("Choisir une autre photo", for: UIControlState.normal)
-        }
+
+            self.currentImage = image
+
     }
 
-    func photoPickerDidCancel() {
-        // cancel
-        print("did cancel")
-    }
-    func dismissComplete() {
-        print("dismissComplete")
-        // picker viewcontroller dismiss completion
-    }
-    func didExceedMaximumNumberOfSelection(picker: TLPhotosPickerViewController) {
+    func cancelButtonDidPress(_ imagePicker: ImagePickerController) {
 
-        print("didExceedMaximumNumberOfSelection")
+        imagePicker.dismiss(animated: true, completion: {
+        })
     }
 
 }

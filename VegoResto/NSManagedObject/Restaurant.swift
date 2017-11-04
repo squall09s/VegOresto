@@ -106,17 +106,14 @@ class Restaurant: NSManagedObject, Mappable {
             self.updateDataMoyensDePaiement(moyensPaiement: _moyensPaiement)
         }
 
-        if let _data = map.JSON["data"] as? [String : Any ] {
-
-            if let _ambiances = _data["ambiance"] as? [String] {
+         if let _ambiances = map.JSON["ambiance"] as? [String] {
                 self.updateDataTypeAmbiance(ambiances: _ambiances)
-            }
+         }
 
-            if let _votes = _data["votes"] as? [String : Any] {
+        if let _votes = map.JSON["votes"] as? [String : Any] {
 
-                if let _avg = _votes["avg"] as? Double {
-                    self.rating = NSNumber(value: _avg)
-                }
+            if let _avg = _votes["avg"] as? Double {
+                self.rating = NSNumber(value: _avg)
             }
         }
 

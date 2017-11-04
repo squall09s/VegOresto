@@ -12,13 +12,29 @@ class TableCommentsViewController: UIViewController, UITableViewDelegate, UITabl
 
     @IBOutlet var varIB_tableView: UITableView?
 
-    var comments: [Comment] = [Comment]()
+    var commentsDataKeysSorted = [Comment]()
+    var commentsData = [Comment: [Comment]]()
+
     var currentRestaurant: Restaurant?
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.title = "Avis (\(self.comments.count))"
+        self.refreshData()
+
+        let button: UIButton = UIButton(type: .custom)
+        button.setImage(UIImage(named: "add_post")!, for: .normal)
+        button.tintColor = UIColor.white
+        button.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        button.contentMode = .scaleAspectFit
+
+        button.widthAnchor.constraint(equalToConstant: 25.0).isActive = true
+        button.heightAnchor.constraint(equalToConstant: 25.0).isActive = true
+
+        let barButton = UIBarButtonItem(customView: button)
+        barButton.customView?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(clic_new_comment)))
+
+        self.navigationItem.rightBarButtonItem = barButton
 
         // Do any additional setup after loading the view.
     }
@@ -30,7 +46,7 @@ class TableCommentsViewController: UIViewController, UITableViewDelegate, UITabl
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 
-        if indexPath.section == self.comments.count {
+        if indexPath.section == self.commentsData.count {
 
             return 100
 
@@ -42,7 +58,7 @@ class TableCommentsViewController: UIViewController, UITableViewDelegate, UITabl
 
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
 
-        if indexPath.section == self.comments.count {
+        if indexPath.section == self.commentsData.count {
 
             return 60
         }
@@ -53,24 +69,24 @@ class TableCommentsViewController: UIViewController, UITableViewDelegate, UITabl
 
     func numberOfSections(in tableView: UITableView) -> Int {
 
-        return self.comments.count + 1
+        return self.commentsDataKeysSorted.count + 1
 
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
-        if section == self.comments.count {
+        if section == self.commentsData.count {
 
             return 1
         }
 
-        return (self.comments[section].getChildsCommentsAsArray()?.count ?? 0 ) + 1
+        return (self.commentsData[self.commentsDataKeysSorted[section]]?.count ?? 0 ) + 1
     }
 
     // swiftlint:disable:next cyclomatic_complexity
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-        if indexPath.section == self.comments.count {
+        if indexPath.section == self.commentsDataKeysSorted.count {
 
             return tableView.dequeueReusableCell(withIdentifier: "AddCommentCell", for: indexPath)
 
@@ -93,12 +109,15 @@ class TableCommentsViewController: UIViewController, UITableViewDelegate, UITabl
         var currentComment: Comment? = nil
 
         if indexPath.row == 0 {
-            currentComment = self.comments[indexPath.section]
+            currentComment = self.commentsDataKeysSorted[indexPath.section]
+
         } else {
-            currentComment = self.comments[indexPath.section].getChildsCommentsAsArray()?[indexPath.row - 1 ]
+            currentComment = self.commentsData[self.commentsDataKeysSorted[indexPath.section]]?[indexPath.row - 1 ]
         }
 
         cell?.varIB_label_comment?.text = currentComment?.content ?? ""
+
+        cell?.setImage(url: currentComment?.imageUrl)
 
         cell?.varIB_subtitle_label?.text = currentComment?.author ?? ""
 
@@ -110,7 +129,7 @@ class TableCommentsViewController: UIViewController, UITableViewDelegate, UITabl
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
-        if indexPath.section == self.comments.count {
+        if indexPath.section == self.commentsDataKeysSorted.count {
 
             self.clic_new_comment()
             return
@@ -124,9 +143,9 @@ class TableCommentsViewController: UIViewController, UITableViewDelegate, UITabl
         var currentComment: Comment? = nil
 
         if indexPath.row == 0 {
-            currentComment = self.comments[indexPath.section]
+            currentComment = self.commentsDataKeysSorted[indexPath.section]
         } else {
-            currentComment = self.comments[indexPath.section].getChildsCommentsAsArray()?[indexPath.row - 1 ]
+            currentComment = self.commentsData[self.commentsDataKeysSorted[indexPath.section]]?[indexPath.row - 1 ]
         }
 
         self.perform(segue: StoryboardSegue.Main.segueToAddComment, sender: currentComment)
@@ -165,7 +184,53 @@ class TableCommentsViewController: UIViewController, UITableViewDelegate, UITabl
                 vc.parentComment = parentComment
             }
 
+            vc.completionSend = { (comment: Comment) in
+
+                self.refreshData()
+                self.varIB_tableView?.reloadData()
+
+            }
+
         }
+
+    }
+
+    func refreshData() {
+
+        var rootsComment = [Comment]()
+        var childsComment = [Comment]()
+
+        for tmpComment in self.currentRestaurant?.getCommentsAsArray() ?? [] {
+
+            if (tmpComment.parentId?.intValue ?? 0) <= 0 {
+                rootsComment.append(tmpComment)
+            } else {
+                childsComment.append(tmpComment)
+            }
+        }
+
+        commentsData.removeAll()
+
+        for tmpRootsComment in rootsComment {
+
+            commentsData[tmpRootsComment] = childsComment.flatMap({ (tmpChildComment) -> Comment? in
+
+                if tmpChildComment.parentId?.intValue == tmpRootsComment.ident?.intValue {
+                    return tmpChildComment
+                }
+                return nil
+            })
+        }
+
+        commentsDataKeysSorted.removeAll()
+
+        commentsDataKeysSorted = commentsData.flatMap({ (dataRoots) -> Comment? in
+            return dataRoots.key
+        }).sorted(by: { (comment1, comment2) -> Bool in
+            return (comment1.ident?.intValue ?? 0 ) < (comment2.ident?.intValue ?? 0 )
+        })
+
+        self.title = "Avis (\(self.commentsDataKeysSorted.count))"
 
     }
 

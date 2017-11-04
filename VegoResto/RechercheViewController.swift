@@ -8,6 +8,7 @@
 
 import UIKit
 import MGSwipeTableCell
+import DGElasticPullToRefresh
 
 class RechercheViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
 
@@ -42,11 +43,24 @@ class RechercheViewController: UIViewController, UITableViewDelegate, UITableVie
 
         self.loadRestaurantsWithWord(key: nil)
 
-        NotificationCenter.default.addObserver(self, selector: #selector(RechercheViewController.updateDataAfterDelay), name: NSNotification.Name(rawValue: "CHARGEMENT_TERMINE"), object: nil)
-
         self.varIB_bt_filtre_categorie_1?.layer.cornerRadius = 15.0
         self.varIB_bt_filtre_categorie_2?.layer.cornerRadius = 15.0
         self.varIB_bt_filtre_categorie_3?.layer.cornerRadius = 15.0
+
+        let loadingView = DGElasticPullToRefreshLoadingViewCircle()
+        loadingView.tintColor = COLOR_ORANGE
+        self.varIB_tableView?.dg_addPullToRefreshWithActionHandler({ () -> Void in
+            // Add your logic here
+            // Do not forget to call dg_stopLoading() at the end
+            (self.parent as? NavigationAccueilViewController)?.updateData(forced: true) { (_) in
+                self.varIB_tableView?.dg_stopLoading()
+            }
+
+        }, loadingView: loadingView)
+
+        self.varIB_tableView?.dg_setPullToRefreshFillColor( UIColor(hexString: "EDEDED") )
+        self.varIB_tableView?.dg_setPullToRefreshBackgroundColor(UIColor.white)
+
         // Do any additional setup after loading the view.
     }
 

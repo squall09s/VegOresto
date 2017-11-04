@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import SDWebImage
+import Keys
 
 class CommentTableViewCell: UITableViewCell {
 
@@ -20,6 +22,8 @@ class CommentTableViewCell: UITableViewCell {
     @IBOutlet var varIB_starRating3: UIImageView?
     @IBOutlet var varIB_starRating4: UIImageView?
 
+    @IBOutlet var varIB_imageComment: UIImageView?
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -29,6 +33,40 @@ class CommentTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+
+    func setImage(url: String?) {
+
+        if let _url = url {
+
+        self.varIB_imageComment?.isHidden = false
+
+        if let _url = URL(string: _url ) {
+
+            let sdDownloader = SDWebImageDownloader.shared()
+
+            if env_var_exist(name: "PREPROD") || true {
+
+                let keyHolder = VegoRestoKeys()
+                sdDownloader.username = keyHolder.aUTH_LOGIN_PREPROD
+                sdDownloader.password = keyHolder.aUTH_PASSWORD_PREPROD
+            }
+
+            sdDownloader.downloadImage(with: _url, options: .continueInBackground, progress: { (_, _, _) in
+
+            }, completed: { (image, _, _, _) in
+
+                self.varIB_imageComment?.image = image
+                self.varIB_imageComment?.contentMode = .scaleAspectFit
+            })
+
+        } else {
+
+            self.varIB_imageComment?.isHidden = true
+
+        }
+        }
+
     }
 
     func setRating(ratting: Int?) {

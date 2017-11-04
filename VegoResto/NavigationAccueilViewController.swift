@@ -8,7 +8,6 @@
 
 import UIKit
 import MBProgressHUD
-import DGElasticPullToRefresh
 
 class NavigationAccueilViewController: UIViewController {
 
@@ -22,7 +21,7 @@ class NavigationAccueilViewController: UIViewController {
     var recherche_viewController: RechercheViewController?
     var maps_viewController: MapsViewController?
 
-    let HAUTEUR_HEADER_BAR = CGFloat(70.0)
+    let HAUTEUR_HEADER_BAR = CGFloat(50.0)
     let HAUTEUR_TABBAR = CGFloat(60.0)
 
     override func viewDidLoad() {
@@ -33,13 +32,12 @@ class NavigationAccueilViewController: UIViewController {
         self.navigationItem.backBarButtonItem?.title = "Retour"
         self.navigationController?.navigationBar.isTranslucent = true
 
+        self.varIB_button_tabbar_list?.layer.cornerRadius = 6
+        self.varIB_button_tabbar_maps?.layer.cornerRadius = 6
         // Do any additional setup after loading the view.
 
-        self.recherche_viewController = StoryboardScene.Main.rechercheViewController.instantiate()
-        self.maps_viewController = StoryboardScene.Main.mapsViewController.instantiate()
-
-        self.varIB_button_tabbar_maps.backgroundColor = UIColor.white.withAlphaComponent(0.3)
-        self.varIB_button_tabbar_list.backgroundColor = UIColor.clear
+        self.varIB_button_tabbar_maps.backgroundColor = UIColor.clear
+        self.varIB_button_tabbar_list.backgroundColor = UIColor.white.withAlphaComponent(0.3)
 
         self.varIB_contrainte_y_chevron_tabbar.constant = Device.WIDTH * 0.25 - 15
 
@@ -77,48 +75,6 @@ class NavigationAccueilViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
 
         super.viewDidAppear(animated)
-
-        self.varIB_scrollView.contentSize = CGSize(width : Device.WIDTH * 2.0, height : self.varIB_scrollView.frame.height  )
-
-        if let vc: RechercheViewController = self.recherche_viewController {
-
-            if vc.parent != self {
-
-            self.addChildViewController(vc)
-
-            self.varIB_scrollView.addSubview(vc.view)
-            vc.didMove(toParentViewController: self)
-            vc.view.frame = CGRect(x : 0, y : 0, width : Device.WIDTH, height : Device.HEIGHT - HAUTEUR_HEADER_BAR - HAUTEUR_TABBAR )
-
-            }
-
-        }
-
-        if let vc: MapsViewController = self.maps_viewController {
-
-            if vc.parent != self {
-
-            self.addChildViewController(vc)
-            self.varIB_scrollView.addSubview(vc.view)
-            vc.didMove(toParentViewController: self)
-            vc.view.frame = CGRect(x : Device.WIDTH, y : 0, width : Device.WIDTH, height : Device.HEIGHT - HAUTEUR_HEADER_BAR - HAUTEUR_TABBAR )
-
-            let loadingView = DGElasticPullToRefreshLoadingViewCircle()
-            loadingView.tintColor = COLOR_ORANGE
-            self.recherche_viewController?.varIB_tableView?.dg_addPullToRefreshWithActionHandler({ () -> Void in
-                    // Add your logic here
-                    // Do not forget to call dg_stopLoading() at the end
-                    self.updateData(forced: true) { (_) in
-                        self.recherche_viewController?.varIB_tableView?.dg_stopLoading()
-                    }
-
-            }, loadingView: loadingView)
-
-            self.recherche_viewController?.varIB_tableView?.dg_setPullToRefreshFillColor( UIColor(hexString: "EDEDED") )
-            self.recherche_viewController?.varIB_tableView?.dg_setPullToRefreshBackgroundColor(UIColor.white)
-
-            }
-        }
 
     }
 
@@ -163,8 +119,8 @@ class NavigationAccueilViewController: UIViewController {
 
             UIView.animate(withDuration: 0.2, animations: {
 
-                self.varIB_button_tabbar_list.backgroundColor = UIColor.white.withAlphaComponent(0.3)
-                self.varIB_button_tabbar_maps.backgroundColor = UIColor.clear
+                self.varIB_button_tabbar_list.backgroundColor = UIColor.clear
+                self.varIB_button_tabbar_maps.backgroundColor = UIColor.white.withAlphaComponent(0.3)
 
             })
 
@@ -178,8 +134,8 @@ class NavigationAccueilViewController: UIViewController {
 
             UIView.animate(withDuration: 0.2, animations: {
 
-                self.varIB_button_tabbar_maps.backgroundColor = UIColor.white.withAlphaComponent(0.3)
-                self.varIB_button_tabbar_list.backgroundColor = UIColor.clear
+                self.varIB_button_tabbar_maps.backgroundColor = UIColor.clear
+                self.varIB_button_tabbar_list.backgroundColor = UIColor.white.withAlphaComponent(0.3)
 
             })
 
@@ -201,6 +157,18 @@ class NavigationAccueilViewController: UIViewController {
         if let nc_recherche = self.recherche_viewController {
 
             nc_recherche.update_resultats_for_user_location()
+
+        }
+
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+
+        if let vc = segue.destination as? RechercheViewController {
+            self.recherche_viewController = vc
+
+        } else if let vc = segue.destination as? MapsViewController {
+            self.maps_viewController = vc
 
         }
 

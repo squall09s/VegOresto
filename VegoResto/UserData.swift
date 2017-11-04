@@ -189,7 +189,7 @@ class UserData: NSObject, CLLocationManagerDelegate {
 
     func getCommentWithIdentifier(identifier: Int) -> Comment? {
 
-        print("getCommentWithIdentifier \(identifier)")
+        //print("getCommentWithIdentifier \(identifier)")
         let fetchRequest: NSFetchRequest<Comment> = NSFetchRequest(entityName: "Comment")
         let predicate: NSPredicate = NSPredicate(format: "ident == %@", String(identifier) )
         fetchRequest.predicate = predicate
@@ -200,21 +200,21 @@ class UserData: NSObject, CLLocationManagerDelegate {
 
             if results.count > 0 {
 
-                print("already exist")
+                //print("already exist")
                 return results[0]
             }
 
         } catch _ {
 
         }
-        print("Comment not found")
+        //print("Comment not found")
         return nil
 
     }
 
     func getRestaurantWithIdentifier(identifier: Int) -> Restaurant? {
 
-        print("getRestaurantWithIdentifier \(identifier)")
+        //print("getRestaurantWithIdentifier \(identifier)")
         let fetchRequest: NSFetchRequest<Restaurant> = NSFetchRequest(entityName: "Restaurant")
         let predicate: NSPredicate = NSPredicate(format: "identifier == %@", String(identifier) )
         fetchRequest.predicate = predicate
@@ -225,7 +225,7 @@ class UserData: NSObject, CLLocationManagerDelegate {
 
             if results.count > 0 {
 
-                print("already exist")
+                //print("already exist")
                 return results[0]
             }
 
@@ -234,7 +234,7 @@ class UserData: NSObject, CLLocationManagerDelegate {
             print("error = \(error)")
 
         }
-        print("resto not found")
+        //print("resto not found")
         return nil
 
     }
@@ -255,7 +255,7 @@ class UserData: NSObject, CLLocationManagerDelegate {
 
         }
 
-        print("horaire not found")
+        //print("horaire not found")
         return nil
 
     }

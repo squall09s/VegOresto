@@ -56,8 +56,20 @@ class WebRequestManager {
 
     }
 
+ func postImageMedia( image: UIImage,
+                      success: @escaping (String) -> Void,
+                      failure: @escaping (Error?) -> Void ) {
+
+    WebRequestServices.postImageMedia(urlPath: URL_SERVEUR() + "/wp-json/vegoresto/v1/media", image: image, success: { (identImageResult) in
+
+        success(identImageResult)
+
+    }, failure: failure)
+
+    }
+
     func loadHoraires(  success: @escaping () -> Void,
-                          failure: @escaping (Error?) -> Void) {
+                        failure: @escaping (Error?) -> Void) {
 
         WebRequestServices.loadHoraires(urlPath: URL_SERVEUR() + "/wp-content/cache/horaires.json", success: { (_) in
 
@@ -68,12 +80,12 @@ class WebRequestManager {
     }
 
     func uploadComment(restaurant: Restaurant, comment: Comment,
-                              success: @escaping () -> Void,
+                              success: @escaping (Comment) -> Void,
                               failure: @escaping (Error?) -> Void) {
 
-        WebRequestServices.uploadComment(urlPath: URL_SERVEUR() + "/wp-json/vegoresto/v1/comments", restaurant: restaurant, comment: comment, success: {
+        WebRequestServices.uploadComment(urlPath: URL_SERVEUR() + "/wp-json/vegoresto/v1/comments", restaurant: restaurant, comment: comment, success: { (resultComment) in
 
-            success()
+            success(resultComment)
 
         }) { (error) in
 

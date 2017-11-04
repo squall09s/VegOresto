@@ -13,11 +13,17 @@ protocol CreateCommentStep1ViewControllerProtocol {
     func getContent() -> String
     func getVote() -> Int
 
+    func get_textView() -> UITextView?
+    func hideSectionRatting( hidden: Bool )
+
 }
 
 class CreateCommentStep1ViewController: UIViewController, CreateCommentStep1ViewControllerProtocol {
 
-    var tempRatting = 1
+    var tempRatting = 3
+
+    @IBOutlet var varIB_viewRatting: UIView?
+    @IBOutlet var varIB_constraintTopContentComment: NSLayoutConstraint?
 
     @IBOutlet var varIB_label_placeholder: UILabel?
 
@@ -38,6 +44,10 @@ class CreateCommentStep1ViewController: UIViewController, CreateCommentStep1View
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+
+    func get_textView() -> UITextView? {
+        return self.varIB_textView
     }
 
     /*
@@ -92,6 +102,14 @@ class CreateCommentStep1ViewController: UIViewController, CreateCommentStep1View
 
         return tempRatting
 
+    }
+
+    func hideSectionRatting( hidden: Bool ) {
+
+        self.varIB_viewRatting?.isHidden = hidden
+        self.varIB_constraintTopContentComment?.constant = hidden ? 10 : 60
+
+        self.view.layoutIfNeeded()
     }
 
 }

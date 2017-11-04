@@ -8,6 +8,7 @@
 
 import UIKit
 import JWT
+import Keys
 
 class SecurityServices: NSObject {
 
@@ -15,9 +16,9 @@ class SecurityServices: NSObject {
 
     func getToken() -> String {
 
-       // JWT.encode(claims: ["iat": Date(), "iss": "https://vegoresto.l214.in"], keyID: "k171000",algorithm: .hs256())
+        let keyHolder = VegoRestoKeys()
 
-        let token = JWT.encode(claims: ["iat": Date().timeIntervalSince1970, "iss": "https://vegoresto.l214.in"], algorithm: .hs256("Bei5ulohTe0bou5Xai6wahGhah6he6".data(using: .utf8)!), headers: [ "kid": "k171000" ] )
+        let token = JWT.encode(claims: ["iat": Date().timeIntervalSince1970, "iss": "https://vegoresto.l214.in"], algorithm: .hs256(keyHolder.sECRET_CLIENT_PREPROD.data(using: .utf8)!), headers: [ "kid": "k171000" ] )
 
         return token
     }

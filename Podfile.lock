@@ -6,8 +6,10 @@ PODS:
   - DGElasticPullToRefresh (1.1)
   - FaveButton (2.0.3)
   - GZIP (1.2.1)
+  - ImagePicker (3.0.0)
   - JSONWebToken (2.2.0)
   - Kanna (2.2.1)
+  - Keys (1.0.0)
   - LNRSimpleNotifications (0.6.1)
   - MapleBacon (4.0.0)
   - MarqueeLabel (3.1.3):
@@ -22,10 +24,13 @@ PODS:
   - ReCaptcha/Core (0.2.0):
     - Result (~> 3.0)
   - Result (3.2.4)
+  - SDWebImage (4.1.2):
+    - SDWebImage/Core (= 4.1.2)
+  - SDWebImage/Core (4.1.2)
+  - SkyFloatingLabelTextField (3.2.0)
   - SVPulsingAnnotationView (0.3.0)
   - SwiftGen (5.1.2)
   - SwiftSpinner (1.4.1)
-  - TLPhotoPicker (1.3.0)
   - VTAcknowledgementsViewController (1.3)
 
 DEPENDENCIES:
@@ -34,8 +39,10 @@ DEPENDENCIES:
   - DGElasticPullToRefresh
   - FaveButton
   - GZIP
+  - ImagePicker
   - JSONWebToken
   - Kanna
+  - Keys (from `Pods/CocoaPodsKeys`)
   - LNRSimpleNotifications
   - MapleBacon
   - MarqueeLabel
@@ -43,11 +50,16 @@ DEPENDENCIES:
   - MGSwipeTableCell
   - Pushwoosh
   - ReCaptcha
+  - SDWebImage
+  - SkyFloatingLabelTextField
   - SVPulsingAnnotationView
   - SwiftGen
   - SwiftSpinner
-  - TLPhotoPicker
   - VTAcknowledgementsViewController
+
+EXTERNAL SOURCES:
+  Keys:
+    :path: Pods/CocoaPodsKeys
 
 SPEC CHECKSUMS:
   Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
@@ -55,8 +67,10 @@ SPEC CHECKSUMS:
   DGElasticPullToRefresh: 28f11a6026302a90f8ffebbc6e24748e584dddd3
   FaveButton: cfcbc5e73da159c4f916613da5687357b5bb4783
   GZIP: 7ee835f989fb3c6ea79005fc90b8fa6af710a70d
+  ImagePicker: 973953c25960fe04729a7082a56194321c6762d2
   JSONWebToken: 6fae32489632658d563dd6952a5c34020ea813e4
   Kanna: 182789ab065e8f9a6ccc2a74ce6283d3401c0c4a
+  Keys: 9c35bf00f612ee1d48556f4a4b9b4551e224e90f
   LNRSimpleNotifications: 4602ddc63444b42b1653681730678af1585c5fa3
   MapleBacon: 927967a5ead0fdb33d265a91b11be0ba743621b3
   MarqueeLabel: baa5753dcbd36dca080e1f5c589a665aa5c906f1
@@ -66,12 +80,13 @@ SPEC CHECKSUMS:
   Pushwoosh: 91a4a341a37a5ce9f23cba68a909950fced10a8f
   ReCaptcha: 85b27e9773d25a56458eb722f4496bddfca67d2f
   Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
+  SDWebImage: cb6f9f266a9977741efcbc21e618e8be3734c774
+  SkyFloatingLabelTextField: 4e2d2f7160af660ed1da6bb9d0027b5c474b4b79
   SVPulsingAnnotationView: f1a8dc7a57ebb5fa231d0ef8b0da59a250005511
   SwiftGen: dd2892e7fb008151f30e6ce0cf465b8b8d89e80e
   SwiftSpinner: bf7c13332ad008952a09358cadf24a186510ae31
-  TLPhotoPicker: ccdf4b8a3358867a56fe89cdef15484d070bcfbb
   VTAcknowledgementsViewController: 0bc8149be64f0d5b7f398e146353af8fde04b313
 
-PODFILE CHECKSUM: d66b7aa0ad4b6044f02d45e32cd511607877a681
+PODFILE CHECKSUM: 21d4eb35385b49dd251f3ebd20cf20b7ff25f48f
 
 COCOAPODS: 1.3.1

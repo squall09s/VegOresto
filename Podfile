@@ -1,7 +1,20 @@
 platform :ios, '10.0'
 use_frameworks!
 
+
+# plugin cocoapods-keys (via gem install), see github for details
+plugin 'cocoapods-keys', {
+    :project => "VegoResto",
+    :keys => [
+    "SECRET_CLIENT_PREPROD",
+    "AUTH_LOGIN_PREPROD",
+    "AUTH_PASSWORD_PREPROD"
+    ]
+}
+
+
 target 'VegoResto' do
+    
     
 
 pod 'Pushwoosh'
@@ -29,7 +42,9 @@ pod 'ReCaptcha'
 pod 'MBProgressHUD', '~> 1.0.0'
 pod 'DGElasticPullToRefresh'
 pod 'FaveButton'
-pod 'TLPhotoPicker'
+pod 'ImagePicker'
+pod 'SkyFloatingLabelTextField'
+pod 'SDWebImage'
 
 end
 

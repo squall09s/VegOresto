@@ -13,6 +13,8 @@ import ObjectMapper
 @objc(Comment)
 class Comment: NSManagedObject, Mappable {
 
+    var temporaryImageIdentSend: String?
+
     @NSManaged var title: String?
     @NSManaged var shootingDate: String?
     @NSManaged var elements: NSSet?
@@ -42,26 +44,27 @@ class Comment: NSManagedObject, Mappable {
         if let _content = content {
             content = UserData.sharedInstance.cleanString(str: _content)
         }
+
+        ident <-  map["id"]
         time <- map["time"]
         author <- map["author_name"]
+        email <- map["author_email"]
+        parentId <- map["parent"]
+        postId <- map["post"]
+        status <- map["status"]
+        rating <- map["vote"]
 
-        childsComments =  NSSet()
+        if let _firstImageDico: [String : Any] = ((map.JSON["images"] as? [Any])?.first as? [String : Any]) {
 
-    }
+            if let _dicoFirstImageDetail = _firstImageDico["com_illu"] as? [String : Any] {
 
-    func addChildComment(newComment: Comment) {
+                if let urlImage = _dicoFirstImageDetail["url"] as? String {
 
-        let comments = self.mutableSetValue(forKey: "childsComments")
-        comments.add(newComment)
+                    imageUrl = urlImage
 
-    }
-
-    func getChildsCommentsAsArray() -> [Comment]? {
-
-        var tmpComments: [Comment]?
-        tmpComments = (self.childsComments?.allObjects) as? [Comment]
-
-        return tmpComments
+                }
+            }
+        }
     }
 
 }

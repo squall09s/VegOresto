@@ -16,8 +16,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
 
-        print("token ---> \(SecurityServices.shared.getToken())")
-
         UILabel.appearance(whenContainedInInstancesOf: [UISearchBar.self]).font = UIFont(name: "URWGothicL-Book", size: 17)!
         UITextView.appearance(whenContainedInInstancesOf: [UISearchBar.self]).font = UIFont(name: "URWGothicL-Book", size: 17)!
 

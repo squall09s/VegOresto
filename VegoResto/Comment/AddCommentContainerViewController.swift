@@ -19,7 +19,7 @@ class AddCommentContainerViewController: UIViewController, UIScrollViewDelegate 
     @IBOutlet var varIB_bt_next: UIButton?
     @IBOutlet var varIB_bt_back: UIButton?
 
-    var completionSend : ( (Comment?) -> Void )?
+    var completionSend : ( (Comment) -> Void )?
 
     var childViewControllerStep1: CreateCommentStep1ViewControllerProtocol?
     var childViewControllerStep2: CreateCommentStep2UserViewControllerProtocol?
@@ -51,6 +51,14 @@ class AddCommentContainerViewController: UIViewController, UIScrollViewDelegate 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
+
+        if let parentComment = self.parentComment {
+            self.varIB_title?.text = "Répondre à \(parentComment.author ?? "")"
+            self.childViewControllerStep1?.hideSectionRatting(hidden: true)
+        } else {
+            self.varIB_title?.text = "Nouveau Commentaire"
+            self.childViewControllerStep1?.hideSectionRatting(hidden: false)
+        }
     }
 
     /*
@@ -66,6 +74,13 @@ class AddCommentContainerViewController: UIViewController, UIScrollViewDelegate 
     @IBAction func backAction(sender: UIButton?) {
 
         // MARK: - Dismiss action
+
+        if currentPage == 1 {
+
+            self.childViewControllerStep2?.get_tfMail()?.resignFirstResponder()
+            self.childViewControllerStep2?.get_tfName()?.resignFirstResponder()
+
+        }
 
         if currentPage > 0 {
 
@@ -87,6 +102,49 @@ class AddCommentContainerViewController: UIViewController, UIScrollViewDelegate 
     }
 
     @IBAction func nextAction(sender: UIButton?) {
+
+        if currentPage == 0 {
+
+            if (self.childViewControllerStep1?.getContent().count ?? 0) <= 5 {
+
+                let alertController = UIAlertController(title: "Oups", message: "Tu dois entrer un commentaire avant tout !", preferredStyle: .alert)
+                alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+
+                UIApplication.shared.keyWindow?.rootViewController?.present(alertController, animated: true, completion: nil)
+
+                return
+            }
+
+            self.childViewControllerStep1?.get_textView()?.resignFirstResponder()
+
+        }
+
+        if currentPage == 1 {
+
+            if (self.childViewControllerStep2?.getCurrentName().count ?? 0) <= 4 {
+
+                let alertController = UIAlertController(title: "Oups", message: "Tu dois entrer un nom d'utilisateur (minimum 5 caractères) pour poster ton commentaire !", preferredStyle: .alert)
+                alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+
+                UIApplication.shared.keyWindow?.rootViewController?.present(alertController, animated: true, completion: nil)
+
+                return
+            }
+
+            if (self.childViewControllerStep2?.getCurrentEmail().count ?? 0) <= 5 || !self.isValidEmail(testStr: self.childViewControllerStep2?.getCurrentEmail() ?? "") {
+
+                let alertController = UIAlertController(title: "Oups", message: "Tu dois entrer un email valide !", preferredStyle: .alert)
+                alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+
+                UIApplication.shared.keyWindow?.rootViewController?.present(alertController, animated: true, completion: nil)
+
+                return
+            }
+
+            self.childViewControllerStep2?.get_tfMail()?.resignFirstResponder()
+            self.childViewControllerStep2?.get_tfName()?.resignFirstResponder()
+
+        }
 
         if currentPage == 2 {
 
@@ -131,26 +189,48 @@ class AddCommentContainerViewController: UIViewController, UIScrollViewDelegate 
         if let new_comment = (NSManagedObject(entity: entityComment!, insertInto: UserData.sharedInstance.managedContext) as? Comment) {
 
             new_comment.time = "01/02/1990"
-            new_comment.author = "Moi"
+            new_comment.author = self.childViewControllerStep2?.getCurrentName()
+            new_comment.email = self.childViewControllerStep2?.getCurrentEmail()
             new_comment.content = self.childViewControllerStep1?.getContent()
-            new_comment.childsComments = NSSet()
-
-            self.parentComment?.addChildComment(newComment: new_comment)
+            new_comment.parentId = self.parentComment?.ident
 
             if self.parentComment == nil {
                 new_comment.rating = NSNumber(value: self.childViewControllerStep1?.getVote() ?? 1 )
             }
 
-            WebRequestManager.shared.uploadComment(restaurant: self.currentRestaurant!, comment: new_comment, success: {
+            if let _image = self.childViewControllerStep3?.getImage() {
 
-                self.closeAction(nil)
+                WebRequestManager.shared.postImageMedia(image: _image, success: { (identImage) in
 
-                let alertController = UIAlertController(title: "C'est envoyé", message: "Commentaire envoyé.", preferredStyle: .alert)
-                alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    new_comment.temporaryImageIdentSend = identImage
 
-                UIApplication.shared.keyWindow?.rootViewController?.present(alertController, animated: true, completion: nil)
+                    WebRequestManager.shared.uploadComment(restaurant: self.currentRestaurant!, comment: new_comment, success: { (resultComment) in
 
-                //self.completionSend(nex)
+                        self.sendCommentDone(newComment: resultComment)
+
+                    }, failure: { (error) in
+
+                        let alertController = UIAlertController(title: "Erreur", message: "Envoie du commentaire et de l'image impossible [\(error.debugDescription)]", preferredStyle: .alert)
+                        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+
+                        UIApplication.shared.keyWindow?.rootViewController?.present(alertController, animated: true, completion: nil)
+
+                    })
+
+                }, failure: { (_) in
+
+                    let alertController = UIAlertController(title: "Erreur", message: "Envoie de l'image impossible", preferredStyle: .alert)
+                    alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+
+                    UIApplication.shared.keyWindow?.rootViewController?.present(alertController, animated: true, completion: nil)
+
+                })
+
+            } else {
+
+            WebRequestManager.shared.uploadComment(restaurant: self.currentRestaurant!, comment: new_comment, success: { (resultComment) in
+
+                self.sendCommentDone(newComment: resultComment)
 
             }, failure: { (_) in
 
@@ -161,8 +241,25 @@ class AddCommentContainerViewController: UIViewController, UIScrollViewDelegate 
 
             })
 
+            }
+
         }
 
+    }
+
+    func sendCommentDone(newComment: Comment) {
+
+        UserDefaults.standard.set(self.childViewControllerStep2?.getCurrentEmail(), forKey: "USER_SAVE_MAIL")
+        UserDefaults.standard.set(self.childViewControllerStep2?.getCurrentName(), forKey: "USER_SAVE_NAME")
+
+        self.closeAction(nil)
+
+        let alertController = UIAlertController(title: "C'est envoyé", message: "Commentaire envoyé.", preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+
+        UIApplication.shared.keyWindow?.rootViewController?.present(alertController, animated: true, completion: nil)
+
+        self.completionSend?(newComment)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -184,6 +281,14 @@ class AddCommentContainerViewController: UIViewController, UIScrollViewDelegate 
         self.varIB_pageControl?.currentPage = self.currentPage
         self.varIB_scrollContainer?.scrollRectToVisible(CGRect(x: Device.WIDTH * CGFloat(self.currentPage), y: 0, width: Device.WIDTH, height: (self.varIB_scrollContainer?.contentSize.height)!), animated: true)
 
+    }
+
+    func isValidEmail(testStr: String) -> Bool {
+        // print("validate calendar: \(testStr)")
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        return emailTest.evaluate(with: testStr)
     }
 
 }

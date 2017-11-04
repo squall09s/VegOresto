@@ -93,34 +93,50 @@ class WebRequestServices {
 
     }
 
-    static func uploadComment(urlPath: String, restaurant: Restaurant, comment: Comment,
-                              success: @escaping () -> Void,
-                              failure: @escaping (Error?) -> Void) {
+    static func postImageMedia(urlPath: String, image: UIImage,
+                               success: @escaping (String) -> Void,
+                               failure: @escaping (Error?) -> Void ) {
 
-        //var params = [ String: String]()
-        //params["g-recaptcha-response"] = tokenCaptcha
-        //params["post"] = String(restaurant.identifier?.intValue ?? -1)
-        //params["content"] = comment.content
-        //params["vote"] = String(comment.rating?.intValue ?? 1)
-        //params["author_email"] = "test@mail.fr"
+        RequestManager.postImageMedia(path: urlPath, imageMedia: image, parameters: nil, completion: { (identImage) in
+
+            success(identImage)
+
+        }, failure: failure)
+    }
+
+    static func uploadComment(urlPath: String, restaurant: Restaurant, comment: Comment,
+                              success: @escaping (Comment) -> Void,
+                              failure: @escaping (Error?) -> Void) {
 
         var _urlPathWithParam = urlPath + "?"
         _urlPathWithParam += "&post=" + String(restaurant.identifier?.intValue ?? -1)
         _urlPathWithParam += "&content=" + (comment.content?.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? "")
 
-        /*
         if let vote = comment.rating?.intValue {
-            _urlPathWithParam += "&vote=" + String(vote)
-        }*/
+            if vote > 0 && vote < 6 {
+                _urlPathWithParam += "&vote=" + String(vote)
+            }
+        }
 
-        _urlPathWithParam += "&author_email=" + "test@mail.fr"
+        if let imageComment = comment.temporaryImageIdentSend {
+            _urlPathWithParam += "&images=" + imageComment
+        }
+
+        if let parentId = comment.parentId?.intValue {
+            _urlPathWithParam += "&parent=" + String(parentId)
+        }
+
+        _urlPathWithParam += "&author_email=" + (comment.email?.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? "Noname@mail.fr")
         _urlPathWithParam += "&author_name=" + (comment.author?.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? "Invite")
 
-        print("url = \(_urlPathWithParam)")
+        RequestManager.postRequest(path: _urlPathWithParam, parameters : nil, completion: { (result: [String : Any])  in
 
-        RequestManager.postRequest(path: _urlPathWithParam, parameters : nil, completion: { (_) in
+            if let _newComment = Comment(JSON: result) {
 
-            success()
+                restaurant.addComment(newComment: _newComment)
+                success(_newComment)
+
+            }
 
         }) { (error) in
 
