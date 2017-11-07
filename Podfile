@@ -45,6 +45,7 @@ pod 'FaveButton'
 pod 'ImagePicker'
 pod 'SkyFloatingLabelTextField'
 pod 'SDWebImage'
+pod 'BEMCheckBox'
 
 end
 

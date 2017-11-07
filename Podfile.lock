@@ -3,6 +3,7 @@ PODS:
   - AlamofireObjectMapper (5.0.0):
     - Alamofire (~> 4.1)
     - ObjectMapper (~> 3.0)
+  - BEMCheckBox (1.4.1)
   - DGElasticPullToRefresh (1.1)
   - FaveButton (2.0.3)
   - GZIP (1.2.1)
@@ -36,6 +37,7 @@ PODS:
 DEPENDENCIES:
   - Alamofire
   - AlamofireObjectMapper
+  - BEMCheckBox
   - DGElasticPullToRefresh
   - FaveButton
   - GZIP
@@ -64,6 +66,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
   AlamofireObjectMapper: 5fafc816351cbbc0d486611aaeba7461c0cbad49
+  BEMCheckBox: 5ba6e37ade3d3657b36caecc35c8b75c6c2b1a4e
   DGElasticPullToRefresh: 28f11a6026302a90f8ffebbc6e24748e584dddd3
   FaveButton: cfcbc5e73da159c4f916613da5687357b5bb4783
   GZIP: 7ee835f989fb3c6ea79005fc90b8fa6af710a70d
@@ -87,6 +90,6 @@ SPEC CHECKSUMS:
   SwiftSpinner: bf7c13332ad008952a09358cadf24a186510ae31
   VTAcknowledgementsViewController: 0bc8149be64f0d5b7f398e146353af8fde04b313
 
-PODFILE CHECKSUM: 21d4eb35385b49dd251f3ebd20cf20b7ff25f48f
+PODFILE CHECKSUM: 0a14811ebab6de0e47d02c024f3c3bed66e3fc7b
 
 COCOAPODS: 1.3.1

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		370CBE521FB128AA00A1AE02 /* UIView+Material.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370CBE511FB128AA00A1AE02 /* UIView+Material.swift */; };
+		370CBE541FB1920D00A1AE02 /* VGAbstractFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370CBE531FB1920D00A1AE02 /* VGAbstractFilterViewController.swift */; };
 		37255B7F1F818D28006B501C /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37255B7E1F818CC3006B501C /* Media.xcassets */; };
 		37D05B3A1FAC9C68005B3B9D /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37D05B391FAC9C68005B3B9D /* Photos.framework */; };
 		37D82FF61F9F10380037CD4B /* AddCommentContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D82FF51F9F10380037CD4B /* AddCommentContainerViewController.swift */; };
@@ -69,6 +71,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		370CBE511FB128AA00A1AE02 /* UIView+Material.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Material.swift"; sourceTree = "<group>"; };
+		370CBE531FB1920D00A1AE02 /* VGAbstractFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGAbstractFilterViewController.swift; sourceTree = "<group>"; };
 		370F7B491F97AA43008A4C8E /* fr */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = fr; path = fr.lproj/Main.storyboard; sourceTree = "<group>"; };
 		370F7B4B1F97AA67008A4C8E /* fr */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = fr; path = fr.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		37255B7E1F818CC3006B501C /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Media.xcassets; path = Ressources/Media.xcassets; sourceTree = "<group>"; };
@@ -221,6 +225,7 @@
 				39EC80051CAD5ED2002AD862 /* RestaurantAnnotation.swift */,
 				399C05FF1CB8F86700885C0B /* ImageAnnotationView.swift */,
 				39EC80031CAC4787002AD862 /* RechercheViewController.swift */,
+				370CBE531FB1920D00A1AE02 /* VGAbstractFilterViewController.swift */,
 				396BD9741CAE62670071DF07 /* DetailRestaurantViewController.swift */,
 				391D6D7B1D7060A50023733E /* ParametresViewController.swift */,
 				39848B071CB4231300D718FD /* NavigationAccueilViewController.swift */,
@@ -256,6 +261,7 @@
 		396BD9811CAEB8710071DF07 /* Tools and Services */ = {
 			isa = PBXGroup;
 			children = (
+				370CBE511FB128AA00A1AE02 /* UIView+Material.swift */,
 				396BD97F1CAEB8640071DF07 /* ColorExtension.swift */,
 			);
 			name = "Tools and Services";
@@ -391,7 +397,7 @@
 				TargetAttributes = {
 					39968D3A1CABFFBA0085C61F = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = G9B2LM6D3L;
+						DevelopmentTeam = JUR98HQ9F5;
 						LastSwiftMigration = 0800;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
@@ -476,6 +482,7 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-VegoResto/Pods-VegoResto-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireObjectMapper/AlamofireObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/BEMCheckBox/BEMCheckBox.framework",
 				"${BUILT_PRODUCTS_DIR}/DGElasticPullToRefresh/DGElasticPullToRefresh.framework",
 				"${BUILT_PRODUCTS_DIR}/FaveButton/FaveButton.framework",
 				"${BUILT_PRODUCTS_DIR}/GZIP/GZIP.framework",
@@ -501,6 +508,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BEMCheckBox.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DGElasticPullToRefresh.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FaveButton.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GZIP.framework",
@@ -567,6 +575,7 @@
 				390909DF1DCB3E52005F77CB /* FBAnnotation.swift in Sources */,
 				39610F531E1DB6C1005F7053 /* CommentTableViewCell.swift in Sources */,
 				396BD97E1CAEB8410071DF07 /* Constantes.swift in Sources */,
+				370CBE521FB128AA00A1AE02 /* UIView+Material.swift in Sources */,
 				37F880241FADF6F100F34F78 /* RequestManager.swift in Sources */,
 				398AA7E61D17F90600FA7E0A /* MenuLateral.swift in Sources */,
 				39C50EFD1CC8D9670019FA2B /* Storyboards.swift in Sources */,
@@ -579,6 +588,7 @@
 				37D82FF81F9F10520037CD4B /* CreateCommentStep1ViewController.swift in Sources */,
 				39EC7FF01CAC0E15002AD862 /* MapsViewController.swift in Sources */,
 				390909E51DCB3E52005F77CB /* FBQuadTreeNode.swift in Sources */,
+				370CBE541FB1920D00A1AE02 /* VGAbstractFilterViewController.swift in Sources */,
 				37DD9C091F5DE3A1007B3E2B /* Restaurant+CoreDataProperties.swift in Sources */,
 				37D82FF61F9F10380037CD4B /* AddCommentContainerViewController.swift in Sources */,
 				39EC80041CAC4787002AD862 /* RechercheViewController.swift in Sources */,
@@ -725,13 +735,14 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = G9B2LM6D3L;
 				INFOPLIST_FILE = VegoResto/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.NicolasLaurent.VegOresto;
+				PRODUCT_BUNDLE_IDENTIFIER = com.l214.vegoresto;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "827956a2-5d6a-4404-93fe-86a1aa202ad4";
+				PROVISIONING_PROFILE = "9385d2c4-34cf-45b2-b27e-d160d3672f00";
 				PROVISIONING_PROFILE_SPECIFIER = Dev_all_2017;
 				SWIFT_OBJC_BRIDGING_HEADER = "VegoResto/VegoResto-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -748,14 +759,15 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: nicolas laurent (G9B2LM6D3L)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				DEVELOPMENT_TEAM = G9B2LM6D3L;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = JUR98HQ9F5;
 				INFOPLIST_FILE = VegoResto/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.NicolasLaurent.VegOresto;
+				PRODUCT_BUNDLE_IDENTIFIER = com.l214.vegoresto;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "7616c05d-afba-4f33-a543-aab88ed8e42b";
-				PROVISIONING_PROFILE_SPECIFIER = AppStoreVegoresto;
+				PROVISIONING_PROFILE = "6266841f-3ffd-48c0-912c-ce2915137067";
+				PROVISIONING_PROFILE_SPECIFIER = DistributionAppStoreNicolas;
 				SWIFT_OBJC_BRIDGING_HEADER = "VegoResto/VegoResto-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 3.0;

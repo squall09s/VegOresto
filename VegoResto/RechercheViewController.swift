@@ -10,20 +10,12 @@ import UIKit
 import MGSwipeTableCell
 import DGElasticPullToRefresh
 
-class RechercheViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
+class RechercheViewController: VGAbstractFilterViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
 
     @IBOutlet weak var varIB_searchBar: UISearchBar?
     @IBOutlet weak var varIB_tableView: UITableView?
 
-    @IBOutlet weak var varIB_bt_filtre_categorie_1: UIButton!
-    @IBOutlet weak var varIB_bt_filtre_categorie_2: UIButton!
-    @IBOutlet weak var varIB_bt_filtre_categorie_3: UIButton!
-
     var afficherUniquementFavoris = false
-
-    var filtre_categorie_Vegetarien_active = true
-    var filtre_categorie_Vegan_active = true
-    var filtre_categorie_VeganFriendly_active = true
 
     let TAG_CELL_LABEL_NAME = 501
     let TAG_CELL_LABEL_ADRESS = 502
@@ -42,10 +34,6 @@ class RechercheViewController: UIViewController, UITableViewDelegate, UITableVie
         self.varIB_searchBar?.backgroundImage = UIImage()
 
         self.loadRestaurantsWithWord(key: nil)
-
-        self.varIB_bt_filtre_categorie_1?.layer.cornerRadius = 15.0
-        self.varIB_bt_filtre_categorie_2?.layer.cornerRadius = 15.0
-        self.varIB_bt_filtre_categorie_3?.layer.cornerRadius = 15.0
 
         let loadingView = DGElasticPullToRefreshLoadingViewCircle()
         loadingView.tintColor = COLOR_ORANGE
@@ -353,47 +341,6 @@ class RechercheViewController: UIViewController, UITableViewDelegate, UITableVie
 
     }
 
-    @IBAction func touch_bt_categorie(sender: UIButton) {
-
-        if sender == self.varIB_bt_filtre_categorie_1 {
-
-            if self.filtre_categorie_Vegetarien_active == false || ( self.filtre_categorie_Vegan_active || self.filtre_categorie_VeganFriendly_active ) {
-                self.filtre_categorie_Vegetarien_active = !(self.filtre_categorie_Vegetarien_active)
-            }
-        } else if sender == self.varIB_bt_filtre_categorie_2 {
-
-            if self.filtre_categorie_Vegan_active == false || ( self.filtre_categorie_Vegetarien_active || self.filtre_categorie_VeganFriendly_active ) {
-                self.filtre_categorie_Vegan_active = !(self.filtre_categorie_Vegan_active)
-            }
-        } else if sender == self.varIB_bt_filtre_categorie_3 {
-
-            if self.filtre_categorie_VeganFriendly_active == false || ( self.filtre_categorie_Vegan_active || self.filtre_categorie_Vegetarien_active ) {
-                self.filtre_categorie_VeganFriendly_active = !(self.filtre_categorie_VeganFriendly_active)
-            }
-        }
-
-        if self.filtre_categorie_Vegetarien_active {
-            self.varIB_bt_filtre_categorie_1.backgroundColor = COLOR_VIOLET
-        } else {
-            self.varIB_bt_filtre_categorie_1.backgroundColor = COLOR_GRIS_FONCÉ.withAlphaComponent(0.6)
-        }
-
-        if self.filtre_categorie_Vegan_active {
-            self.varIB_bt_filtre_categorie_2.backgroundColor = COLOR_VERT
-        } else {
-            self.varIB_bt_filtre_categorie_2.backgroundColor = COLOR_GRIS_FONCÉ.withAlphaComponent(0.6)
-        }
-
-        if self.filtre_categorie_VeganFriendly_active {
-            self.varIB_bt_filtre_categorie_3.backgroundColor = COLOR_BLEU
-        } else {
-            self.varIB_bt_filtre_categorie_3.backgroundColor = COLOR_GRIS_FONCÉ.withAlphaComponent(0.6)
-        }
-
-        self.updateData()
-
-    }
-
     func update_resultats_for_user_location() {
 
         if let location = UserData.sharedInstance.location {
@@ -426,7 +373,7 @@ class RechercheViewController: UIViewController, UITableViewDelegate, UITableVie
 
     }
 
-    func updateData() {
+    override func updateData() {
 
         Debug.log(object: "RechercheViewController - updateData")
 

@@ -13,9 +13,12 @@ import MapleBacon
 import LNRSimpleNotifications
 import FaveButton
 
-class DetailRestaurantViewController: UIViewController {
+class DetailRestaurantViewController: UIViewController, UIScrollViewDelegate {
 
     //@IBOutlet weak var varIB_label_name: UILabel?
+
+    @IBOutlet weak var varIB_pageControl: UIPageControl?
+
     @IBOutlet weak var varIB_label_resume: UILabel?
 
     @IBOutlet weak var varIB_label_adresse: UILabel?
@@ -154,6 +157,9 @@ class DetailRestaurantViewController: UIViewController {
 
             self.varIB_scrollViewImages?.contentSize = CGSize(width: CGFloat(imgsSrc.count) * Device.WIDTH, height: Device.WIDTH * (300.0/720.0))
 
+            self.varIB_pageControl?.isHidden = imgsSrc.count <= 1
+            self.varIB_pageControl?.numberOfPages = imgsSrc.count
+
             var j: Int = 0
 
             for imgSrc in imgsSrc {
@@ -236,6 +242,14 @@ class DetailRestaurantViewController: UIViewController {
         }
 
         // Do any additional setup after loading the view.
+    }
+
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+
+        if scrollView == varIB_scrollViewImages {
+            let pageNumber = round(scrollView.contentOffset.x / scrollView.frame.size.width)
+            self.varIB_pageControl?.currentPage = Int(pageNumber)
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -420,7 +434,6 @@ class DetailRestaurantViewController: UIViewController {
             var destination_url_str = url_str
 
             if !(url_str.hasPrefix("http")) {
-
                 destination_url_str = "http://\(url_str)"
             }
 
@@ -429,9 +442,7 @@ class DetailRestaurantViewController: UIViewController {
                 UIApplication.shared.open(destination_url, options: [:], completionHandler: nil)
 
             }
-
         }
-
     }
 
     @IBAction func touch_bt_facebook(sender: AnyObject) {
@@ -450,7 +461,6 @@ class DetailRestaurantViewController: UIViewController {
                 UIApplication.shared.open(destination_url, options: [:], completionHandler: nil)
 
             }
-
         }
     }
 
@@ -467,7 +477,6 @@ class DetailRestaurantViewController: UIViewController {
         } else {
 
             self.varIB_label_number_comment?.text = "Aucun avis pour le moment"
-
         }
     }
 
@@ -514,7 +523,6 @@ class DetailRestaurantViewController: UIViewController {
             } else {
                 self.varIB_image_rating_5?.image = Asset.imgFavorisStarOff.image
             }
-
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
