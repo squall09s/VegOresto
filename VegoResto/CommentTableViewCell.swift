@@ -48,8 +48,8 @@ class CommentTableViewCell: UITableViewCell {
             if env_var_exist(name: "PREPROD") || true {
 
                 let keyHolder = VegoRestoKeys()
-                sdDownloader.username = keyHolder.aUTH_LOGIN_PREPROD
-                sdDownloader.password = keyHolder.aUTH_PASSWORD_PREPROD
+                sdDownloader.username = keyHolder.apiBasicAuthLogin
+                sdDownloader.password = keyHolder.apiBasicAuthPassword
             }
 
             sdDownloader.downloadImage(with: _url, options: .continueInBackground, progress: { (_, _, _) in

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		13229E4816989B4FC0079020 /* Pods_VegoResto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F648EA015C5F3ACE53F0460 /* Pods_VegoResto.framework */; };
 		370CBE521FB128AA00A1AE02 /* UIView+Material.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370CBE511FB128AA00A1AE02 /* UIView+Material.swift */; };
 		370CBE541FB1920D00A1AE02 /* VGAbstractFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370CBE531FB1920D00A1AE02 /* VGAbstractFilterViewController.swift */; };
 		37255B7F1F818D28006B501C /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37255B7E1F818CC3006B501C /* Media.xcassets */; };
@@ -43,7 +44,6 @@
 		39610F531E1DB6C1005F7053 /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39610F521E1DB6C1005F7053 /* CommentTableViewCell.swift */; };
 		39610F561E1DBF4A005F7053 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39610F541E1DBF4A005F7053 /* Comment.swift */; };
 		396BD9751CAE62670071DF07 /* DetailRestaurantViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396BD9741CAE62670071DF07 /* DetailRestaurantViewController.swift */; };
-		396BD97E1CAEB8410071DF07 /* Constantes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396BD97D1CAEB8410071DF07 /* Constantes.swift */; };
 		396BD9801CAEB8640071DF07 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396BD97F1CAEB8640071DF07 /* ColorExtension.swift */; };
 		3978B2771CAC088400D82040 /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3978B2761CAC088400D82040 /* libstdc++.tbd */; };
 		397D33991D18222E00BA7708 /* ListeFavorisViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397D33981D18222E00BA7708 /* ListeFavorisViewController.swift */; };
@@ -67,10 +67,12 @@
 		39EC7FF61CAC1F9F002AD862 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EC7FF51CAC1F9F002AD862 /* UserData.swift */; };
 		39EC80041CAC4787002AD862 /* RechercheViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EC80031CAC4787002AD862 /* RechercheViewController.swift */; };
 		39EC80061CAD5ED2002AD862 /* RestaurantAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EC80051CAD5ED2002AD862 /* RestaurantAnnotation.swift */; };
-		EF157865DE4EABD1E6E8D828 /* Pods_VegoResto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 728C81F550EEBDFCAA31B80B /* Pods_VegoResto.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1F648EA015C5F3ACE53F0460 /* Pods_VegoResto.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VegoResto.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2A9264C72ED8106C18F355E0 /* Pods-VegoResto.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VegoResto.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VegoResto/Pods-VegoResto.debug.xcconfig"; sourceTree = "<group>"; };
+		3322C532DC727238FD47CA6D /* Pods-VegoResto.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VegoResto.release.xcconfig"; path = "Pods/Target Support Files/Pods-VegoResto/Pods-VegoResto.release.xcconfig"; sourceTree = "<group>"; };
 		370CBE511FB128AA00A1AE02 /* UIView+Material.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Material.swift"; sourceTree = "<group>"; };
 		370CBE531FB1920D00A1AE02 /* VGAbstractFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGAbstractFilterViewController.swift; sourceTree = "<group>"; };
 		370F7B491F97AA43008A4C8E /* fr */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = fr; path = fr.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -108,7 +110,6 @@
 		39610F521E1DB6C1005F7053 /* CommentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
 		39610F541E1DBF4A005F7053 /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Comment.swift; path = NSManagedObject/Comment.swift; sourceTree = "<group>"; };
 		396BD9741CAE62670071DF07 /* DetailRestaurantViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailRestaurantViewController.swift; sourceTree = "<group>"; };
-		396BD97D1CAEB8410071DF07 /* Constantes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constantes.swift; sourceTree = "<group>"; };
 		396BD97F1CAEB8640071DF07 /* ColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 		3978B2741CAC087A00D82040 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		3978B2761CAC088400D82040 /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
@@ -136,9 +137,6 @@
 		39EC7FF51CAC1F9F002AD862 /* UserData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		39EC80031CAC4787002AD862 /* RechercheViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RechercheViewController.swift; sourceTree = "<group>"; };
 		39EC80051CAD5ED2002AD862 /* RestaurantAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantAnnotation.swift; sourceTree = "<group>"; };
-		728C81F550EEBDFCAA31B80B /* Pods_VegoResto.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VegoResto.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		93153D050B7028EFD7E7B3D1 /* Pods-VegoResto.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VegoResto.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VegoResto/Pods-VegoResto.debug.xcconfig"; sourceTree = "<group>"; };
-		F6942C8EF250C97DF4559C29 /* Pods-VegoResto.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VegoResto.release.xcconfig"; path = "Pods/Target Support Files/Pods-VegoResto/Pods-VegoResto.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,22 +150,13 @@
 				39189F7A1CB5548500A64E5E /* CoreLocation.framework in Frameworks */,
 				39EC7FF21CAC0EAF002AD862 /* MapKit.framework in Frameworks */,
 				3978B2771CAC088400D82040 /* libstdc++.tbd in Frameworks */,
-				EF157865DE4EABD1E6E8D828 /* Pods_VegoResto.framework in Frameworks */,
+				13229E4816989B4FC0079020 /* Pods_VegoResto.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		36E32163D3BC83D5436EF207 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				93153D050B7028EFD7E7B3D1 /* Pods-VegoResto.debug.xcconfig */,
-				F6942C8EF250C97DF4559C29 /* Pods-VegoResto.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		37D82FF41F9F101A0037CD4B /* AddComment */ = {
 			isa = PBXGroup;
 			children = (
@@ -308,7 +297,7 @@
 				39968D3D1CABFFBB0085C61F /* VegoResto */,
 				39968D3C1CABFFBA0085C61F /* Products */,
 				FDF1F99F6257ABBB1FA1CF5F /* Frameworks */,
-				36E32163D3BC83D5436EF207 /* Pods */,
+				7C401AC604059E7440594399 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -324,7 +313,6 @@
 			isa = PBXGroup;
 			children = (
 				39968D3E1CABFFBB0085C61F /* AppDelegate.swift */,
-				396BD97D1CAEB8410071DF07 /* Constantes.swift */,
 				396BD97B1CAEB79C0071DF07 /* Models */,
 				396BD97A1CAEB7930071DF07 /* Controllers */,
 				396BD97C1CAEB7A90071DF07 /* IHM */,
@@ -346,6 +334,15 @@
 			name = SwiftGen;
 			sourceTree = "<group>";
 		};
+		7C401AC604059E7440594399 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				2A9264C72ED8106C18F355E0 /* Pods-VegoResto.debug.xcconfig */,
+				3322C532DC727238FD47CA6D /* Pods-VegoResto.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		FDF1F99F6257ABBB1FA1CF5F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -356,7 +353,7 @@
 				39EC7FF11CAC0EAF002AD862 /* MapKit.framework */,
 				3978B2761CAC088400D82040 /* libstdc++.tbd */,
 				3978B2741CAC087A00D82040 /* libz.tbd */,
-				728C81F550EEBDFCAA31B80B /* Pods_VegoResto.framework */,
+				1F648EA015C5F3ACE53F0460 /* Pods_VegoResto.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -368,13 +365,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 39968D501CABFFBB0085C61F /* Build configuration list for PBXNativeTarget "VegoResto" */;
 			buildPhases = (
-				FB538B60DCD8F5A8B033AF01 /* [CP] Check Pods Manifest.lock */,
+				316A78CDE1DE867CE2A0B07D /* [CP] Check Pods Manifest.lock */,
 				39968D371CABFFBA0085C61F /* Sources */,
 				39968D381CABFFBA0085C61F /* Frameworks */,
 				39968D391CABFFBA0085C61F /* Resources */,
 				398857E31CC2B26300B05F64 /* Run Script */,
-				7456CB99CF266BB1E3D84AE3 /* [CP] Embed Pods Frameworks */,
-				062A06A6437B9F42363502EA /* [CP] Copy Pods Resources */,
+				FAAC61FAD0C13FC5E692C546 /* [CP] Embed Pods Frameworks */,
+				584DA2CA3C3A11B94A60F315 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -402,7 +399,7 @@
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.Push = {
-								enabled = 1;
+								enabled = 0;
 							};
 						};
 					};
@@ -444,19 +441,22 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		062A06A6437B9F42363502EA /* [CP] Copy Pods Resources */ = {
+		316A78CDE1DE867CE2A0B07D /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
-			name = "[CP] Copy Pods Resources";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-VegoResto-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VegoResto/Pods-VegoResto-resources.sh\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		398857E31CC2B26300B05F64 /* Run Script */ = {
@@ -473,7 +473,22 @@
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\nswiftlint autocorrect\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n\nif which ./Pods/SwiftGen/bin/swiftgen >/dev/null; then\n\nrm -r ./Constants_Gen\n\nmkdir ./Constants_Gen\n\ntouch ./Constants_Gen/Images.swift\ntouch ./Constants_Gen/Storyboards.swift\n\n\n./Pods/SwiftGen/bin/swiftgen storyboards \"$PROJECT_DIR\" --output \"$PROJECT_DIR/Constants_Gen/Storyboards.swift\"  -t swift3\n./Pods/SwiftGen/bin/swiftgen xcassets \"$PROJECT_DIR/VegoResto/Ressources/Media.xcassets/\" --output \"$PROJECT_DIR/Constants_Gen/Images.swift\"  -t swift3\nelse\necho \"warning: SwiftGen not installed, download it from https://github.com/AliSoftware/SwiftGen\"\nfi\n";
 		};
-		7456CB99CF266BB1E3D84AE3 /* [CP] Embed Pods Frameworks */ = {
+		584DA2CA3C3A11B94A60F315 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VegoResto/Pods-VegoResto-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FAAC61FAD0C13FC5E692C546 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -535,24 +550,6 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VegoResto/Pods-VegoResto-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		FB538B60DCD8F5A8B033AF01 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-VegoResto-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -574,7 +571,6 @@
 				398857E61CC2B97600B05F64 /* CategorieCulinaire+CoreDataProperties.swift in Sources */,
 				390909DF1DCB3E52005F77CB /* FBAnnotation.swift in Sources */,
 				39610F531E1DB6C1005F7053 /* CommentTableViewCell.swift in Sources */,
-				396BD97E1CAEB8410071DF07 /* Constantes.swift in Sources */,
 				370CBE521FB128AA00A1AE02 /* UIView+Material.swift in Sources */,
 				37F880241FADF6F100F34F78 /* RequestManager.swift in Sources */,
 				398AA7E61D17F90600FA7E0A /* MenuLateral.swift in Sources */,
@@ -654,7 +650,6 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -702,8 +697,6 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: nicolas laurent (G9B2LM6D3L)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: nicolas laurent (G9B2LM6D3L)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -728,22 +721,21 @@
 		};
 		39968D511CABFFBB0085C61F /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 93153D050B7028EFD7E7B3D1 /* Pods-VegoResto.debug.xcconfig */;
+			baseConfigurationReference = 2A9264C72ED8106C18F355E0 /* Pods-VegoResto.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = G9B2LM6D3L;
+				DEVELOPMENT_TEAM = JUR98HQ9F5;
 				INFOPLIST_FILE = VegoResto/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.l214.vegoresto;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "9385d2c4-34cf-45b2-b27e-d160d3672f00";
-				PROVISIONING_PROFILE_SPECIFIER = Dev_all_2017;
+				PROVISIONING_PROFILE = "b8d6dfc5-cff7-40af-95c3-d6ba1031dc5e";
+				PROVISIONING_PROFILE_SPECIFIER = "VegOresto Micha iOS Development";
 				SWIFT_OBJC_BRIDGING_HEADER = "VegoResto/VegoResto-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -752,13 +744,12 @@
 		};
 		39968D521CABFFBB0085C61F /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F6942C8EF250C97DF4559C29 /* Pods-VegoResto.release.xcconfig */;
+			baseConfigurationReference = 3322C532DC727238FD47CA6D /* Pods-VegoResto.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: nicolas laurent (G9B2LM6D3L)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Association L214 (JUR98HQ9F5)";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = JUR98HQ9F5;
 				INFOPLIST_FILE = VegoResto/Info.plist;
@@ -766,8 +757,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.l214.vegoresto;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "6266841f-3ffd-48c0-912c-ce2915137067";
-				PROVISIONING_PROFILE_SPECIFIER = DistributionAppStoreNicolas;
+				PROVISIONING_PROFILE = "86dfa98c-b0dc-4aff-8e21-ffc89bef9ee0";
+				PROVISIONING_PROFILE_SPECIFIER = "VegOresto Distribution";
 				SWIFT_OBJC_BRIDGING_HEADER = "VegoResto/VegoResto-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 3.0;

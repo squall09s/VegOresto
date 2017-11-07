@@ -41,7 +41,7 @@ DEPENDENCIES:
   - DGElasticPullToRefresh
   - FaveButton
   - GZIP
-  - ImagePicker
+  - ImagePicker (~> 3.0.0)
   - JSONWebToken
   - Kanna
   - Keys (from `Pods/CocoaPodsKeys`)
@@ -90,6 +90,6 @@ SPEC CHECKSUMS:
   SwiftSpinner: bf7c13332ad008952a09358cadf24a186510ae31
   VTAcknowledgementsViewController: 0bc8149be64f0d5b7f398e146353af8fde04b313
 
-PODFILE CHECKSUM: 0a14811ebab6de0e47d02c024f3c3bed66e3fc7b
+PODFILE CHECKSUM: 3af70a88d17657fa4cecf3890edb89dbc55868c8
 
 COCOAPODS: 1.3.1
