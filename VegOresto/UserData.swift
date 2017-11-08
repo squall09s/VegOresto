@@ -41,23 +41,15 @@ class UserData: NSObject, CLLocationManagerDelegate {
     func updateDatabaseIfNeeded( forced: Bool, completion : (( Bool ) -> Void)? ) {
 
         if self.updateDatabaseIsNeeded() || (self.getRestaurants().count == 0 || forced) {
-
-            WebRequestManager.shared.listRestaurant(success: { (_) in
-
+            WebRequestManager.shared.listRestaurants().then(execute: { (_: [Restaurant]) -> Void in
                 self.saveSynchroDate()
                 completion?(true)
-
-            }, failure: { (_) in
-
+            }).catch(execute: { (_: Error) in
                 completion?(false)
             })
-
         } else {
-
             completion?(true)
-
         }
-
     }
 
     private func updateDatabaseIsNeeded() -> Bool {

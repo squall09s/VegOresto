@@ -20,7 +20,7 @@
 		37DD9C081F5DE3A1007B3E2B /* Comment+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DD9C061F5DE3A1007B3E2B /* Comment+CoreDataProperties.swift */; };
 		37DD9C091F5DE3A1007B3E2B /* Restaurant+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DD9C071F5DE3A1007B3E2B /* Restaurant+CoreDataProperties.swift */; };
 		37DD9C0A1F5DE3C9007B3E2B /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398857E91CC2BA1000B05F64 /* Restaurant.swift */; };
-		37E9D7A91F6EE42700D39672 /* Horaire+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E9D7A71F6EE42700D39672 /* Horaire+CoreDataClass.swift */; };
+		37E9D7A91F6EE42700D39672 /* Horaire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E9D7A71F6EE42700D39672 /* Horaire.swift */; };
 		37E9D7AA1F6EE42700D39672 /* Horaire+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E9D7A81F6EE42700D39672 /* Horaire+CoreDataProperties.swift */; };
 		37F8801D1FADEF4C00F34F78 /* Keys.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37F8801E1FADEF4C00F34F78 /* Keys.framework */; };
 		37F880211FADF5FC00F34F78 /* WebRequestServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F8801F1FADF5FB00F34F78 /* WebRequestServices.swift */; };
@@ -85,15 +85,15 @@
 		37D82FF91F9F10660037CD4B /* CreateCommentStep2UserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CreateCommentStep2UserViewController.swift; path = Comment/CreateCommentStep2UserViewController.swift; sourceTree = "<group>"; };
 		37D82FFB1F9F107A0037CD4B /* CreateCommentStep3ImagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CreateCommentStep3ImagesViewController.swift; path = Comment/CreateCommentStep3ImagesViewController.swift; sourceTree = "<group>"; };
 		37D82FFD1F9F10900037CD4B /* CreateCommentStep4ResumeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CreateCommentStep4ResumeViewController.swift; path = Comment/CreateCommentStep4ResumeViewController.swift; sourceTree = "<group>"; };
-		37D82FFF1F9F28C00037CD4B /* SecurityServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SecurityServices.swift; path = Network/SecurityServices.swift; sourceTree = "<group>"; };
+		37D82FFF1F9F28C00037CD4B /* SecurityServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecurityServices.swift; sourceTree = "<group>"; };
 		37DD9C061F5DE3A1007B3E2B /* Comment+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Comment+CoreDataProperties.swift"; path = "NSManagedObject/Comment+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		37DD9C071F5DE3A1007B3E2B /* Restaurant+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Restaurant+CoreDataProperties.swift"; path = "NSManagedObject/Restaurant+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		37E9D7A71F6EE42700D39672 /* Horaire+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Horaire+CoreDataClass.swift"; path = "NSManagedObject/Horaire+CoreDataClass.swift"; sourceTree = "<group>"; };
+		37E9D7A71F6EE42700D39672 /* Horaire.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Horaire.swift; path = NSManagedObject/Horaire.swift; sourceTree = "<group>"; };
 		37E9D7A81F6EE42700D39672 /* Horaire+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Horaire+CoreDataProperties.swift"; path = "NSManagedObject/Horaire+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		37F8801E1FADEF4C00F34F78 /* Keys.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Keys.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		37F8801F1FADF5FB00F34F78 /* WebRequestServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WebRequestServices.swift; path = Network/WebRequestServices.swift; sourceTree = "<group>"; };
-		37F880201FADF5FC00F34F78 /* WebRequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WebRequestManager.swift; path = Network/WebRequestManager.swift; sourceTree = "<group>"; };
-		37F880231FADF6F100F34F78 /* RequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RequestManager.swift; path = Network/RequestManager.swift; sourceTree = "<group>"; };
+		37F8801F1FADF5FB00F34F78 /* WebRequestServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebRequestServices.swift; sourceTree = "<group>"; };
+		37F880201FADF5FC00F34F78 /* WebRequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebRequestManager.swift; sourceTree = "<group>"; };
+		37F880231FADF6F100F34F78 /* RequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestManager.swift; sourceTree = "<group>"; };
 		390909D81DCB3E52005F77CB /* FBAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FBAnnotation.swift; path = Ressources/Lib/FBAnnotation/FBAnnotation.swift; sourceTree = "<group>"; };
 		390909D91DCB3E52005F77CB /* FBAnnotationCluster.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FBAnnotationCluster.swift; path = Ressources/Lib/FBAnnotation/FBAnnotationCluster.swift; sourceTree = "<group>"; };
 		390909DA1DCB3E52005F77CB /* FBAnnotationClusterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FBAnnotationClusterView.swift; path = Ressources/Lib/FBAnnotation/FBAnnotationClusterView.swift; sourceTree = "<group>"; };
@@ -229,10 +229,7 @@
 			isa = PBXGroup;
 			children = (
 				39EC7FF51CAC1F9F002AD862 /* UserData.swift */,
-				37F880201FADF5FC00F34F78 /* WebRequestManager.swift */,
-				37F8801F1FADF5FB00F34F78 /* WebRequestServices.swift */,
-				37D82FFF1F9F28C00037CD4B /* SecurityServices.swift */,
-				37F880231FADF6F100F34F78 /* RequestManager.swift */,
+				AEE7808E1FB3293A00022F38 /* Network */,
 				397901751CADC62900597DCD /* CoreData */,
 			);
 			name = Models;
@@ -259,14 +256,14 @@
 		397901751CADC62900597DCD /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				37E9D7A71F6EE42700D39672 /* Horaire+CoreDataClass.swift */,
+				37E9D7A71F6EE42700D39672 /* Horaire.swift */,
 				37E9D7A81F6EE42700D39672 /* Horaire+CoreDataProperties.swift */,
 				398857E91CC2BA1000B05F64 /* Restaurant.swift */,
+				37DD9C071F5DE3A1007B3E2B /* Restaurant+CoreDataProperties.swift */,
 				39610F541E1DBF4A005F7053 /* Comment.swift */,
 				37DD9C061F5DE3A1007B3E2B /* Comment+CoreDataProperties.swift */,
-				37DD9C071F5DE3A1007B3E2B /* Restaurant+CoreDataProperties.swift */,
-				398857E41CC2B97600B05F64 /* CategorieCulinaire+CoreDataProperties.swift */,
 				398857E51CC2B97600B05F64 /* CategorieCulinaire.swift */,
+				398857E41CC2B97600B05F64 /* CategorieCulinaire+CoreDataProperties.swift */,
 			);
 			name = CoreData;
 			sourceTree = "<group>";
@@ -335,6 +332,18 @@
 			name = SwiftGen;
 			sourceTree = "<group>";
 		};
+		AEE7808E1FB3293A00022F38 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				37D82FFF1F9F28C00037CD4B /* SecurityServices.swift */,
+				37F880231FADF6F100F34F78 /* RequestManager.swift */,
+				37F8801F1FADF5FB00F34F78 /* WebRequestServices.swift */,
+				37F880201FADF5FC00F34F78 /* WebRequestManager.swift */,
+			);
+			name = Network;
+			path = Networking;
+			sourceTree = "<group>";
+		};
 		FBB7DDCF4C7EDFB0424F62AC /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -367,10 +376,10 @@
 			buildConfigurationList = 39968D501CABFFBB0085C61F /* Build configuration list for PBXNativeTarget "VegOresto" */;
 			buildPhases = (
 				8D2F3221741213A99B02CFEF /* [CP] Check Pods Manifest.lock */,
+				398857E31CC2B26300B05F64 /* Run Script */,
 				39968D371CABFFBA0085C61F /* Sources */,
 				39968D381CABFFBA0085C61F /* Frameworks */,
 				39968D391CABFFBA0085C61F /* Resources */,
-				398857E31CC2B26300B05F64 /* Run Script */,
 				525004B7D7908068C86921F3 /* [CP] Embed Pods Frameworks */,
 				9894DA9E7A0DCF794DD70E55 /* [CP] Copy Pods Resources */,
 			);
@@ -480,6 +489,7 @@
 				"${BUILT_PRODUCTS_DIR}/MapleBacon/MapleBacon.framework",
 				"${BUILT_PRODUCTS_DIR}/MarqueeLabel/MarqueeLabel.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/PromiseKit/PromiseKit.framework",
 				"${BUILT_PRODUCTS_DIR}/ReCaptcha/ReCaptcha.framework",
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
@@ -506,6 +516,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MapleBacon.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MarqueeLabel.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PromiseKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReCaptcha.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
@@ -595,7 +606,7 @@
 				390909E41DCB3E52005F77CB /* FBQuadTree.swift in Sources */,
 				37D82FFA1F9F10660037CD4B /* CreateCommentStep2UserViewController.swift in Sources */,
 				390909E21DCB3E52005F77CB /* FBBoundingBox.swift in Sources */,
-				37E9D7A91F6EE42700D39672 /* Horaire+CoreDataClass.swift in Sources */,
+				37E9D7A91F6EE42700D39672 /* Horaire.swift in Sources */,
 				37D82FFC1F9F107A0037CD4B /* CreateCommentStep3ImagesViewController.swift in Sources */,
 				390909E31DCB3E52005F77CB /* FBClusteringManager.swift in Sources */,
 				37F880221FADF5FC00F34F78 /* WebRequestManager.swift in Sources */,

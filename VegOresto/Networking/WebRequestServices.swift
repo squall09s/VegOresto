@@ -8,65 +8,41 @@
 
 import Foundation
 import ObjectMapper
+import PromiseKit
 
 class WebRequestServices {
 
-    static func listComment(urlPath: String,
-                            success: @escaping ([Comment]) -> Void,
-                             failure: @escaping (Error?) -> Void) {
-
-        RequestManager.doRequest(method: .get,
-                                 path: urlPath,
-                                 completion: { _resultComment in
-
-                                    success(_resultComment)
-
-        }, failure: failure)
-
+    static func listComments(url: URL) -> Promise<[Comment]> {
+        return RequestManager.doRequest(method: .get, url: url)
     }
 
-    static func listRestaurant(urlPath: String,
-                               success: @escaping ([Restaurant]) -> Void,
-                               failure: @escaping (Error?) -> Void) {
-
-        RequestManager.doRequestListGzipped(method: .get, path: urlPath, completion: { (result : [String : Any]) in
-
-            var listRestaurant = [Restaurant]()
-
-            for (_, dico) in result {
-
-                if let _dicoJSON = dico as? [String : Any] {
-
-                    if let currentRestau : Restaurant = UserData.sharedInstance.getRestaurantWithIdentifier(identifier:
-
-                    (_dicoJSON["id"] as? NSNumber )?.intValue ?? -1 ) {
-
-                        currentRestau.mapping(map: Map(mappingType: .fromJSON, JSON: _dicoJSON))
-                        listRestaurant.append( currentRestau )
-
-                    } else {
-
-                        if let _newRestaurant = Restaurant(JSON: _dicoJSON) {
-                            listRestaurant.append( _newRestaurant )
-                        }
-                    }
-
+    static func listRestaurants(url: URL) -> Promise<[Restaurant]> {
+        return RequestManager.doRequestListGzipped(method: .get, url: url).then { (result : [String : Any]) -> [Restaurant] in
+            let restaurants = result.values.flatMap({ (dict) -> Restaurant? in
+                guard let _dict = dict as? [String:Any] else {
+                    return nil
                 }
-            }
-
+                let restaurantId = (_dict["id"] as? NSNumber)?.intValue ?? -1
+                if let restaurant = UserData.sharedInstance.getRestaurantWithIdentifier(identifier: restaurantId) {
+                    restaurant.mapping(map: Map(mappingType: .fromJSON, JSON: _dict))
+                    return restaurant
+                } else if let restaurant = Restaurant(JSON: _dict) {
+                    return restaurant
+                }
+                return nil
+            })
+            
+            // try to save the context
             do {
                 try UserData.sharedInstance.managedContext.save()
             } catch {
-
                 let nserror = error as NSError
                 Debug.log(object: "listRestaurant : saveContext - Unresolved error \(nserror), \(nserror.userInfo)")
                 abort()
             }
-
-            success(listRestaurant)
-
-        }, failure: failure)
-
+            
+            return Array(restaurants)
+        }
     }
 
     static func loadHoraires(urlPath: String,

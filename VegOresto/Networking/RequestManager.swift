@@ -12,110 +12,85 @@ import Alamofire
 import AlamofireObjectMapper
 import ObjectMapper
 import GZIP
+import PromiseKit
 
-class RequestManager: NSObject {
+extension DataRequest {
+    public func responseObject<T: Mappable>(queue: DispatchQueue? = nil, keyPath: String? = nil, mapToObject object: T? = nil, context: MapContext? = nil) -> Promise<DataResponse<T>> {
+        return Promise(resolvers: { (fulfill, reject) in
+            self.responseObject(queue: queue, keyPath: keyPath, mapToObject: object, context: context, completionHandler: { (response: DataResponse<T>) in
+                if let error = response.error {
+                    reject(error)
+                } else if response.value != nil {
+                    fulfill(response)
+                } else {
+                    reject(PMKError.invalidCallingConvention)
+                }
+            })
+        })
+    }
 
+    public func responseArray<T: Mappable>(queue: DispatchQueue? = nil, keyPath: String? = nil, context: MapContext? = nil) -> Promise<DataResponse<[T]>> {
+        return Promise(resolvers: { (fulfill, reject) in
+            self.responseArray(queue: queue, keyPath: keyPath, context: context, completionHandler: { (response: DataResponse<[T]>) in
+                if let error = response.error {
+                    reject(error)
+                } else if response.value != nil {
+                    fulfill(response)
+                } else {
+                    reject(PMKError.invalidCallingConvention)
+                }
+            })
+        })
+    }
+}
+
+enum RequestManagerError: Error {
+    case gzipError
+    case jsonError
+}
+
+class RequestManager {
     static let manager: SessionManager = RequestManager.buildManager()
 
     private static func buildManager() -> SessionManager {
-
         let configuration = URLSessionConfiguration.default
         configuration.requestCachePolicy = .reloadIgnoringLocalCacheData
         configuration.httpShouldSetCookies = false
 
-        let sessionManager = SessionManager(
-            configuration: configuration
-
-        )
-
+        let sessionManager = SessionManager(configuration: configuration)
         return sessionManager
     }
 
     static func doRequest<T: Mappable>(method: HTTPMethod,
-                          path: String,
+                          url: URL,
                           parameters: Parameters? = nil,
-                          keyPath: String? = nil,
-                          completion: @escaping (T) -> Void,
-                          failure: @escaping (Error?) -> Void) {
-
-        let urlPath: URLConvertible!
-
-        do {
-            try urlPath = (path).asURL()
-        } catch {
-
-            return
-        }
-
-        var request:() -> Void = {}
-        request = {
-
-            RequestManager.manager.request(urlPath,
-                                           method: method,
-                                           parameters: parameters,
-                                           encoding: JSONEncoding.default,
-                                           headers: APIConfig.defaultHTTPHeaders())
-                .validate()
-                .responseObject( keyPath: keyPath,
-                                 completionHandler: { (response: DataResponse<T>) -> Void in
-
-                                    if response.result.isSuccess {
-                                        if let data = response.result.value {
-                                            completion(data)
-                                        } else {
-                                            failure(nil)
-                                        }
-                                    }
-
-                })
-        }
-
-        request()
-
+                          keyPath: String? = nil) -> Promise<T> {
+        return RequestManager.manager
+            .request(url,
+                     method: method,
+                     parameters: parameters,
+                     encoding: JSONEncoding.default,
+                     headers: APIConfig.defaultHTTPHeaders())
+            .validate()
+            .responseObject(keyPath: keyPath).then(execute: { (response: DataResponse<T>) -> T in
+                return response.value!
+            })
     }
 
     static func doRequest<T: Mappable>(method: HTTPMethod,
-                          path: String,
+                          url: URL,
                           parameters: Parameters? = nil,
-                          keyPath: String? = nil,
-                          completion: @escaping ([T]) -> Void,
-                          failure: @escaping (Error?) -> Void) {
-
-        let urlPath: URLConvertible!
-
-        do {
-            try urlPath = (path).asURL()
-        } catch {
-
-            return
-        }
-
-        var request:() -> Void = {}
-
-        request = {
-
-            RequestManager.manager.request(urlPath,
-                                           method: method,
-                                           parameters: parameters,
-                                           encoding: JSONEncoding.default,
-                                           headers: APIConfig.defaultHTTPHeaders())
-                .validate()
-                .responseArray( keyPath: keyPath,
-                                completionHandler: { (response: DataResponse<[T]>) -> Void in
-
-                                    if response.result.isSuccess {
-                                        if let data = response.result.value {
-                                            completion(data)
-                                        } else {
-                                            failure(nil)
-                                        }
-                                    }
-
-                })
-        }
-
-        request()
-
+                          keyPath: String? = nil) -> Promise<[T]> {
+        return RequestManager.manager
+            .request(url,
+                     method: method,
+                     parameters: parameters,
+                     encoding: JSONEncoding.default,
+                     headers: APIConfig.defaultHTTPHeaders())
+            .validate()
+            .responseArray(keyPath: keyPath).then(execute: { (response: DataResponse<[T]>) -> [T] in
+                return response.value!
+            })
     }
 
     static func postImageMedia( path: String,
@@ -172,54 +147,31 @@ class RequestManager: NSObject {
     }
 
     static func doRequestListGzipped(method: HTTPMethod,
-                              path: String,
-                              parameters: Parameters? = nil,
-                              keyPath: String? = nil,
-                              completion: @escaping ([String : Any]) -> Void,
-                              failure: @escaping (Error?) -> Void) {
+                                     url: URL,
+                                     parameters: Parameters? = nil,
+                                     keyPath: String? = nil) -> Promise<[String : Any]> {
+        return RequestManager.manager
+            .request(url,
+                     method: method,
+                     parameters: parameters,
+                     encoding: URLEncoding.default,
+                     headers: APIConfig.defaultHTTPHeaders())
+            .responseData().then(execute: { (data: Data) -> [String:Any] in
+                // gunzip
+                guard (data as NSData).isGzippedData() else {
+                    throw RequestManagerError.gzipError
+                }
+                guard let decompressedData = (data as NSData).gunzipped() else {
+                    throw RequestManagerError.gzipError
+                }
 
-        let urlPath: URLConvertible!
+                // parse json
+                guard let result = try JSONSerialization.jsonObject(with: decompressedData) as? [String: Any] else {
+                    throw RequestManagerError.jsonError
+                }
 
-        do {
-            try urlPath = (path).asURL()
-        } catch {
-
-            return
-        }
-
-        var request:() -> Void = {}
-        request = {
-
-            RequestManager.manager.request(urlPath,
-                                           method: method,
-                                           parameters: parameters,
-                                           encoding: URLEncoding.default,
-                                           headers: APIConfig.defaultHTTPHeaders()).responseData(completionHandler: { (dataResponse) in
-
-                                            // gunzip
-                                            if let compressedData: NSData = dataResponse.result.value as NSData?, compressedData.isGzippedData() {
-
-                                                    let decompressedData = try! compressedData.gunzipped()
-
-                                                    let stringValue = String(bytes: decompressedData!, encoding: String.Encoding.utf8)
-
-                                                    if let result: [String : Any] = RequestManager.convertToDictionary(text: stringValue ?? "") {
-
-                                                        //print("--> result \(result)")
-                                                        completion(result)
-
-                                                    }
-
-                                                } else {
-
-                                                    failure(nil)
-                                                }
-
-                                           })
-        }
-
-        request()
-
+                return result
+        })
     }
 
     static func doRequestList(method: HTTPMethod,
@@ -326,18 +278,6 @@ class RequestManager: NSObject {
         request()
 
     }
-
-    static func convertToDictionary(text: String) -> [String: Any]? {
-        if let data = text.data(using: .utf8) {
-            do {
-                return try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
-            } catch {
-                print(error.localizedDescription)
-            }
-        }
-        return nil
-    }
-
 }
 
 extension UIImage {

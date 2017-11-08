@@ -15,7 +15,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
-
         UILabel.appearance(whenContainedInInstancesOf: [UISearchBar.self]).font = UIFont(name: "URWGothicL-Book", size: 17)!
         UITextView.appearance(whenContainedInInstancesOf: [UISearchBar.self]).font = UIFont(name: "URWGothicL-Book", size: 17)!
 

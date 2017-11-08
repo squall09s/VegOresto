@@ -7,53 +7,38 @@
 //
 
 import Foundation
+import PromiseKit
 
 class WebRequestManager {
-
     static let shared = WebRequestManager()
 
-    func listComment(  restaurant: Restaurant?,
-                       success: @escaping ([Comment]) -> Void,
-                       failure: @escaping (Error?) -> Void) {
-
-        let urlPath = APIConfig.apiBaseUrl.appendingPathComponent("/wp-json/wp/v2/comments?post=\(restaurant?.identifier?.intValue ?? 0)")
-        WebRequestServices.listComment(urlPath: urlPath.absoluteString, success: { (listComment) in
-
-            restaurant?.comments = nil
-
-            for comment: Comment in restaurant?.getCommentsAsArray() ?? [] {
-
-                UserData.sharedInstance.managedContext.delete(comment)
-
-            }
-
-            restaurant?.comments = NSSet()
-
-            for comment in listComment as [Comment] {
-
-                restaurant?.addComment(newComment: comment)
-            }
-
-            success(listComment)
-
-        }) { (error) in
-
-            failure(error)
-
-        }
-
+    private func getUrl(_ path: String) -> URL {
+        return APIConfig.apiBaseUrl.appendingPathComponent(path)
     }
 
-    func listRestaurant(  success: @escaping ([Restaurant]) -> Void,
-                          failure: @escaping (Error?) -> Void) {
+    public func listComments(restaurant: Restaurant) -> Promise<[Comment]> {
+        let url = getUrl("/wp-json/wp/v2/comments?post=\(restaurant.identifier?.intValue ?? 0)")
+        return WebRequestServices.listComments(url: url).then(execute: { (comments: [Comment]) -> [Comment] in
+            // remove old comments
+            for comment in restaurant.getCommentsAsArray() ?? [] {
+                UserData.sharedInstance.managedContext.delete(comment)
+            }
 
-        let urlPath = APIConfig.apiBaseUrl.appendingPathComponent("/wp-json/vg/v1/restos.json")
-        WebRequestServices.listRestaurant(urlPath: urlPath.absoluteString, success: { (listRestaurants) in
+            // map to restaurant
+            for comment in comments {
+                comment.restaurant = restaurant
+            }
 
-            success(listRestaurants)
+            // set restaurant comments
+            restaurant.comments = NSSet(array: comments)
 
-        }, failure: failure)
+            return comments
+        })
+    }
 
+    public func listRestaurants() -> Promise<[Restaurant]> {
+        let url = getUrl("/wp-json/vg/v1/restos.json")
+        return WebRequestServices.listRestaurants(url: url)
     }
 
  func postImageMedia( image: UIImage,

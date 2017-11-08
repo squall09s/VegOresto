@@ -213,37 +213,26 @@ class DetailRestaurantViewController: UIViewController, UIScrollViewDelegate {
 
         self.updateRatingImage()
 
-        WebRequestManager.shared.listComment(restaurant : self.current_restaurant, success: { (_) in
-
-            self.updateLabelComment()
-
-            self.varIB_activity_indicator?.stopAnimating()
-
-            UIView.animate(withDuration: 0.5, animations: {
-
-                self.varIB_activity_indicator?.isHidden = true
-                self.varIB_button_comment?.isHidden = false
-
-            })
-
-        }) { (_) in
-
-            self.updateLabelComment()
-
-            self.varIB_activity_indicator?.stopAnimating()
-
-            UIView.animate(withDuration: 0.5, animations: {
-
-                self.varIB_activity_indicator?.isHidden = true
-                self.varIB_button_comment?.isHidden = false
-
-            })
-
-        }
-
-        // Do any additional setup after loading the view.
+        // load comments
+        loadComments()
     }
 
+    private func loadComments() {
+        guard let restaurant = self.current_restaurant else {
+            return
+        }
+
+        WebRequestManager.shared.listComments(restaurant: restaurant).always {
+            self.updateLabelComment()
+            
+            self.varIB_activity_indicator?.stopAnimating()
+            UIView.animate(withDuration: 0.5, animations: {
+                self.varIB_activity_indicator?.isHidden = true
+                self.varIB_button_comment?.isHidden = false
+            })
+        }
+    }
+    
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
 
         if scrollView == varIB_scrollViewImages {

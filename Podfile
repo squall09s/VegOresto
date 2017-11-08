@@ -25,11 +25,13 @@ target 'VegOresto' do
     pod 'LNRSimpleNotifications'
     pod 'MarqueeLabel'
     pod 'Kanna'
+    pod 'PromiseKit'
 
     # Webservices
     pod 'Alamofire'
     pod 'AlamofireObjectMapper'
     pod 'JSONWebToken'
+    pod 'PromiseKit/Alamofire'
 
     # Captcha
     pod 'ReCaptcha'
