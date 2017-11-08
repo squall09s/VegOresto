@@ -20,6 +20,7 @@ extension Restaurant {
     @NSManaged var terrasse: NSNumber?
     @NSManaged var lat: NSNumber?
     @NSManaged var lon: NSNumber?
+    @NSManaged var radius: NSNumber?
     @NSManaged var name: String?
     @NSManaged var phone: String?
     @NSManaged var ville: String?

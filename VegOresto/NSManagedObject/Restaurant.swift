@@ -117,11 +117,15 @@ class Restaurant: NSManagedObject, Mappable {
             }
         }
 
-        if let _lon: Double = map.JSON["lon"] as? Double, let _lat: Double = map.JSON["lat"] as? Double {
-
-                self.lat = NSNumber(value: _lat)
-                self.lon = NSNumber(value: _lon)
-
+        if let _lon = map.JSON["lon"] as? Double,
+           let _lat = map.JSON["lat"] as? Double {
+            self.lat = NSNumber(value: _lat)
+            self.lon = NSNumber(value: _lon)
+            if let _radius = map.JSON["radius"] as? Double {
+                self.radius = NSNumber(value: _radius)
+            } else {
+                self.radius = NSNumber(value: 0)
+            }
         }
 
         if let _anim = map.JSON["anim"] as? String {
