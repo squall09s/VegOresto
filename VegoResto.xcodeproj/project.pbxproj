@@ -67,6 +67,7 @@
 		39EC7FF61CAC1F9F002AD862 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EC7FF51CAC1F9F002AD862 /* UserData.swift */; };
 		39EC80041CAC4787002AD862 /* RechercheViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EC80031CAC4787002AD862 /* RechercheViewController.swift */; };
 		39EC80061CAD5ED2002AD862 /* RestaurantAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EC80051CAD5ED2002AD862 /* RestaurantAnnotation.swift */; };
+		AE62973F1FB2DD26006313E5 /* Constantes.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE62973E1FB2DD26006313E5 /* Constantes.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -137,6 +138,7 @@
 		39EC7FF51CAC1F9F002AD862 /* UserData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		39EC80031CAC4787002AD862 /* RechercheViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RechercheViewController.swift; sourceTree = "<group>"; };
 		39EC80051CAD5ED2002AD862 /* RestaurantAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantAnnotation.swift; sourceTree = "<group>"; };
+		AE62973E1FB2DD26006313E5 /* Constantes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constantes.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -313,6 +315,7 @@
 			isa = PBXGroup;
 			children = (
 				39968D3E1CABFFBB0085C61F /* AppDelegate.swift */,
+				AE62973E1FB2DD26006313E5 /* Constantes.swift */,
 				396BD97B1CAEB79C0071DF07 /* Models */,
 				396BD97A1CAEB7930071DF07 /* Controllers */,
 				396BD97C1CAEB7A90071DF07 /* IHM */,
@@ -566,6 +569,7 @@
 				37D830001F9F28C00037CD4B /* SecurityServices.swift in Sources */,
 				398AA7E51D17F90600FA7E0A /* LGSideMenuController.m in Sources */,
 				39848B081CB4231300D718FD /* NavigationAccueilViewController.swift in Sources */,
+				AE62973F1FB2DD26006313E5 /* Constantes.swift in Sources */,
 				391D6D7C1D7060A50023733E /* ParametresViewController.swift in Sources */,
 				39610F511E1DB62A005F7053 /* TableCommentsViewController.swift in Sources */,
 				398857E61CC2B97600B05F64 /* CategorieCulinaire+CoreDataProperties.swift in Sources */,

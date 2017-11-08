@@ -44,13 +44,8 @@ class CommentTableViewCell: UITableViewCell {
         if let _url = URL(string: _url ) {
 
             let sdDownloader = SDWebImageDownloader.shared()
-
-            if env_var_exist(name: "PREPROD") || true {
-
-                let keyHolder = VegoRestoKeys()
-                sdDownloader.username = keyHolder.apiBasicAuthLogin
-                sdDownloader.password = keyHolder.apiBasicAuthPassword
-            }
+            sdDownloader.username = APIConfig.apiBasicAuthLogin
+            sdDownloader.password = APIConfig.apiBasicAuthPassword
 
             sdDownloader.downloadImage(with: _url, options: .continueInBackground, progress: { (_, _, _) in
 

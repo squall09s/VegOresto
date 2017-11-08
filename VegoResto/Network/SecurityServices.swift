@@ -15,16 +15,14 @@ class SecurityServices: NSObject {
     static let shared: SecurityServices = SecurityServices()
 
     func getToken() -> String {
-        let keyHolder = VegoRestoKeys()
-
         let claims: [String:Any] = [
             "iat": Date().timeIntervalSince1970,
-            "iss": "https://vegoresto.l214.in"
+            "iss": APIConfig.apiClientIss
         ]
-        let headers: [String:Any] = [
-            "kid": keyHolder.apiClientId
+        let headers: [String:String] = [
+            "kid": APIConfig.apiClientId
         ]
-        let token = JWT.encode(claims: claims, algorithm: .hs256(keyHolder.apiClientSecret.data(using: .utf8)!), headers: headers)
+        let token = JWT.encode(claims: claims, algorithm: .hs256(APIConfig.apiClientSecret.data(using: .utf8)!), headers: headers)
 
         return token
     }
