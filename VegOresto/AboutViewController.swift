@@ -30,7 +30,7 @@ class AboutViewController: UIViewController {
         self.navigationController?.setNavigationBarHidden(true, animated: true)
     }
 
-    @IBAction func contactButtonPressed(sender: UIButton) {
+    @IBAction func contactButtonPressed(_ sender: Any) {
         let version = (Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String) ?? "Unknown"
         let prefix: String = "Appli VegOresto iPhone [\(version)]"
 
@@ -44,7 +44,11 @@ class AboutViewController: UIViewController {
         }
     }
 
-    @IBAction func facebookButtonPressed(sender: Any) {
+    @IBAction func suggestRestaurant(_ sender: Any) {
+        UIApplication.shared.open(URL(string: "https://vegoresto.fr/signalement-restaurant-eligible-vegoresto/")!, options: [:], completionHandler: nil)
+    }
+
+    @IBAction func facebookButtonPressed(_ sender: Any) {
         let facebookAppUrl = URL(string: "fb://profile/854933141235331")!
         let facebookWebUrl = URL(string: "https://www.facebook.com/vegoresto")!
         if UIApplication.shared.canOpenURL(facebookAppUrl) {
@@ -54,7 +58,7 @@ class AboutViewController: UIViewController {
         }
     }
 
-    @IBAction func twitterButtonPressed(sender: Any) {
+    @IBAction func twitterButtonPressed(_ sender: Any) {
         let twitterAppUrl = URL(string: "twitter://user?screen_name=VegOresto")!
         let twitterWebUrl = URL(string: "https://twitter.com/VegOresto")!
         if UIApplication.shared.canOpenURL(twitterAppUrl) {
@@ -64,7 +68,7 @@ class AboutViewController: UIViewController {
         }
     }
 
-    @IBAction func instagramButtonPressed(sender: Any) {
+    @IBAction func instagramButtonPressed(_ sender: Any) {
         let instagramAppUrl = URL(string: "instagram://user?username=vegoresto")!
         let instagramWebUrl = URL(string: "https://www.instagram.com/vegoresto/")!
         if UIApplication.shared.canOpenURL(instagramAppUrl) {
@@ -74,7 +78,7 @@ class AboutViewController: UIViewController {
         }
     }
 
-    @IBAction func licenseButtonPressed(sender: UIButton) {
+    @IBAction func licenseButtonPressed(_ sender: Any) {
         if let vc: VTAcknowledgementsViewController = VTAcknowledgementsViewController(fileNamed: "Pods-VegOresto-acknowledgements") {
             vc.headerText = "Licences et remerciements"
             vc.title = ""
