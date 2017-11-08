@@ -3,7 +3,7 @@
 // swiftlint:disable sorted_imports
 import Foundation
 import UIKit
-import VegoResto
+import VegOresto
 
 // swiftlint:disable file_length
 
@@ -58,17 +58,17 @@ enum StoryboardScene {
   enum Main: StoryboardType {
     static let storyboardName = "Main"
 
-    static let initialScene = InitialSceneType<VegoResto.MainViewController>(storyboard: Main.self)
+    static let initialScene = InitialSceneType<VegOresto.MainViewController>(storyboard: Main.self)
 
-    static let mainViewController = SceneType<VegoResto.MainViewController>(storyboard: Main.self, identifier: "MainViewController")
+    static let mainViewController = SceneType<VegOresto.MainViewController>(storyboard: Main.self, identifier: "MainViewController")
 
-    static let mapsViewController = SceneType<VegoResto.MapsViewController>(storyboard: Main.self, identifier: "MapsViewController")
+    static let mapsViewController = SceneType<VegOresto.MapsViewController>(storyboard: Main.self, identifier: "MapsViewController")
 
-    static let menuLateral = SceneType<VegoResto.MenuLateral>(storyboard: Main.self, identifier: "MenuLateral")
+    static let menuLateral = SceneType<VegOresto.MenuLateral>(storyboard: Main.self, identifier: "MenuLateral")
 
     static let navigationController = SceneType<UITabBarController>(storyboard: Main.self, identifier: "NavigationController")
 
-    static let rechercheViewController = SceneType<VegoResto.RechercheViewController>(storyboard: Main.self, identifier: "RechercheViewController")
+    static let rechercheViewController = SceneType<VegOresto.RechercheViewController>(storyboard: Main.self, identifier: "RechercheViewController")
   }
 }
 

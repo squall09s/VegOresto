@@ -1,6 +1,6 @@
 //
 //  RestaurantAnnotation.swift
-//  VegoResto
+//  VegOresto
 //
 //  Created by Laurent Nicolas on 31/03/2016.
 //  Copyright © 2016 Nicolas Laurent. All rights reserved.

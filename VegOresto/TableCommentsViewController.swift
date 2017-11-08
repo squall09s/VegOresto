@@ -1,6 +1,6 @@
 //
 //  TableCommentsViewController.swift
-//  VegoResto
+//  VegOresto
 //
 //  Created by Laurent Nicolas (141 - LILLE TOURCOING) on 05/01/2017.
 //  Copyright © 2017 Nicolas Laurent. All rights reserved.

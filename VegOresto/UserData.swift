@@ -1,6 +1,6 @@
 //
 //  UserData.swift
-//  VegoResto
+//  VegOresto
 //
 //  Created by Laurent Nicolason 30/03/2016.
 //  Copyright © 2016 Nicolas Laurent. All rights reserved.

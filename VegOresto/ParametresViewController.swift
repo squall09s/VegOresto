@@ -61,7 +61,7 @@ class ParametresViewController: UIViewController {
 
     @IBAction func clic_licences(sender: UIButton) {
 
-        if let vc: VTAcknowledgementsViewController = VTAcknowledgementsViewController(fileNamed: "Pods-VegoResto-acknowledgements") {
+        if let vc: VTAcknowledgementsViewController = VTAcknowledgementsViewController(fileNamed: "Pods-VegOresto-acknowledgements") {
 
             vc.headerText = "Remerciements et Licences"
             vc.title = ""

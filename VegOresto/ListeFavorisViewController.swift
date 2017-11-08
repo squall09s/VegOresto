@@ -1,6 +1,6 @@
 //
 //  ListeFavorisViewController.swift
-//  VegoResto
+//  VegOresto
 //
 //  Created by Laurent Nicolas (141 - LILLE TOURCOING) on 20/06/2016.
 //  Copyright © 2016 Nicolas Laurent. All rights reserved.

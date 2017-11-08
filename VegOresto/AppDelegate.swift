@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  VegoResto
+//  VegOresto
 //
 //  Created by Laurent Nicolas on 30/03/2016.
 //  Copyright © 2016 Nicolas Laurent. All rights reserved.
@@ -64,7 +64,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     lazy var applicationDocumentsDirectory: NSURL = {
         // The directory the application uses to store the Core Data store file. This code uses a directory
-        // named "Nicolas-Laurent.VegoResto" in the application's documents Application Support directory.
+        // named "Nicolas-Laurent.VegOresto" in the application's documents Application Support directory.
         let urls = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         return urls[urls.count-1] as NSURL
 
@@ -73,7 +73,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     lazy var managedObjectModel: NSManagedObjectModel = {
         // The managed object model for the application. This property is not optional. It is a fatal error
         // for the application not to be able to find and load its model.
-        let modelURL = Bundle.main.url(forResource: "VegoResto", withExtension: "momd")!
+        let modelURL = Bundle.main.url(forResource: "VegOresto", withExtension: "momd")!
         return NSManagedObjectModel(contentsOf: modelURL)!
     }()
 

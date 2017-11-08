@@ -3,9 +3,9 @@
 //
 
 
-#ifndef VegoResto_Bridging_Header_h
-#define VegoResto_Bridging_Header_h
+#ifndef VegOresto_Bridging_Header_h
+#define VegOresto_Bridging_Header_h
 
 #import "LGSideMenuController.h"
 
-#endif /* VegoResto_Bridging_Header_h */
+#endif /* VegOresto_Bridging_Header_h */

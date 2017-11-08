@@ -1,6 +1,6 @@
 //
 //  CategorieCulinaire+CoreDataProperties.swift
-//  VegoResto
+//  VegOresto
 //
 //  Created by Laurent Nicolas on 16/04/2016.
 //  Copyright © 2016 Nicolas Laurent. All rights reserved.

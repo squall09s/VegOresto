@@ -1,6 +1,6 @@
 //
 //  Horaire+CoreDataClass.swift
-//  VegoResto
+//  VegOresto
 //
 //  Created by Nicolas on 17/09/2017.
 //  Copyright © 2017 Nicolas Laurent. All rights reserved.

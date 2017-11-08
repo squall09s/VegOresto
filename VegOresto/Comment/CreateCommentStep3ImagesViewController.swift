@@ -1,6 +1,6 @@
 //
 //  CreateCommentStep3ImagesViewController.swift
-//  VegoResto
+//  VegOresto
 //
 //  Created by Nicolas on 24/10/2017.
 //  Copyright © 2017 Nicolas Laurent. All rights reserved.
