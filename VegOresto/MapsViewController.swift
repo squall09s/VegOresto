@@ -275,66 +275,46 @@ class MapsViewController: VGAbstractFilterViewController, MKMapViewDelegate {
     }
 
     override func updateData() {
-
-        var array: [FBAnnotation] = [FBAnnotation]()
-
-        let restaurants = UserData.sharedInstance.getRestaurants().flatMap { (currentResto) -> Restaurant? in
-
+        let annotations = UserData.sharedInstance.getRestaurants().filter({ (restaurant: Restaurant) -> Bool in
             if self.filtre_categorie_VeganFriendly_active && self.filtre_categorie_Vegetarien_active && self.filtre_categorie_Vegan_active {
-
-                return currentResto
-
+                return true
             } else {
-
-                    switch currentResto.categorie() {
-
-                    case CategorieRestaurant.Vegan :
-
-                        if self.filtre_categorie_Vegan_active {
-                            return currentResto
-                        }
-
-                    case CategorieRestaurant.Végétarien :
-
-                        if self.filtre_categorie_Vegetarien_active {
-                            return currentResto
-                        }
-
-                    case CategorieRestaurant.VeganFriendly :
-
-                        if self.filtre_categorie_VeganFriendly_active {
-                            return currentResto
-                        }
-
+                switch restaurant.categorie() {
+                case CategorieRestaurant.Vegan :
+                    if self.filtre_categorie_Vegan_active {
+                        return true
                     }
-
+                case CategorieRestaurant.Végétarien :
+                    if self.filtre_categorie_Vegetarien_active {
+                        return true
+                    }
+                case CategorieRestaurant.VeganFriendly :
+                    if self.filtre_categorie_VeganFriendly_active {
+                        return true
+                    }
+                }
+                return false
+            }
+        }).flatMap({ (restaurant: Restaurant) -> FBAnnotation? in
+            guard let lat = restaurant.lat?.doubleValue,
+                  let lon = restaurant.lon?.doubleValue,
+                  (restaurant.radius?.doubleValue ?? 0) == 0 else {
                 return nil
-
             }
 
-        }
-
-        for restaurant in restaurants {
-
-            if let lat = restaurant.lat, let lon = restaurant.lon {
-
-                let current_pin = RestaurantAnnotation(_restaurant : restaurant)
-
-                current_pin.coordinate = CLLocationCoordinate2D(latitude:  Double(lat), longitude: Double(lon) )
-                array.append(current_pin)
-            }
-        }
+            let current_pin = RestaurantAnnotation(_restaurant : restaurant)
+            current_pin.coordinate = CLLocationCoordinate2D(latitude:  lat, longitude: lon)
+            return current_pin
+        })
 
         if let _varIB_mapView = self.varIB_mapView {
+            clusteringManager.setAnnotations(annotations: annotations)
 
-        clusteringManager.setAnnotations(annotations: array)
-
-        let mapBoundsWidth = Double(_varIB_mapView.bounds.size.width)
-        let mapRectWidth: Double = _varIB_mapView.visibleMapRect.size.width
-        let scale: Double = mapBoundsWidth / mapRectWidth
-        let annotationArray = self.clusteringManager.clusteredAnnotationsWithinMapRect(rect: _varIB_mapView.visibleMapRect, withZoomScale:scale)
-        self.clusteringManager.displayAnnotations(annotations: annotationArray, onMapView:_varIB_mapView)
-
+            let mapBoundsWidth = Double(_varIB_mapView.bounds.size.width)
+            let mapRectWidth: Double = _varIB_mapView.visibleMapRect.size.width
+            let scale: Double = mapBoundsWidth / mapRectWidth
+            let annotationArray = self.clusteringManager.clusteredAnnotationsWithinMapRect(rect: _varIB_mapView.visibleMapRect, withZoomScale:scale)
+            self.clusteringManager.displayAnnotations(annotations: annotationArray, onMapView:_varIB_mapView)
         }
     }
 
