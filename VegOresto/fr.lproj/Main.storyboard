@@ -3154,7 +3154,7 @@
                                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="clic_nous_contacterWithSender:" destination="XvF-0Y-XO5" eventType="touchUpInside" id="47F-6h-zxV"/>
+                                                            <action selector="contactButtonPressedWithSender:" destination="XvF-0Y-XO5" eventType="touchUpInside" id="iip-KG-MEs"/>
                                                         </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nous contacter " textAlignment="natural" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FeZ-CP-rEb">
@@ -3274,7 +3274,7 @@
                                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="clic_licencesWithSender:" destination="XvF-0Y-XO5" eventType="touchUpInside" id="2Ji-C8-QeV"/>
+                                                            <action selector="licenseButtonPressedWithSender:" destination="XvF-0Y-XO5" eventType="touchUpInside" id="Saj-ft-78L"/>
                                                         </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Licences et remerciements" textAlignment="natural" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FyX-yU-yNQ">
@@ -3332,29 +3332,38 @@ Remplissez le formulaire ci-dessous et nous contacterons l'établissement pour l
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xe5-0n-R3k">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xe5-0n-R3k" userLabel="Facebook Button">
                                                 <rect key="frame" x="115.33333333333331" y="789" width="35" height="35"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="35" id="GVU-xh-oZP"/>
                                                     <constraint firstAttribute="width" constant="35" id="apf-69-4TJ"/>
                                                 </constraints>
                                                 <state key="normal" image="ic_menu_facebook"/>
+                                                <connections>
+                                                    <action selector="facebookButtonPressedWithSender:" destination="XvF-0Y-XO5" eventType="touchUpInside" id="eqz-ax-449"/>
+                                                </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="22P-yx-3BR">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="22P-yx-3BR" userLabel="Twitter Button">
                                                 <rect key="frame" x="170.33333333333334" y="789" width="35" height="35"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="35" id="RX6-8S-154"/>
                                                     <constraint firstAttribute="width" constant="35" id="ZFd-bR-KJN"/>
                                                 </constraints>
                                                 <state key="normal" image="ic_menu_twitter"/>
+                                                <connections>
+                                                    <action selector="twitterButtonPressedWithSender:" destination="XvF-0Y-XO5" eventType="touchUpInside" id="Pfu-EX-4eb"/>
+                                                </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hkx-ui-BcF">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hkx-ui-BcF" userLabel="Instagram Button">
                                                 <rect key="frame" x="225.33333333333334" y="789" width="35.000000000000028" height="35"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="35" id="C2u-Bj-Cci"/>
                                                     <constraint firstAttribute="height" constant="35" id="oeC-k0-p4c"/>
                                                 </constraints>
                                                 <state key="normal" image="ic_menu_insta"/>
+                                                <connections>
+                                                    <action selector="instagramButtonPressedWithSender:" destination="XvF-0Y-XO5" eventType="touchUpInside" id="EY2-iO-wMp"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TbO-c3-qiF">
                                                 <rect key="frame" x="37" y="481" width="302" height="37"/>
