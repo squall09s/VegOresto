@@ -16,9 +16,8 @@ class WebRequestManager {
                        success: @escaping ([Comment]) -> Void,
                        failure: @escaping (Error?) -> Void) {
 
-        let urlPath = URL_SERVEUR() + "/wp-json/wp/v2/comments?post=" + String(restaurant?.identifier?.intValue ?? 0)
-
-        WebRequestServices.listComment(urlPath: urlPath, success: { (listComment) in
+        let urlPath = APIConfig.apiBaseUrl.appendingPathComponent("/wp-json/wp/v2/comments?post=\(restaurant?.identifier?.intValue ?? 0)")
+        WebRequestServices.listComment(urlPath: urlPath.absoluteString, success: { (listComment) in
 
             restaurant?.comments = nil
 
@@ -48,7 +47,8 @@ class WebRequestManager {
     func listRestaurant(  success: @escaping ([Restaurant]) -> Void,
                           failure: @escaping (Error?) -> Void) {
 
-        WebRequestServices.listRestaurant(urlPath: URL_SERVEUR() +  "/wp-json/vg/v1/restos.json", success: { (listRestaurants) in
+        let urlPath = APIConfig.apiBaseUrl.appendingPathComponent("/wp-json/vg/v1/restos.json")
+        WebRequestServices.listRestaurant(urlPath: urlPath.absoluteString, success: { (listRestaurants) in
 
             success(listRestaurants)
 
@@ -60,7 +60,8 @@ class WebRequestManager {
                       success: @escaping (String) -> Void,
                       failure: @escaping (Error?) -> Void ) {
 
-    WebRequestServices.postImageMedia(urlPath: URL_SERVEUR() + "/wp-json/vegoresto/v1/media", image: image, success: { (identImageResult) in
+    let urlPath = APIConfig.apiBaseUrl.appendingPathComponent("/wp-json/vegoresto/v1/media")
+    WebRequestServices.postImageMedia(urlPath: urlPath.absoluteString, image: image, success: { (identImageResult) in
 
         success(identImageResult)
 
@@ -71,7 +72,8 @@ class WebRequestManager {
     func loadHoraires(  success: @escaping () -> Void,
                         failure: @escaping (Error?) -> Void) {
 
-        WebRequestServices.loadHoraires(urlPath: URL_SERVEUR() + "/wp-content/cache/horaires.json", success: { (_) in
+        let urlPath = APIConfig.apiBaseUrl.appendingPathComponent("/wp-content/cache/horaires.json")
+        WebRequestServices.loadHoraires(urlPath: urlPath.absoluteString, success: { (_) in
 
             success()
 
@@ -83,7 +85,8 @@ class WebRequestManager {
                               success: @escaping (Comment) -> Void,
                               failure: @escaping (Error?) -> Void) {
 
-        WebRequestServices.uploadComment(urlPath: URL_SERVEUR() + "/wp-json/vegoresto/v1/comments", restaurant: restaurant, comment: comment, success: { (resultComment) in
+        let urlPath = APIConfig.apiBaseUrl.appendingPathComponent("/wp-json/vegoresto/v1/comments")
+        WebRequestServices.uploadComment(urlPath: urlPath.absoluteString, restaurant: restaurant, comment: comment, success: { (resultComment) in
 
             success(resultComment)
 

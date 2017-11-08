@@ -54,7 +54,7 @@ class RequestManager: NSObject {
                                            method: method,
                                            parameters: parameters,
                                            encoding: JSONEncoding.default,
-                                           headers: HTTPHEADER())
+                                           headers: APIConfig.defaultHTTPHeaders())
                 .validate()
                 .responseObject( keyPath: keyPath,
                                  completionHandler: { (response: DataResponse<T>) -> Void in
@@ -98,7 +98,7 @@ class RequestManager: NSObject {
                                            method: method,
                                            parameters: parameters,
                                            encoding: JSONEncoding.default,
-                                           headers: HTTPHEADER())
+                                           headers: APIConfig.defaultHTTPHeaders())
                 .validate()
                 .responseArray( keyPath: keyPath,
                                 completionHandler: { (response: DataResponse<[T]>) -> Void in
@@ -194,7 +194,7 @@ class RequestManager: NSObject {
                                            method: method,
                                            parameters: parameters,
                                            encoding: URLEncoding.default,
-                                           headers: HTTPHEADER()).responseData(completionHandler: { (dataResponse) in
+                                           headers: APIConfig.defaultHTTPHeaders()).responseData(completionHandler: { (dataResponse) in
 
                                             // gunzip
                                             if let compressedData: NSData = dataResponse.result.value as NSData?, compressedData.isGzippedData() {
@@ -245,7 +245,7 @@ class RequestManager: NSObject {
                                            method: method,
                                            parameters: parameters,
                                            encoding: JSONEncoding.default,
-                                           headers: HTTPHEADER()).responseJSON(completionHandler: { (dataResponse) in
+                                           headers: APIConfig.defaultHTTPHeaders()).responseJSON(completionHandler: { (dataResponse) in
 
                                             //print("--> url \(urlPath)")
                                             //print("--> response \(dataResponse.result.value)")

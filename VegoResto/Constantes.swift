@@ -57,38 +57,37 @@ let COLOR_GRIS_FONCÉ: UIColor = UIColor(hexString: "898989")
 let KEY_LAST_SYNCHRO = "DateLastShynchro"
 let INTERVAL_REFRESH_DATA: Int = 60*60 // byWeek = 24*60*60*7
 
-private let URL_SERVEUR_PROD = "https://vegoresto.fr"
-private let URL_SERVEUR_PREPROD = "https://vegoresto.l214.in"
-
-func URL_SERVEUR() -> String {
-
-    if env_var_exist(name: "PREPROD") || true {
-        return URL_SERVEUR_PREPROD
-    } else {
-        return URL_SERVEUR_PROD
+struct APIConfig {
+    static var apiBaseUrl: URL {
+        return URL(string: VegoRestoKeys().apiBaseUrl)!
     }
 
-}
-
-func HTTPHEADER() -> [String:String] {
-
-    if env_var_exist(name: "PREPROD") || true {
-        let keyHolder = VegoRestoKeys()
-        return [ keyHolder.aUTH_LOGIN_PREPROD: keyHolder.aUTH_PASSWORD_PREPROD ]
-    } else {
-        return SessionManager.defaultHTTPHeaders
+    static var apiClientId: String {
+        return VegoRestoKeys().apiClientId
     }
 
-}
-
-func env_var_exist(name: String) -> Bool {
-
-    let dic = ProcessInfo.processInfo.environment
-
-    if dic[name] != nil {
-
-        return true
+    static var apiClientSecret: String {
+        return VegoRestoKeys().apiClientSecret
     }
 
-    return false
+    static var apiClientIss: String {
+        return "\(apiBaseUrl.scheme!)://\(apiBaseUrl.host!)"
+    }
+
+    static var apiBasicAuthLogin: String {
+        return VegoRestoKeys().apiBasicAuthLogin
+    }
+
+    static var apiBasicAuthPassword: String {
+        return VegoRestoKeys().apiBasicAuthPassword
+    }
+
+    static func defaultHTTPHeaders() -> [String:String] {
+        let authHeader = Request.authorizationHeader(user: apiBasicAuthLogin, password: apiBasicAuthPassword)!
+
+        var headers = SessionManager.defaultHTTPHeaders
+        headers[authHeader.key] = authHeader.value
+        return headers
+    }
 }
+
