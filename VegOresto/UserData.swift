@@ -13,6 +13,7 @@ import CoreLocation
 import Alamofire
 import GZIP
 import Kanna
+import PromiseKit
 
 class UserData: NSObject, CLLocationManagerDelegate {
 
@@ -38,28 +39,24 @@ class UserData: NSObject, CLLocationManagerDelegate {
 
     }
 
-    func updateDatabaseIfNeeded( forced: Bool, completion : (( Bool ) -> Void)? ) {
-
-        if self.updateDatabaseIsNeeded() || (self.getRestaurants().count == 0 || forced) {
-            WebRequestManager.shared.listRestaurants().then(execute: { (_: [Restaurant]) -> Void in
-                self.saveSynchroDate()
-                completion?(true)
-            }).catch(execute: { (_: Error) in
-                completion?(false)
-            })
-        } else {
-            completion?(true)
+    public func updateDatabaseIfNeeded(forced: Bool = false) -> Promise<Void> {
+        // do we need to update?
+        if !forced && !needsDatabaseUpdate && getRestaurants().count > 0 {
+            return Promise()
         }
+
+        // update and save last sync date
+        return WebRequestManager.shared.listRestaurants().then(execute: { (_: [Restaurant]) -> Void in
+            self.saveSynchroDate()
+        }).asVoid()
     }
 
-    private func updateDatabaseIsNeeded() -> Bool {
-
+    private var needsDatabaseUpdate: Bool {
         if self.getLastUpdateData() < INTERVAL_REFRESH_DATA {
             return false
         } else {
             return true
         }
-
     }
 
     private func getLastUpdateData() -> Int {

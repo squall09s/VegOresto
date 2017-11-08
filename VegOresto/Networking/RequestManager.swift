@@ -150,74 +150,50 @@ class RequestManager {
                                      url: URL,
                                      parameters: Parameters? = nil,
                                      keyPath: String? = nil) -> Promise<[String : Any]> {
-        return RequestManager.manager
+        let request =  RequestManager.manager
             .request(url,
                      method: method,
                      parameters: parameters,
                      encoding: URLEncoding.default,
                      headers: APIConfig.defaultHTTPHeaders())
-            .responseData().then(execute: { (data: Data) -> [String:Any] in
-                // gunzip
-                guard (data as NSData).isGzippedData() else {
-                    throw RequestManagerError.gzipError
-                }
-                guard let decompressedData = (data as NSData).gunzipped() else {
-                    throw RequestManagerError.gzipError
-                }
 
-                // parse json
-                guard let result = try JSONSerialization.jsonObject(with: decompressedData) as? [String: Any] else {
-                    throw RequestManagerError.jsonError
-                }
-
-                return result
+        return request.responseData().then(execute: { (data: Data) -> [String:Any] in
+            // gunzip
+            guard (data as NSData).isGzippedData() else {
+                throw RequestManagerError.gzipError
+            }
+            guard let decompressedData = (data as NSData).gunzipped() else {
+                throw RequestManagerError.gzipError
+            }
+            
+            // parse json
+            guard let result = try JSONSerialization.jsonObject(with: decompressedData) as? [String: Any] else {
+                throw RequestManagerError.jsonError
+            }
+            
+            return result
         })
     }
 
     static func doRequestList(method: HTTPMethod,
-                              path: String,
+                              url: URL,
                               parameters: Parameters? = nil,
-                              keyPath: String? = nil,
-                              completion: @escaping ([String : Any]) -> Void,
-                              failure: @escaping (Error?) -> Void) {
+                              keyPath: String? = nil) -> Promise<[String : Any]> {
+        
+        let request = RequestManager.manager
+            .request(url,
+                     method: method,
+                     parameters: parameters,
+                     encoding: URLEncoding.default,
+                     headers: APIConfig.defaultHTTPHeaders())
+            .validate()
 
-        let urlPath: URLConvertible!
-
-        do {
-            try urlPath = (path).asURL()
-        } catch {
-
-            return
-        }
-
-        var request:() -> Void = {}
-        request = {
-
-            RequestManager.manager.request(urlPath,
-                                           method: method,
-                                           parameters: parameters,
-                                           encoding: JSONEncoding.default,
-                                           headers: APIConfig.defaultHTTPHeaders()).responseJSON(completionHandler: { (dataResponse) in
-
-                                            //print("--> url \(urlPath)")
-                                            //print("--> response \(dataResponse.result.value)")
-
-                                            if let result = dataResponse.result.value as? [String:Any] {
-
-                                                //print("--> result \(result)")
-                                                completion(result)
-
-                                            } else {
-
-                                                failure(nil)
-
-                                            }
-
-                                           })
-        }
-
-        request()
-
+        return request.responseJSON().then(execute: { (responseObject: Any) -> [String:Any] in
+            guard let responseDict = responseObject as? [String:Any] else {
+                throw RequestManagerError.jsonError
+            }
+            return responseDict
+        })
     }
 
     static func postRequest(  path: String,

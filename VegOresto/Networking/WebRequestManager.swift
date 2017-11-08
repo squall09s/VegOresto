@@ -54,16 +54,9 @@ class WebRequestManager {
 
     }
 
-    func loadHoraires(  success: @escaping () -> Void,
-                        failure: @escaping (Error?) -> Void) {
-
-        let urlPath = APIConfig.apiBaseUrl.appendingPathComponent("/wp-content/cache/horaires.json")
-        WebRequestServices.loadHoraires(urlPath: urlPath.absoluteString, success: { (_) in
-
-            success()
-
-        }, failure: failure)
-
+    public func loadHoraires() -> Promise<[Horaire]> {
+        let url = getUrl("/wp-content/cache/horaires.json")
+        return WebRequestServices.loadHoraires(url: url)
     }
 
     func uploadComment(restaurant: Restaurant, comment: Comment,

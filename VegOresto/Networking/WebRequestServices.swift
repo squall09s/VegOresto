@@ -45,28 +45,17 @@ class WebRequestServices {
         }
     }
 
-    static func loadHoraires(urlPath: String,
-                             success: @escaping () -> Void,
-                             failure: @escaping (Error?) -> Void) {
-
-        RequestManager.doRequestList(method: .get, path: urlPath, completion: { (result : [String : Any]) in
-
-            var listHoraire = [Horaire]()
-
-            for (_, dico) in result {
-
-                if let _dicoJSON = dico as? [String : Any] {
-
-                    if let _newHoraire = Horaire(JSON: _dicoJSON) {
-                        listHoraire.append( _newHoraire )
-                    }
+    static func loadHoraires(url: URL) -> Promise<[Horaire]> {
+        return RequestManager.doRequestList(method: .get, url: url).then(execute: { (result: [String:Any]) -> [Horaire] in
+            let horaires = result.values.flatMap({ (dict) -> Horaire? in
+                guard let _dict = dict as? [String:Any],
+                      let horaire = Horaire(JSON: _dict) else {
+                    return nil
                 }
-            }
-
-            success()
-
-        }, failure: failure)
-
+                return horaire
+            })
+            return Array(horaires)
+        })
     }
 
     static func postImageMedia(urlPath: String, image: UIImage,

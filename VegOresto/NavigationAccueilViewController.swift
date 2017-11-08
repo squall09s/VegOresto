@@ -8,6 +8,7 @@
 
 import UIKit
 import MBProgressHUD
+import PromiseKit
 
 class NavigationAccueilViewController: UIViewController {
 
@@ -43,33 +44,18 @@ class NavigationAccueilViewController: UIViewController {
 
         MBProgressHUD.showAdded(to: self.view, animated: true)
 
-        self.updateData(forced: false) { (_) in
-
+        self.updateData(forced: false).always {
             MBProgressHUD.hide(for: self.view, animated: true)
         }
-
     }
 
-    func updateData(forced: Bool, completion : (( Bool ) -> Void)? ) {
-
-        UserData.sharedInstance.updateDatabaseIfNeeded(forced: forced) { (success) in
-
-            if success {
-
-                self.maps_viewController?.updateDataAfterDelay()
-                self.recherche_viewController?.updateDataAfterDelay()
-
-                WebRequestManager.shared.loadHoraires(success: {
-
-                }, failure: { (_) in
-
-                })
-            }
-
-            completion?(success)
-
+    func updateData(forced: Bool = false) -> Promise<Void> {
+        return UserData.sharedInstance.updateDatabaseIfNeeded(forced: forced).then { () -> Void in
+            self.maps_viewController?.updateDataAfterDelay()
+            self.recherche_viewController?.updateDataAfterDelay()
+            
+            let _ = WebRequestManager.shared.loadHoraires()
         }
-
     }
 
     override func viewDidAppear(_ animated: Bool) {

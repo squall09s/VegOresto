@@ -11,7 +11,6 @@ import JWT
 import Keys
 
 class SecurityServices: NSObject {
-
     static let shared: SecurityServices = SecurityServices()
 
     func getToken() -> String {
@@ -22,9 +21,6 @@ class SecurityServices: NSObject {
         let headers: [String:String] = [
             "kid": APIConfig.apiClientId
         ]
-        let token = JWT.encode(claims: claims, algorithm: .hs256(APIConfig.apiClientSecret.data(using: .utf8)!), headers: headers)
-
-        return token
+        return JWT.encode(claims: claims, algorithm: .hs256(APIConfig.apiClientSecret.data(using: .utf8)!), headers: headers)
     }
-
 }

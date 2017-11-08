@@ -38,18 +38,13 @@ class RechercheViewController: VGAbstractFilterViewController, UITableViewDelega
         let loadingView = DGElasticPullToRefreshLoadingViewCircle()
         loadingView.tintColor = COLOR_ORANGE
         self.varIB_tableView?.dg_addPullToRefreshWithActionHandler({ () -> Void in
-            // Add your logic here
-            // Do not forget to call dg_stopLoading() at the end
-            (self.parent as? NavigationAccueilViewController)?.updateData(forced: true) { (_) in
+            (self.parent as? NavigationAccueilViewController)?.updateData(forced: true).always {
                 self.varIB_tableView?.dg_stopLoading()
             }
-
         }, loadingView: loadingView)
 
         self.varIB_tableView?.dg_setPullToRefreshFillColor( UIColor(hexString: "EDEDED") )
         self.varIB_tableView?.dg_setPullToRefreshBackgroundColor(UIColor.white)
-
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {

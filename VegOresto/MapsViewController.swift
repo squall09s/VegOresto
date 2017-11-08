@@ -321,12 +321,8 @@ class MapsViewController: VGAbstractFilterViewController, MKMapViewDelegate {
     }
 
     func updateDataAfterDelay() {
-
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-
             self.updateData()
         }
-
     }
-
 }
