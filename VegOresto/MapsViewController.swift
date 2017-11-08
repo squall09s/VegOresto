@@ -31,17 +31,19 @@ class MapsViewController: VGAbstractFilterViewController, MKMapViewDelegate {
     }
 
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+        guard let _varIB_mapView = self.varIB_mapView else {
+            return
+        }
 
-        if let _varIB_mapView = self.varIB_mapView {
+        // get map bounding box (on the main thread)
+        let mapBoundsWidth = Double(_varIB_mapView.bounds.size.width)
+        let mapRectWidth: Double = _varIB_mapView.visibleMapRect.size.width
 
-        OperationQueue().addOperation({
-            let mapBoundsWidth = Double(_varIB_mapView.bounds.size.width)
-            let mapRectWidth: Double = _varIB_mapView.visibleMapRect.size.width
+        // perform clustering on a background queue
+        DispatchQueue.global(qos: .default).async {
             let scale: Double = mapBoundsWidth / mapRectWidth
             let annotationArray = self.clusteringManager.clusteredAnnotationsWithinMapRect(rect: _varIB_mapView.visibleMapRect, withZoomScale:scale)
             self.clusteringManager.displayAnnotations(annotations: annotationArray, onMapView:_varIB_mapView)
-        })
-
         }
     }
 
