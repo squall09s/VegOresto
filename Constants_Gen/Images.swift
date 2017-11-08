@@ -46,7 +46,12 @@ struct ColorAsset {
 // swiftlint:disable identifier_name line_length nesting type_body_length type_name
 enum Asset {
   static let addPost = ImageAsset(name: "add_post")
+  static let commentsBubblesOutline = ImageAsset(name: "comments-bubbles-outline")
   static let error = ImageAsset(name: "error")
+  static let favorites = ImageAsset(name: "favorites")
+  static let icMenuFacebook = ImageAsset(name: "ic_menu_facebook")
+  static let icMenuInsta = ImageAsset(name: "ic_menu_insta")
+  static let icMenuTwitter = ImageAsset(name: "ic_menu_twitter")
   static let imageResto0 = ImageAsset(name: "image_resto_0")
   static let imageResto1 = ImageAsset(name: "image_resto_1")
   static let imageRestoPlaceolder = ImageAsset(name: "image_resto_placeolder")
@@ -132,7 +137,12 @@ enum Asset {
   ]
   static let allImages: [ImageAsset] = [
     addPost,
+    commentsBubblesOutline,
     error,
+    favorites,
+    icMenuFacebook,
+    icMenuInsta,
+    icMenuTwitter,
     imageResto0,
     imageResto1,
     imageRestoPlaceolder,
