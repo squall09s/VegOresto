@@ -83,23 +83,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // legitimate error conditions that could cause the creation of the store to fail.
         // Create the coordinator and store
         let coordinator = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
-        let url = self.applicationDocumentsDirectory.appendingPathComponent("SingleViewCoreData.sqlite")
+        let fileUrl = self.applicationDocumentsDirectory.appendingPathComponent("SingleViewCoreData.sqlite")!
         var failureReason = "There was an error creating or loading the application's saved data."
         do {
-            try coordinator.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: url, options: nil)
+            try coordinator.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: fileUrl, options: nil)
         } catch {
             // Report any error we got.
             var dict = [String: AnyObject]()
             dict[NSLocalizedDescriptionKey] = "Failed to initialize the application's saved data" as AnyObject?
             dict[NSLocalizedFailureReasonErrorKey] = failureReason as AnyObject?
-
             dict[NSUnderlyingErrorKey] = error as NSError
+
             let wrappedError = NSError(domain: "YOUR_ERROR_DOMAIN", code: 9999, userInfo: dict)
             // Replace this with code to handle the error appropriately.
             // abort() causes the application to generate a crash log and terminate. You should not use
             // this function in a shipping application, although it may be useful during development.
             Debug.log(object: "AppDelegate : persistentStoreCoordinator - Unresolved error \(wrappedError), \(wrappedError.userInfo)")
-            abort()
+
+            // Try deleting the file (and try again)
+            try? FileManager.default.removeItem(at: fileUrl)
+
+            // Try adding the persistent store again
+            do {
+                try coordinator.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: fileUrl, options: nil)
+            } catch {
+                abort()
+            }
         }
 
         return coordinator
