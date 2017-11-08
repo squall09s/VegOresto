@@ -67,6 +67,8 @@
 		39EC80041CAC4787002AD862 /* RechercheViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EC80031CAC4787002AD862 /* RechercheViewController.swift */; };
 		39EC80061CAD5ED2002AD862 /* RestaurantAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EC80051CAD5ED2002AD862 /* RestaurantAnnotation.swift */; };
 		AE62973F1FB2DD26006313E5 /* Constantes.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE62973E1FB2DD26006313E5 /* Constantes.swift */; };
+		AEE7808B1FB313B300022F38 /* 2017-02-VegOresto-Charte.pdf in Resources */ = {isa = PBXBuildFile; fileRef = AEE7808A1FB313B300022F38 /* 2017-02-VegOresto-Charte.pdf */; };
+		AEE7808D1FB3146500022F38 /* CharteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE7808C1FB3146500022F38 /* CharteViewController.swift */; };
 		C9BB0E46024B374EBEB1773F /* Pods_VegOresto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F136A5DB59857F23905F5CF /* Pods_VegOresto.framework */; };
 /* End PBXBuildFile section */
 
@@ -139,6 +141,8 @@
 		603DD9DF0F9E7DA0799F922E /* Pods-VegOresto.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VegOresto.release.xcconfig"; path = "Pods/Target Support Files/Pods-VegOresto/Pods-VegOresto.release.xcconfig"; sourceTree = "<group>"; };
 		8F136A5DB59857F23905F5CF /* Pods_VegOresto.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VegOresto.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE62973E1FB2DD26006313E5 /* Constantes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constantes.swift; sourceTree = "<group>"; };
+		AEE7808A1FB313B300022F38 /* 2017-02-VegOresto-Charte.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = "2017-02-VegOresto-Charte.pdf"; path = "Ressources/2017-02-VegOresto-Charte.pdf"; sourceTree = "<group>"; };
+		AEE7808C1FB3146500022F38 /* CharteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharteViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -193,18 +197,11 @@
 				390909E61DCB3E85005F77CB /* ImagesClusters.xcassets */,
 				37255B7E1F818CC3006B501C /* Media.xcassets */,
 				391D6D791D7060780023733E /* Pods-VegOresto-acknowledgements.plist */,
+				AEE7808A1FB313B300022F38 /* 2017-02-VegOresto-Charte.pdf */,
 				3939F3901D6B9874006786D6 /* Fonts */,
 				39C50F001CC8E02D0019FA2B /* SwiftGen */,
-				396BD9791CAEB76C0071DF07 /* images */,
 			);
 			name = Ressources;
-			sourceTree = "<group>";
-		};
-		396BD9791CAEB76C0071DF07 /* images */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = images;
 			sourceTree = "<group>";
 		};
 		396BD97A1CAEB7930071DF07 /* Controllers */ = {
@@ -222,6 +219,7 @@
 				39848B071CB4231300D718FD /* NavigationAccueilViewController.swift */,
 				39610F501E1DB62A005F7053 /* TableCommentsViewController.swift */,
 				39610F521E1DB6C1005F7053 /* CommentTableViewCell.swift */,
+				AEE7808C1FB3146500022F38 /* CharteViewController.swift */,
 				37D82FF41F9F101A0037CD4B /* AddComment */,
 			);
 			name = Controllers;
@@ -435,6 +433,7 @@
 				391D6D7A1D7060780023733E /* Pods-VegOresto-acknowledgements.plist in Resources */,
 				37255B7F1F818D28006B501C /* Media.xcassets in Resources */,
 				3939F3921D6B9889006786D6 /* olivier_01.ttf in Resources */,
+				AEE7808B1FB313B300022F38 /* 2017-02-VegOresto-Charte.pdf in Resources */,
 				39968D4C1CABFFBB0085C61F /* LaunchScreen.storyboard in Resources */,
 				390909E71DCB3E85005F77CB /* ImagesClusters.xcassets in Resources */,
 				39968D441CABFFBB0085C61F /* Main.storyboard in Resources */,
@@ -603,6 +602,7 @@
 				37DD9C081F5DE3A1007B3E2B /* Comment+CoreDataProperties.swift in Sources */,
 				398857E71CC2B97600B05F64 /* CategorieCulinaire.swift in Sources */,
 				39C50EFC1CC8D9670019FA2B /* Images.swift in Sources */,
+				AEE7808D1FB3146500022F38 /* CharteViewController.swift in Sources */,
 				396BD9751CAE62670071DF07 /* DetailRestaurantViewController.swift in Sources */,
 				39610F561E1DBF4A005F7053 /* Comment.swift in Sources */,
 				37D82FFE1F9F10900037CD4B /* CreateCommentStep4ResumeViewController.swift in Sources */,

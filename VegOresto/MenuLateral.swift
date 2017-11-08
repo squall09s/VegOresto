@@ -10,7 +10,7 @@ import UIKit
 
 private let TAG_CELL_TITRE = 509
 private let TAG_CELL_IMAGE = 510
-private let array_titres: [String] = [ "LES RESTAURANTS", "MES FAVORIS", "PARAMÈTRES"]
+private let array_titres: [String] = [ "Restaurants", "Mes favoris", "À propos"]
 
 class MenuLateral: UIViewController, UITableViewDelegate, UITableViewDataSource {
 

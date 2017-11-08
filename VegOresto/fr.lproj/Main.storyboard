@@ -3096,7 +3096,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ys6-QI-zWH">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ys6-QI-zWH" userLabel="Title View">
                                 <rect key="frame" x="0.0" y="44" width="375" height="50"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MYV-P0-Cdd" userLabel="bt  menu">
@@ -3111,12 +3111,12 @@
                                             <action selector="tap_menu_lateralWithSender:" destination="XvF-0Y-XO5" eventType="touchUpInside" id="XDh-cN-Xsc"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="À propos" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2K8-w0-gn3">
-                                        <rect key="frame" x="127.66666666666669" y="16.666666666666664" width="120" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="À propos" textAlignment="center" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2K8-w0-gn3">
+                                        <rect key="frame" x="127.66666666666669" y="14.333333333333336" width="120" height="26"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="21" id="92s-Lh-cjV"/>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="N3R-Pv-VDb"/>
                                         </constraints>
+                                        <edgeInsets key="layoutMargins" top="10" left="8" bottom="10" right="8"/>
                                         <fontDescription key="fontDescription" name="olivier" family="olivier" pointSize="26"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -3131,12 +3131,9 @@
                                     <constraint firstAttribute="height" constant="50" id="vl1-S9-TGE"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="coO-nT-jeh">
-                                <rect key="frame" x="0.0" y="-1" width="375" height="45"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="coO-nT-jeh" userLabel="Top Filler">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                 <color key="backgroundColor" red="0.96862745100000003" green="0.62352941179999999" blue="0.12941176469999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="45" id="Og4-e4-uDU"/>
-                                </constraints>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G01-p3-FiN">
                                 <rect key="frame" x="0.0" y="94" width="375" height="872"/>
@@ -3186,7 +3183,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xRc-HL-fpg" userLabel="Notez l’application">
-                                                <rect key="frame" x="0.0" y="598" width="375" height="55"/>
+                                                <rect key="frame" x="0.0" y="599" width="375" height="55"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pdd-hw-q2i" userLabel="Notez l’application">
                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="55"/>
@@ -3226,7 +3223,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fGB-Jp-uXS" userLabel="Mes avis">
-                                                <rect key="frame" x="0.0" y="653" width="375" height="55"/>
+                                                <rect key="frame" x="0.0" y="655" width="375" height="55"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kLf-ih-FrX" userLabel="Mes avis">
                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="55"/>
@@ -3265,7 +3262,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fhM-cA-SsX" userLabel="Licenses et remerciements">
-                                                <rect key="frame" x="0.0" y="709" width="375" height="55"/>
+                                                <rect key="frame" x="0.0" y="711" width="375" height="55"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Elw-SF-cHr" userLabel="Licenses et remerciements">
                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="55"/>
@@ -3331,9 +3328,12 @@ Remplissez le formulaire ci-dessous et nous contacterons l'établissement pour l
                                                 <state key="normal" title="La Charte VegOresto">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
+                                                <connections>
+                                                    <segue destination="LXu-dy-ACH" kind="show" id="Bya-uI-XBY"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xe5-0n-R3k" userLabel="Facebook Button">
-                                                <rect key="frame" x="115.33333333333331" y="789" width="35" height="35"/>
+                                                <rect key="frame" x="115.33333333333331" y="791" width="35" height="35"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="35" id="GVU-xh-oZP"/>
                                                     <constraint firstAttribute="width" constant="35" id="apf-69-4TJ"/>
@@ -3344,7 +3344,7 @@ Remplissez le formulaire ci-dessous et nous contacterons l'établissement pour l
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="22P-yx-3BR" userLabel="Twitter Button">
-                                                <rect key="frame" x="170.33333333333334" y="789" width="35" height="35"/>
+                                                <rect key="frame" x="170.33333333333334" y="791" width="35" height="35"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="35" id="RX6-8S-154"/>
                                                     <constraint firstAttribute="width" constant="35" id="ZFd-bR-KJN"/>
@@ -3355,7 +3355,7 @@ Remplissez le formulaire ci-dessous et nous contacterons l'établissement pour l
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hkx-ui-BcF" userLabel="Instagram Button">
-                                                <rect key="frame" x="225.33333333333334" y="789" width="35.000000000000028" height="35"/>
+                                                <rect key="frame" x="225.33333333333334" y="791" width="35.000000000000028" height="35"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="35" id="C2u-Bj-Cci"/>
                                                     <constraint firstAttribute="height" constant="35" id="oeC-k0-p4c"/>
@@ -3394,13 +3394,13 @@ Remplissez le formulaire ci-dessous et nous contacterons l'établissement pour l
                                             <constraint firstItem="fhM-cA-SsX" firstAttribute="top" secondItem="fGB-Jp-uXS" secondAttribute="bottom" constant="1" id="8dw-er-Ida"/>
                                             <constraint firstItem="TbO-c3-qiF" firstAttribute="top" secondItem="0Gl-mT-BhA" secondAttribute="bottom" constant="15" id="8wV-YF-9Mb"/>
                                             <constraint firstAttribute="trailing" secondItem="xRc-HL-fpg" secondAttribute="trailing" id="AJV-Ch-zeh"/>
-                                            <constraint firstItem="xRc-HL-fpg" firstAttribute="top" secondItem="AC2-gM-iYY" secondAttribute="bottom" id="CMo-v3-FQY"/>
+                                            <constraint firstItem="xRc-HL-fpg" firstAttribute="top" secondItem="AC2-gM-iYY" secondAttribute="bottom" constant="1" id="CMo-v3-FQY"/>
                                             <constraint firstItem="fhM-cA-SsX" firstAttribute="leading" secondItem="Wjo-in-6J3" secondAttribute="leading" id="DHX-uu-78H"/>
                                             <constraint firstItem="g6v-VM-8ap" firstAttribute="leading" secondItem="Wjo-in-6J3" secondAttribute="leading" constant="20" symbolic="YES" id="Dq4-K3-Dto"/>
                                             <constraint firstItem="TbO-c3-qiF" firstAttribute="centerX" secondItem="Wjo-in-6J3" secondAttribute="centerX" id="EIt-IU-SSY"/>
                                             <constraint firstItem="Hkx-ui-BcF" firstAttribute="top" secondItem="xe5-0n-R3k" secondAttribute="top" id="Eh8-Sn-gkC"/>
                                             <constraint firstAttribute="trailing" secondItem="fhM-cA-SsX" secondAttribute="trailing" id="KDk-WX-pVy"/>
-                                            <constraint firstItem="fGB-Jp-uXS" firstAttribute="top" secondItem="xRc-HL-fpg" secondAttribute="bottom" id="OHr-l0-Kou"/>
+                                            <constraint firstItem="fGB-Jp-uXS" firstAttribute="top" secondItem="xRc-HL-fpg" secondAttribute="bottom" constant="1" id="OHr-l0-Kou"/>
                                             <constraint firstAttribute="height" constant="950" id="Pev-Ut-xNl"/>
                                             <constraint firstItem="Br3-Ej-C4I" firstAttribute="centerX" secondItem="Wjo-in-6J3" secondAttribute="centerX" id="PoO-4z-lXu"/>
                                             <constraint firstAttribute="trailing" secondItem="g6v-VM-8ap" secondAttribute="trailing" constant="20" symbolic="YES" id="S8c-I9-psX"/>
@@ -3441,6 +3441,7 @@ Remplissez le formulaire ci-dessous et nous contacterons l'établissement pour l
                             <constraint firstItem="cUP-73-1wJ" firstAttribute="trailing" secondItem="G01-p3-FiN" secondAttribute="trailing" id="cEg-D0-HiT"/>
                             <constraint firstItem="G01-p3-FiN" firstAttribute="leading" secondItem="cUP-73-1wJ" secondAttribute="leading" id="eg4-94-vWh"/>
                             <constraint firstItem="cUP-73-1wJ" firstAttribute="trailing" secondItem="coO-nT-jeh" secondAttribute="trailing" id="eoS-oJ-73w"/>
+                            <constraint firstItem="coO-nT-jeh" firstAttribute="top" secondItem="Ckv-6y-gdg" secondAttribute="top" id="gu0-gB-vKh"/>
                             <constraint firstItem="Ys6-QI-zWH" firstAttribute="top" secondItem="cUP-73-1wJ" secondAttribute="top" id="nPI-EO-cey"/>
                             <constraint firstItem="cUP-73-1wJ" firstAttribute="bottom" secondItem="G01-p3-FiN" secondAttribute="bottom" id="qjn-iE-ROL"/>
                         </constraints>
@@ -3456,6 +3457,86 @@ Remplissez le formulaire ci-dessous et nous contacterons l'établissement pour l
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Myv-v0-hGe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1696.8" y="-180.29556650246306"/>
+        </scene>
+        <!--Charte VegOresto-->
+        <scene sceneID="4ib-Xo-mwS">
+            <objects>
+                <viewController title="Charte VegOresto" id="LXu-dy-ACH" customClass="CharteViewController" customModule="VegOresto" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="FW7-bR-JYd">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="46X-2L-bB5" userLabel="Title View">
+                                <rect key="frame" x="0.0" y="44" width="375" height="50"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Vr-U8-7ah" userLabel="bt  menu">
+                                        <rect key="frame" x="14" y="10" width="35" height="35"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="35" id="7cx-cq-IPD"/>
+                                            <constraint firstAttribute="width" constant="35" id="a3j-pe-x4z"/>
+                                        </constraints>
+                                        <inset key="imageEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
+                                        <state key="normal" image="left-chevron">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="backButtonPressed:" destination="LXu-dy-ACH" eventType="touchUpInside" id="H8i-1p-Pm5"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="La charte VegOresto" textAlignment="center" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="srp-6j-FcK">
+                                        <rect key="frame" x="90.666666666666671" y="14.333333333333336" width="194.33333333333331" height="26"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="PTZ-ek-7FV"/>
+                                        </constraints>
+                                        <edgeInsets key="layoutMargins" top="10" left="8" bottom="10" right="8"/>
+                                        <fontDescription key="fontDescription" name="olivier" family="olivier" pointSize="26"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.96862745100000003" green="0.62352941179999999" blue="0.12941176469999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="1DE-xE-gll"/>
+                                    <constraint firstItem="2Vr-U8-7ah" firstAttribute="top" secondItem="46X-2L-bB5" secondAttribute="top" constant="10" id="4jz-1h-aWK"/>
+                                    <constraint firstItem="srp-6j-FcK" firstAttribute="centerY" secondItem="46X-2L-bB5" secondAttribute="centerY" constant="2" id="X7c-YV-EJc"/>
+                                    <constraint firstItem="2Vr-U8-7ah" firstAttribute="leading" secondItem="46X-2L-bB5" secondAttribute="leading" constant="14" id="b3w-cE-Fb1"/>
+                                    <constraint firstItem="srp-6j-FcK" firstAttribute="centerX" secondItem="46X-2L-bB5" secondAttribute="centerX" id="iQV-rP-bZg"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tTQ-sN-5hl" userLabel="Top Filler">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                <color key="backgroundColor" red="0.96862745100000003" green="0.62352941179999999" blue="0.12941176469999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0yk-zO-09j">
+                                <rect key="frame" x="0.0" y="94" width="375" height="684"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="46X-2L-bB5" firstAttribute="trailing" secondItem="e6Q-Pp-7Ad" secondAttribute="trailing" id="1wh-3a-Foj"/>
+                            <constraint firstItem="e6Q-Pp-7Ad" firstAttribute="trailing" secondItem="0yk-zO-09j" secondAttribute="trailing" id="C6j-b8-iwW"/>
+                            <constraint firstItem="tTQ-sN-5hl" firstAttribute="top" secondItem="FW7-bR-JYd" secondAttribute="top" id="DQh-th-kw1"/>
+                            <constraint firstItem="46X-2L-bB5" firstAttribute="leading" secondItem="e6Q-Pp-7Ad" secondAttribute="leading" id="EjH-CK-uQy"/>
+                            <constraint firstItem="0yk-zO-09j" firstAttribute="bottom" secondItem="e6Q-Pp-7Ad" secondAttribute="bottom" id="NUv-Dn-pVo"/>
+                            <constraint firstItem="46X-2L-bB5" firstAttribute="trailing" secondItem="tTQ-sN-5hl" secondAttribute="trailing" id="PlK-0g-eku"/>
+                            <constraint firstItem="0yk-zO-09j" firstAttribute="top" secondItem="46X-2L-bB5" secondAttribute="bottom" id="Xi2-YN-4cS"/>
+                            <constraint firstItem="0yk-zO-09j" firstAttribute="leading" secondItem="e6Q-Pp-7Ad" secondAttribute="leading" id="d1M-0e-H8k"/>
+                            <constraint firstItem="46X-2L-bB5" firstAttribute="leading" secondItem="tTQ-sN-5hl" secondAttribute="leading" id="epr-oP-Wy7"/>
+                            <constraint firstItem="46X-2L-bB5" firstAttribute="top" secondItem="tTQ-sN-5hl" secondAttribute="bottom" id="nka-G2-3uT"/>
+                            <constraint firstItem="46X-2L-bB5" firstAttribute="top" secondItem="e6Q-Pp-7Ad" secondAttribute="top" id="px6-ml-Bb4"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="e6Q-Pp-7Ad"/>
+                    </view>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="contentView" destination="0yk-zO-09j" id="V13-I1-mN1"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AKE-nQ-aua" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2701.5999999999999" y="-249.01477832512316"/>
         </scene>
         <!--Main View Controller-->
         <scene sceneID="j7B-Nl-4cB">
