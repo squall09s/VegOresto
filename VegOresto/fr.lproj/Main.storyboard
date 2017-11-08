@@ -3091,7 +3091,7 @@
         <!--À propos-->
         <scene sceneID="TcQ-a8-M3C">
             <objects>
-                <viewController id="XvF-0Y-XO5" userLabel="À propos" customClass="ParametresViewController" customModule="VegOresto" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="XvF-0Y-XO5" userLabel="À propos" customClass="AboutViewController" customModule="VegOresto" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ckv-6y-gdg">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

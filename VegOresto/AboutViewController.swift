@@ -9,7 +9,7 @@
 import UIKit
 import VTAcknowledgementsViewController
 
-class ParametresViewController: UIViewController {
+class AboutViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

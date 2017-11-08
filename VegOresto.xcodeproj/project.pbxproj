@@ -36,7 +36,7 @@
 		390909E71DCB3E85005F77CB /* ImagesClusters.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 390909E61DCB3E85005F77CB /* ImagesClusters.xcassets */; };
 		39189F7A1CB5548500A64E5E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39189F791CB5548500A64E5E /* CoreLocation.framework */; };
 		391D6D7A1D7060780023733E /* Pods-VegOresto-acknowledgements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 391D6D791D7060780023733E /* Pods-VegOresto-acknowledgements.plist */; };
-		391D6D7C1D7060A50023733E /* ParametresViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391D6D7B1D7060A50023733E /* ParametresViewController.swift */; };
+		391D6D7C1D7060A50023733E /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391D6D7B1D7060A50023733E /* AboutViewController.swift */; };
 		3939F3921D6B9889006786D6 /* olivier_01.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3939F3911D6B9889006786D6 /* olivier_01.ttf */; };
 		3939F3941D6B98B8006786D6 /* ufonts.com_urw-gothic-l-book.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3939F3931D6B98B8006786D6 /* ufonts.com_urw-gothic-l-book.ttf */; };
 		39610F511E1DB62A005F7053 /* TableCommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39610F501E1DB62A005F7053 /* TableCommentsViewController.swift */; };
@@ -104,7 +104,7 @@
 		390909E61DCB3E85005F77CB /* ImagesClusters.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ImagesClusters.xcassets; sourceTree = "<group>"; };
 		39189F791CB5548500A64E5E /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		391D6D791D7060780023733E /* Pods-VegOresto-acknowledgements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "Pods-VegOresto-acknowledgements.plist"; path = "../Pods/Target Support Files/Pods-VegOresto/Pods-VegOresto-acknowledgements.plist"; sourceTree = "<group>"; };
-		391D6D7B1D7060A50023733E /* ParametresViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParametresViewController.swift; sourceTree = "<group>"; };
+		391D6D7B1D7060A50023733E /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		3939F3911D6B9889006786D6 /* olivier_01.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = olivier_01.ttf; sourceTree = "<group>"; };
 		3939F3931D6B98B8006786D6 /* ufonts.com_urw-gothic-l-book.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ufonts.com_urw-gothic-l-book.ttf"; sourceTree = "<group>"; };
 		39610F501E1DB62A005F7053 /* TableCommentsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableCommentsViewController.swift; sourceTree = "<group>"; };
@@ -215,7 +215,7 @@
 				39EC80031CAC4787002AD862 /* RechercheViewController.swift */,
 				370CBE531FB1920D00A1AE02 /* VGAbstractFilterViewController.swift */,
 				396BD9741CAE62670071DF07 /* DetailRestaurantViewController.swift */,
-				391D6D7B1D7060A50023733E /* ParametresViewController.swift */,
+				391D6D7B1D7060A50023733E /* AboutViewController.swift */,
 				39848B071CB4231300D718FD /* NavigationAccueilViewController.swift */,
 				39610F501E1DB62A005F7053 /* TableCommentsViewController.swift */,
 				39610F521E1DB6C1005F7053 /* CommentTableViewCell.swift */,
@@ -569,7 +569,7 @@
 				398AA7E51D17F90600FA7E0A /* LGSideMenuController.m in Sources */,
 				39848B081CB4231300D718FD /* NavigationAccueilViewController.swift in Sources */,
 				AE62973F1FB2DD26006313E5 /* Constantes.swift in Sources */,
-				391D6D7C1D7060A50023733E /* ParametresViewController.swift in Sources */,
+				391D6D7C1D7060A50023733E /* AboutViewController.swift in Sources */,
 				39610F511E1DB62A005F7053 /* TableCommentsViewController.swift in Sources */,
 				398857E61CC2B97600B05F64 /* CategorieCulinaire+CoreDataProperties.swift in Sources */,
 				390909DF1DCB3E52005F77CB /* FBAnnotation.swift in Sources */,
