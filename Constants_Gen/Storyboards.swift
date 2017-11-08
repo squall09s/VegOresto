@@ -3,6 +3,7 @@
 // swiftlint:disable sorted_imports
 import Foundation
 import UIKit
+import VegoResto
 
 // swiftlint:disable file_length
 

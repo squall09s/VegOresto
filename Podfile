@@ -3,7 +3,7 @@ use_frameworks!
 
 # plugin cocoapods-keys (via gem install), see github for details
 plugin 'cocoapods-keys', {
-    :project => "VegoResto",
+    :project => "VegOresto",
     :keys => [
         "apiBaseUrl",
         "apiClientId",
@@ -13,7 +13,7 @@ plugin 'cocoapods-keys', {
     ]
 }
 
-target 'VegoResto' do
+target 'VegOresto' do
     pod 'Pushwoosh'
     pod 'SVPulsingAnnotationView'
     pod 'SwiftGen'
