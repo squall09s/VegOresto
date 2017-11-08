@@ -27,7 +27,7 @@
         <!--Maps View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="MapsViewController" automaticallyAdjustsScrollViewInsets="NO" id="BYZ-38-t0r" customClass="MapsViewController" customModule="VegoResto" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MapsViewController" automaticallyAdjustsScrollViewInsets="NO" id="BYZ-38-t0r" customClass="MapsViewController" customModule="VegOresto" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="624"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -257,7 +257,7 @@
         <!--Recherche View Controller-->
         <scene sceneID="GeC-hW-gnz">
             <objects>
-                <viewController storyboardIdentifier="RechercheViewController" automaticallyAdjustsScrollViewInsets="NO" id="dIM-2e-uWP" customClass="RechercheViewController" customModule="VegoResto" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RechercheViewController" automaticallyAdjustsScrollViewInsets="NO" id="dIM-2e-uWP" customClass="RechercheViewController" customModule="VegOresto" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="nSR-m6-3tb">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="624"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -745,7 +745,7 @@
         <!--Item-->
         <scene sceneID="6oT-33-dAR">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="Du2-fA-iT3" customClass="NavigationAccueilViewController" customModule="VegoResto" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="Du2-fA-iT3" customClass="NavigationAccueilViewController" customModule="VegOresto" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bEd-l9-QNL">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -941,7 +941,7 @@
         <!--Detail Restaurant View Controller-->
         <scene sceneID="qih-4D-W2U">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="SlD-xl-2se" customClass="DetailRestaurantViewController" customModule="VegoResto" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="SlD-xl-2se" customClass="DetailRestaurantViewController" customModule="VegOresto" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="NnG-lM-FZu">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="1512"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2199,7 +2199,7 @@
         <!--Table Comments View Controller-->
         <scene sceneID="AE1-8h-at4">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="1Sz-2O-5F6" customClass="TableCommentsViewController" customModule="VegoResto" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="1Sz-2O-5F6" customClass="TableCommentsViewController" customModule="VegOresto" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Vlo-R3-cUd">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2208,7 +2208,7 @@
                                 <rect key="frame" x="0.0" y="88" width="320" height="446"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CommentCell" rowHeight="180" id="g41-eC-hJL" customClass="CommentTableViewCell" customModule="VegoResto" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CommentCell" rowHeight="180" id="g41-eC-hJL" customClass="CommentTableViewCell" customModule="VegOresto" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="320" height="180"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="g41-eC-hJL" id="41h-Wc-gfh">
@@ -2326,7 +2326,7 @@
                                             <outlet property="varIB_subtitle_label" destination="To1-tQ-S2s" id="ucZ-Fq-HH8"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ChildCommentCell" rowHeight="100" id="eD5-zk-F3d" customClass="CommentTableViewCell" customModule="VegoResto" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ChildCommentCell" rowHeight="100" id="eD5-zk-F3d" customClass="CommentTableViewCell" customModule="VegOresto" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="208" width="320" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eD5-zk-F3d" id="49F-Zr-vEP">
@@ -2478,7 +2478,7 @@
         <!--Create Comment Step1 View Controller-->
         <scene sceneID="Rjf-ew-Vpc">
             <objects>
-                <viewController id="v7P-Ol-zFD" customClass="CreateCommentStep1ViewController" customModule="VegoResto" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="v7P-Ol-zFD" customClass="CreateCommentStep1ViewController" customModule="VegOresto" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Chb-3Z-rRH">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="449"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2632,7 +2632,7 @@
         <!--Create Comment Step2 User View Controller-->
         <scene sceneID="hdh-Ca-qhq">
             <objects>
-                <viewController id="5IM-ew-9sg" customClass="CreateCommentStep2UserViewController" customModule="VegoResto" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="5IM-ew-9sg" customClass="CreateCommentStep2UserViewController" customModule="VegOresto" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="JqJ-mw-VdA">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="449"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2732,7 +2732,7 @@
         <!--Create Comment Step3 Images View Controller-->
         <scene sceneID="cs9-9n-ejP">
             <objects>
-                <viewController id="Zuh-Jl-YAh" customClass="CreateCommentStep3ImagesViewController" customModule="VegoResto" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Zuh-Jl-YAh" customClass="CreateCommentStep3ImagesViewController" customModule="VegOresto" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="WIS-cN-Hgd">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="449"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2795,7 +2795,7 @@
         <!--Create Comment Step4 Resume View Controller-->
         <scene sceneID="GlB-gP-vHY">
             <objects>
-                <viewController id="WhN-w2-6d1" customClass="CreateCommentStep4ResumeViewController" customModule="VegoResto" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="WhN-w2-6d1" customClass="CreateCommentStep4ResumeViewController" customModule="VegOresto" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9rS-Tr-nKe">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="449"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2839,7 +2839,7 @@
         <!--Add Comment Container View Controller-->
         <scene sceneID="CTi-SD-KNM">
             <objects>
-                <viewController id="lcw-eo-g8Y" customClass="AddCommentContainerViewController" customModule="VegoResto" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="lcw-eo-g8Y" customClass="AddCommentContainerViewController" customModule="VegOresto" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="OCq-Q6-nhC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="624"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -3029,7 +3029,7 @@
         <!--ListeFavorisViewController-->
         <scene sceneID="Tco-pT-uMb">
             <objects>
-                <viewController id="4mB-6s-kUl" userLabel="ListeFavorisViewController" customClass="ListeFavorisViewController" customModule="VegoResto" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="4mB-6s-kUl" userLabel="ListeFavorisViewController" customClass="ListeFavorisViewController" customModule="VegOresto" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ZK4-CJ-iFZ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -3090,7 +3090,7 @@
         <!--Item 3-->
         <scene sceneID="TcQ-a8-M3C">
             <objects>
-                <viewController id="XvF-0Y-XO5" customClass="ParametresViewController" customModule="VegoResto" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="XvF-0Y-XO5" customClass="ParametresViewController" customModule="VegOresto" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ckv-6y-gdg">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -3431,7 +3431,7 @@ Remplissez le formulaire ci-dessous et nous contacterons l'établissement pour l
         <!--Main View Controller-->
         <scene sceneID="j7B-Nl-4cB">
             <objects>
-                <viewController storyboardIdentifier="MainViewController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="PdM-SX-HzU" customClass="MainViewController" customModule="VegoResto" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MainViewController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="PdM-SX-HzU" customClass="MainViewController" customModule="VegOresto" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gkw-F5-tfw">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -3471,7 +3471,7 @@ Remplissez le formulaire ci-dessous et nous contacterons l'établissement pour l
         <!--Menu Lateral-->
         <scene sceneID="Li2-tm-MuB">
             <objects>
-                <viewController storyboardIdentifier="MenuLateral" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Y5m-Yv-0W3" customClass="MenuLateral" customModule="VegoResto" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MenuLateral" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Y5m-Yv-0W3" customClass="MenuLateral" customModule="VegOresto" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="BAR-Sw-pqU">
                         <rect key="frame" x="0.0" y="0.0" width="280" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

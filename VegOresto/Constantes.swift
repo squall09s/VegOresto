@@ -59,15 +59,15 @@ let INTERVAL_REFRESH_DATA: Int = 60*60 // byWeek = 24*60*60*7
 
 struct APIConfig {
     static var apiBaseUrl: URL {
-        return URL(string: VegoRestoKeys().apiBaseUrl)!
+        return URL(string: VegOrestoKeys().apiBaseUrl)!
     }
 
     static var apiClientId: String {
-        return VegoRestoKeys().apiClientId
+        return VegOrestoKeys().apiClientId
     }
 
     static var apiClientSecret: String {
-        return VegoRestoKeys().apiClientSecret
+        return VegOrestoKeys().apiClientSecret
     }
 
     static var apiClientIss: String {
@@ -75,11 +75,11 @@ struct APIConfig {
     }
 
     static var apiBasicAuthLogin: String {
-        return VegoRestoKeys().apiBasicAuthLogin
+        return VegOrestoKeys().apiBasicAuthLogin
     }
 
     static var apiBasicAuthPassword: String {
-        return VegoRestoKeys().apiBasicAuthPassword
+        return VegOrestoKeys().apiBasicAuthPassword
     }
 
     static func defaultHTTPHeaders() -> [String:String] {

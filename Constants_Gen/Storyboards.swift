@@ -3,7 +3,6 @@
 // swiftlint:disable sorted_imports
 import Foundation
 import UIKit
-import VegOresto
 
 // swiftlint:disable file_length
 
