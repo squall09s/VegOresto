@@ -118,7 +118,7 @@ extension CreateCommentStep1ViewController : UITextViewDelegate {
 
     func textViewDidChange(_ textView: UITextView) {
 
-        self.varIB_label_placeholder?.isHidden = textView.text.characters.count != 0
+        self.varIB_label_placeholder?.isHidden = textView.text.count != 0
 
     }
 

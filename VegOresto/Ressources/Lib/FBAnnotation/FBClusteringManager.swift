@@ -46,7 +46,7 @@ public class FBClusteringManager: NSObject {
 
         lock.lock()
         for annotation in annotations {
-            tree!.insertAnnotation(annotation: annotation)
+            let _ = tree!.insertAnnotation(annotation: annotation)
         }
         lock.unlock()
     }

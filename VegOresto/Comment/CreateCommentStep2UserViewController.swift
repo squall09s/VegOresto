@@ -46,13 +46,13 @@ class CreateCommentStep2UserViewController: UIViewController, CreateCommentStep2
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        if let _user_mail = UserDefaults.standard.string(forKey: "USER_SAVE_MAIL") as? String {
+        if let _user_mail = UserDefaults.standard.string(forKey: "USER_SAVE_MAIL") {
 
             self.tf_mail?.text = _user_mail
 
         }
 
-        if let _user_name = UserDefaults.standard.string(forKey: "USER_SAVE_NAME") as? String {
+        if let _user_name = UserDefaults.standard.string(forKey: "USER_SAVE_NAME") {
 
             self.tf_name?.text = _user_name
 

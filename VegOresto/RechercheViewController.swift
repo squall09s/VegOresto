@@ -271,7 +271,7 @@ class RechercheViewController: VGAbstractFilterViewController, UITableViewDelega
 
         if let _key = key?.lowercased() {
 
-            if _key.characters.count > 3 {
+            if _key.count > 3 {
 
                 self.array_restaurants = self.array_restaurants.flatMap({ (current_restaurant: Restaurant) -> Restaurant? in
 

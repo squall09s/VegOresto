@@ -45,7 +45,7 @@ class Horaire: NSManagedObject, Mappable {
 
                         var stepStrData = "de \(stepS) à \( stepE)"
 
-                        if strData.characters.count > 0 {
+                        if strData.count > 0 {
                             stepStrData = " et " + stepStrData
                         }
 
