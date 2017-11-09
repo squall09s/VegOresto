@@ -109,7 +109,7 @@ class WebRequestManager {
             guard let dict = result as? [String:Any], let comment = Comment(JSON: dict) else {
                 throw RequestManagerError.jsonError
             }
-            restaurant.addComment(newComment: comment)
+            restaurant.addComment(comment)
             return comment
         })
     }

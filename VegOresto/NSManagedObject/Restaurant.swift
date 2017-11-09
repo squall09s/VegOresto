@@ -34,9 +34,10 @@ class Restaurant: NSManagedObject, Mappable {
 
     }
     
-    public func addComment(newComment: Comment) {
-        let comments = self.mutableSetValue(forKey: "comments")
-        comments.add(newComment)
+    public func addComment(_ comment: Comment) {
+        let comments = self.comments.mutableCopy() as! NSMutableOrderedSet
+        comments.add(comment)
+        self.comments = comments.copy() as! NSOrderedSet
     }
 
     // @TODO maybe a var?
