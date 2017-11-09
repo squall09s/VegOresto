@@ -70,6 +70,7 @@
 		AEE7808B1FB313B300022F38 /* 2017-02-VegOresto-Charte.pdf in Resources */ = {isa = PBXBuildFile; fileRef = AEE7808A1FB313B300022F38 /* 2017-02-VegOresto-Charte.pdf */; };
 		AEE7808D1FB3146500022F38 /* CharteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE7808C1FB3146500022F38 /* CharteViewController.swift */; };
 		AEE780901FB4448B00022F38 /* UserLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE7808F1FB4448B00022F38 /* UserLocationManager.swift */; };
+		AEE780921FB4489800022F38 /* Deeplinking.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE780911FB4489800022F38 /* Deeplinking.swift */; };
 		C9BB0E46024B374EBEB1773F /* Pods_VegOresto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F136A5DB59857F23905F5CF /* Pods_VegOresto.framework */; };
 /* End PBXBuildFile section */
 
@@ -145,6 +146,7 @@
 		AEE7808A1FB313B300022F38 /* 2017-02-VegOresto-Charte.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = "2017-02-VegOresto-Charte.pdf"; path = "Ressources/2017-02-VegOresto-Charte.pdf"; sourceTree = "<group>"; };
 		AEE7808C1FB3146500022F38 /* CharteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharteViewController.swift; sourceTree = "<group>"; };
 		AEE7808F1FB4448B00022F38 /* UserLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLocationManager.swift; sourceTree = "<group>"; };
+		AEE780911FB4489800022F38 /* Deeplinking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deeplinking.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -232,6 +234,7 @@
 			children = (
 				39EC7FF51CAC1F9F002AD862 /* UserData.swift */,
 				AEE7808F1FB4448B00022F38 /* UserLocationManager.swift */,
+				AEE780911FB4489800022F38 /* Deeplinking.swift */,
 				AEE7808E1FB3293A00022F38 /* Network */,
 				397901751CADC62900597DCD /* CoreData */,
 			);
@@ -581,6 +584,7 @@
 				37E9D7AA1F6EE42700D39672 /* Horaire+CoreDataProperties.swift in Sources */,
 				37D830001F9F28C00037CD4B /* SecurityServices.swift in Sources */,
 				398AA7E51D17F90600FA7E0A /* LGSideMenuController.m in Sources */,
+				AEE780921FB4489800022F38 /* Deeplinking.swift in Sources */,
 				39848B081CB4231300D718FD /* NavigationAccueilViewController.swift in Sources */,
 				AE62973F1FB2DD26006313E5 /* Constantes.swift in Sources */,
 				391D6D7C1D7060A50023733E /* AboutViewController.swift in Sources */,

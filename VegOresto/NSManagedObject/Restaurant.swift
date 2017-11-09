@@ -435,4 +435,11 @@ class Restaurant: NSManagedObject, Mappable {
 
         self.moyens_de_paiement = resultat
     }
+
+    var location: CLLocationCoordinate2D? {
+        if let latitude = lat?.doubleValue, let longitude = lon?.doubleValue {
+            return CLLocationCoordinate2DMake(latitude, longitude)
+        }
+        return nil
+    }
 }

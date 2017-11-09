@@ -246,14 +246,7 @@ class DetailRestaurantViewController: UIViewController, UIScrollViewDelegate {
         // Dispose of any resources that can be recreated.
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-
-        super.viewDidAppear(animated)
-
-    }
-
     func getDayOfWeek() -> Int {
-
         let todayDate = Date()
         let myCalendar = Calendar(identifier: .gregorian)
         let weekDay = myCalendar.component(.weekday, from: todayDate)
@@ -266,77 +259,62 @@ class DetailRestaurantViewController: UIViewController, UIScrollViewDelegate {
     }
 
     @IBAction func touch_bt_phone(sender: AnyObject) {
-
-        if let phone: String = self.current_restaurant?.phone {
-
-            var phoneClean = phone.replacingOccurrences(of: " ", with: "")
-
-            phoneClean = phoneClean.replacingOccurrences(of : ".", with: "")
-
-            if let destination_url = URL(string: "telprompt://" + phoneClean) {
-
-                UIApplication.shared.open(destination_url, options: [:], completionHandler: nil)
-
-            }
+        guard let phoneNumber = self.current_restaurant?.phone else {
+            return
         }
+        Deeplinking.openPhone(phoneNumber: phoneNumber)
     }
 
     @IBAction func touch_bt_maps(sender: AnyObject) {
+        guard self.current_restaurant?.location != nil else {
+            return
+        }
 
-        if let latitude = self.current_restaurant?.lat?.doubleValue, let longitude = self.current_restaurant?.lon?.doubleValue {
-            let alert = UIAlertController(title: "C'est parti !",
-                                          message: "Ouvrir l'itinéraire vers ce restaurant ?",
-                                          preferredStyle: .alert)
+        let alert = UIAlertController(title: "C'est parti !",
+                                      message: "Ouvrir l'itinéraire vers ce restaurant ?",
+                                      preferredStyle: .actionSheet)
+        
+        let action1 = UIAlertAction(title: "Utiliser Plan", style: .default, handler: { (_) -> Void in
+            self.launchAppleMaps()
+        })
+        alert.addAction(action1)
 
-            let action1 = UIAlertAction(title: "Utiliser Plan", style: .default, handler: { (_) -> Void in
-                self.launchApplePlan()
+        if Deeplinking.canOpenGoogleMaps() {
+            let action2 = UIAlertAction(title: "Utiliser Google Maps", style: .default, handler: { (_) -> Void in
+                self.launchGoogleMaps()
             })
-            alert.addAction(action1)
-
-            if UIApplication.shared.canOpenURL(URL(string:"comgooglemaps://")!) {
-
-                let action2 = UIAlertAction(title: "Utiliser Google Maps", style: .default, handler: { (_) -> Void in
-                    self.launchGoogleMaps()
-                })
-
-                alert.addAction(action2)
-            }
-
-            // Cancel button
-            let cancel = UIAlertAction(title: "Annuler", style: .destructive, handler: { (_) -> Void in })
-
-            alert.addAction(cancel)
-            present(alert, animated: true, completion: nil)
-
+            alert.addAction(action2)
         }
+
+        // Cancel button
+        let cancel = UIAlertAction(title: "Annuler", style: .destructive, handler: { (_) -> Void in })
+
+        alert.addAction(cancel)
+        present(alert, animated: true, completion: nil)
     }
 
-    func launchGoogleMaps() {
-
-        if let latitude = self.current_restaurant?.lat?.doubleValue, let longitude = self.current_restaurant?.lon?.doubleValue {
-
-                UIApplication.shared.openURL(URL(string:"comgooglemaps://?daddr=\(latitude),\(longitude)&directionsmode=driving&zoom=14&views=traffic")!)
-
+    private func launchGoogleMaps() {
+        guard let location = self.current_restaurant?.location else {
+            return
         }
+        Deeplinking.openGoogleMaps(location: location)
     }
 
-    func launchApplePlan() {
-
-        if let latitude = self.current_restaurant?.lat?.doubleValue, let longitude = self.current_restaurant?.lon?.doubleValue {
-
-            let regionDistance: CLLocationDistance = 10000
-            let coordinates = CLLocationCoordinate2DMake(latitude, longitude)
-            let regionSpan = MKCoordinateRegionMakeWithDistance(coordinates, regionDistance, regionDistance)
-            let options = [
-                MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: regionSpan.center),
-                MKLaunchOptionsMapSpanKey: NSValue(mkCoordinateSpan: regionSpan.span)
-            ]
-            let placemark = MKPlacemark(coordinate: coordinates, addressDictionary: nil)
-            let mapItem = MKMapItem(placemark: placemark)
-            mapItem.name = self.current_restaurant?.name
-            mapItem.openInMaps(launchOptions: options)
-
+    private func launchAppleMaps() {
+        guard let location = self.current_restaurant?.location else {
+            return
         }
+
+        let regionDistance: CLLocationDistance = 10000
+        let regionSpan = MKCoordinateRegionMakeWithDistance(location, regionDistance, regionDistance)
+        let options = [
+            MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: regionSpan.center),
+            MKLaunchOptionsMapSpanKey: NSValue(mkCoordinateSpan: regionSpan.span)
+        ]
+        let placemark = MKPlacemark(coordinate: location, addressDictionary: nil)
+        let mapItem = MKMapItem(placemark: placemark)
+        mapItem.name = self.current_restaurant?.name
+        mapItem.openInMaps(launchOptions: options)
     }
 
     @IBAction func touch_bt_share(sender: AnyObject) {
@@ -397,57 +375,24 @@ class DetailRestaurantViewController: UIViewController, UIScrollViewDelegate {
     }
 
     @IBAction func touch_bt_mail(sender: AnyObject) {
-
-        if let mail = self.current_restaurant?.mail {
-
-            if let sujet = "Prise de contact".addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) {
-
-                if let destination_url = URL(string:  "mailto:" + mail + "?subject=" + sujet ) {
-
-                    UIApplication.shared.open(destination_url, options: [:], completionHandler: nil)
-
-                }
-
-            }
+        guard let emailAddress = self.current_restaurant?.mail else {
+            return
         }
-
+        Deeplinking.openSendEmail(to: emailAddress, subject: "Prise de contact")
     }
 
     @IBAction func touch_bt_weburl(sender: AnyObject) {
-
-        if let url_str = self.current_restaurant?.website {
-
-            var destination_url_str = url_str
-
-            if !(url_str.hasPrefix("http")) {
-                destination_url_str = "http://\(url_str)"
-            }
-
-            if let destination_url = URL(string:  destination_url_str ) {
-
-                UIApplication.shared.open(destination_url, options: [:], completionHandler: nil)
-
-            }
+        guard let websiteUrl = self.current_restaurant?.website else {
+            return
         }
+        Deeplinking.openWebsite(url: websiteUrl)
     }
 
     @IBAction func touch_bt_facebook(sender: AnyObject) {
-
-        if let url_str = self.current_restaurant?.facebook {
-
-            var destination_url_str = url_str
-
-            if !(url_str.hasPrefix("http")) {
-
-                destination_url_str = "http://\(url_str)"
-            }
-
-            if let destination_url = URL(string:  destination_url_str ) {
-
-                UIApplication.shared.open(destination_url, options: [:], completionHandler: nil)
-
-            }
+        guard let facebookPageUrl = self.current_restaurant?.facebook else {
+            return
         }
+        Deeplinking.openWebsite(url: facebookPageUrl)
     }
 
     func updateLabelComment() {

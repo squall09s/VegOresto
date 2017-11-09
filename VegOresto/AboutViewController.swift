@@ -32,50 +32,24 @@ class AboutViewController: UIViewController {
 
     @IBAction func contactButtonPressed(_ sender: Any) {
         let version = (Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String) ?? "Unknown"
-        let prefix: String = "Appli VegOresto iPhone [\(version)]"
-
-        guard let subject = prefix.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed) else {
-            return
-        }
-
-        let str = "mailto:contact@L214.com?subject=" + subject
-        if let url = URL(string: str) {
-            UIApplication.shared.open(url, options: [:], completionHandler: nil)
-        }
+        let subject = "Appli VegOresto iPhone [\(version)]"
+        Deeplinking.openSendEmail(to: "contact@L214.com", subject: subject)
     }
 
     @IBAction func suggestRestaurant(_ sender: Any) {
-        UIApplication.shared.open(URL(string: "https://vegoresto.fr/signalement-restaurant-eligible-vegoresto/")!, options: [:], completionHandler: nil)
+        Deeplinking.openWebsite(url: "https://vegoresto.fr/signalement-restaurant-eligible-vegoresto/")
     }
 
     @IBAction func facebookButtonPressed(_ sender: Any) {
-        let facebookAppUrl = URL(string: "fb://profile/854933141235331")!
-        let facebookWebUrl = URL(string: "https://www.facebook.com/vegoresto")!
-        if UIApplication.shared.canOpenURL(facebookAppUrl) {
-            UIApplication.shared.open(facebookAppUrl, options: [:], completionHandler: nil)
-        } else {
-            UIApplication.shared.open(facebookWebUrl, options: [:], completionHandler: nil)
-        }
+        Deeplinking.openFacebookProfile()
     }
 
     @IBAction func twitterButtonPressed(_ sender: Any) {
-        let twitterAppUrl = URL(string: "twitter://user?screen_name=VegOresto")!
-        let twitterWebUrl = URL(string: "https://twitter.com/VegOresto")!
-        if UIApplication.shared.canOpenURL(twitterAppUrl) {
-            UIApplication.shared.open(twitterAppUrl, options: [:], completionHandler: nil)
-        } else {
-            UIApplication.shared.open(twitterWebUrl, options: [:], completionHandler: nil)
-        }
+        Deeplinking.openTwitterProfile()
     }
 
     @IBAction func instagramButtonPressed(_ sender: Any) {
-        let instagramAppUrl = URL(string: "instagram://user?username=vegoresto")!
-        let instagramWebUrl = URL(string: "https://www.instagram.com/vegoresto/")!
-        if UIApplication.shared.canOpenURL(instagramAppUrl) {
-            UIApplication.shared.open(instagramAppUrl, options: [:], completionHandler: nil)
-        } else {
-            UIApplication.shared.open(instagramWebUrl, options: [:], completionHandler: nil)
-        }
+        Deeplinking.openInstagramProfile()
     }
 
     @IBAction func licenseButtonPressed(_ sender: Any) {
