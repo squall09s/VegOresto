@@ -28,7 +28,7 @@ target 'VegOresto' do
 
     # Webservices
     pod 'Alamofire'
-    pod 'AlamofireObjectMapper'
+    pod 'ObjectMapper'
     pod 'JSONWebToken'
     pod 'PromiseKit/Alamofire'
 

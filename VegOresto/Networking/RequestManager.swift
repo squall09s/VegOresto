@@ -9,37 +9,44 @@
 import Foundation
 
 import Alamofire
-import AlamofireObjectMapper
 import ObjectMapper
 import PromiseKit
 import JWT
 
 extension DataRequest {
-    public func responseObject<T: Mappable>(queue: DispatchQueue? = nil, keyPath: String? = nil, mapToObject object: T? = nil, context: MapContext? = nil) -> Promise<DataResponse<T>> {
-        return Promise(resolvers: { (fulfill, reject) in
-            self.responseObject(queue: queue, keyPath: keyPath, mapToObject: object, context: context, completionHandler: { (response: DataResponse<T>) in
-                if let error = response.error {
-                    reject(error)
-                } else if response.value != nil {
-                    fulfill(response)
-                } else {
-                    reject(PMKError.invalidCallingConvention)
+    private func responseJSON(keyPath: String? = nil, options: JSONSerialization.ReadingOptions = .allowFragments) -> Promise<Any> {
+        return self.responseJSON(options: options).then(execute: { (JSONObject: Any) -> Any in
+            if let _keyPath = keyPath, !_keyPath.isEmpty {
+                if let object = (JSONObject as AnyObject?)?.value(forKeyPath: _keyPath) {
+                    return object
                 }
-            })
+                throw RequestManagerError.jsonError
+            }
+            return JSONObject
         })
     }
 
-    public func responseArray<T: Mappable>(queue: DispatchQueue? = nil, keyPath: String? = nil, context: MapContext? = nil) -> Promise<DataResponse<[T]>> {
-        return Promise(resolvers: { (fulfill, reject) in
-            self.responseArray(queue: queue, keyPath: keyPath, context: context, completionHandler: { (response: DataResponse<[T]>) in
-                if let error = response.error {
-                    reject(error)
-                } else if response.value != nil {
-                    fulfill(response)
-                } else {
-                    reject(PMKError.invalidCallingConvention)
-                }
-            })
+    public func responseObject<T: Mappable>(keyPath: String? = nil, mapToObject object: T? = nil, context: MapContext? = nil) -> Promise<T> {
+        return self.responseJSON(keyPath: keyPath).then(execute: { (JSONObject: Any) -> T in
+            guard let _JSONObject = JSONObject as? [String:Any] else {
+                throw RequestManagerError.jsonError
+            }
+            if let _object = object {
+                _ = Mapper<T>(context: context).map(JSONObject: _JSONObject, toObject: _object)
+                return _object
+            } else if let parsedObject = Mapper<T>(context: context).map(JSONObject: _JSONObject){
+                return parsedObject
+            }
+            throw RequestManagerError.jsonError
+        })
+    }
+
+    public func responseArray<T: Mappable>(keyPath: String? = nil, context: MapContext? = nil) -> Promise<[T]> {
+        return self.responseJSON(keyPath: keyPath).then(execute: { (JSONObject: Any) -> [T] in
+            guard let parsedObject = Mapper<T>(context: context, shouldIncludeNilValues: false).mapArray(JSONObject: JSONObject) else {
+                throw PMKError.invalidCallingConvention
+            }
+            return parsedObject
         })
     }
 }
@@ -83,9 +90,7 @@ class RequestManager {
                      parameters: parameters,
                      headers: APIConfig.defaultHTTPHeaders())
             .validate()
-            .responseObject(keyPath: keyPath).then(execute: { (response: DataResponse<T>) -> T in
-                return response.value!
-            })
+            .responseObject(keyPath: keyPath)
     }
     
     public func get<T: Mappable>(url: URL, parameters: Parameters? = nil, keyPath: String? = nil) -> Promise<[T]> {
@@ -94,9 +99,7 @@ class RequestManager {
                      parameters: parameters,
                      headers: APIConfig.defaultHTTPHeaders())
             .validate()
-            .responseArray(keyPath: keyPath).then(execute: { (response: DataResponse<[T]>) -> [T] in
-                return response.value!
-            })
+            .responseArray(keyPath: keyPath)
     }
 
     public func get(url: URL, parameters: Parameters? = nil) -> Promise<Any> {
