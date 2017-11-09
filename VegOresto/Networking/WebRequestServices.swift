@@ -12,10 +12,6 @@ import PromiseKit
 
 class WebRequestServices {
 
-    static func listComments(url: URL) -> Promise<[Comment]> {
-        return RequestManager.doRequest(method: .get, url: url)
-    }
-
     static func listRestaurants(url: URL) -> Promise<[Restaurant]> {
         return RequestManager.doRequestListGzipped(method: .get, url: url).then { (result : [String : Any]) -> [Restaurant] in
             let restaurants = result.values.flatMap({ (dict) -> Restaurant? in
@@ -56,6 +52,10 @@ class WebRequestServices {
             })
             return Array(horaires)
         })
+    }
+
+    static func listComments(url: URL) -> Promise<[Comment]> {
+        return RequestManager.doRequest(method: .get, url: url)
     }
 
     static func postImageMedia(urlPath: String, image: UIImage,

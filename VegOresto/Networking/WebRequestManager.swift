@@ -16,6 +16,16 @@ class WebRequestManager {
         return APIConfig.apiBaseUrl.appendingPathComponent(path)
     }
 
+    public func listRestaurants() -> Promise<[Restaurant]> {
+        let url = getUrl("/wp-json/vg/v1/restos.json")
+        return WebRequestServices.listRestaurants(url: url)
+    }
+
+    public func loadHoraires() -> Promise<[Horaire]> {
+        let url = getUrl("/wp-content/cache/horaires.json")
+        return WebRequestServices.loadHoraires(url: url)
+    }
+
     public func listComments(restaurant: Restaurant) -> Promise<[Comment]> {
         let url = getUrl("/wp-json/wp/v2/comments?post=\(restaurant.identifier?.intValue ?? 0)")
         return WebRequestServices.listComments(url: url).then(execute: { (comments: [Comment]) -> [Comment] in
@@ -36,11 +46,6 @@ class WebRequestManager {
         })
     }
 
-    public func listRestaurants() -> Promise<[Restaurant]> {
-        let url = getUrl("/wp-json/vg/v1/restos.json")
-        return WebRequestServices.listRestaurants(url: url)
-    }
-
  func postImageMedia( image: UIImage,
                       success: @escaping (String) -> Void,
                       failure: @escaping (Error?) -> Void ) {
@@ -52,11 +57,6 @@ class WebRequestManager {
 
     }, failure: failure)
 
-    }
-
-    public func loadHoraires() -> Promise<[Horaire]> {
-        let url = getUrl("/wp-content/cache/horaires.json")
-        return WebRequestServices.loadHoraires(url: url)
     }
 
     func uploadComment(restaurant: Restaurant, comment: Comment,
