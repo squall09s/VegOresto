@@ -47,6 +47,7 @@ extension DataRequest {
 enum RequestManagerError: Error {
     case gzipError
     case jsonError
+    case imageCreationError
 }
 
 class RequestManager {
@@ -64,12 +65,13 @@ class RequestManager {
     static func doRequest<T: Mappable>(method: HTTPMethod,
                           url: URL,
                           parameters: Parameters? = nil,
+                          encoding: ParameterEncoding = URLEncoding.default,
                           keyPath: String? = nil) -> Promise<T> {
         return RequestManager.manager
             .request(url,
                      method: method,
                      parameters: parameters,
-                     encoding: JSONEncoding.default,
+                     encoding: encoding,
                      headers: APIConfig.defaultHTTPHeaders())
             .validate()
             .responseObject(keyPath: keyPath).then(execute: { (response: DataResponse<T>) -> T in
@@ -80,12 +82,13 @@ class RequestManager {
     static func doRequest<T: Mappable>(method: HTTPMethod,
                           url: URL,
                           parameters: Parameters? = nil,
+                          encoding: ParameterEncoding = URLEncoding.default,
                           keyPath: String? = nil) -> Promise<[T]> {
         return RequestManager.manager
             .request(url,
                      method: method,
                      parameters: parameters,
-                     encoding: JSONEncoding.default,
+                     encoding: encoding,
                      headers: APIConfig.defaultHTTPHeaders())
             .validate()
             .responseArray(keyPath: keyPath).then(execute: { (response: DataResponse<[T]>) -> [T] in
@@ -93,69 +96,41 @@ class RequestManager {
             })
     }
 
-    static func postImageMedia( path: String,
-                                imageMedia: UIImage,
-                                parameters: Parameters? = nil,
-                                completion: @escaping (String) -> Void,
-                                failure: @escaping (Error?) -> Void) {
-
-        var urlPath: URLConvertible!
-
-        var request:() -> Void = {}
-
-        request = {
-
-            var header = [ "Authorization": "Bearer " + SecurityServices.shared.getToken() ]
-            header["Content-Type"] = "image/jpeg"
-            header["Content-Disposition"] = "attachment; filename=\"commentaire.jpg\""
-
-            var urlRequest: URLRequest!
-
-            do {
-                try urlPath = (path).asURL()
-                urlRequest = try URLRequest(url: urlPath, method: .post, headers: header)
-
-                urlRequest.httpBody = imageMedia.convertToJpg(limiteSize: 2097150)
-
-            } catch {
-
-                return
-            }
-
-            RequestManager.manager.request(urlRequest).responseJSON(completionHandler: { (dataResponse) in
-
-                                            if let result = dataResponse.result.value as? [String:Any] {
-
-                                                if let identImage = result["id"] as? Int {
-                                                    completion(String(identImage))
-                                                } else {
-                                                    failure(nil)
-                                                }
-
-                                            } else {
-
-                                                print("result fail")
-                                                failure(nil)
-
-                                            }
-
-                                           })
+    static func postImageMedia(url: URL, image: UIImage) -> Promise<String> {
+        // get image data
+        guard let imageData = image.jpegRepresentation(sizeLimit: 2097150) else {
+            return Promise(error: RequestManagerError.imageCreationError)
         }
 
-        request()
+        // create request
+        let headers = [
+            "Authorization": "Bearer \(SecurityServices.shared.getToken())",
+            "Content-Type": "image/jpeg",
+            "Content-Disposition": "attachment; filename=\"commentaire.jpg\"",
+        ]
+        var urlRequest = try! URLRequest(url: url, method: .post, headers: headers)
+        urlRequest.httpBody = imageData
 
+        return RequestManager.manager.request(urlRequest).responseJSON().then(execute: { (object: Any) -> String in
+            guard let dict = object as? [String:Any],
+                  let imageId = dict["id"] as? Int else {
+                throw RequestManagerError.jsonError
+            }
+            return String(imageId)
+        })
     }
 
     static func doRequestList(method: HTTPMethod,
                               url: URL,
                               parameters: Parameters? = nil,
+                              encoding: ParameterEncoding = URLEncoding.default,
                               keyPath: String? = nil) -> Promise<[String : Any]> {
         
         let request = RequestManager.manager
             .request(url,
                      method: method,
                      parameters: parameters,
-                     encoding: URLEncoding.default,
+                     encoding: encoding,
                      headers: APIConfig.defaultHTTPHeaders())
             .validate()
 
@@ -167,84 +142,26 @@ class RequestManager {
         })
     }
 
-    static func postRequest(  path: String,
-                              parameters: Parameters? = nil,
-                              keyPath: String? = nil,
-                              completion: @escaping ([String : Any]) -> Void,
-                              failure: @escaping (Error?) -> Void) {
+    static func postRequest(url: URL,
+                            parameters: Parameters? = nil,
+                            encoding: ParameterEncoding = URLEncoding.default,
+                            keyPath: String? = nil) -> Promise<[String:Any]> {
+        let headers = [
+            "Authorization": "Bearer \(SecurityServices.shared.getToken())"
+        ]
+        let request = RequestManager.manager
+            .request(url,
+                     method: .post,
+                     parameters: parameters,
+                     encoding: encoding,
+                     headers: headers)
+            .validate()
 
-        let urlPath: URLConvertible!
-
-        do {
-            try urlPath = (path).asURL()
-        } catch {
-
-            return
-        }
-
-        var request:() -> Void = {}
-        request = {
-
-            let header = [ "Authorization": "Bearer " + SecurityServices.shared.getToken() ]
-
-            RequestManager.manager.request(urlPath,
-                                           method: .post,
-                                           parameters: parameters,
-                                           encoding: JSONEncoding.default,
-                                           headers: header).responseJSON(completionHandler: { (dataResponse) in
-
-                                            if dataResponse.response?.statusCode == 200 || dataResponse.response?.statusCode == 201 || dataResponse.response?.statusCode == 202 {
-
-                                                if let result = dataResponse.result.value as? [String:Any] {
-
-                                                    completion(result)
-
-                                                } else {
-
-                                                    print("result fail")
-                                                    failure(nil)
-
-                                                }
-
-                                            } else {
-
-                                                if let result = dataResponse.result.value as? [String:Any] {
-
-                                                    let resultError = NSError(domain: (result["message"] as? String) ?? "", code: dataResponse.response?.statusCode ?? 404, userInfo: nil)
-
-                                                    failure(resultError)
-                                                }
-
-                                                failure(nil)
-
-                                            }
-
-                                           })
-        }
-
-        request()
-
-    }
-}
-
-extension UIImage {
-
-    func convertToJpg(limiteSize: Int) -> Data? {
-
-        // sourceImage is whatever image you're starting with
-
-        var imageData: Data? = nil
-
-        for i in 0...9 {
-
-            imageData = UIImageJPEGRepresentation(self, 1.0 - (0.1 * CGFloat(i)) )
-
-            if (imageData?.count ?? limiteSize) < limiteSize {
-                break
+        return request.responseJSON().then(execute: { (object: Any) -> [String:Any] in
+            guard let dict = object as? [String:Any] else {
+                throw RequestManagerError.jsonError
             }
-        }
-
-        return imageData
+            return dict
+        })
     }
-
 }

@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import PromiseKit
 
 class AddCommentContainerViewController: UIViewController, UIScrollViewDelegate {
 
@@ -180,75 +181,57 @@ class AddCommentContainerViewController: UIViewController, UIScrollViewDelegate 
 
     }
 
-    func sendComment() {
-
-        //self.varIB_activityIndicatorw?.startAnimating()
-
-        let entityComment =  NSEntityDescription.entity(forEntityName: "Comment", in: UserData.sharedInstance.managedContext)
-
-        if let new_comment = (NSManagedObject(entity: entityComment!, insertInto: UserData.sharedInstance.managedContext) as? Comment) {
-
-            new_comment.time = "01/02/1990"
-            new_comment.author = self.childViewControllerStep2?.getCurrentName()
-            new_comment.email = self.childViewControllerStep2?.getCurrentEmail()
-            new_comment.content = self.childViewControllerStep1?.getContent()
-            new_comment.parentId = self.parentComment?.ident
-
-            if self.parentComment == nil {
-                new_comment.rating = NSNumber(value: self.childViewControllerStep1?.getVote() ?? 1 )
-            }
-
-            if let _image = self.childViewControllerStep3?.getImage() {
-
-                WebRequestManager.shared.postImageMedia(image: _image, success: { (identImage) in
-
-                    new_comment.temporaryImageIdentSend = identImage
-
-                    WebRequestManager.shared.uploadComment(restaurant: self.currentRestaurant!, comment: new_comment, success: { (resultComment) in
-
-                        self.sendCommentDone(newComment: resultComment)
-
-                    }, failure: { (error) in
-
-                        let alertController = UIAlertController(title: "Erreur", message: "Envoie du commentaire et de l'image impossible [\(error.debugDescription)]", preferredStyle: .alert)
-                        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-
-                        UIApplication.shared.keyWindow?.rootViewController?.present(alertController, animated: true, completion: nil)
-
-                    })
-
-                }, failure: { (_) in
-
-                    let alertController = UIAlertController(title: "Erreur", message: "Envoie de l'image impossible", preferredStyle: .alert)
-                    alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-
-                    UIApplication.shared.keyWindow?.rootViewController?.present(alertController, animated: true, completion: nil)
-
-                })
-
-            } else {
-
-            WebRequestManager.shared.uploadComment(restaurant: self.currentRestaurant!, comment: new_comment, success: { (resultComment) in
-
-                self.sendCommentDone(newComment: resultComment)
-
-            }, failure: { (_) in
-
-                let alertController = UIAlertController(title: "Erreur", message: "Envoie du commentaire impossible", preferredStyle: .alert)
-                alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-
-                UIApplication.shared.keyWindow?.rootViewController?.present(alertController, animated: true, completion: nil)
-
+    private func sendComment(restaurant: Restaurant, comment: Comment, image: UIImage? = nil) -> Promise<Comment> {
+        // first, send image if needed
+        var imageSendPromise: Promise<Void>!
+        if let _image = image {
+            imageSendPromise = WebRequestManager.shared.postImageMedia(image: _image).then(execute: { (imageId: String) -> Void in
+                comment.temporaryImageIdentSend = imageId
             })
-
-            }
-
+        }
+        else {
+            imageSendPromise = Promise(value: ())
         }
 
+        // then, send comment
+        return imageSendPromise.then { () -> Promise<Comment> in
+            return WebRequestManager.shared.uploadComment(restaurant: restaurant, comment: comment)
+        }
+    }
+    
+    private func sendComment() {
+        guard let restaurant = self.currentRestaurant else {
+            return
+        }
+
+        // create comment object
+        let entityComment =  NSEntityDescription.entity(forEntityName: "Comment", in: UserData.sharedInstance.managedContext)!
+        guard let comment = NSManagedObject(entity: entityComment, insertInto: UserData.sharedInstance.managedContext) as? Comment else {
+            return
+        }
+        comment.time = "01/02/1990"
+        comment.author = self.childViewControllerStep2?.getCurrentName()
+        comment.email = self.childViewControllerStep2?.getCurrentEmail()
+        comment.content = self.childViewControllerStep1?.getContent()
+        comment.parentId = self.parentComment?.ident
+        if self.parentComment == nil {
+            comment.rating = NSNumber(value: self.childViewControllerStep1?.getVote() ?? 1 )
+        }
+
+        // get image
+        let image = self.childViewControllerStep3?.getImage()
+        
+        // send image and comment
+        let _ = sendComment(restaurant: restaurant, comment: comment, image: image).then(execute: { (newComment: Comment) -> Void in
+            self.sendCommentDone(newComment: newComment)
+        }).catch(execute: { (error: Error) in
+            let alertController = UIAlertController(title: "Echec de l'envoi", message: error.localizedDescription, preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            UIApplication.shared.keyWindow?.rootViewController?.present(alertController, animated: true, completion: nil)
+        })
     }
 
-    func sendCommentDone(newComment: Comment) {
-
+    private func sendCommentDone(newComment: Comment) {
         UserDefaults.standard.set(self.childViewControllerStep2?.getCurrentEmail(), forKey: "USER_SAVE_MAIL")
         UserDefaults.standard.set(self.childViewControllerStep2?.getCurrentName(), forKey: "USER_SAVE_NAME")
 

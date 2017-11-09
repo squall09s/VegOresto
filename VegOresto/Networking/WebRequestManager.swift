@@ -46,34 +46,13 @@ class WebRequestManager {
         })
     }
 
- func postImageMedia( image: UIImage,
-                      success: @escaping (String) -> Void,
-                      failure: @escaping (Error?) -> Void ) {
-
-    let urlPath = APIConfig.apiBaseUrl.appendingPathComponent("/wp-json/vegoresto/v1/media")
-    WebRequestServices.postImageMedia(urlPath: urlPath.absoluteString, image: image, success: { (identImageResult) in
-
-        success(identImageResult)
-
-    }, failure: failure)
-
+    public func postImageMedia(image: UIImage) -> Promise<String> {
+        let url = getUrl("/wp-json/vegoresto/v1/media")
+        return WebRequestServices.postImageMedia(url: url, image: image)
     }
 
-    func uploadComment(restaurant: Restaurant, comment: Comment,
-                              success: @escaping (Comment) -> Void,
-                              failure: @escaping (Error?) -> Void) {
-
-        let urlPath = APIConfig.apiBaseUrl.appendingPathComponent("/wp-json/vegoresto/v1/comments")
-        WebRequestServices.uploadComment(urlPath: urlPath.absoluteString, restaurant: restaurant, comment: comment, success: { (resultComment) in
-
-            success(resultComment)
-
-        }) { (error) in
-
-            failure(error)
-
-        }
-
+    public func uploadComment(restaurant: Restaurant, comment: Comment) -> Promise<Comment> {
+        let url = getUrl("/wp-json/vegoresto/v1/comments")
+        return WebRequestServices.uploadComment(url: url, restaurant: restaurant, comment: comment)
     }
-
 }

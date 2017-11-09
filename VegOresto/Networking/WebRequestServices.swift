@@ -58,57 +58,34 @@ class WebRequestServices {
         return RequestManager.doRequest(method: .get, url: url)
     }
 
-    static func postImageMedia(urlPath: String, image: UIImage,
-                               success: @escaping (String) -> Void,
-                               failure: @escaping (Error?) -> Void ) {
-
-        RequestManager.postImageMedia(path: urlPath, imageMedia: image, parameters: nil, completion: { (identImage) in
-
-            success(identImage)
-
-        }, failure: failure)
+    static func postImageMedia(url: URL, image: UIImage) -> Promise<String> {
+        return RequestManager.postImageMedia(url: url, image: image)
     }
 
-    static func uploadComment(urlPath: String, restaurant: Restaurant, comment: Comment,
-                              success: @escaping (Comment) -> Void,
-                              failure: @escaping (Error?) -> Void) {
+    static func uploadComment(url: URL, restaurant: Restaurant, comment: Comment) -> Promise<Comment> {
+        var parameters: [String:String] = [
+            "post": String(restaurant.identifier?.intValue ?? -1),
+            "content": (comment.content ?? ""),
+            "author_name": (comment.author ?? "Invite"),
+            "author_email": (comment.email ?? "Noname@mail.fr"),
+        ]
 
-        var _urlPathWithParam = urlPath + "?"
-        _urlPathWithParam += "&post=" + String(restaurant.identifier?.intValue ?? -1)
-        _urlPathWithParam += "&content=" + (comment.content?.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? "")
-
-        if let vote = comment.rating?.intValue {
-            if vote > 0 && vote < 6 {
-                _urlPathWithParam += "&vote=" + String(vote)
-            }
+        if let vote = comment.rating?.intValue, vote > 0 && vote < 6 {
+            parameters["vote"] = String(vote)
         }
-
         if let imageComment = comment.temporaryImageIdentSend {
-            _urlPathWithParam += "&images=" + imageComment
+            parameters["images"] = imageComment
         }
-
         if let parentId = comment.parentId?.intValue {
-            _urlPathWithParam += "&parent=" + String(parentId)
+            parameters["parent"] = String(parentId)
         }
 
-        _urlPathWithParam += "&author_email=" + (comment.email?.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? "Noname@mail.fr")
-        _urlPathWithParam += "&author_name=" + (comment.author?.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? "Invite")
-
-        RequestManager.postRequest(path: _urlPathWithParam, parameters : nil, completion: { (result: [String : Any])  in
-
-            if let _newComment = Comment(JSON: result) {
-
-                restaurant.addComment(newComment: _newComment)
-                success(_newComment)
-
+        return RequestManager.postRequest(url: url, parameters: parameters, encoding: URLEncoding.queryString).then(execute: { (result: [String:Any]) -> Comment in
+            guard let comment = Comment(JSON: result) else {
+                throw RequestManagerError.jsonError
             }
-
-        }) { (error) in
-
-            failure(error)
-
-        }
-
+            restaurant.addComment(newComment: comment)
+            return comment
+        })
     }
-
 }

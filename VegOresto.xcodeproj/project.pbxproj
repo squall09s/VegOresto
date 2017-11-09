@@ -71,6 +71,7 @@
 		AEE7808D1FB3146500022F38 /* CharteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE7808C1FB3146500022F38 /* CharteViewController.swift */; };
 		AEE780901FB4448B00022F38 /* UserLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE7808F1FB4448B00022F38 /* UserLocationManager.swift */; };
 		AEE780921FB4489800022F38 /* Deeplinking.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE780911FB4489800022F38 /* Deeplinking.swift */; };
+		AEE780941FB45DFA00022F38 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE780931FB45DFA00022F38 /* UIImage+Extension.swift */; };
 		C9BB0E46024B374EBEB1773F /* Pods_VegOresto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F136A5DB59857F23905F5CF /* Pods_VegOresto.framework */; };
 /* End PBXBuildFile section */
 
@@ -147,6 +148,7 @@
 		AEE7808C1FB3146500022F38 /* CharteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharteViewController.swift; sourceTree = "<group>"; };
 		AEE7808F1FB4448B00022F38 /* UserLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLocationManager.swift; sourceTree = "<group>"; };
 		AEE780911FB4489800022F38 /* Deeplinking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deeplinking.swift; sourceTree = "<group>"; };
+		AEE780931FB45DFA00022F38 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIImage+Extension.swift"; path = "VegOresto/UIImage+Extension.swift"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -254,6 +256,7 @@
 			isa = PBXGroup;
 			children = (
 				370CBE511FB128AA00A1AE02 /* UIView+Material.swift */,
+				AEE780931FB45DFA00022F38 /* UIImage+Extension.swift */,
 				396BD97F1CAEB8640071DF07 /* ColorExtension.swift */,
 			);
 			name = "Tools and Services";
@@ -588,6 +591,7 @@
 				39848B081CB4231300D718FD /* NavigationAccueilViewController.swift in Sources */,
 				AE62973F1FB2DD26006313E5 /* Constantes.swift in Sources */,
 				391D6D7C1D7060A50023733E /* AboutViewController.swift in Sources */,
+				AEE780941FB45DFA00022F38 /* UIImage+Extension.swift in Sources */,
 				39610F511E1DB62A005F7053 /* TableCommentsViewController.swift in Sources */,
 				398857E61CC2B97600B05F64 /* CategorieCulinaire+CoreDataProperties.swift in Sources */,
 				390909DF1DCB3E52005F77CB /* FBAnnotation.swift in Sources */,
