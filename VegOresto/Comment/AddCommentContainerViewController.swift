@@ -195,7 +195,7 @@ class AddCommentContainerViewController: UIViewController, UIScrollViewDelegate 
 
         // then, send comment
         return imageSendPromise.then { () -> Promise<Comment> in
-            return WebRequestManager.shared.uploadComment(restaurant: restaurant, comment: comment)
+            return WebRequestManager.shared.postComment(restaurant: restaurant, comment: comment)
         }
     }
     

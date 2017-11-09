@@ -222,7 +222,7 @@ class DetailRestaurantViewController: UIViewController, UIScrollViewDelegate {
             return
         }
 
-        WebRequestManager.shared.listComments(restaurant: restaurant).always {
+        WebRequestManager.shared.loadComments(restaurant: restaurant).always {
             self.updateLabelComment()
             
             self.varIB_activity_indicator?.stopAnimating()

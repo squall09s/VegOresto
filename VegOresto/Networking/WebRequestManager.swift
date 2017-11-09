@@ -17,7 +17,7 @@ class WebRequestManager {
         return APIConfig.apiBaseUrl.appendingPathComponent(path)
     }
 
-    public func listRestaurants() -> Promise<[Restaurant]> {
+    public func loadRestaurants() -> Promise<[Restaurant]> {
         let url = getUrl("/wp-json/vg/v1/restos.json")
         return RequestManager.shared.get(url: url).then { (result : [String : Any]) -> [Restaurant] in
             let restaurants = Array(result.values).flatMap({ (dict) -> Restaurant? in
@@ -44,18 +44,17 @@ class WebRequestManager {
     public func loadHoraires() -> Promise<[Horaire]> {
         let url = getUrl("/wp-content/cache/horaires.json")
         return RequestManager.shared.get(url: url).then(execute: { (result: [String:Any]) -> [Horaire] in
-            let horaires = result.values.flatMap({ (dict) -> Horaire? in
+            return Array(result.values).flatMap({ (dict) -> Horaire? in
                 guard let _dict = dict as? [String:Any],
                     let horaire = Horaire(JSON: _dict) else {
                         return nil
                 }
                 return horaire
             })
-            return Array(horaires)
         })
     }
     
-    public func listComments(restaurant: Restaurant) -> Promise<[Comment]> {
+    public func loadComments(restaurant: Restaurant) -> Promise<[Comment]> {
         let url = getUrl("/wp-json/wp/v2/comments?post=\(restaurant.identifier?.intValue ?? 0)")
         return RequestManager.shared.get(url: url).then(execute: { (comments: [Comment]) -> [Comment] in
             
@@ -89,7 +88,7 @@ class WebRequestManager {
         })
     }
 
-    public func uploadComment(restaurant: Restaurant, comment: Comment) -> Promise<Comment> {
+    public func postComment(restaurant: Restaurant, comment: Comment) -> Promise<Comment> {
         let url = getUrl("/wp-json/vegoresto/v1/comments")
         
         var parameters: [String:String] = [

@@ -59,7 +59,7 @@ class UserData {
         }
 
         // update and save last sync date
-        return WebRequestManager.shared.listRestaurants().then(execute: { (_: [Restaurant]) -> Void in
+        return WebRequestManager.shared.loadRestaurants().then(execute: { (_: [Restaurant]) -> Void in
             self.saveSynchroDate()
         }).asVoid()
     }
