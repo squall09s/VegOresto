@@ -106,31 +106,10 @@ class UserData {
 
     }
 
-    func getRestaurantWithIdentifier(identifier: Int) -> Restaurant? {
-
-        //print("getRestaurantWithIdentifier \(identifier)")
+    func getRestaurant(identifier: Int) -> Restaurant? {
         let fetchRequest: NSFetchRequest<Restaurant> = NSFetchRequest(entityName: "Restaurant")
-        let predicate: NSPredicate = NSPredicate(format: "identifier == %@", String(identifier) )
-        fetchRequest.predicate = predicate
-
-        do {
-
-            let results = try self.managedContext.fetch(fetchRequest)
-
-            if results.count > 0 {
-
-                //print("already exist")
-                return results[0]
-            }
-
-        } catch let error as NSError {
-
-            print("error = \(error)")
-
-        }
-        //print("resto not found")
-        return nil
-
+        fetchRequest.predicate = NSPredicate(format: "identifier == %@", String(identifier))
+        return safeFetch(fetchRequest).first
     }
 
     func getHoraires(for restaurant: Restaurant) -> Horaire? {

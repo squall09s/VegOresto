@@ -25,7 +25,7 @@ class WebRequestManager {
                     return nil
                 }
                 let restaurantId = (_dict["id"] as? NSNumber)?.intValue ?? -1
-                if let restaurant = UserData.sharedInstance.getRestaurantWithIdentifier(identifier: restaurantId) {
+                if let restaurant = UserData.sharedInstance.getRestaurant(identifier: restaurantId) {
                     restaurant.mapping(map: Map(mappingType: .fromJSON, JSON: _dict))
                     return restaurant
                 } else if let restaurant = Restaurant(JSON: _dict) {
