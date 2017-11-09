@@ -31,6 +31,7 @@ target 'VegOresto' do
     pod 'ObjectMapper'
     pod 'JSONWebToken'
     pod 'PromiseKit/Alamofire'
+    pod 'AlamofireNetworkActivityIndicator', '~> 2.2'
 
     # Captcha
     pod 'ReCaptcha'

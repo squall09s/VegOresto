@@ -1,5 +1,7 @@
 PODS:
   - Alamofire (4.5.1)
+  - AlamofireNetworkActivityIndicator (2.2.0):
+    - Alamofire (~> 4.5)
   - BEMCheckBox (1.4.1)
   - DGElasticPullToRefresh (1.1)
   - FaveButton (2.0.3)
@@ -46,6 +48,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire
+  - AlamofireNetworkActivityIndicator (~> 2.2)
   - BEMCheckBox
   - DGElasticPullToRefresh
   - FaveButton
@@ -76,6 +79,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
+  AlamofireNetworkActivityIndicator: 81e1630e7cfed22a4e4e82a174c59e651dc4f8ca
   BEMCheckBox: 5ba6e37ade3d3657b36caecc35c8b75c6c2b1a4e
   DGElasticPullToRefresh: 28f11a6026302a90f8ffebbc6e24748e584dddd3
   FaveButton: cfcbc5e73da159c4f916613da5687357b5bb4783
@@ -100,6 +104,6 @@ SPEC CHECKSUMS:
   SwiftSpinner: bf7c13332ad008952a09358cadf24a186510ae31
   VTAcknowledgementsViewController: 0bc8149be64f0d5b7f398e146353af8fde04b313
 
-PODFILE CHECKSUM: d0d58c3293294b27c72f9212d25eeec968086332
+PODFILE CHECKSUM: 33d560db64ac7b9354fced1e5e22b8ea3eca64f6
 
 COCOAPODS: 1.3.1
