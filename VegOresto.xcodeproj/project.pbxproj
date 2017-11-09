@@ -22,7 +22,6 @@
 		37E9D7A91F6EE42700D39672 /* Horaire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E9D7A71F6EE42700D39672 /* Horaire.swift */; };
 		37E9D7AA1F6EE42700D39672 /* Horaire+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E9D7A81F6EE42700D39672 /* Horaire+CoreDataProperties.swift */; };
 		37F8801D1FADEF4C00F34F78 /* Keys.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37F8801E1FADEF4C00F34F78 /* Keys.framework */; };
-		37F880211FADF5FC00F34F78 /* WebRequestServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F8801F1FADF5FB00F34F78 /* WebRequestServices.swift */; };
 		37F880221FADF5FC00F34F78 /* WebRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F880201FADF5FC00F34F78 /* WebRequestManager.swift */; };
 		37F880241FADF6F100F34F78 /* RequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F880231FADF6F100F34F78 /* RequestManager.swift */; };
 		390909DF1DCB3E52005F77CB /* FBAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390909D81DCB3E52005F77CB /* FBAnnotation.swift */; };
@@ -92,7 +91,6 @@
 		37E9D7A71F6EE42700D39672 /* Horaire.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Horaire.swift; path = NSManagedObject/Horaire.swift; sourceTree = "<group>"; };
 		37E9D7A81F6EE42700D39672 /* Horaire+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Horaire+CoreDataProperties.swift"; path = "NSManagedObject/Horaire+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		37F8801E1FADEF4C00F34F78 /* Keys.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Keys.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		37F8801F1FADF5FB00F34F78 /* WebRequestServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebRequestServices.swift; sourceTree = "<group>"; };
 		37F880201FADF5FC00F34F78 /* WebRequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebRequestManager.swift; sourceTree = "<group>"; };
 		37F880231FADF6F100F34F78 /* RequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestManager.swift; sourceTree = "<group>"; };
 		390909D81DCB3E52005F77CB /* FBAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FBAnnotation.swift; path = Ressources/Lib/FBAnnotation/FBAnnotation.swift; sourceTree = "<group>"; };
@@ -343,7 +341,6 @@
 			isa = PBXGroup;
 			children = (
 				37F880231FADF6F100F34F78 /* RequestManager.swift */,
-				37F8801F1FADF5FB00F34F78 /* WebRequestServices.swift */,
 				37F880201FADF5FC00F34F78 /* WebRequestManager.swift */,
 			);
 			name = Network;
@@ -594,7 +591,6 @@
 				37F880241FADF6F100F34F78 /* RequestManager.swift in Sources */,
 				398AA7E61D17F90600FA7E0A /* MenuLateral.swift in Sources */,
 				39C50EFD1CC8D9670019FA2B /* Storyboards.swift in Sources */,
-				37F880211FADF5FC00F34F78 /* WebRequestServices.swift in Sources */,
 				390909E11DCB3E52005F77CB /* FBAnnotationClusterView.swift in Sources */,
 				390909E01DCB3E52005F77CB /* FBAnnotationCluster.swift in Sources */,
 				39968D471CABFFBB0085C61F /* VegOresto.xcdatamodeld in Sources */,
