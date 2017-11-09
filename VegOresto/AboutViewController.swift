@@ -33,7 +33,7 @@ class AboutViewController: UIViewController {
     @IBAction func contactButtonPressed(_ sender: Any) {
         let version = (Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String) ?? "Unknown"
         let subject = "Appli VegOresto iPhone [\(version)]"
-        Deeplinking.openSendEmail(to: "contact@L214.com", subject: subject)
+        Deeplinking.openSendEmail(to: "vegoresto@l214.com", subject: subject)
     }
 
     @IBAction func suggestRestaurant(_ sender: Any) {
