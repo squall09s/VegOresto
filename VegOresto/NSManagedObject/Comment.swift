@@ -42,7 +42,7 @@ class Comment: NSManagedObject, Mappable {
         content <-  map["content.rendered"]
 
         if let _content = content {
-            content = UserData.sharedInstance.cleanString(str: _content)
+            content = cleanHTMLString(str: _content)
         }
 
         ident <-  map["id"]

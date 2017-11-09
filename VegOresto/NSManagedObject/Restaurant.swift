@@ -74,10 +74,10 @@ class Restaurant: NSManagedObject, Mappable {
         self.mail <- map["email"]
 
         self.address <- map["adresse"]
-        self.address = cleanString(str: self.address ?? "")
+        self.address = cleanHTMLString(str: self.address ?? "")
 
         self.resume <- map["accroche"]
-        self.resume = cleanString(str: self.resume ?? "")
+        self.resume = cleanHTMLString(str: self.resume ?? "")
 
         self.montant_moyen <- map["prix"]
 
@@ -435,21 +435,4 @@ class Restaurant: NSManagedObject, Mappable {
 
         self.moyens_de_paiement = resultat
     }
-
-    func cleanString(str: String) -> String {
-
-        var strResult = str.replacingOccurrences(of: "<br />", with: "")
-
-        strResult = strResult.replacingOccurrences(of:"<p>", with: "")
-        strResult = strResult.replacingOccurrences(of:"</p>", with: "")
-        strResult = strResult.replacingOccurrences(of:"&#039;", with: "'")
-        strResult = strResult.replacingOccurrences(of:"&rsquo;", with: "'")
-        strResult = strResult.replacingOccurrences(of:"&#8211;", with: "–")
-        strResult = strResult.replacingOccurrences(of:"&#8211;", with: "–")
-        strResult = strResult.replacingOccurrences(of:"&amp;#038;", with: "&")
-        strResult = strResult.replacingOccurrences(of:"&#038;", with: "&")
-
-        return strResult
-    }
-
 }

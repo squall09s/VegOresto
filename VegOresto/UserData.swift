@@ -82,22 +82,6 @@ class UserData {
         return safeFetch(fetchRequest)
     }
 
-    func cleanString(str: String) -> String {
-
-        var strResult = str.replacingOccurrences(of: "<br />", with: "")
-
-        strResult = strResult.replacingOccurrences(of:"<p>", with: "")
-        strResult = strResult.replacingOccurrences(of:"</p>", with: "")
-        strResult = strResult.replacingOccurrences(of:"&#039;", with: "'")
-        strResult = strResult.replacingOccurrences(of:"&rsquo;", with: "'")
-        strResult = strResult.replacingOccurrences(of:"&#8211;", with: "–")
-        strResult = strResult.replacingOccurrences(of:"&#8211;", with: "–")
-        strResult = strResult.replacingOccurrences(of:"&amp;#038;", with: "&")
-        strResult = strResult.replacingOccurrences(of:"&#038;", with: "&")
-
-        return strResult
-    }
-
     func getCommentWithIdentifier(identifier: Int) -> Comment? {
 
         //print("getCommentWithIdentifier \(identifier)")
@@ -212,4 +196,17 @@ extension String {
         return count
     }
 
+}
+
+func cleanHTMLString(str: String) -> String {
+    var strResult = str.replacingOccurrences(of: "<br />", with: "")
+    strResult = strResult.replacingOccurrences(of:"<p>", with: "")
+    strResult = strResult.replacingOccurrences(of:"</p>", with: "")
+    strResult = strResult.replacingOccurrences(of:"&#039;", with: "'")
+    strResult = strResult.replacingOccurrences(of:"&rsquo;", with: "'")
+    strResult = strResult.replacingOccurrences(of:"&#8211;", with: "–")
+    strResult = strResult.replacingOccurrences(of:"&#8211;", with: "–")
+    strResult = strResult.replacingOccurrences(of:"&amp;#038;", with: "&")
+    strResult = strResult.replacingOccurrences(of:"&#038;", with: "&")
+    return strResult
 }
