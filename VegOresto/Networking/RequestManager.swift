@@ -146,35 +146,6 @@ class RequestManager {
 
     }
 
-    static func doRequestListGzipped(method: HTTPMethod,
-                                     url: URL,
-                                     parameters: Parameters? = nil,
-                                     keyPath: String? = nil) -> Promise<[String : Any]> {
-        let request =  RequestManager.manager
-            .request(url,
-                     method: method,
-                     parameters: parameters,
-                     encoding: URLEncoding.default,
-                     headers: APIConfig.defaultHTTPHeaders())
-
-        return request.responseData().then(execute: { (data: Data) -> [String:Any] in
-            // gunzip
-            guard (data as NSData).isGzippedData() else {
-                throw RequestManagerError.gzipError
-            }
-            guard let decompressedData = (data as NSData).gunzipped() else {
-                throw RequestManagerError.gzipError
-            }
-            
-            // parse json
-            guard let result = try JSONSerialization.jsonObject(with: decompressedData) as? [String: Any] else {
-                throw RequestManagerError.jsonError
-            }
-            
-            return result
-        })
-    }
-
     static func doRequestList(method: HTTPMethod,
                               url: URL,
                               parameters: Parameters? = nil,

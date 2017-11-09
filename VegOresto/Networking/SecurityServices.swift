@@ -10,7 +10,7 @@ import UIKit
 import JWT
 import Keys
 
-class SecurityServices: NSObject {
+class SecurityServices {
     static let shared: SecurityServices = SecurityServices()
 
     func getToken() -> String {

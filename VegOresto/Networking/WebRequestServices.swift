@@ -13,7 +13,7 @@ import PromiseKit
 class WebRequestServices {
 
     static func listRestaurants(url: URL) -> Promise<[Restaurant]> {
-        return RequestManager.doRequestListGzipped(method: .get, url: url).then { (result : [String : Any]) -> [Restaurant] in
+        return RequestManager.doRequestList(method: .get, url: url).then { (result : [String : Any]) -> [Restaurant] in
             let restaurants = result.values.flatMap({ (dict) -> Restaurant? in
                 guard let _dict = dict as? [String:Any] else {
                     return nil
