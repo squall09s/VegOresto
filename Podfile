@@ -17,7 +17,6 @@ target 'VegOresto' do
     pod 'Pushwoosh'
     pod 'SVPulsingAnnotationView'
     pod 'SwiftGen'
-    pod 'GZIP'
     pod 'MGSwipeTableCell'
     pod 'SwiftSpinner'
     pod 'MapleBacon'

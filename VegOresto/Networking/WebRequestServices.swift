@@ -13,7 +13,7 @@ import PromiseKit
 class WebRequestServices {
 
     static func listRestaurants(url: URL) -> Promise<[Restaurant]> {
-        return RequestManager.doRequestList(method: .get, url: url).then { (result : [String : Any]) -> [Restaurant] in
+        return RequestManager.shared.get(url: url).then { (result : [String : Any]) -> [Restaurant] in
             let restaurants = result.values.flatMap({ (dict) -> Restaurant? in
                 guard let _dict = dict as? [String:Any] else {
                     return nil
@@ -42,7 +42,7 @@ class WebRequestServices {
     }
 
     static func loadHoraires(url: URL) -> Promise<[Horaire]> {
-        return RequestManager.doRequestList(method: .get, url: url).then(execute: { (result: [String:Any]) -> [Horaire] in
+        return RequestManager.shared.get(url: url).then(execute: { (result: [String:Any]) -> [Horaire] in
             let horaires = result.values.flatMap({ (dict) -> Horaire? in
                 guard let _dict = dict as? [String:Any],
                       let horaire = Horaire(JSON: _dict) else {
@@ -55,11 +55,17 @@ class WebRequestServices {
     }
 
     static func listComments(url: URL) -> Promise<[Comment]> {
-        return RequestManager.doRequest(method: .get, url: url)
+        return RequestManager.shared.get(url: url)
     }
 
     static func postImageMedia(url: URL, image: UIImage) -> Promise<String> {
-        return RequestManager.postImageMedia(url: url, image: image)
+        return RequestManager.shared.post(url: url, image: image).then(execute: { (object: Any) -> String in
+            guard let dict = object as? [String:Any],
+                  let imageId = dict["id"] as? Int else {
+                    throw RequestManagerError.jsonError
+            }
+            return String(imageId)
+        })
     }
 
     static func uploadComment(url: URL, restaurant: Restaurant, comment: Comment) -> Promise<Comment> {
@@ -80,8 +86,9 @@ class WebRequestServices {
             parameters["parent"] = String(parentId)
         }
 
-        return RequestManager.postRequest(url: url, parameters: parameters, encoding: URLEncoding.queryString).then(execute: { (result: [String:Any]) -> Comment in
-            guard let comment = Comment(JSON: result) else {
+        return RequestManager.shared.post(url: url, parameters: parameters, encoding: URLEncoding.queryString).then(execute: { (result: Any) -> Comment in
+            guard let dict = result as? [String:Any],
+                  let comment = Comment(JSON: dict) else {
                 throw RequestManagerError.jsonError
             }
             restaurant.addComment(newComment: comment)

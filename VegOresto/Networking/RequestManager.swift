@@ -11,8 +11,8 @@ import Foundation
 import Alamofire
 import AlamofireObjectMapper
 import ObjectMapper
-import GZIP
 import PromiseKit
+import JWT
 
 extension DataRequest {
     public func responseObject<T: Mappable>(queue: DispatchQueue? = nil, keyPath: String? = nil, mapToObject object: T? = nil, context: MapContext? = nil) -> Promise<DataResponse<T>> {
@@ -51,44 +51,47 @@ enum RequestManagerError: Error {
 }
 
 class RequestManager {
-    static let manager: SessionManager = RequestManager.buildManager()
+    static let shared = RequestManager()
 
-    private static func buildManager() -> SessionManager {
+    let session: SessionManager
+    
+    public init() {
         let configuration = URLSessionConfiguration.default
         configuration.requestCachePolicy = .reloadIgnoringLocalCacheData
         configuration.httpShouldSetCookies = false
+        session = SessionManager(configuration: configuration)
+    }
+    
+    // MARK: Utils
 
-        let sessionManager = SessionManager(configuration: configuration)
-        return sessionManager
+    private func getToken() -> String {
+        let claims: [String:Any] = [
+            "iat": Date().timeIntervalSince1970,
+            "iss": APIConfig.apiClientIss
+        ]
+        let headers: [String:String] = [
+            "kid": APIConfig.apiClientId
+        ]
+        return JWT.encode(claims: claims, algorithm: .hs256(APIConfig.apiClientSecret.data(using: .utf8)!), headers: headers)
     }
 
-    static func doRequest<T: Mappable>(method: HTTPMethod,
-                          url: URL,
-                          parameters: Parameters? = nil,
-                          encoding: ParameterEncoding = URLEncoding.default,
-                          keyPath: String? = nil) -> Promise<T> {
-        return RequestManager.manager
+    // MARK: Request Methods
+    
+    public func get<T: Mappable>(url: URL, parameters: Parameters? = nil, keyPath: String? = nil) -> Promise<T> {
+        return session
             .request(url,
-                     method: method,
                      parameters: parameters,
-                     encoding: encoding,
                      headers: APIConfig.defaultHTTPHeaders())
             .validate()
             .responseObject(keyPath: keyPath).then(execute: { (response: DataResponse<T>) -> T in
                 return response.value!
             })
     }
-
-    static func doRequest<T: Mappable>(method: HTTPMethod,
-                          url: URL,
-                          parameters: Parameters? = nil,
-                          encoding: ParameterEncoding = URLEncoding.default,
-                          keyPath: String? = nil) -> Promise<[T]> {
-        return RequestManager.manager
+    
+    public func get<T: Mappable>(url: URL, parameters: Parameters? = nil, keyPath: String? = nil) -> Promise<[T]> {
+        return session
             .request(url,
-                     method: method,
                      parameters: parameters,
-                     encoding: encoding,
                      headers: APIConfig.defaultHTTPHeaders())
             .validate()
             .responseArray(keyPath: keyPath).then(execute: { (response: DataResponse<[T]>) -> [T] in
@@ -96,45 +99,17 @@ class RequestManager {
             })
     }
 
-    static func postImageMedia(url: URL, image: UIImage) -> Promise<String> {
-        // get image data
-        guard let imageData = image.jpegRepresentation(sizeLimit: 2097150) else {
-            return Promise(error: RequestManagerError.imageCreationError)
-        }
-
-        // create request
-        let headers = [
-            "Authorization": "Bearer \(SecurityServices.shared.getToken())",
-            "Content-Type": "image/jpeg",
-            "Content-Disposition": "attachment; filename=\"commentaire.jpg\"",
-        ]
-        var urlRequest = try! URLRequest(url: url, method: .post, headers: headers)
-        urlRequest.httpBody = imageData
-
-        return RequestManager.manager.request(urlRequest).responseJSON().then(execute: { (object: Any) -> String in
-            guard let dict = object as? [String:Any],
-                  let imageId = dict["id"] as? Int else {
-                throw RequestManagerError.jsonError
-            }
-            return String(imageId)
-        })
-    }
-
-    static func doRequestList(method: HTTPMethod,
-                              url: URL,
-                              parameters: Parameters? = nil,
-                              encoding: ParameterEncoding = URLEncoding.default,
-                              keyPath: String? = nil) -> Promise<[String : Any]> {
-        
-        let request = RequestManager.manager
+    public func get(url: URL, parameters: Parameters? = nil) -> Promise<Any> {
+        return session
             .request(url,
-                     method: method,
                      parameters: parameters,
-                     encoding: encoding,
                      headers: APIConfig.defaultHTTPHeaders())
             .validate()
+            .responseJSON()
+    }
 
-        return request.responseJSON().then(execute: { (responseObject: Any) -> [String:Any] in
+    public func get(url: URL, parameters: Parameters? = nil) -> Promise<[String : Any]> {
+        return get(url: url, parameters: parameters).then(execute: { (responseObject: Any) -> [String:Any] in
             guard let responseDict = responseObject as? [String:Any] else {
                 throw RequestManagerError.jsonError
             }
@@ -142,26 +117,35 @@ class RequestManager {
         })
     }
 
-    static func postRequest(url: URL,
-                            parameters: Parameters? = nil,
-                            encoding: ParameterEncoding = URLEncoding.default,
-                            keyPath: String? = nil) -> Promise<[String:Any]> {
+    public func post(url: URL, image: UIImage, filename: String = "commentaire.jpg") -> Promise<Any> {
+        // get image data
+        guard let imageData = image.jpegRepresentation(sizeLimit: 2097150) else {
+            return Promise(error: RequestManagerError.imageCreationError)
+        }
+
+        // create request
         let headers = [
-            "Authorization": "Bearer \(SecurityServices.shared.getToken())"
+            "Authorization": "Bearer \(getToken())",
+            "Content-Type": "image/jpeg",
+            "Content-Disposition": "attachment; filename=\"\(filename)\"",
         ]
-        let request = RequestManager.manager
+        var urlRequest = try! URLRequest(url: url, method: .post, headers: headers)
+        urlRequest.httpBody = imageData
+
+        return session.request(urlRequest).responseJSON()
+    }
+
+    public func post(url: URL, parameters: Parameters? = nil, encoding: ParameterEncoding = URLEncoding.default) -> Promise<Any> {
+        let headers = [
+            "Authorization": "Bearer \(getToken())"
+        ]
+        return session
             .request(url,
                      method: .post,
                      parameters: parameters,
                      encoding: encoding,
                      headers: headers)
             .validate()
-
-        return request.responseJSON().then(execute: { (object: Any) -> [String:Any] in
-            guard let dict = object as? [String:Any] else {
-                throw RequestManagerError.jsonError
-            }
-            return dict
-        })
+            .responseJSON()
     }
 }

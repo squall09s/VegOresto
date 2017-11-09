@@ -16,7 +16,6 @@
 		37D82FFA1F9F10660037CD4B /* CreateCommentStep2UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D82FF91F9F10660037CD4B /* CreateCommentStep2UserViewController.swift */; };
 		37D82FFC1F9F107A0037CD4B /* CreateCommentStep3ImagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D82FFB1F9F107A0037CD4B /* CreateCommentStep3ImagesViewController.swift */; };
 		37D82FFE1F9F10900037CD4B /* CreateCommentStep4ResumeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D82FFD1F9F10900037CD4B /* CreateCommentStep4ResumeViewController.swift */; };
-		37D830001F9F28C00037CD4B /* SecurityServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D82FFF1F9F28C00037CD4B /* SecurityServices.swift */; };
 		37DD9C081F5DE3A1007B3E2B /* Comment+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DD9C061F5DE3A1007B3E2B /* Comment+CoreDataProperties.swift */; };
 		37DD9C091F5DE3A1007B3E2B /* Restaurant+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DD9C071F5DE3A1007B3E2B /* Restaurant+CoreDataProperties.swift */; };
 		37DD9C0A1F5DE3C9007B3E2B /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398857E91CC2BA1000B05F64 /* Restaurant.swift */; };
@@ -88,7 +87,6 @@
 		37D82FF91F9F10660037CD4B /* CreateCommentStep2UserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CreateCommentStep2UserViewController.swift; path = Comment/CreateCommentStep2UserViewController.swift; sourceTree = "<group>"; };
 		37D82FFB1F9F107A0037CD4B /* CreateCommentStep3ImagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CreateCommentStep3ImagesViewController.swift; path = Comment/CreateCommentStep3ImagesViewController.swift; sourceTree = "<group>"; };
 		37D82FFD1F9F10900037CD4B /* CreateCommentStep4ResumeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CreateCommentStep4ResumeViewController.swift; path = Comment/CreateCommentStep4ResumeViewController.swift; sourceTree = "<group>"; };
-		37D82FFF1F9F28C00037CD4B /* SecurityServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecurityServices.swift; sourceTree = "<group>"; };
 		37DD9C061F5DE3A1007B3E2B /* Comment+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Comment+CoreDataProperties.swift"; path = "NSManagedObject/Comment+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		37DD9C071F5DE3A1007B3E2B /* Restaurant+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Restaurant+CoreDataProperties.swift"; path = "NSManagedObject/Restaurant+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		37E9D7A71F6EE42700D39672 /* Horaire.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Horaire.swift; path = NSManagedObject/Horaire.swift; sourceTree = "<group>"; };
@@ -344,7 +342,6 @@
 		AEE7808E1FB3293A00022F38 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				37D82FFF1F9F28C00037CD4B /* SecurityServices.swift */,
 				37F880231FADF6F100F34F78 /* RequestManager.swift */,
 				37F8801F1FADF5FB00F34F78 /* WebRequestServices.swift */,
 				37F880201FADF5FC00F34F78 /* WebRequestManager.swift */,
@@ -487,7 +484,6 @@
 				"${BUILT_PRODUCTS_DIR}/BEMCheckBox/BEMCheckBox.framework",
 				"${BUILT_PRODUCTS_DIR}/DGElasticPullToRefresh/DGElasticPullToRefresh.framework",
 				"${BUILT_PRODUCTS_DIR}/FaveButton/FaveButton.framework",
-				"${BUILT_PRODUCTS_DIR}/GZIP/GZIP.framework",
 				"${BUILT_PRODUCTS_DIR}/ImagePicker/ImagePicker.framework",
 				"${BUILT_PRODUCTS_DIR}/JSONWebToken/JWT.framework",
 				"${BUILT_PRODUCTS_DIR}/Kanna/Kanna.framework",
@@ -514,7 +510,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BEMCheckBox.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DGElasticPullToRefresh.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FaveButton.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GZIP.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ImagePicker.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JWT.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kanna.framework",
@@ -585,7 +580,6 @@
 				39EC80061CAD5ED2002AD862 /* RestaurantAnnotation.swift in Sources */,
 				39968D3F1CABFFBB0085C61F /* AppDelegate.swift in Sources */,
 				37E9D7AA1F6EE42700D39672 /* Horaire+CoreDataProperties.swift in Sources */,
-				37D830001F9F28C00037CD4B /* SecurityServices.swift in Sources */,
 				398AA7E51D17F90600FA7E0A /* LGSideMenuController.m in Sources */,
 				AEE780921FB4489800022F38 /* Deeplinking.swift in Sources */,
 				39848B081CB4231300D718FD /* NavigationAccueilViewController.swift in Sources */,
