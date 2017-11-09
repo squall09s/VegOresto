@@ -250,7 +250,7 @@ class RechercheViewController: VGAbstractFilterViewController, UITableViewDelega
 
     func loadRestaurantsWithWord(key: String?) {
 
-        self.array_restaurants = UserData.sharedInstance.getRestaurants()
+        self.array_restaurants = UserData.shared.getRestaurants()
 
         if self.afficherUniquementFavoris {
 

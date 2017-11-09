@@ -325,7 +325,7 @@ class Restaurant: NSManagedObject, Mappable {
     required init?(map: Map) {
         assert(Thread.isMainThread)
         
-        let context = UserData.sharedInstance.viewContext
+        let context = UserData.shared.viewContext
         let entity = NSEntityDescription.entity(forEntityName: "Restaurant", in: context)
         super.init(entity: entity!, insertInto: context)
         mapping(map: map)

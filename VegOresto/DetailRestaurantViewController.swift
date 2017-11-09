@@ -90,7 +90,7 @@ class DetailRestaurantViewController: UIViewController, UIScrollViewDelegate {
 
             self.varIB_label_moyens_de_paiement?.text = _current_restaurant.moyens_de_paiement
 
-            if let horaire = UserData.sharedInstance.getHoraire(restaurant: _current_restaurant) {
+            if let horaire = UserData.shared.getHoraire(restaurant: _current_restaurant) {
                 self.varIB_label_h_lundi?.text = ((horaire.dataL ?? "").count > 0) ? horaire.dataL : "Fermé"
                 self.varIB_label_h_mardi?.text = ((horaire.dataMa ?? "").count > 0) ? horaire.dataMa : "Fermé"
                 self.varIB_label_h_mercredi?.text = ((horaire.dataMe ?? "").count > 0) ? horaire.dataMe : "Fermé"

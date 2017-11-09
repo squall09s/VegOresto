@@ -272,7 +272,7 @@ class MapsViewController: VGAbstractFilterViewController, MKMapViewDelegate {
     }
 
     override func updateData() {
-        let annotations = UserData.sharedInstance.getRestaurants().filter({ (restaurant: Restaurant) -> Bool in
+        let annotations = UserData.shared.getRestaurants().filter({ (restaurant: Restaurant) -> Bool in
             if self.filtre_categorie_VeganFriendly_active && self.filtre_categorie_Vegetarien_active && self.filtre_categorie_Vegan_active {
                 return true
             } else {

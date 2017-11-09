@@ -17,7 +17,7 @@ class CategorieCulinaire: NSManagedObject {
     }
 
     static func createCategorie(for restaurant: Restaurant, catname: String) {
-        let context = UserData.sharedInstance.viewContext
+        let context = UserData.shared.viewContext
         let entity =  NSEntityDescription.entity(forEntityName: "CategorieCulinaire", in: context)
 
         if let category = (NSManagedObject(entity: entity!, insertInto: context) as? CategorieCulinaire) {

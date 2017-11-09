@@ -50,7 +50,7 @@ class NavigationAccueilViewController: UIViewController {
     }
 
     func updateData(forced: Bool = false) -> Promise<Void> {
-        return UserData.sharedInstance.updateDatabaseIfNeeded(forced: forced).then { () -> Void in
+        return UserData.shared.updateDatabaseIfNeeded(forced: forced).then { () -> Void in
             self.maps_viewController?.updateDataAfterDelay()
             self.recherche_viewController?.updateDataAfterDelay()
             

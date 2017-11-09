@@ -15,8 +15,7 @@ import PromiseKit
 
 class UserData {
 
-    // @TODO rename to "shared" (more Swifty)
-    static let sharedInstance = UserData()
+    static let shared = UserData()
 
     // MARK: Core Data
     

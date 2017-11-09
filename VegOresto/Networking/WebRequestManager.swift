@@ -25,7 +25,7 @@ class WebRequestManager {
                     return nil
                 }
                 let restaurantId = (_dict["id"] as? NSNumber)?.intValue ?? -1
-                if let restaurant = UserData.sharedInstance.getRestaurant(identifier: restaurantId) {
+                if let restaurant = UserData.shared.getRestaurant(identifier: restaurantId) {
                     restaurant.mapping(map: Map(mappingType: .fromJSON, JSON: _dict))
                     return restaurant
                 } else if let restaurant = Restaurant(JSON: _dict) {
@@ -35,7 +35,7 @@ class WebRequestManager {
             })
 
             // save context
-            UserData.sharedInstance.saveContext()
+            UserData.shared.saveContext()
 
             return restaurants
         }
@@ -60,7 +60,7 @@ class WebRequestManager {
         return RequestManager.shared.get(url: url).then(execute: { (comments: [Comment]) -> [Comment] in
             
             assert(Thread.isMainThread)
-            let context = UserData.sharedInstance.viewContext
+            let context = UserData.shared.viewContext
             
             // remove old comments
             for comment in restaurant.getCommentsAsArray() ?? [] {

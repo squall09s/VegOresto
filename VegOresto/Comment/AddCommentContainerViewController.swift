@@ -207,7 +207,7 @@ class AddCommentContainerViewController: UIViewController, UIScrollViewDelegate 
         assert(Thread.isMainThread)
 
         // create comment object
-        let context = UserData.sharedInstance.viewContext
+        let context = UserData.shared.viewContext
         let entity =  NSEntityDescription.entity(forEntityName: "Comment", in: context)!
         guard let comment = NSManagedObject(entity: entity, insertInto: context) as? Comment else {
             return
