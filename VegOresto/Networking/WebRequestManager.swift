@@ -20,7 +20,7 @@ class WebRequestManager {
     public func listRestaurants() -> Promise<[Restaurant]> {
         let url = getUrl("/wp-json/vg/v1/restos.json")
         return RequestManager.shared.get(url: url).then { (result : [String : Any]) -> [Restaurant] in
-            let restaurants = result.values.flatMap({ (dict) -> Restaurant? in
+            let restaurants = Array(result.values).flatMap({ (dict) -> Restaurant? in
                 guard let _dict = dict as? [String:Any] else {
                     return nil
                 }
@@ -33,17 +33,11 @@ class WebRequestManager {
                 }
                 return nil
             })
-            
-            // try to save the context
-            do {
-                try UserData.sharedInstance.managedContext.save()
-            } catch {
-                let nserror = error as NSError
-                Debug.log(object: "listRestaurant : saveContext - Unresolved error \(nserror), \(nserror.userInfo)")
-                abort()
-            }
-            
-            return Array(restaurants)
+
+            // save context
+            UserData.sharedInstance.saveContext()
+
+            return restaurants
         }
     }
     
@@ -64,9 +58,13 @@ class WebRequestManager {
     public func listComments(restaurant: Restaurant) -> Promise<[Comment]> {
         let url = getUrl("/wp-json/wp/v2/comments?post=\(restaurant.identifier?.intValue ?? 0)")
         return RequestManager.shared.get(url: url).then(execute: { (comments: [Comment]) -> [Comment] in
+            
+            assert(Thread.isMainThread)
+            let context = UserData.sharedInstance.viewContext
+            
             // remove old comments
             for comment in restaurant.getCommentsAsArray() ?? [] {
-                UserData.sharedInstance.managedContext.delete(comment)
+                context.delete(comment)
             }
             
             // map to restaurant

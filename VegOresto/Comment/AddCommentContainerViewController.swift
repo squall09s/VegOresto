@@ -204,9 +204,12 @@ class AddCommentContainerViewController: UIViewController, UIScrollViewDelegate 
             return
         }
 
+        assert(Thread.isMainThread)
+
         // create comment object
-        let entityComment =  NSEntityDescription.entity(forEntityName: "Comment", in: UserData.sharedInstance.managedContext)!
-        guard let comment = NSManagedObject(entity: entityComment, insertInto: UserData.sharedInstance.managedContext) as? Comment else {
+        let context = UserData.sharedInstance.viewContext
+        let entity =  NSEntityDescription.entity(forEntityName: "Comment", in: context)!
+        guard let comment = NSManagedObject(entity: entity, insertInto: context) as? Comment else {
             return
         }
         comment.time = "01/02/1990"

@@ -21,133 +21,10 @@ enum CategorieRestaurant {
 @objc(Restaurant)
 class Restaurant: NSManagedObject, Mappable {
 
-    // Insert code here to add functionality to your managed object subclass
-
     var distance: Double = -1
-
+    
     override init(entity: NSEntityDescription, insertInto context: NSManagedObjectContext?) {
-
-        super.init(entity: entity, insertInto: UserData.sharedInstance.managedContext)
-    }
-
-    required init?(map: Map) {
-
-        let ctx = UserData.sharedInstance.managedContext
-        let entity = NSEntityDescription.entity(forEntityName: "Restaurant", in: ctx)
-
-        super.init(entity: entity!, insertInto: ctx)
-
-        mapping(map: map)
-
-    }
-
-    func mapping(map: Map) {
-
-        identifier <-  map["id"]
-        name <-  map["title"]
-        ville <-  map["ville"]
-
-        if let _img: [String] = map.JSON["thumbnails"] as? [String] {
-
-            var image_str_array = ""
-
-            var _index = 0
-            for _imgTmp: String in _img {
-
-                if _index == 0 {
-                    image_str_array = _imgTmp
-                } else {
-                    image_str_array += ( "|" + _imgTmp)
-                }
-
-                _index += 1
-            }
-
-            self.image = image_str_array
-        }
-
-        phone <- map["tel_public"]
-        montant_moyen <- map["prix"]
-
-        self.facebook <- map["fb"]
-        self.website <- map["site"]
-        self.mail <- map["email"]
-
-        self.address <- map["adresse"]
-        self.address = cleanHTMLString(str: self.address ?? "")
-
-        self.resume <- map["accroche"]
-        self.resume = cleanHTMLString(str: self.resume ?? "")
-
-        self.montant_moyen <- map["prix"]
-
-        self.updateDataMontantMoyen()
-
-        self.absolute_url <- map["permalink"]
-        self.type_etablissement <- map["type"]
-        self.updateDataTypeEtablissement()
-
-        if let _cat = map.JSON["cat"] as? [String] {
-
-            categoriesCulinaire = NSSet()
-
-            for currentCat in _cat {
-                CategorieCulinaire.createCategorie(for: self, catname: self.updateDataCategorieCulinaire(_cat:  currentCat) )
-            }
-        }
-
-        if let _gast = map.JSON["gastr"] as? [String] {
-
-            self.updateDataInfluenceGastro(influances: _gast)
-        }
-
-        if let _moyensPaiement = map.JSON["payment"] as? [String] {
-
-            self.updateDataMoyensDePaiement(moyensPaiement: _moyensPaiement)
-        }
-
-         if let _ambiances = map.JSON["ambiance"] as? [String] {
-                self.updateDataTypeAmbiance(ambiances: _ambiances)
-         }
-
-        if let _votes = map.JSON["votes"] as? [String : Any] {
-
-            if let _avg = _votes["avg"] as? Double {
-                self.rating = NSNumber(value: _avg)
-            }
-        }
-
-        if let _lon = map.JSON["lon"] as? Double,
-           let _lat = map.JSON["lat"] as? Double {
-            self.lat = NSNumber(value: _lat)
-            self.lon = NSNumber(value: _lon)
-            if let _radius = map.JSON["rad"] as? Double {
-                self.radius = NSNumber(value: _radius)
-            } else {
-                self.radius = NSNumber(value: 0)
-            }
-        }
-
-        if let _anim = map.JSON["anim"] as? String {
-
-            self.animaux_bienvenus = NSNumber(value: (_anim == "oui") )
-
-        } else {
-
-            self.animaux_bienvenus = NSNumber(value: false )
-        }
-
-        if let _veg = map.JSON["vegan"] as? Int {
-
-            self.isVegan = NSNumber(value: (_veg == 1) )
-
-        } else {
-
-            self.isVegan = NSNumber(value: false )
-        }
-
-        comments =  NSSet()
-
+        super.init(entity: entity, insertInto: context)
     }
 
     func addCategorieCulinaire(newCategorie: CategorieCulinaire) {
@@ -441,5 +318,124 @@ class Restaurant: NSManagedObject, Mappable {
             return CLLocationCoordinate2DMake(latitude, longitude)
         }
         return nil
+    }
+    
+    // MARK: Mapping
+
+    required init?(map: Map) {
+        assert(Thread.isMainThread)
+        
+        let context = UserData.sharedInstance.viewContext
+        let entity = NSEntityDescription.entity(forEntityName: "Restaurant", in: context)
+        super.init(entity: entity!, insertInto: context)
+        mapping(map: map)
+    }
+    
+    func mapping(map: Map) {
+        
+        identifier <-  map["id"]
+        name <-  map["title"]
+        ville <-  map["ville"]
+        
+        if let _img: [String] = map.JSON["thumbnails"] as? [String] {
+            
+            var image_str_array = ""
+            
+            var _index = 0
+            for _imgTmp: String in _img {
+                
+                if _index == 0 {
+                    image_str_array = _imgTmp
+                } else {
+                    image_str_array += ( "|" + _imgTmp)
+                }
+                
+                _index += 1
+            }
+            
+            self.image = image_str_array
+        }
+        
+        phone <- map["tel_public"]
+        montant_moyen <- map["prix"]
+        
+        self.facebook <- map["fb"]
+        self.website <- map["site"]
+        self.mail <- map["email"]
+        
+        self.address <- map["adresse"]
+        self.address = cleanHTMLString(str: self.address ?? "")
+        
+        self.resume <- map["accroche"]
+        self.resume = cleanHTMLString(str: self.resume ?? "")
+        
+        self.montant_moyen <- map["prix"]
+        
+        self.updateDataMontantMoyen()
+        
+        self.absolute_url <- map["permalink"]
+        self.type_etablissement <- map["type"]
+        self.updateDataTypeEtablissement()
+        
+        if let _cat = map.JSON["cat"] as? [String] {
+            
+            categoriesCulinaire = NSSet()
+            
+            for currentCat in _cat {
+                CategorieCulinaire.createCategorie(for: self, catname: self.updateDataCategorieCulinaire(_cat:  currentCat) )
+            }
+        }
+        
+        if let _gast = map.JSON["gastr"] as? [String] {
+            
+            self.updateDataInfluenceGastro(influances: _gast)
+        }
+        
+        if let _moyensPaiement = map.JSON["payment"] as? [String] {
+            
+            self.updateDataMoyensDePaiement(moyensPaiement: _moyensPaiement)
+        }
+        
+        if let _ambiances = map.JSON["ambiance"] as? [String] {
+            self.updateDataTypeAmbiance(ambiances: _ambiances)
+        }
+        
+        if let _votes = map.JSON["votes"] as? [String : Any] {
+            
+            if let _avg = _votes["avg"] as? Double {
+                self.rating = NSNumber(value: _avg)
+            }
+        }
+        
+        if let _lon = map.JSON["lon"] as? Double,
+            let _lat = map.JSON["lat"] as? Double {
+            self.lat = NSNumber(value: _lat)
+            self.lon = NSNumber(value: _lon)
+            if let _radius = map.JSON["rad"] as? Double {
+                self.radius = NSNumber(value: _radius)
+            } else {
+                self.radius = NSNumber(value: 0)
+            }
+        }
+        
+        if let _anim = map.JSON["anim"] as? String {
+            
+            self.animaux_bienvenus = NSNumber(value: (_anim == "oui") )
+            
+        } else {
+            
+            self.animaux_bienvenus = NSNumber(value: false )
+        }
+        
+        if let _veg = map.JSON["vegan"] as? Int {
+            
+            self.isVegan = NSNumber(value: (_veg == 1) )
+            
+        } else {
+            
+            self.isVegan = NSNumber(value: false )
+        }
+        
+        comments =  NSSet()
     }
 }

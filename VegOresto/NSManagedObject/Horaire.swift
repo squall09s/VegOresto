@@ -12,50 +12,49 @@ import ObjectMapper
 
 @objc(Horaire)
 class Horaire: NSManagedObject, Mappable {
-
+    
     override init(entity: NSEntityDescription, insertInto context: NSManagedObjectContext?) {
-
-        super.init(entity: entity, insertInto: UserData.sharedInstance.managedContext)
+        super.init(entity: entity, insertInto: context)
     }
+    
+    // MARK: Mapping
 
     required init?(map: Map) {
+        assert(Thread.isMainThread)
 
-        let ctx = UserData.sharedInstance.managedContext
-        let entity = NSEntityDescription.entity(forEntityName: "Horaire", in: ctx)
-
-        super.init(entity: entity!, insertInto: ctx)
-
+        let context = UserData.sharedInstance.viewContext
+        let entity = NSEntityDescription.entity(forEntityName: "Horaire", in: context)
+        super.init(entity: entity!, insertInto: context)
         mapping(map: map)
-
     }
 
     func mapping(map: Map) {
-
+        
         self.idResto <-  map["id"]
-
+        
         for identDay in ["l", "m", "M", "j", "v", "s", "d"] {
-
+            
             var strData = ""
-
+            
             if let newData = map[identDay].currentValue as? [[ String : Any ]] {
-
+                
                 for step in newData {
-
+                    
                     if let stepS = step["s"] as? String, let stepE = step["e"] as? String {
-
+                        
                         var stepStrData = "de \(stepS) à \( stepE)"
-
+                        
                         if strData.count > 0 {
                             stepStrData = " et " + stepStrData
                         }
-
+                        
                         strData += stepStrData
-
+                        
                     }
                 }
-
+                
             }
-
+            
             switch identDay {
             case "l":
                 self.dataL = strData
@@ -71,13 +70,11 @@ class Horaire: NSManagedObject, Mappable {
                 self.dataS = strData
             case "d":
                 self.dataD = strData
-
+                
             default:
                 break
             }
-
+            
         }
-
     }
-
 }

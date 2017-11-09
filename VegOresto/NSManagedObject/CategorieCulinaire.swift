@@ -11,29 +11,26 @@ import CoreData
 
 @objc(CategorieCulinaire)
 class CategorieCulinaire: NSManagedObject {
-
-// Insert code here to add functionality to your managed object subclass
+    
+    override init(entity: NSEntityDescription, insertInto context: NSManagedObjectContext?) {
+        super.init(entity: entity, insertInto: context)
+    }
 
     static func createCategorie(for restaurant: Restaurant, catname: String) {
+        let context = UserData.sharedInstance.viewContext
+        let entity =  NSEntityDescription.entity(forEntityName: "CategorieCulinaire", in: context)
 
-        let entityCategorieCulinaire =  NSEntityDescription.entity(forEntityName: "CategorieCulinaire", in: UserData.sharedInstance.managedContext)
+        if let category = (NSManagedObject(entity: entity!, insertInto: context) as? CategorieCulinaire) {
+            category.name = catname
+            category.restaurants = NSSet()
 
-        if let new_cat = (NSManagedObject(entity: entityCategorieCulinaire!, insertInto: UserData.sharedInstance.managedContext) as? CategorieCulinaire) {
-
-            new_cat.name = catname
-            new_cat.restaurants = NSSet()
-
-            restaurant.addCategorieCulinaire(newCategorie: new_cat)
-            new_cat.addRestaurant(restaurant: restaurant)
-
+            restaurant.addCategorieCulinaire(newCategorie: category)
+            category.addRestaurant(restaurant: restaurant)
         }
-
     }
 
     func addRestaurant(restaurant: Restaurant) {
-
         let restaurants = self.mutableSetValue(forKey: "restaurants")
         restaurants.add(restaurant)
-
     }
 }

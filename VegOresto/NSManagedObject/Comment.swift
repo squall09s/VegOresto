@@ -20,21 +20,20 @@ class Comment: NSManagedObject, Mappable {
     @NSManaged var elements: NSSet?
 
     private var elementsArray: [Image]?
-
+    
     override init(entity: NSEntityDescription, insertInto context: NSManagedObjectContext?) {
-
-        super.init(entity: entity, insertInto: UserData.sharedInstance.managedContext)
+        super.init(entity: entity, insertInto: context)
     }
+    
+    // MARK: Mapping
 
     required init?(map: Map) {
+        assert(Thread.isMainThread)
 
-        let ctx = UserData.sharedInstance.managedContext
-        let entity = NSEntityDescription.entity(forEntityName: "Comment", in: ctx)
-
-        super.init(entity: entity!, insertInto: ctx)
-
+        let context = UserData.sharedInstance.viewContext
+        let entity = NSEntityDescription.entity(forEntityName: "Comment", in: context)
+        super.init(entity: entity!, insertInto: context)
         mapping(map: map)
-
     }
 
     func mapping(map: Map) {
@@ -54,17 +53,10 @@ class Comment: NSManagedObject, Mappable {
         status <- map["status"]
         rating <- map["vote"]
 
-        if let _firstImageDico: [String : Any] = ((map.JSON["images"] as? [Any])?.first as? [String : Any]) {
-
-            if let _dicoFirstImageDetail = _firstImageDico["com_illu"] as? [String : Any] {
-
-                if let urlImage = _dicoFirstImageDetail["url"] as? String {
-
-                    imageUrl = urlImage
-
-                }
-            }
+        if let _firstImageDico: [String : Any] = ((map.JSON["images"] as? [Any])?.first as? [String : Any]),
+           let _dicoFirstImageDetail = _firstImageDico["com_illu"] as? [String : Any],
+           let urlImage = _dicoFirstImageDetail["url"] as? String {
+            self.imageUrl = urlImage
         }
     }
-
 }

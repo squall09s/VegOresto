@@ -261,10 +261,10 @@
 		397901751CADC62900597DCD /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				37E9D7A71F6EE42700D39672 /* Horaire.swift */,
-				37E9D7A81F6EE42700D39672 /* Horaire+CoreDataProperties.swift */,
 				398857E91CC2BA1000B05F64 /* Restaurant.swift */,
 				37DD9C071F5DE3A1007B3E2B /* Restaurant+CoreDataProperties.swift */,
+				37E9D7A71F6EE42700D39672 /* Horaire.swift */,
+				37E9D7A81F6EE42700D39672 /* Horaire+CoreDataProperties.swift */,
 				39610F541E1DBF4A005F7053 /* Comment.swift */,
 				37DD9C061F5DE3A1007B3E2B /* Comment+CoreDataProperties.swift */,
 				398857E51CC2B97600B05F64 /* CategorieCulinaire.swift */,
