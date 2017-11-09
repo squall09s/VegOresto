@@ -284,9 +284,6 @@ class DetailRestaurantViewController: UIViewController, UIScrollViewDelegate {
     @IBAction func touch_bt_maps(sender: AnyObject) {
 
         if let latitude = self.current_restaurant?.lat?.doubleValue, let longitude = self.current_restaurant?.lon?.doubleValue {
-
-            let userLocation = UserData.sharedInstance.location
-
             let alert = UIAlertController(title: "C'est parti !",
                                           message: "Ouvrir l'itinéraire vers ce restaurant ?",
                                           preferredStyle: .alert)

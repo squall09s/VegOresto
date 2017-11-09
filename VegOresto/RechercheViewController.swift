@@ -337,26 +337,18 @@ class RechercheViewController: VGAbstractFilterViewController, UITableViewDelega
     }
 
     func update_resultats_for_user_location() {
-
-        if let location = UserData.sharedInstance.location {
-
+        if let location = UserLocationManager.shared.location {
             for restaurant in self.array_restaurants {
-
-                restaurant.update_distance_avec_localisation( seconde_localisation: location )
+                restaurant.update_distance_avec_localisation(seconde_localisation: location)
             }
 
             self.array_restaurants.sort(by: { (restaurantA, restaurantB) -> Bool in
-
                 restaurantA.distance < restaurantB.distance
-
             })
 
             self.varIB_tableView?.reloadData()
-
             self.varIB_tableView?.scrollRectToVisible(CGRect(x: 0, y: 0, width: 1, height: 1), animated: false)
-
         }
-
     }
 
     func updateDataAfterDelay() {

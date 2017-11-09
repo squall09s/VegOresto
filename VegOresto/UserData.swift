@@ -9,35 +9,19 @@
 import SwiftSpinner
 import UIKit
 import CoreData
-import CoreLocation
 import Alamofire
 import GZIP
 import Kanna
 import PromiseKit
 
-class UserData: NSObject, CLLocationManagerDelegate {
+class UserData {
 
     static let sharedInstance = UserData()
-
-    private var locationmanager: CLLocationManager?
-
-    var location: CLLocationCoordinate2D?
 
     //var allRestaurants: [Int : Restaurant] = [Int: Restaurant]()
 
     // swiftlint:disable:next force_cast
     var managedContext = ( UIApplication.shared.delegate as! AppDelegate ).managedObjectContext
-
-    private override init() {
-
-        super.init()
-
-        self.locationmanager = CLLocationManager()
-        self.locationmanager?.requestWhenInUseAuthorization()
-        self.locationmanager?.startUpdatingLocation()
-        self.locationmanager?.delegate = self
-
-    }
 
     public func updateDatabaseIfNeeded(forced: Bool = false) -> Promise<Void> {
         // do we need to update?
@@ -74,90 +58,28 @@ class UserData: NSObject, CLLocationManagerDelegate {
     }
 
     func saveSynchroDate() {
-
         let defaults = UserDefaults.standard
-
         defaults.set( Date(), forKey: KEY_LAST_SYNCHRO)
+    }
 
+    private func safeFetch<T: NSManagedObject>(_ fetchRequest: NSFetchRequest<T>) -> [T] {
+        do {
+            return try self.managedContext.fetch(fetchRequest)
+        }
+        catch let e {
+            debugPrint("Fetch request failed: \((e as NSError).localizedDescription)")
+            return [T]()
+        }
     }
 
     func getRestaurants() -> [Restaurant] {
-
         let fetchRequest: NSFetchRequest<Restaurant> = NSFetchRequest(entityName: "Restaurant")
-
-        do {
-
-            let results = try self.managedContext.fetch(fetchRequest )
-
-            return results
-
-        } catch _ {
-
-            return [Restaurant]()
-
-        }
-
+        return safeFetch(fetchRequest)
     }
 
     func getHoraires() -> [Horaire] {
-
         let fetchRequest: NSFetchRequest<Horaire> = NSFetchRequest(entityName: "Horaire")
-
-        do {
-
-            let results = try self.managedContext.fetch(fetchRequest )
-
-            return results
-
-        } catch _ {
-
-            return [Horaire]()
-
-        }
-
-    }
-
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-
-        self.locationmanager?.stopUpdatingLocation()
-
-        Debug.log(object: error)
-
-    }
-
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-
-        if let location = locations.last {
-
-            self.location = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-        }
-    }
-
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-
-        var shouldIAllow = false
-
-        switch status {
-        case CLAuthorizationStatus.restricted:
-            Debug.log( object: "Restricted Access to location")
-        case CLAuthorizationStatus.denied:
-            Debug.log( object: "User denied access to location")
-        case CLAuthorizationStatus.notDetermined:
-            Debug.log( object: "Status not determined")
-        default:
-
-            Debug.log( object: "Allowed to location Access")
-            shouldIAllow = true
-        }
-
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "LabelHasbeenUpdated"), object: nil)
-
-        if shouldIAllow == true {
-
-            Debug.log(object: "Location to Allowed")
-
-            self.locationmanager?.startUpdatingLocation()
-        }
+        return safeFetch(fetchRequest)
     }
 
     func cleanString(str: String) -> String {

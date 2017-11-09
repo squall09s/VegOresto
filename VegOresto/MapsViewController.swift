@@ -265,14 +265,9 @@ class MapsViewController: VGAbstractFilterViewController, MKMapViewDelegate {
     }
 
     func update_region_for_user_location() {
-
-        if let location = UserData.sharedInstance.location {
-
-            let center = CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)
-            let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
-
+        if let location = UserLocationManager.shared.location {
+            let region = MKCoordinateRegion(center: location, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
             self.varIB_mapView?.setRegion(region, animated: true)
-
         }
     }
 
