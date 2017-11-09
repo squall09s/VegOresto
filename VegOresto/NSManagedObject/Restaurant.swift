@@ -33,22 +33,22 @@ class Restaurant: NSManagedObject, Mappable {
         categoriesCulinaire.add(newCategorie)
 
     }
-
-    func addComment(newComment: Comment) {
-
+    
+    public func addComment(newComment: Comment) {
         let comments = self.mutableSetValue(forKey: "comments")
         comments.add(newComment)
-
     }
 
+    // @TODO maybe a var?
     public func getComments() -> [Comment] {
-        return (self.comments?.allObjects as? [Comment]) ?? []
+        return (self.comments.array as? [Comment]) ?? []
     }
 
+    // @TODO maybe a var?
     func getCategoriesCulinaireAsArray() -> [CategorieCulinaire]? {
 
         var tmpCategorieCulinaires: [CategorieCulinaire]?
-        tmpCategorieCulinaires = (self.categoriesCulinaire?.allObjects) as? [CategorieCulinaire]
+        tmpCategorieCulinaires = (self.categoriesCulinaire.allObjects) as? [CategorieCulinaire]
 
         return tmpCategorieCulinaires
     }
@@ -64,6 +64,7 @@ class Restaurant: NSManagedObject, Mappable {
         }
     }
 
+    // @TODO fix typo in the func name
     func is_glutonFree() -> Bool {
 
         let array_cats: [CategorieCulinaire] = self.getCategoriesCulinaireAsArray() ?? []
@@ -82,6 +83,7 @@ class Restaurant: NSManagedObject, Mappable {
 
     }
 
+    // @TODO maybe a var?
     func categorie() -> CategorieRestaurant {
 
         let array_cats = self.getCategoriesCulinaireAsArray() ?? []
@@ -432,6 +434,6 @@ class Restaurant: NSManagedObject, Mappable {
             self.isVegan = NSNumber(value: false )
         }
         
-        comments =  NSSet()
+        self.comments =  NSOrderedSet()
     }
 }

@@ -57,23 +57,21 @@ class WebRequestManager {
     public func loadComments(restaurant: Restaurant) -> Promise<[Comment]> {
         let url = getUrl("/wp-json/wp/v2/comments?post=\(restaurant.identifier?.intValue ?? 0)")
         return RequestManager.shared.get(url: url).then(execute: { (comments: [Comment]) -> [Comment] in
-            
             assert(Thread.isMainThread)
-            let context = UserData.shared.viewContext
             
             // remove old comments
-            for comment in restaurant.getComments() {
+            let context = UserData.shared.viewContext
+            let toDelete = Set(restaurant.getComments()).subtracting(comments)
+            for comment in toDelete {
                 context.delete(comment)
             }
             
-            // map to restaurant
-            for comment in comments {
-                comment.restaurant = restaurant
-            }
-            
-            // set restaurant comments
-            restaurant.comments = NSSet(array: comments)
-            
+            // set comments to restaurants
+            restaurant.comments = NSOrderedSet(array: comments)
+
+            // save context
+            UserData.shared.saveContext()
+
             return comments
         })
     }

@@ -1,5 +1,5 @@
 //
-//  CategorieCulinaire
+//  Comment
 //  VegOresto
 //
 //  Created by Laurent Nicolas on 16/04/2016.

@@ -16,6 +16,7 @@ class CategorieCulinaire: NSManagedObject {
         super.init(entity: entity, insertInto: context)
     }
 
+    // @TODO: rename, we don't always create a new category here
     static func createCategorie(for restaurant: Restaurant, catname: String) {
         let context = UserData.shared.viewContext
         let entity =  NSEntityDescription.entity(forEntityName: "CategorieCulinaire", in: context)

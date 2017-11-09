@@ -29,8 +29,8 @@ extension Restaurant {
     @NSManaged var facebook: String?
     @NSManaged var website: String?
     @NSManaged var montant_moyen: String?
-    @NSManaged var categoriesCulinaire: NSSet?
-    @NSManaged var comments: NSSet?
+    @NSManaged var categoriesCulinaire: NSSet
+    @NSManaged var comments: NSOrderedSet
     @NSManaged var moyens_de_paiement: String?
     @NSManaged var animaux_bienvenus: NSNumber?
     @NSManaged var favoris: NSNumber

@@ -15,6 +15,6 @@ import CoreData
 extension CategorieCulinaire {
 
     @NSManaged var name: String?
-    @NSManaged var restaurants: NSSet?
+    @NSManaged var restaurants: NSSet
 
 }
