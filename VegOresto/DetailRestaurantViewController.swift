@@ -395,18 +395,10 @@ class DetailRestaurantViewController: UIViewController, UIScrollViewDelegate {
         Deeplinking.openWebsite(url: facebookPageUrl)
     }
 
-    func updateLabelComment() {
-
-        if let nbComment = self.current_restaurant?.getCommentsAsArray()?.count {
-
-            if nbComment > 0 {
-                self.varIB_label_number_comment?.text = "Tous les avis [\(nbComment)]"
-            } else {
-                self.varIB_label_number_comment?.text = "Aucun avis pour le moment"
-            }
-
+    private func updateLabelComment() {
+        if let nbComment = self.current_restaurant?.getComments().count, nbComment > 0 {
+            self.varIB_label_number_comment?.text = "Tous les avis [\(nbComment)]"
         } else {
-
             self.varIB_label_number_comment?.text = "Aucun avis pour le moment"
         }
     }

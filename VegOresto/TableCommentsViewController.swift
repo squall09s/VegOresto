@@ -196,12 +196,14 @@ class TableCommentsViewController: UIViewController, UITableViewDelegate, UITabl
     }
 
     func refreshData() {
+        guard let restaurant = self.currentRestaurant else {
+            return
+        }
 
         var rootsComment = [Comment]()
         var childsComment = [Comment]()
 
-        for tmpComment in self.currentRestaurant?.getCommentsAsArray() ?? [] {
-
+        for tmpComment in restaurant.getComments() {
             if (tmpComment.parentId?.intValue ?? 0) <= 0 {
                 rootsComment.append(tmpComment)
             } else {

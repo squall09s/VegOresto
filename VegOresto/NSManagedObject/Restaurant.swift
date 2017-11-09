@@ -41,12 +41,8 @@ class Restaurant: NSManagedObject, Mappable {
 
     }
 
-    func getCommentsAsArray() -> [Comment]? {
-
-        var tmpComments: [Comment]?
-        tmpComments = (self.comments?.allObjects) as? [Comment]
-
-        return tmpComments
+    public func getComments() -> [Comment] {
+        return (self.comments?.allObjects as? [Comment]) ?? []
     }
 
     func getCategoriesCulinaireAsArray() -> [CategorieCulinaire]? {
