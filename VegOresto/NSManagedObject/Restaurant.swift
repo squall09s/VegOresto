@@ -45,13 +45,8 @@ class Restaurant: NSManagedObject, Mappable {
         return (self.comments.array as? [Comment]) ?? []
     }
 
-    // @TODO maybe a var?
-    func getCategoriesCulinaireAsArray() -> [CategorieCulinaire]? {
-
-        var tmpCategorieCulinaires: [CategorieCulinaire]?
-        tmpCategorieCulinaires = (self.categoriesCulinaire.allObjects) as? [CategorieCulinaire]
-
-        return tmpCategorieCulinaires
+    public var categoriesCulinairesArray: [CategorieCulinaire] {
+        return (self.categoriesCulinaire.allObjects as? [CategorieCulinaire]) ?? []
     }
 
     func update_distance_avec_localisation(seconde_localisation: CLLocationCoordinate2D) {
@@ -68,7 +63,7 @@ class Restaurant: NSManagedObject, Mappable {
     // @TODO fix typo in the func name
     func is_glutonFree() -> Bool {
 
-        let array_cats: [CategorieCulinaire] = self.getCategoriesCulinaireAsArray() ?? []
+        let array_cats: [CategorieCulinaire] = categoriesCulinairesArray
 
         for current_cat in array_cats {
 
@@ -87,11 +82,11 @@ class Restaurant: NSManagedObject, Mappable {
     // @TODO maybe a var?
     func categorie() -> CategorieRestaurant {
 
-        let array_cats = self.getCategoriesCulinaireAsArray() ?? []
+        let array_cats = categoriesCulinairesArray
 
         if self.isVegan.boolValue {
 
-                return CategorieRestaurant.Vegan
+            return CategorieRestaurant.Vegan
         } else {
 
             for current_cat in array_cats {
@@ -317,6 +312,12 @@ class Restaurant: NSManagedObject, Mappable {
             return CLLocationCoordinate2DMake(latitude, longitude)
         }
         return nil
+    }
+    
+    var imagesURLs: [URL] {
+        return (self.image ?? "").components(separatedBy: "|").flatMap({ (urlString: String) -> URL? in
+            return URL(string: urlString.replacingOccurrences(of: "https://vegoresto.l214.in", with: "https://vegoresto.fr"))
+        })
     }
     
     // MARK: Mapping

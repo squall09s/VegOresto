@@ -67,9 +67,10 @@ class DetailRestaurantViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var varIB_activity_indicator: UIActivityIndicatorView?
 
     var current_restaurant: Restaurant?
+    
+    // MARK: View Life Cycle
 
     override func viewDidLoad() {
-
         super.viewDidLoad()
 
         self.navigationController?.navigationBar.titleTextAttributes =  [NSForegroundColorAttributeName: UIColor.white]
@@ -77,115 +78,37 @@ class DetailRestaurantViewController: UIViewController, UIScrollViewDelegate {
         self.varIB_button_favoris?.normalColor = UIColor(hexString: "F1EFF2")
         self.varIB_button_favoris?.selectedColor = COLOR_ORANGE
 
-        if let _current_restaurant =  self.current_restaurant {
+        self.varIB_activity_indicator?.isHidden = false
+        self.varIB_button_comment?.isHidden = true
+        self.varIB_activity_indicator?.startAnimating()
 
-            self.title = _current_restaurant.name
+        self.varIB_activity_indicator?.isHidden = true
+        self.varIB_button_comment?.isHidden = false
 
-            //self.varIB_label_name?.text = _current_restaurant.name
-            self.varIB_label_resume?.text = _current_restaurant.resume
-            self.varIB_label_ambiance?.text = _current_restaurant.ambiance
-            self.varIB_label_type_etablissement?.text = _current_restaurant.type_etablissement
-            self.varIB_label_montant_moyen?.text = _current_restaurant.montant_moyen
-            self.varIB_label_influences?.text = _current_restaurant.influence_gastronomique
+        updateDayOfWeekLabel()
+        updateRestaurantInterface()
+        updateRatingImage()
 
-            self.varIB_label_moyens_de_paiement?.text = _current_restaurant.moyens_de_paiement
+        // load comments
+        loadComments()
+    }
 
-            if let horaire = UserData.shared.getHoraire(restaurant: _current_restaurant) {
-                self.varIB_label_h_lundi?.text = ((horaire.dataL ?? "").count > 0) ? horaire.dataL : "Fermé"
-                self.varIB_label_h_mardi?.text = ((horaire.dataMa ?? "").count > 0) ? horaire.dataMa : "Fermé"
-                self.varIB_label_h_mercredi?.text = ((horaire.dataMe ?? "").count > 0) ? horaire.dataMe : "Fermé"
-                self.varIB_label_h_jeudi?.text = ((horaire.dataJ ?? "").count > 0) ? horaire.dataJ : "Fermé"
-                self.varIB_label_h_vendredi?.text = ((horaire.dataV ?? "").count > 0) ? horaire.dataV : "Fermé"
-                self.varIB_label_h_samedi?.text = ((horaire.dataS ?? "").count > 0) ? horaire.dataS : "Fermé"
-                self.varIB_label_h_dimanche?.text = ((horaire.dataD ?? "").count > 0) ? horaire.dataD : "Fermé"
-            }
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    // MARK: UI Update
 
-            self.varIB_label_animaux?.text = _current_restaurant.animaux_bienvenus?.boolValue == true ? "Oui !" : "Non"
-            self.varIB_label_terrasse?.text = _current_restaurant.terrasse?.boolValue == true ? "Oui !" : "Non"
-
-            var categoriesCulinaireString = ""
-            var i = 0
-
-            for cat in self.current_restaurant?.getCategoriesCulinaireAsArray() ?? [] {
-
-                if let catName = cat.name {
-
-                    if i > 0 {
-                        categoriesCulinaireString += ", "
-                    }
-                    categoriesCulinaireString += catName
-
-                    i += 1
-                }
-            }
-
-            self.varIB_label_categories?.text = categoriesCulinaireString
-
-            self.refreshBt_favoris()
-
-            if  _current_restaurant.website != nil &&  _current_restaurant.website != "" {
-                self.varIB_label_website?.text = _current_restaurant.website
-            } else {
-                self.varIB_constraintWidthLine_website?.constant = 0
-            }
-
-            if  _current_restaurant.phone != nil &&  _current_restaurant.phone != "" {
-                self.varIB_label_phone?.text = _current_restaurant.phone
-            } else {
-                self.varIB_constraintWidthLine_phone?.constant = 0
-            }
-
-            if  _current_restaurant.facebook != nil &&  _current_restaurant.facebook != "" {
-                self.varIB_label_facebook?.text = _current_restaurant.facebook
-            } else {
-                self.varIB_constraintWidthLine_facebook?.constant = 0
-            }
-
-            if  _current_restaurant.mail != nil &&  _current_restaurant.mail != "" {
-                self.varIB_label_mail?.text = _current_restaurant.mail
-            } else {
-                self.varIB_constraintWidthLine_mail?.constant = 0
-            }
-
-            if  _current_restaurant.address != nil &&  _current_restaurant.address != "" {
-                self.varIB_label_adresse?.text = _current_restaurant.address
-            } else {
-                self.varIB_constraintWidthLine_maps?.constant = 0
-            }
-
-            let imgsSrc: [String] = (self.current_restaurant?.image ?? "").components(separatedBy: "|")
-
-            self.varIB_scrollViewImages?.contentSize = CGSize(width: CGFloat(imgsSrc.count) * Device.WIDTH, height: Device.WIDTH * (300.0/720.0))
-
-            self.varIB_pageControl?.isHidden = imgsSrc.count <= 1
-            self.varIB_pageControl?.numberOfPages = imgsSrc.count
-
-            var j: Int = 0
-
-            for imgSrc in imgsSrc {
-
-                let imageView = UIImageView(frame: CGRect(x: CGFloat(j) * Device.WIDTH, y: 0, width: Device.WIDTH, height: Device.WIDTH * (300.0/720.0)))
-
-                imageView.image = UIImage(named: "image_resto_placeolder")
-                imageView.contentMode = .scaleAspectFit
-
-                self.varIB_scrollViewImages?.addSubview(imageView)
-
-                if let url = URL(string: imgSrc.replacingOccurrences(of: "https://vegoresto.l214.in", with: "https://vegoresto.fr")) {
-
-                    imageView.setImage(withUrl: url, placeholder: UIImage(named: "image_resto_placeolder"), crossFadePlaceholder: false, cacheScaled: false, completion: { (_, _) in
-
-                    })
-
-                }
-
-                j += 1
-
-            }
-
-        }
-
-        switch self.getDayOfWeek() {
+    static private func getDayOfWeek() -> Int {
+        let todayDate = Date()
+        let myCalendar = Calendar(identifier: .gregorian)
+        let weekDay = myCalendar.component(.weekday, from: todayDate)
+        return weekDay
+    }
+    
+    private func updateDayOfWeekLabel() {
+        switch DetailRestaurantViewController.getDayOfWeek() {
         case 2:
             self.varIB_label_h_lundi?.textColor = COLOR_ORANGE
         case 3:
@@ -203,20 +126,161 @@ class DetailRestaurantViewController: UIViewController, UIScrollViewDelegate {
         default:
             break
         }
-
-        self.varIB_activity_indicator?.isHidden = false
-        self.varIB_button_comment?.isHidden = true
-        self.varIB_activity_indicator?.startAnimating()
-
-        self.varIB_activity_indicator?.isHidden = true
-        self.varIB_button_comment?.isHidden = false
-
-        self.updateRatingImage()
-
-        // load comments
-        loadComments()
+    }
+    
+    private func updateRestaurantInterface() {
+        guard let restaurant =  self.current_restaurant else {
+            return
+        }
+        
+        self.title = restaurant.name
+        
+        //self.varIB_label_name?.text = restaurant.name
+        self.varIB_label_resume?.text = restaurant.resume
+        self.varIB_label_ambiance?.text = restaurant.ambiance
+        self.varIB_label_type_etablissement?.text = restaurant.type_etablissement
+        self.varIB_label_montant_moyen?.text = restaurant.montant_moyen
+        self.varIB_label_influences?.text = restaurant.influence_gastronomique
+        
+        self.varIB_label_moyens_de_paiement?.text = restaurant.moyens_de_paiement
+        
+        if let horaire = UserData.shared.getHoraire(restaurant: restaurant) {
+            self.varIB_label_h_lundi?.text = !(horaire.dataL ?? "").isEmpty ? horaire.dataL : "Fermé"
+            self.varIB_label_h_mardi?.text = !(horaire.dataMa ?? "").isEmpty ? horaire.dataMa : "Fermé"
+            self.varIB_label_h_mercredi?.text = !(horaire.dataMe ?? "").isEmpty ? horaire.dataMe : "Fermé"
+            self.varIB_label_h_jeudi?.text = !(horaire.dataJ ?? "").isEmpty ? horaire.dataJ : "Fermé"
+            self.varIB_label_h_vendredi?.text = !(horaire.dataV ?? "").isEmpty ? horaire.dataV : "Fermé"
+            self.varIB_label_h_samedi?.text = !(horaire.dataS ?? "").isEmpty ? horaire.dataS : "Fermé"
+            self.varIB_label_h_dimanche?.text = !(horaire.dataD ?? "").isEmpty ? horaire.dataD : "Fermé"
+        } else {
+            self.varIB_label_h_lundi?.text = "Inconnu"
+            self.varIB_label_h_mardi?.text = "Inconnu"
+            self.varIB_label_h_mercredi?.text = "Inconnu"
+            self.varIB_label_h_jeudi?.text = "Inconnu"
+            self.varIB_label_h_vendredi?.text = "Inconnu"
+            self.varIB_label_h_samedi?.text = "Inconnu"
+            self.varIB_label_h_dimanche?.text = "Inconnu"
+        }
+        
+        self.varIB_label_animaux?.text = restaurant.animaux_bienvenus?.boolValue == true ? "Oui !" : "Non"
+        self.varIB_label_terrasse?.text = restaurant.terrasse?.boolValue == true ? "Oui !" : "Non"
+        
+        let categoriesCulinaireString = restaurant.categoriesCulinairesArray.flatMap { cat -> String? in
+            return cat.name
+        }.joined(separator: ", ")
+        
+        self.varIB_label_categories?.text = categoriesCulinaireString
+        
+        self.refreshBt_favoris()
+        
+        if  restaurant.website != nil &&  restaurant.website != "" {
+            self.varIB_label_website?.text = restaurant.website
+        } else {
+            self.varIB_constraintWidthLine_website?.constant = 0
+        }
+        
+        if  restaurant.phone != nil &&  restaurant.phone != "" {
+            self.varIB_label_phone?.text = restaurant.phone
+        } else {
+            self.varIB_constraintWidthLine_phone?.constant = 0
+        }
+        
+        if  restaurant.facebook != nil &&  restaurant.facebook != "" {
+            self.varIB_label_facebook?.text = restaurant.facebook
+        } else {
+            self.varIB_constraintWidthLine_facebook?.constant = 0
+        }
+        
+        if  restaurant.mail != nil &&  restaurant.mail != "" {
+            self.varIB_label_mail?.text = restaurant.mail
+        } else {
+            self.varIB_constraintWidthLine_mail?.constant = 0
+        }
+        
+        if  restaurant.address != nil &&  restaurant.address != "" {
+            self.varIB_label_adresse?.text = restaurant.address
+        } else {
+            self.varIB_constraintWidthLine_maps?.constant = 0
+        }
+        
+        let imagesURLs = restaurant.imagesURLs
+        
+        self.varIB_scrollViewImages?.contentSize = CGSize(width: CGFloat(imagesURLs.count) * Device.WIDTH, height: Device.WIDTH * (300.0/720.0))
+        
+        self.varIB_pageControl?.isHidden = imagesURLs.count <= 1
+        self.varIB_pageControl?.numberOfPages = imagesURLs.count
+        
+        var j: Int = 0
+        for imagesURL in imagesURLs {
+            let imageView = UIImageView(frame: CGRect(x: CGFloat(j) * Device.WIDTH, y: 0, width: Device.WIDTH, height: Device.WIDTH * (300.0/720.0)))
+            
+            imageView.image = UIImage(named: "image_resto_placeolder")
+            imageView.contentMode = .scaleAspectFit
+            
+            self.varIB_scrollViewImages?.addSubview(imageView)
+            
+            imageView.setImage(withUrl: imagesURL, placeholder: UIImage(named: "image_resto_placeolder"), crossFadePlaceholder: false, cacheScaled: false, completion: { (_, _) in
+                
+            })
+            
+            j += 1
+        }
+    }
+    
+    private func updateLabelComment() {
+        if let nbComment = self.current_restaurant?.getComments().count, nbComment > 0 {
+            self.varIB_label_number_comment?.text = "Tous les avis [\(nbComment)]"
+        } else {
+            self.varIB_label_number_comment?.text = "Aucun avis pour le moment"
+        }
     }
 
+    private func updateRatingImage() {
+        let rating = self.current_restaurant?.rating?.doubleValue ?? 1
+        
+        if rating == 0.5 {
+            self.varIB_image_rating_1?.image = Asset.imgFavorisStarHalf.image
+        } else if rating > 0.5 {
+            self.varIB_image_rating_1?.image = Asset.imgFavorisStarOn.image
+        } else {
+            self.varIB_image_rating_1?.image = Asset.imgFavorisStarOff.image
+        }
+        
+        if rating == 1.5 {
+            self.varIB_image_rating_2?.image = Asset.imgFavorisStarHalf.image
+        } else if rating > 1.5 {
+            self.varIB_image_rating_2?.image = Asset.imgFavorisStarOn.image
+        } else {
+            self.varIB_image_rating_2?.image = Asset.imgFavorisStarOff.image
+        }
+        
+        if rating == 2.5 {
+            self.varIB_image_rating_3?.image = Asset.imgFavorisStarHalf.image
+        } else if rating > 2.5 {
+            self.varIB_image_rating_3?.image = Asset.imgFavorisStarOn.image
+        } else {
+            self.varIB_image_rating_3?.image = Asset.imgFavorisStarOff.image
+        }
+        
+        if rating == 3.5 {
+            self.varIB_image_rating_4?.image = Asset.imgFavorisStarHalf.image
+        } else if rating > 3.5 {
+            self.varIB_image_rating_4?.image = Asset.imgFavorisStarOn.image
+        } else {
+            self.varIB_image_rating_4?.image = Asset.imgFavorisStarOff.image
+        }
+        
+        if rating == 4.5 {
+            self.varIB_image_rating_5?.image = Asset.imgFavorisStarHalf.image
+        } else if rating > 4.5 {
+            self.varIB_image_rating_5?.image = Asset.imgFavorisStarOn.image
+        } else {
+            self.varIB_image_rating_5?.image = Asset.imgFavorisStarOff.image
+        }
+    }
+
+    // MARK: Networking
+    
     private func loadComments() {
         guard let restaurant = self.current_restaurant else {
             return
@@ -233,25 +297,7 @@ class DetailRestaurantViewController: UIViewController, UIScrollViewDelegate {
         }
     }
     
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-
-        if scrollView == varIB_scrollViewImages {
-            let pageNumber = round(scrollView.contentOffset.x / scrollView.frame.size.width)
-            self.varIB_pageControl?.currentPage = Int(pageNumber)
-        }
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-    func getDayOfWeek() -> Int {
-        let todayDate = Date()
-        let myCalendar = Calendar(identifier: .gregorian)
-        let weekDay = myCalendar.component(.weekday, from: todayDate)
-        return weekDay
-    }
+    // MARK: IBActions
 
     @IBAction func touch_bt_back(sender: AnyObject) {
 
@@ -395,71 +441,22 @@ class DetailRestaurantViewController: UIViewController, UIScrollViewDelegate {
         Deeplinking.openWebsite(url: facebookPageUrl)
     }
 
-    private func updateLabelComment() {
-        if let nbComment = self.current_restaurant?.getComments().count, nbComment > 0 {
-            self.varIB_label_number_comment?.text = "Tous les avis [\(nbComment)]"
-        } else {
-            self.varIB_label_number_comment?.text = "Aucun avis pour le moment"
-        }
-    }
-
-    func updateRatingImage() {
-
-            let rating = self.current_restaurant?.rating?.doubleValue ?? 1
-
-            if rating == 0.5 {
-                self.varIB_image_rating_1?.image = Asset.imgFavorisStarHalf.image
-            } else if rating > 0.5 {
-                self.varIB_image_rating_1?.image = Asset.imgFavorisStarOn.image
-            } else {
-                self.varIB_image_rating_1?.image = Asset.imgFavorisStarOff.image
-            }
-
-            if rating == 1.5 {
-                self.varIB_image_rating_2?.image = Asset.imgFavorisStarHalf.image
-            } else if rating > 1.5 {
-                self.varIB_image_rating_2?.image = Asset.imgFavorisStarOn.image
-            } else {
-                self.varIB_image_rating_2?.image = Asset.imgFavorisStarOff.image
-            }
-
-            if rating == 2.5 {
-                self.varIB_image_rating_3?.image = Asset.imgFavorisStarHalf.image
-            } else if rating > 2.5 {
-                self.varIB_image_rating_3?.image = Asset.imgFavorisStarOn.image
-            } else {
-                self.varIB_image_rating_3?.image = Asset.imgFavorisStarOff.image
-            }
-
-            if rating == 3.5 {
-                self.varIB_image_rating_4?.image = Asset.imgFavorisStarHalf.image
-            } else if rating > 3.5 {
-                self.varIB_image_rating_4?.image = Asset.imgFavorisStarOn.image
-            } else {
-                self.varIB_image_rating_4?.image = Asset.imgFavorisStarOff.image
-            }
-
-            if rating == 4.5 {
-                self.varIB_image_rating_5?.image = Asset.imgFavorisStarHalf.image
-            } else if rating > 4.5 {
-                self.varIB_image_rating_5?.image = Asset.imgFavorisStarOn.image
-            } else {
-                self.varIB_image_rating_5?.image = Asset.imgFavorisStarOff.image
-            }
-    }
+    // MARK: Segue
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-
         if segue.identifier == "segue_to_comments" {
-
             if let destination: TableCommentsViewController = segue.destination as? TableCommentsViewController {
-
                 destination.currentRestaurant = self.current_restaurant
-
             }
-
         }
-
     }
-
+    
+    // MARK: UIScrollViewDelegate
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        if scrollView == varIB_scrollViewImages {
+            let pageNumber = round(scrollView.contentOffset.x / scrollView.frame.size.width)
+            self.varIB_pageControl?.currentPage = Int(pageNumber)
+        }
+    }
 }
