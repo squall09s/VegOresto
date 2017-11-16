@@ -2494,11 +2494,8 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="lOg-rJ-ZH1">
-                                <rect key="frame" x="10" y="60" width="250" height="363"/>
+                                <rect key="frame" x="10" y="60" width="250" height="97"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.11113556338028169" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="363" id="IVv-FL-OxE"/>
-                                </constraints>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="URWGothicL-Book" family="URW Gothic L" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -2604,6 +2601,7 @@
                         <constraints>
                             <constraint firstItem="te1-jE-5Cf" firstAttribute="trailing" secondItem="lOg-rJ-ZH1" secondAttribute="trailing" constant="10" id="1Ou-Dw-4C4"/>
                             <constraint firstItem="NN7-CQ-H1a" firstAttribute="top" secondItem="Chb-3Z-rRH" secondAttribute="top" constant="10" id="1Yc-5e-v4f"/>
+                            <constraint firstItem="te1-jE-5Cf" firstAttribute="bottom" secondItem="lOg-rJ-ZH1" secondAttribute="bottom" constant="258" id="CvV-gl-1db"/>
                             <constraint firstItem="NN7-CQ-H1a" firstAttribute="leading" secondItem="te1-jE-5Cf" secondAttribute="leading" constant="10" id="Ehw-n3-L2G"/>
                             <constraint firstItem="lOg-rJ-ZH1" firstAttribute="top" secondItem="Chb-3Z-rRH" secondAttribute="top" constant="60" id="Fhc-1B-6Ez"/>
                             <constraint firstItem="kUL-hm-Ork" firstAttribute="top" secondItem="lOg-rJ-ZH1" secondAttribute="top" id="HGh-4y-EcU"/>
@@ -2628,7 +2626,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bRO-RH-P9l" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6219" y="-831.5"/>
+            <point key="canvasLocation" x="6217.6000000000004" y="-831.6502463054187"/>
         </scene>
         <!--Create Comment Step2 User View Controller-->
         <scene sceneID="hdh-Ca-qhq">
