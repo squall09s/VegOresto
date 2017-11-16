@@ -343,7 +343,7 @@ class DetailRestaurantViewController: UIViewController, UIScrollViewDelegate {
         guard let location = self.current_restaurant?.location else {
             return
         }
-        Deeplinking.openGoogleMaps(location: location)
+        Deeplinking.openGoogleMaps(location: location.coordinate)
     }
 
     private func launchAppleMaps() {
@@ -352,12 +352,12 @@ class DetailRestaurantViewController: UIViewController, UIScrollViewDelegate {
         }
 
         let regionDistance: CLLocationDistance = 10000
-        let regionSpan = MKCoordinateRegionMakeWithDistance(location, regionDistance, regionDistance)
+        let regionSpan = MKCoordinateRegionMakeWithDistance(location.coordinate, regionDistance, regionDistance)
         let options = [
             MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: regionSpan.center),
             MKLaunchOptionsMapSpanKey: NSValue(mkCoordinateSpan: regionSpan.span)
         ]
-        let placemark = MKPlacemark(coordinate: location, addressDictionary: nil)
+        let placemark = MKPlacemark(coordinate: location.coordinate, addressDictionary: nil)
         let mapItem = MKMapItem(placemark: placemark)
         mapItem.name = self.current_restaurant?.name
         mapItem.openInMaps(launchOptions: options)

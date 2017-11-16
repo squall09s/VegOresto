@@ -33,7 +33,7 @@ class RechercheViewController: VGAbstractFilterViewController, UITableViewDelega
 
         self.varIB_searchBar?.backgroundImage = UIImage()
 
-        self.loadRestaurantsWithWord(key: nil)
+        self.loadRestaurants()
 
         let loadingView = DGElasticPullToRefreshLoadingViewCircle()
         loadingView.tintColor = COLOR_ORANGE
@@ -47,14 +47,36 @@ class RechercheViewController: VGAbstractFilterViewController, UITableViewDelega
         self.varIB_tableView?.dg_setPullToRefreshBackgroundColor(UIColor.white)
     }
 
+    private func findTextFieldInView(view: UIView) -> UITextField? {
+
+        if view is UITextField {
+
+            return view as? UITextField
+
+        }
+
+        for subview: UIView in view.subviews {
+
+            let textField: UITextField? = self.findTextFieldInView(view: subview)
+
+            if let _textField = textField {
+
+                return _textField
+
+            }
+
+        }
+
+        return nil
+
+    }
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
 
     // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
@@ -110,7 +132,7 @@ class RechercheViewController: VGAbstractFilterViewController, UITableViewDelega
 
         var imageSwipe: UIImage = Asset.imgFavorisOff.image
 
-        switch current_restaurant.categorie() {
+        switch current_restaurant.category {
 
         case CategorieRestaurant.Vegan :
             view_color_categorie?.backgroundColor = COLOR_VERT
@@ -203,9 +225,7 @@ class RechercheViewController: VGAbstractFilterViewController, UITableViewDelega
     }
 
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-
-        self.loadRestaurantsWithWord(key: searchText)
-        self.varIB_tableView?.reloadData()
+        self.loadRestaurants(word: searchText)
     }
 
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -214,161 +234,81 @@ class RechercheViewController: VGAbstractFilterViewController, UITableViewDelega
     }
 
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-
-        self.loadRestaurantsWithWord(key: nil)
-        self.varIB_tableView?.reloadData()
+        self.loadRestaurants()
     }
 
     func searchBarResultsListButtonClicked(_ searchBar: UISearchBar) {
 
         searchBar.resignFirstResponder()
     }
+    
+    // MARK: Search
 
-    func findTextFieldInView(view: UIView) -> UITextField? {
-
-        if view is UITextField {
-
-            return view as? UITextField
-
+    private func filterByWord(restaurants: [Restaurant], word: String) -> [Restaurant] {
+        // no filtering if less than or equal to 3 characters
+        if word.count <= 3 {
+            return restaurants
         }
-
-        for subview: UIView in view.subviews {
-
-            let textField: UITextField? = self.findTextFieldInView(view: subview)
-
-            if let _textField = textField {
-
-                return _textField
-
+        
+        let key = word.lowercased()
+        
+        return restaurants.filter({ (current_restaurant: Restaurant) -> Bool in
+            if let clean_name: String = current_restaurant.name?.lowercased().folding(options : .diacriticInsensitive, locale: Locale.current) {
+                if clean_name.contains(key) {
+                    return true
+                }
             }
-
-        }
-
-        return nil
-
+            if let clean_adress: String = current_restaurant.address?.lowercased().folding(options: .diacriticInsensitive, locale: Locale.current) {
+                if clean_adress.contains(key) {
+                    return true
+                }
+            }
+            return false
+        })
     }
+    
+    private func loadRestaurants(word: String? = nil) {
+        var restaurants = UserData.shared.getRestaurants()
 
-    func loadRestaurantsWithWord(key: String?) {
-
-        self.array_restaurants = UserData.shared.getRestaurants()
-
+        // filter favorites
         if self.afficherUniquementFavoris {
-
-            self.array_restaurants = self.array_restaurants.flatMap({ (current_restaurant: Restaurant) -> Restaurant? in
-
-                if current_restaurant.favoris.boolValue == true {
-
-                    return current_restaurant
-                }
-
-                return nil
-
+            restaurants = restaurants.filter({ (current_restaurant: Restaurant) -> Bool in
+                return current_restaurant.favoris.boolValue
             })
-
         }
-
+        
+        // filter by category
+        restaurants = filterCurrentCategories(restaurants: restaurants)
+        
+        // filter by word
+        if let _word = word {
+            restaurants = filterByWord(restaurants: restaurants, word: _word)
+        }
+        
+        // reload
+        self.array_restaurants = restaurants
         self.varIB_tableView?.reloadData()
-
-        if let _key = key?.lowercased() {
-
-            if _key.count > 3 {
-
-                self.array_restaurants = self.array_restaurants.flatMap({ (current_restaurant: Restaurant) -> Restaurant? in
-
-                    if let clean_name: String = current_restaurant.name?.lowercased().folding(options : .diacriticInsensitive, locale: Locale.current ) {
-
-                        if clean_name.contains(_key) {
-                            return current_restaurant
-                        }
-
-                    }
-
-                    if let clean_adress: String = current_restaurant.address?.lowercased().folding(options: .diacriticInsensitive, locale: Locale.current ) {
-
-                        if clean_adress.contains(_key) {
-                            return current_restaurant
-                        }
-                    }
-
-                    return nil
-
-                })
-
-            }
-
-        }
-
-            self.array_restaurants = self.array_restaurants.flatMap({ (currentResto: Restaurant) -> Restaurant? in
-
-                if self.filtre_categorie_VeganFriendly_active && self.filtre_categorie_Vegetarien_active && self.filtre_categorie_Vegan_active {
-
-                    return currentResto
-
-                } else {
-
-                    switch currentResto.categorie() {
-
-                    case CategorieRestaurant.Vegan :
-
-                        if self.filtre_categorie_Vegan_active {
-                            return currentResto
-                        }
-
-                    case CategorieRestaurant.Végétarien :
-
-                        if self.filtre_categorie_Vegetarien_active {
-                            return currentResto
-                        }
-
-                    case CategorieRestaurant.VeganFriendly :
-
-                        if self.filtre_categorie_VeganFriendly_active {
-                            return currentResto
-                        }
-
-                    }
-
-                    return nil
-
-                }
-
-            })
-
     }
 
     func update_resultats_for_user_location() {
-        if let location = UserLocationManager.shared.location {
+        UserLocationManager.shared.getLocation().then { (location) -> Void in
             for restaurant in self.array_restaurants {
-                restaurant.update_distance_avec_localisation(seconde_localisation: location)
+                restaurant.setDistance(from: location)
             }
-
+            
             self.array_restaurants.sort(by: { (restaurantA, restaurantB) -> Bool in
                 restaurantA.distance < restaurantB.distance
             })
-
+            
             self.varIB_tableView?.reloadData()
             self.varIB_tableView?.scrollRectToVisible(CGRect(x: 0, y: 0, width: 1, height: 1), animated: false)
         }
     }
 
-    func updateDataAfterDelay() {
-
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-
-            self.updateData()
-        }
-
-    }
-
     override func updateData() {
-
-        Debug.log(object: "RechercheViewController - updateData")
-
-        self.loadRestaurantsWithWord(key: self.varIB_searchBar?.text)
-        self.varIB_tableView?.reloadData()
+        self.loadRestaurants(word: self.varIB_searchBar?.text)
         self.varIB_tableView?.scrollRectToVisible(CGRect(x: 0, y: 0, width: 1, height: 1), animated: true)
     }
-
 }
 
 // -----------------------------------------

@@ -21,7 +21,7 @@ enum CategorieRestaurant {
 @objc(Restaurant)
 class Restaurant: NSManagedObject, Mappable {
 
-    var distance: Double = -1
+    var distance: CLLocationDistance = (-1)
     
     override init(entity: NSEntityDescription, insertInto context: NSManagedObjectContext?) {
         super.init(entity: entity, insertInto: context)
@@ -49,14 +49,11 @@ class Restaurant: NSManagedObject, Mappable {
         return (self.categoriesCulinaire.allObjects as? [CategorieCulinaire]) ?? []
     }
 
-    func update_distance_avec_localisation(seconde_localisation: CLLocationCoordinate2D) {
-
-        if let longitude = self.lon?.doubleValue, let latitude = self.lat?.doubleValue {
-
-            let localisation_restaurant = CLLocation(latitude:  latitude, longitude: longitude )
-            let seconde_localisation = CLLocation(latitude:  seconde_localisation.latitude, longitude: seconde_localisation.longitude )
-
-            self.distance = seconde_localisation.distance( from: localisation_restaurant )
+    func setDistance(from userLocation: CLLocation) {
+        if let venueLocation = self.location {
+            self.distance = venueLocation.distance(from: userLocation)
+        } else {
+            self.distance = (-1)
         }
     }
 
@@ -78,30 +75,17 @@ class Restaurant: NSManagedObject, Mappable {
         return false
 
     }
-
-    // @TODO maybe a var?
-    func categorie() -> CategorieRestaurant {
-
-        let array_cats = categoriesCulinairesArray
-
-        if self.isVegan.boolValue {
-
+    
+    var category: CategorieRestaurant {
+        if isVegan.boolValue {
             return CategorieRestaurant.Vegan
-        } else {
-
-            for current_cat in array_cats {
-
-                if current_cat.name == "Végétarien" {
-
-                    return CategorieRestaurant.Végétarien
-                }
-
-            }
-
         }
-
+        if categoriesCulinairesArray.contains(where: { cat -> Bool in
+            return cat.name == "Végétarien"
+        }) {
+            return CategorieRestaurant.Végétarien
+        }
         return CategorieRestaurant.VeganFriendly
-
     }
 
     func updateDataMontantMoyen() {
@@ -307,11 +291,15 @@ class Restaurant: NSManagedObject, Mappable {
         self.moyens_de_paiement = resultat
     }
 
-    var location: CLLocationCoordinate2D? {
+    var coordinate: CLLocationCoordinate2D? {
         if let latitude = lat?.doubleValue, let longitude = lon?.doubleValue {
             return CLLocationCoordinate2DMake(latitude, longitude)
         }
         return nil
+    }
+    
+    var location: CLLocation? {
+        return coordinate?.location
     }
     
     var imagesURLs: [URL] {

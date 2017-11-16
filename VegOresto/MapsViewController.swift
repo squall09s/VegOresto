@@ -88,7 +88,7 @@ class MapsViewController: VGAbstractFilterViewController, MKMapViewDelegate {
 
                 pinView?.detailCalloutAccessoryView = myView
 
-                if let categorie = restaurantAnnotation.restaurant?.categorie() {
+                if let categorie = restaurantAnnotation.restaurant?.category {
 
                     switch categorie {
 
@@ -265,8 +265,8 @@ class MapsViewController: VGAbstractFilterViewController, MKMapViewDelegate {
     }
 
     func update_region_for_user_location() {
-        if let location = UserLocationManager.shared.location {
-            let region = MKCoordinateRegion(center: location, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+        UserLocationManager.shared.getLocation().then { (location) -> Void in
+            let region = MKCoordinateRegion(center: location.coordinate, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
             self.varIB_mapView?.setRegion(region, animated: true)
         }
     }
@@ -276,7 +276,7 @@ class MapsViewController: VGAbstractFilterViewController, MKMapViewDelegate {
             if self.filtre_categorie_VeganFriendly_active && self.filtre_categorie_Vegetarien_active && self.filtre_categorie_Vegan_active {
                 return true
             } else {
-                switch restaurant.categorie() {
+                switch restaurant.category {
                 case CategorieRestaurant.Vegan :
                     if self.filtre_categorie_Vegan_active {
                         return true
@@ -312,12 +312,6 @@ class MapsViewController: VGAbstractFilterViewController, MKMapViewDelegate {
             let scale: Double = mapBoundsWidth / mapRectWidth
             let annotationArray = self.clusteringManager.clusteredAnnotationsWithinMapRect(rect: _varIB_mapView.visibleMapRect, withZoomScale:scale)
             self.clusteringManager.displayAnnotations(annotations: annotationArray, onMapView:_varIB_mapView)
-        }
-    }
-
-    func updateDataAfterDelay() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-            self.updateData()
         }
     }
 }

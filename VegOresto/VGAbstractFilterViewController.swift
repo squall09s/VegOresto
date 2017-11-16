@@ -32,6 +32,66 @@ class VGAbstractFilterViewController: UIViewController {
     var filtre_categorie_Vegetarien_active = true
     var filtre_categorie_Vegan_active = true
     var filtre_categorie_VeganFriendly_active = true
+    
+    // MARK: -
+    // MARK: Life Cycle
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        self.varIB_bt_filtre_categorie_1?.layer.cornerRadius = 15.0
+        self.varIB_bt_filtre_categorie_2?.layer.cornerRadius = 15.0
+        self.varIB_bt_filtre_categorie_3?.layer.cornerRadius = 15.0
+
+        self.varIB_check_categorie_1?.boxType = .square
+        self.varIB_check_categorie_2?.boxType = .square
+        self.varIB_check_categorie_3?.boxType = .square
+
+        self.varIB_check_categorie_1?.onAnimationType = .bounce
+        self.varIB_check_categorie_1?.offAnimationType = .bounce
+
+        self.varIB_check_categorie_2?.onAnimationType = .bounce
+        self.varIB_check_categorie_2?.offAnimationType = .bounce
+
+        self.varIB_check_categorie_3?.onAnimationType = .bounce
+        self.varIB_check_categorie_3?.offAnimationType = .bounce
+
+        self.varIB_check_categorie_1?.onFillColor = COLOR_VIOLET
+        self.varIB_check_categorie_2?.onFillColor = COLOR_VERT
+        self.varIB_check_categorie_3?.onFillColor = COLOR_BLEU
+
+        self.varIB_check_categorie_1?.onTintColor = UIColor.white
+        self.varIB_check_categorie_2?.onTintColor = UIColor.white
+        self.varIB_check_categorie_3?.onTintColor = UIColor.white
+
+        self.varIB_check_categorie_1?.tintColor = colorUnselected
+        self.varIB_check_categorie_2?.tintColor = colorUnselected
+        self.varIB_check_categorie_3?.tintColor = colorUnselected
+
+        self.varIB_check_categorie_1?.onCheckColor = UIColor.white
+        self.varIB_check_categorie_2?.onCheckColor = UIColor.white
+        self.varIB_check_categorie_3?.onCheckColor = UIColor.white
+
+        self.varIB_check_categorie_1?.setOn(true, animated: false)
+        self.varIB_label_categorie_1?.textColor = COLOR_VIOLET
+
+        self.varIB_check_categorie_2?.setOn(true, animated: false)
+        self.varIB_label_categorie_2?.textColor = COLOR_VERT
+
+        self.varIB_check_categorie_3?.setOn(true, animated: false)
+        self.varIB_label_categorie_3?.textColor = COLOR_BLEU
+
+        self.varIB_separator_categorie_1?.backgroundColor = COLOR_VIOLET
+        self.varIB_separator_categorie_2?.backgroundColor = COLOR_VERT
+        self.varIB_separator_categorie_3?.backgroundColor = COLOR_BLEU
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    // MARK: IBActions
 
     @IBAction func touch_bt_categorie(sender: UIButton) {
 
@@ -117,76 +177,60 @@ class VGAbstractFilterViewController: UIViewController {
         self.updateData()
 
     }
-
-    func updateData() {
-
+    
+    // MARK: Getters
+    
+    internal var enabledCategories: Set<CategorieRestaurant> {
+        var categories = Set<CategorieRestaurant>()
+        if self.filtre_categorie_Vegan_active {
+            categories.insert(CategorieRestaurant.Vegan)
+        }
+        if self.filtre_categorie_Vegetarien_active {
+            categories.insert(CategorieRestaurant.Végétarien)
+        }
+        if self.filtre_categorie_VeganFriendly_active {
+            categories.insert(CategorieRestaurant.VeganFriendly)
+        }
+        return categories
     }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        self.varIB_bt_filtre_categorie_1?.layer.cornerRadius = 15.0
-        self.varIB_bt_filtre_categorie_2?.layer.cornerRadius = 15.0
-        self.varIB_bt_filtre_categorie_3?.layer.cornerRadius = 15.0
-
-        self.varIB_check_categorie_1?.boxType = .square
-        self.varIB_check_categorie_2?.boxType = .square
-        self.varIB_check_categorie_3?.boxType = .square
-
-        self.varIB_check_categorie_1?.onAnimationType = .bounce
-        self.varIB_check_categorie_1?.offAnimationType = .bounce
-
-        self.varIB_check_categorie_2?.onAnimationType = .bounce
-        self.varIB_check_categorie_2?.offAnimationType = .bounce
-
-        self.varIB_check_categorie_3?.onAnimationType = .bounce
-        self.varIB_check_categorie_3?.offAnimationType = .bounce
-
-        self.varIB_check_categorie_1?.onFillColor = COLOR_VIOLET
-        self.varIB_check_categorie_2?.onFillColor = COLOR_VERT
-        self.varIB_check_categorie_3?.onFillColor = COLOR_BLEU
-
-        self.varIB_check_categorie_1?.onTintColor = UIColor.white
-        self.varIB_check_categorie_2?.onTintColor = UIColor.white
-        self.varIB_check_categorie_3?.onTintColor = UIColor.white
-
-        self.varIB_check_categorie_1?.tintColor = colorUnselected
-        self.varIB_check_categorie_2?.tintColor = colorUnselected
-        self.varIB_check_categorie_3?.tintColor = colorUnselected
-
-        self.varIB_check_categorie_1?.onCheckColor = UIColor.white
-        self.varIB_check_categorie_2?.onCheckColor = UIColor.white
-        self.varIB_check_categorie_3?.onCheckColor = UIColor.white
-
-        self.varIB_check_categorie_1?.setOn(true, animated: false)
-        self.varIB_label_categorie_1?.textColor = COLOR_VIOLET
-
-        self.varIB_check_categorie_2?.setOn(true, animated: false)
-        self.varIB_label_categorie_2?.textColor = COLOR_VERT
-
-        self.varIB_check_categorie_3?.setOn(true, animated: false)
-        self.varIB_label_categorie_3?.textColor = COLOR_BLEU
-
-        self.varIB_separator_categorie_1?.backgroundColor = COLOR_VIOLET
-        self.varIB_separator_categorie_2?.backgroundColor = COLOR_VERT
-        self.varIB_separator_categorie_3?.backgroundColor = COLOR_BLEU
-
-        // Do any additional setup after loading the view.
+    
+    internal func filterCurrentCategories(restaurants: [Restaurant]) -> [Restaurant] {
+        let enabledCategories = self.enabledCategories
+        
+        // no need to filter if all boxes are checked
+        if enabledCategories.count == 3 {
+            return restaurants
+        }
+        
+        // filter
+        return restaurants.filter({ (restaurant: Restaurant) -> Bool in
+            switch restaurant.category {
+            case CategorieRestaurant.Vegan :
+                if self.filtre_categorie_Vegan_active {
+                    return true
+                }
+            case CategorieRestaurant.Végétarien :
+                if self.filtre_categorie_Vegetarien_active {
+                    return true
+                }
+            case CategorieRestaurant.VeganFriendly :
+                if self.filtre_categorie_VeganFriendly_active {
+                    return true
+                }
+            }
+            return false
+        })
     }
+    
+    // MARK: Update
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    internal func updateData() {
+        // to be overridden
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    internal func updateDataAfterDelay() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            self.updateData()
+        }
     }
-    */
-
 }
