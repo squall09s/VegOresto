@@ -35,7 +35,6 @@ class NavigationAccueilViewController: UIViewController {
 
         self.varIB_button_tabbar_list?.layer.cornerRadius = 6
         self.varIB_button_tabbar_maps?.layer.cornerRadius = 6
-        // Do any additional setup after loading the view.
 
         self.varIB_button_tabbar_maps.backgroundColor = UIColor.clear
         self.varIB_button_tabbar_list.backgroundColor = UIColor.white.withAlphaComponent(0.3)
