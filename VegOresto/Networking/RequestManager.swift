@@ -26,7 +26,7 @@ extension DataRequest {
         })
     }
 
-    public func responseObject<T: Mappable>(keyPath: String? = nil, mapToObject object: T? = nil, context: MapContext? = nil) -> Promise<T> {
+    fileprivate func responseObject<T: Mappable>(keyPath: String? = nil, mapToObject object: T? = nil, context: MapContext? = nil) -> Promise<T> {
         return self.responseJSON(keyPath: keyPath).then(execute: { (JSONObject: Any) -> T in
             guard let _JSONObject = JSONObject as? [String:Any] else {
                 throw RequestManagerError.jsonError
@@ -41,7 +41,7 @@ extension DataRequest {
         })
     }
 
-    public func responseArray<T: Mappable>(keyPath: String? = nil, context: MapContext? = nil) -> Promise<[T]> {
+    fileprivate func responseArray<T: Mappable>(keyPath: String? = nil, context: MapContext? = nil) -> Promise<[T]> {
         return self.responseJSON(keyPath: keyPath).then(execute: { (JSONObject: Any) -> [T] in
             guard let parsedObject = Mapper<T>(context: context, shouldIncludeNilValues: false).mapArray(JSONObject: JSONObject) else {
                 throw PMKError.invalidCallingConvention
@@ -135,7 +135,7 @@ class RequestManager {
         var urlRequest = try! URLRequest(url: url, method: .post, headers: headers)
         urlRequest.httpBody = imageData
 
-        return session.request(urlRequest).responseJSON()
+        return session.request(urlRequest).validate().responseJSON()
     }
 
     public func post(url: URL, parameters: Parameters? = nil, encoding: ParameterEncoding = URLEncoding.default) -> Promise<Any> {

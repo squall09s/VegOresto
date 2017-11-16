@@ -10,6 +10,7 @@ import UIKit
 import CoreData
 
 import AlamofireNetworkActivityIndicator
+import AlamofireNetworkActivityLogger
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -21,6 +22,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UITextView.appearance(whenContainedInInstancesOf: [UISearchBar.self]).font = UIFont(name: "URWGothicL-Book", size: 17)!
         
         NetworkActivityIndicatorManager.shared.isEnabled = true
+        
+        NetworkActivityLogger.shared.level = .info
+        NetworkActivityLogger.shared.startLogging()
 
         return true
     }
