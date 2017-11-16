@@ -3050,12 +3050,9 @@
                                             <action selector="tap_menu_lateralWithSender:" destination="4mB-6s-kUl" eventType="touchUpInside" id="vSL-N7-zyc"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MES FAVORIS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="igZ-mJ-mc2">
-                                        <rect key="frame" x="134.33333333333334" y="16.666666666666664" width="108" height="21"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="21" id="6Al-72-mya"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="olivier" family="olivier" pointSize="20"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mes favoris" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="igZ-mJ-mc2">
+                                        <rect key="frame" x="130" y="14.333333333333336" width="115.66666666666669" height="26"/>
+                                        <fontDescription key="fontDescription" name="olivier" family="olivier" pointSize="26"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>

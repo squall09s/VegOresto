@@ -14,8 +14,9 @@ class AboutViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.navigationController?.navigationBar.barStyle = .black
+        self.navigationController?.navigationBar.tintColor = .white
         self.navigationController?.navigationBar.barTintColor = COLOR_ORANGE
-        self.navigationController?.navigationBar.tintColor = UIColor.white
         self.navigationItem.backBarButtonItem?.title = "Retour"
         self.navigationController?.navigationBar.isTranslucent = true
     }
@@ -54,8 +55,7 @@ class AboutViewController: UIViewController {
 
     @IBAction func licenseButtonPressed(_ sender: Any) {
         if let vc: VTAcknowledgementsViewController = VTAcknowledgementsViewController(fileNamed: "Pods-VegOresto-acknowledgements") {
-            vc.headerText = "Licenses Open Source"
-            vc.title = ""
+            vc.title = "Licenses Open Source"
 
             let customLicense0: VTAcknowledgement = VTAcknowledgement(title: "", text: "", license : nil)
             customLicense0.title = "SwiftLint"
