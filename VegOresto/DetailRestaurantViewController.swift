@@ -185,8 +185,8 @@ class DetailRestaurantViewController: UIViewController, UIScrollViewDelegate {
             self.varIB_constraintWidthLine_phone?.constant = 0
         }
         
-        if  restaurant.facebook != nil &&  restaurant.facebook != "" {
-            self.varIB_label_facebook?.text = restaurant.facebook
+        if let facebookPage = restaurant.facebookPage {
+            self.varIB_label_facebook?.text = facebookPage
         } else {
             self.varIB_constraintWidthLine_facebook?.constant = 0
         }
@@ -435,10 +435,10 @@ class DetailRestaurantViewController: UIViewController, UIScrollViewDelegate {
     }
 
     @IBAction func touch_bt_facebook(sender: AnyObject) {
-        guard let facebookPageUrl = self.current_restaurant?.facebook else {
+        guard let facebookURL = self.current_restaurant?.facebookURL else {
             return
         }
-        Deeplinking.openWebsite(url: facebookPageUrl)
+        Deeplinking.openURL(facebookURL)
     }
 
     // MARK: Segue

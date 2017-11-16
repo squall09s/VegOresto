@@ -320,6 +320,30 @@ class Restaurant: NSManagedObject, Mappable {
         })
     }
     
+    var facebookPage: String? {
+        guard var facebookStr = self.facebook else {
+            return nil
+        }
+        if !facebookStr.starts(with: "http") {
+            facebookStr = "https://\(facebookStr)"
+        }
+        guard let facebookURL = URL(string: facebookStr), facebookURL.host == "www.facebook.com" || facebookURL.host == "facebook.com" else {
+            return nil
+        }
+        let pathComponents = facebookURL.pathComponents
+        return pathComponents.count >= 2 ? pathComponents[1] : nil
+    }
+    
+    var facebookURL: URL? {
+        guard let facebookPage = self.facebookPage else {
+            if let facebookStr = self.facebook {
+                return URL(string: facebookStr)
+            }
+            return nil
+        }
+        return URL(string: "https://www.facebook.com/\(facebookPage)/")
+    }
+    
     // MARK: Mapping
 
     required init?(map: Map) {

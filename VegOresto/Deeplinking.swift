@@ -10,18 +10,18 @@ import Foundation
 import CoreLocation
 
 class Deeplinking {
-    private static func openURL(_ url: URL) {
+    public static func openURL(_ url: URL) {
         UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }
-    private static func openURL(_ url: String) {
+    public static func openURL(_ url: String) {
         if let _url = URL(string: url) {
             openURL(_url)
         }
     }
-    private static func canOpenURL(_ url: URL) -> Bool {
+    public static func canOpenURL(_ url: URL) -> Bool {
         return UIApplication.shared.canOpenURL(url)
     }
-    private static func canOpenURL(_ url: String) -> Bool {
+    public static func canOpenURL(_ url: String) -> Bool {
         guard let _url = URL(string: url) else {
             return false
         }
@@ -64,7 +64,7 @@ class Deeplinking {
     static public func canOpenGoogleMaps() -> Bool {
         return canOpenURL("comgooglemaps://")
     }
-
+    
     // MARK: Social Media VegOresto
 
     static public func openFacebookProfile() {
