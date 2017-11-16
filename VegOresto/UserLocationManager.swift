@@ -22,20 +22,23 @@ struct PendingLocationRequest {
 class UserLocationManager: NSObject, CLLocationManagerDelegate {
 
     static public let shared = UserLocationManager()
-    private var locationmanager: CLLocationManager
+    private var locationManager: CLLocationManager
     private var pendingRequests: [PendingLocationRequest] = []
     public var location: CLLocation?
 
     private override init() {
-        locationmanager = CLLocationManager()
+        locationManager = CLLocationManager()
         super.init()
-        locationmanager.requestWhenInUseAuthorization()
-        locationmanager.startUpdatingLocation()
-        locationmanager.delegate = self
+        locationManager.delegate = self
+    }
+    
+    public func requestAuthorization() {
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
     }
 
     internal func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        locationmanager.stopUpdatingLocation()
+        locationManager.stopUpdatingLocation()
         Debug.log(object: error)
         rejectPendingRequest(error: error)
     }
@@ -64,7 +67,7 @@ class UserLocationManager: NSObject, CLLocationManagerDelegate {
 
         if isLocationAllowed == true {
             Debug.log(object: "Location to Allowed")
-            locationmanager.startUpdatingLocation()
+            locationManager.startUpdatingLocation()
         }
     }
     

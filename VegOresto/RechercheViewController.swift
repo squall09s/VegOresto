@@ -285,23 +285,28 @@ class RechercheViewController: VGAbstractFilterViewController, UITableViewDelega
             restaurants = filterByWord(restaurants: restaurants, word: _word)
         }
         
+        // sort by distance
+        if let location = UserLocationManager.shared.location {
+            for restaurant in restaurants {
+                restaurant.setDistance(from: location)
+            }
+            restaurants.sort(by: { (restaurantA, restaurantB) -> Bool in
+                restaurantA.distance < restaurantB.distance
+            })
+        }
+        
         // reload
         self.array_restaurants = restaurants
         self.varIB_tableView?.reloadData()
     }
 
     func update_resultats_for_user_location() {
+        // ask for user authorization
+        UserLocationManager.shared.requestAuthorization()
+
+        // wait for location
         UserLocationManager.shared.getLocation().then { (location) -> Void in
-            for restaurant in self.array_restaurants {
-                restaurant.setDistance(from: location)
-            }
-            
-            self.array_restaurants.sort(by: { (restaurantA, restaurantB) -> Bool in
-                restaurantA.distance < restaurantB.distance
-            })
-            
-            self.varIB_tableView?.reloadData()
-            self.varIB_tableView?.scrollRectToVisible(CGRect(x: 0, y: 0, width: 1, height: 1), animated: false)
+            self.updateData()
         }
     }
 
