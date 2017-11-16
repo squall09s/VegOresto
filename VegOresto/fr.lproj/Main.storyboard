@@ -3139,7 +3139,7 @@
                                 <rect key="frame" x="0.0" y="94" width="375" height="872"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wjo-in-6J3">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="950"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="795"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AC2-gM-iYY" userLabel="Nous contacter">
                                                 <rect key="frame" x="0.0" y="543" width="375" height="55"/>
@@ -3222,47 +3222,8 @@
                                                     <constraint firstItem="5Hy-KU-wBU" firstAttribute="centerY" secondItem="xRc-HL-fpg" secondAttribute="centerY" id="rez-Ki-iDe"/>
                                                 </constraints>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fGB-Jp-uXS" userLabel="Mes avis">
-                                                <rect key="frame" x="0.0" y="655" width="375" height="55"/>
-                                                <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kLf-ih-FrX" userLabel="Mes avis">
-                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="55"/>
-                                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <state key="normal">
-                                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        </state>
-                                                    </button>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mes Avis" textAlignment="natural" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S4b-Pg-fik">
-                                                        <rect key="frame" x="61" y="17" width="294" height="21.333333333333329"/>
-                                                        <fontDescription key="fontDescription" name="URWGothicL-Book" family="URW Gothic L" pointSize="17"/>
-                                                        <color key="textColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="comments-bubbles-outline" translatesAutoresizingMaskIntoConstraints="NO" id="CsI-gI-Dwg">
-                                                        <rect key="frame" x="20" y="14.666666666666629" width="26" height="26"/>
-                                                        <color key="tintColor" red="0.26274509800000001" green="0.30588235289999999" blue="0.3411764706" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" constant="26" id="LR1-ZE-puY"/>
-                                                            <constraint firstAttribute="height" constant="26" id="qoR-XS-fIX"/>
-                                                        </constraints>
-                                                    </imageView>
-                                                </subviews>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <constraints>
-                                                    <constraint firstItem="kLf-ih-FrX" firstAttribute="top" secondItem="fGB-Jp-uXS" secondAttribute="top" id="423-f1-MeT"/>
-                                                    <constraint firstItem="S4b-Pg-fik" firstAttribute="leading" secondItem="CsI-gI-Dwg" secondAttribute="trailing" constant="15" id="FpB-0U-50g"/>
-                                                    <constraint firstItem="kLf-ih-FrX" firstAttribute="leading" secondItem="fGB-Jp-uXS" secondAttribute="leading" id="Hj3-vt-gXi"/>
-                                                    <constraint firstAttribute="trailing" secondItem="S4b-Pg-fik" secondAttribute="trailing" constant="20" symbolic="YES" id="HsZ-Rl-117"/>
-                                                    <constraint firstAttribute="height" constant="55" id="KWs-hG-epK"/>
-                                                    <constraint firstItem="CsI-gI-Dwg" firstAttribute="centerY" secondItem="fGB-Jp-uXS" secondAttribute="centerY" id="ShH-7n-cz6"/>
-                                                    <constraint firstItem="CsI-gI-Dwg" firstAttribute="leading" secondItem="fGB-Jp-uXS" secondAttribute="leading" constant="20" id="cQk-YB-ECm"/>
-                                                    <constraint firstItem="S4b-Pg-fik" firstAttribute="centerY" secondItem="CsI-gI-Dwg" secondAttribute="centerY" id="foY-iB-nP8"/>
-                                                    <constraint firstAttribute="trailing" secondItem="kLf-ih-FrX" secondAttribute="trailing" id="o0b-uJ-oX4"/>
-                                                    <constraint firstAttribute="bottom" secondItem="kLf-ih-FrX" secondAttribute="bottom" id="xU1-Sj-1Vw"/>
-                                                </constraints>
-                                            </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fhM-cA-SsX" userLabel="Licenses et remerciements">
-                                                <rect key="frame" x="0.0" y="711" width="375" height="55"/>
+                                                <rect key="frame" x="0.0" y="655" width="375" height="55"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Elw-SF-cHr" userLabel="Licenses et remerciements">
                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="55"/>
@@ -3274,7 +3235,7 @@
                                                             <action selector="licenseButtonPressed:" destination="XvF-0Y-XO5" eventType="touchUpInside" id="20e-2Z-wHf"/>
                                                         </connections>
                                                     </button>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Licences et remerciements" textAlignment="natural" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FyX-yU-yNQ">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Licenses Open Source" textAlignment="natural" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FyX-yU-yNQ">
                                                         <rect key="frame" x="61" y="17" width="294" height="21.333333333333329"/>
                                                         <fontDescription key="fontDescription" name="URWGothicL-Book" family="URW Gothic L" pointSize="17"/>
                                                         <color key="textColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -3333,7 +3294,7 @@ Remplissez le formulaire ci-dessous et nous contacterons l'établissement pour l
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xe5-0n-R3k" userLabel="Facebook Button">
-                                                <rect key="frame" x="115.33333333333331" y="791" width="35" height="35"/>
+                                                <rect key="frame" x="115.33333333333331" y="735" width="35" height="35"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="35" id="GVU-xh-oZP"/>
                                                     <constraint firstAttribute="width" constant="35" id="apf-69-4TJ"/>
@@ -3344,7 +3305,7 @@ Remplissez le formulaire ci-dessous et nous contacterons l'établissement pour l
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="22P-yx-3BR" userLabel="Twitter Button">
-                                                <rect key="frame" x="170.33333333333334" y="791" width="35" height="35"/>
+                                                <rect key="frame" x="170.33333333333334" y="735" width="35" height="35"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="35" id="RX6-8S-154"/>
                                                     <constraint firstAttribute="width" constant="35" id="ZFd-bR-KJN"/>
@@ -3355,7 +3316,7 @@ Remplissez le formulaire ci-dessous et nous contacterons l'établissement pour l
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hkx-ui-BcF" userLabel="Instagram Button">
-                                                <rect key="frame" x="225.33333333333334" y="791" width="35.000000000000028" height="35"/>
+                                                <rect key="frame" x="225.33333333333334" y="735" width="35.000000000000028" height="35"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="35" id="C2u-Bj-Cci"/>
                                                     <constraint firstAttribute="height" constant="35" id="oeC-k0-p4c"/>
@@ -3378,10 +3339,9 @@ Remplissez le formulaire ci-dessous et nous contacterons l'établissement pour l
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="VegOresto" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LaA-VN-yol">
-                                                <rect key="frame" x="101" y="20" width="173" height="61"/>
+                                                <rect key="frame" x="117.00000000000001" y="20" width="141.33333333333337" height="61"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="61" id="n8o-Xh-kIr"/>
-                                                    <constraint firstAttribute="width" constant="173" id="rMl-lg-gNr"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="olivier" family="olivier" pointSize="40"/>
                                                 <color key="textColor" red="0.96921271085739136" green="0.62255746126174927" blue="0.13184860348701477" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -3394,7 +3354,6 @@ Remplissez le formulaire ci-dessous et nous contacterons l'établissement pour l
                                             <constraint firstItem="g6v-VM-8ap" firstAttribute="top" secondItem="LaA-VN-yol" secondAttribute="bottom" constant="8" symbolic="YES" id="1jV-eg-8oK"/>
                                             <constraint firstItem="LaA-VN-yol" firstAttribute="top" secondItem="Wjo-in-6J3" secondAttribute="top" constant="20" symbolic="YES" id="6xV-Ip-aFV"/>
                                             <constraint firstItem="LaA-VN-yol" firstAttribute="centerX" secondItem="Wjo-in-6J3" secondAttribute="centerX" id="8EC-2U-oet"/>
-                                            <constraint firstItem="fhM-cA-SsX" firstAttribute="top" secondItem="fGB-Jp-uXS" secondAttribute="bottom" constant="1" id="8dw-er-Ida"/>
                                             <constraint firstItem="TbO-c3-qiF" firstAttribute="top" secondItem="0Gl-mT-BhA" secondAttribute="bottom" constant="15" id="8wV-YF-9Mb"/>
                                             <constraint firstAttribute="trailing" secondItem="xRc-HL-fpg" secondAttribute="trailing" id="AJV-Ch-zeh"/>
                                             <constraint firstItem="xRc-HL-fpg" firstAttribute="top" secondItem="AC2-gM-iYY" secondAttribute="bottom" constant="1" id="CMo-v3-FQY"/>
@@ -3402,12 +3361,11 @@ Remplissez le formulaire ci-dessous et nous contacterons l'établissement pour l
                                             <constraint firstItem="g6v-VM-8ap" firstAttribute="leading" secondItem="Wjo-in-6J3" secondAttribute="leading" constant="20" symbolic="YES" id="Dq4-K3-Dto"/>
                                             <constraint firstItem="TbO-c3-qiF" firstAttribute="centerX" secondItem="Wjo-in-6J3" secondAttribute="centerX" id="EIt-IU-SSY"/>
                                             <constraint firstItem="Hkx-ui-BcF" firstAttribute="top" secondItem="xe5-0n-R3k" secondAttribute="top" id="Eh8-Sn-gkC"/>
+                                            <constraint firstAttribute="bottom" secondItem="22P-yx-3BR" secondAttribute="bottom" constant="25" id="Frw-vs-zCY"/>
                                             <constraint firstAttribute="trailing" secondItem="fhM-cA-SsX" secondAttribute="trailing" id="KDk-WX-pVy"/>
-                                            <constraint firstItem="fGB-Jp-uXS" firstAttribute="top" secondItem="xRc-HL-fpg" secondAttribute="bottom" constant="1" id="OHr-l0-Kou"/>
-                                            <constraint firstAttribute="height" constant="950" id="Pev-Ut-xNl"/>
+                                            <constraint firstItem="fhM-cA-SsX" firstAttribute="top" secondItem="xRc-HL-fpg" secondAttribute="bottom" constant="1" id="PE3-HP-DGZ"/>
                                             <constraint firstItem="Br3-Ej-C4I" firstAttribute="centerX" secondItem="Wjo-in-6J3" secondAttribute="centerX" id="PoO-4z-lXu"/>
                                             <constraint firstAttribute="trailing" secondItem="g6v-VM-8ap" secondAttribute="trailing" constant="20" symbolic="YES" id="S8c-I9-psX"/>
-                                            <constraint firstAttribute="trailing" secondItem="fGB-Jp-uXS" secondAttribute="trailing" id="WCV-mV-Pvf"/>
                                             <constraint firstItem="0Gl-mT-BhA" firstAttribute="leading" secondItem="g6v-VM-8ap" secondAttribute="leading" id="YNC-GY-0Kv"/>
                                             <constraint firstItem="22P-yx-3BR" firstAttribute="top" secondItem="xe5-0n-R3k" secondAttribute="top" id="ZcC-kT-zxc"/>
                                             <constraint firstItem="0Gl-mT-BhA" firstAttribute="top" secondItem="Br3-Ej-C4I" secondAttribute="bottom" constant="25" id="bbj-KN-klZ"/>
@@ -3420,7 +3378,6 @@ Remplissez le formulaire ci-dessous et nous contacterons l'établissement pour l
                                             <constraint firstItem="AC2-gM-iYY" firstAttribute="top" secondItem="TbO-c3-qiF" secondAttribute="bottom" constant="25" id="wQl-cm-qp1"/>
                                             <constraint firstItem="22P-yx-3BR" firstAttribute="top" secondItem="fhM-cA-SsX" secondAttribute="bottom" constant="25" id="wgS-Qa-y01"/>
                                             <constraint firstItem="Br3-Ej-C4I" firstAttribute="top" secondItem="g6v-VM-8ap" secondAttribute="bottom" constant="15" id="xGk-4l-vct"/>
-                                            <constraint firstItem="fGB-Jp-uXS" firstAttribute="leading" secondItem="Wjo-in-6J3" secondAttribute="leading" id="xXE-Qv-QeL"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -3772,7 +3729,6 @@ Remplissez le formulaire ci-dessous et nous contacterons l'établissement pour l
     </scenes>
     <resources>
         <image name="add_post" width="85" height="85"/>
-        <image name="comments-bubbles-outline" width="85" height="85"/>
         <image name="favorites" width="85" height="85"/>
         <image name="ic_menu_facebook" width="91" height="90"/>
         <image name="ic_menu_insta" width="90" height="90"/>

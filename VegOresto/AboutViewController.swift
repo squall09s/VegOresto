@@ -54,7 +54,7 @@ class AboutViewController: UIViewController {
 
     @IBAction func licenseButtonPressed(_ sender: Any) {
         if let vc: VTAcknowledgementsViewController = VTAcknowledgementsViewController(fileNamed: "Pods-VegOresto-acknowledgements") {
-            vc.headerText = "Licences et remerciements"
+            vc.headerText = "Licenses Open Source"
             vc.title = ""
 
             let customLicense0: VTAcknowledgement = VTAcknowledgement(title: "", text: "", license : nil)
