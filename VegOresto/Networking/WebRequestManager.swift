@@ -42,7 +42,7 @@ class WebRequestManager {
     }
     
     public func loadHoraires() -> Promise<[Horaire]> {
-        let url = getUrl("/wp-content/cache/horaires.json")
+        let url = getUrl("/wp-json/vg/v1/horaires.json")
         return RequestManager.shared.get(url: url).then(execute: { (result: [String:Any]) -> [Horaire] in
             return Array(result.values).flatMap({ (dict) -> Horaire? in
                 guard let _dict = dict as? [String:Any],
