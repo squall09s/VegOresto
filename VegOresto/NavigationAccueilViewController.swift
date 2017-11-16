@@ -81,82 +81,61 @@ class NavigationAccueilViewController: UIViewController {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
-    @IBAction func touch_bt_tabbar(sender: UIButton) {
-
-        if self.varIB_button_tabbar_maps == sender {
-
-            let frame = CGRect( x : Device.WIDTH, y : 0, width : Device.WIDTH, height : Device.HEIGHT - HAUTEUR_HEADER_BAR - HAUTEUR_TABBAR )
-
-            self.varIB_scrollView.scrollRectToVisible( frame, animated: true )
-
+    
+    // MARK: Helpers
+    
+    private func showMapsView() {
+        let frame = CGRect(x : Device.WIDTH, y: 0, width: Device.WIDTH, height: Device.HEIGHT - HAUTEUR_HEADER_BAR - HAUTEUR_TABBAR)
+        
+        // set the enabled categories from the Search view
+        self.maps_viewController?.setEnabledCategories(self.recherche_viewController?.enabledCategories ?? Set())
+        
+        UIView.animate(withDuration: 0.2, animations: {
+            self.varIB_scrollView.scrollRectToVisible(frame, animated: false)
             self.varIB_contrainte_y_chevron_tabbar.constant = Device.WIDTH * 0.75 - 15
-
-            UIView.animate(withDuration: 0.2, animations: {
-
-                self.varIB_button_tabbar_list.backgroundColor = UIColor.clear
-                self.varIB_button_tabbar_maps.backgroundColor = UIColor.white.withAlphaComponent(0.3)
-
-            })
-
-        } else if self.varIB_button_tabbar_list == sender {
-
-            let frame = CGRect(x : 0, y : 0, width : Device.WIDTH, height :Device.HEIGHT - HAUTEUR_HEADER_BAR - HAUTEUR_TABBAR )
-
-            self.varIB_scrollView.scrollRectToVisible( frame, animated: true )
-
-            self.varIB_contrainte_y_chevron_tabbar.constant = Device.WIDTH * 0.25 - 15
-
-            UIView.animate(withDuration: 0.2, animations: {
-
-                self.varIB_button_tabbar_maps.backgroundColor = UIColor.clear
-                self.varIB_button_tabbar_list.backgroundColor = UIColor.white.withAlphaComponent(0.3)
-
-            })
-
-        }
-
-        UIView.animate(withDuration: 0.25) {
+            self.varIB_button_tabbar_list.backgroundColor = UIColor.clear
+            self.varIB_button_tabbar_maps.backgroundColor = UIColor.white.withAlphaComponent(0.3)
             self.view.layoutIfNeeded()
+        })
+    }
+    
+    private func showSearchView() {
+        let frame = CGRect(x : 0, y: 0, width: Device.WIDTH, height: Device.HEIGHT - HAUTEUR_HEADER_BAR - HAUTEUR_TABBAR)
+        
+        // set the enabled categories from the Maps view
+        self.recherche_viewController?.setEnabledCategories(self.maps_viewController?.enabledCategories ?? Set())
+        
+        UIView.animate(withDuration: 0.2, animations: {
+            self.varIB_scrollView.scrollRectToVisible(frame, animated: false)
+            self.varIB_contrainte_y_chevron_tabbar.constant = Device.WIDTH * 0.25 - 15
+            self.varIB_button_tabbar_maps.backgroundColor = UIColor.clear
+            self.varIB_button_tabbar_list.backgroundColor = UIColor.white.withAlphaComponent(0.3)
+            self.view.layoutIfNeeded()
+        })
+    }
+
+    // MARK: IBActions
+    
+    @IBAction func touch_bt_tabbar(sender: UIButton) {
+        if self.varIB_button_tabbar_maps == sender {
+            showMapsView()
+        } else if self.varIB_button_tabbar_list == sender {
+            showSearchView()
         }
     }
 
     @IBAction func touch_bt_location(sender: UIButton) {
-
-        if let nc_maps = self.maps_viewController {
-
-            nc_maps.update_region_for_user_location()
-
-        }
-
-        if let nc_recherche = self.recherche_viewController {
-
-            nc_recherche.update_resultats_for_user_location()
-
-        }
-
+        maps_viewController?.update_region_for_user_location()
+        recherche_viewController?.update_resultats_for_user_location()
     }
+    
+    // MARK: Segue
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-
         if let vc = segue.destination as? RechercheViewController {
             self.recherche_viewController = vc
-
         } else if let vc = segue.destination as? MapsViewController {
             self.maps_viewController = vc
-
         }
-
     }
-
 }

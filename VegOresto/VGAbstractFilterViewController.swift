@@ -94,88 +94,22 @@ class VGAbstractFilterViewController: UIViewController {
     // MARK: IBActions
 
     @IBAction func touch_bt_categorie(sender: UIButton) {
-
-        if sender == self.varIB_bt_filtre_categorie_1 {
-
-            if self.filtre_categorie_Vegetarien_active == false || ( self.filtre_categorie_Vegan_active || self.filtre_categorie_VeganFriendly_active ) {
-                self.filtre_categorie_Vegetarien_active = !(self.filtre_categorie_Vegetarien_active)
+        if sender == varIB_bt_filtre_categorie_1 {
+            if !filtre_categorie_Vegetarien_active || filtre_categorie_Vegan_active || filtre_categorie_VeganFriendly_active {
+                filtre_categorie_Vegetarien_active = !filtre_categorie_Vegetarien_active
             }
-        } else if sender == self.varIB_bt_filtre_categorie_2 {
-
-            if self.filtre_categorie_Vegan_active == false || ( self.filtre_categorie_Vegetarien_active || self.filtre_categorie_VeganFriendly_active ) {
-                self.filtre_categorie_Vegan_active = !(self.filtre_categorie_Vegan_active)
+        } else if sender == varIB_bt_filtre_categorie_2 {
+            if !filtre_categorie_Vegan_active || filtre_categorie_Vegetarien_active || filtre_categorie_VeganFriendly_active {
+                filtre_categorie_Vegan_active = !filtre_categorie_Vegan_active
             }
-        } else if sender == self.varIB_bt_filtre_categorie_3 {
-
-            if self.filtre_categorie_VeganFriendly_active == false || ( self.filtre_categorie_Vegan_active || self.filtre_categorie_Vegetarien_active ) {
-                self.filtre_categorie_VeganFriendly_active = !(self.filtre_categorie_VeganFriendly_active)
+        } else if sender == varIB_bt_filtre_categorie_3 {
+            if !filtre_categorie_VeganFriendly_active || filtre_categorie_Vegan_active || filtre_categorie_Vegetarien_active {
+                filtre_categorie_VeganFriendly_active = !filtre_categorie_VeganFriendly_active
             }
         }
 
-        let MidWidthSeparator = ((Device.WIDTH - 40.0 ) / 3.0 ) / 2.0
-
-        if self.filtre_categorie_Vegetarien_active {
-            if self.varIB_check_categorie_1!.on == false {
-                self.varIB_check_categorie_1?.setOn(true, animated: true)
-                UIView.animate(withDuration: 0.5, animations: {
-                    self.varIB_label_categorie_1?.textColor = COLOR_VIOLET
-                })
-            }
-        } else {
-            if self.varIB_check_categorie_1!.on == true {
-                self.varIB_check_categorie_1?.setOn(false, animated: true)
-                UIView.animate(withDuration: 0.5, animations: {
-                    self.varIB_label_categorie_1?.textColor = self.colorUnselected
-                })
-            }
-        }
-
-        self.varIB_separator_categorie_1?.mdInflateAnimatedFromPoint(point: CGPoint(x: MidWidthSeparator, y: 0), backgroundColor: self.filtre_categorie_Vegetarien_active ? COLOR_VIOLET : UIColor.lightGray.withAlphaComponent(0.4), duration: 0.5, completion: {
-
-        })
-
-        if self.filtre_categorie_Vegan_active {
-            if self.varIB_check_categorie_2!.on == false {
-                self.varIB_check_categorie_2?.setOn(true, animated: true)
-                UIView.animate(withDuration: 0.5, animations: {
-                    self.varIB_label_categorie_2?.textColor = COLOR_VERT
-                })
-            }
-        } else {
-            if self.varIB_check_categorie_2!.on == true {
-                self.varIB_check_categorie_2?.setOn(false, animated: true)
-                UIView.animate(withDuration: 0.5, animations: {
-                    self.varIB_label_categorie_2?.textColor = self.colorUnselected
-                })
-            }
-        }
-
-        self.varIB_separator_categorie_2?.mdInflateAnimatedFromPoint(point: CGPoint(x: MidWidthSeparator, y: 0), backgroundColor: self.filtre_categorie_Vegan_active ? COLOR_VERT : UIColor.lightGray.withAlphaComponent(0.4), duration: 0.5, completion: {
-
-        })
-
-        if self.filtre_categorie_VeganFriendly_active {
-            if self.varIB_check_categorie_3!.on == false {
-                self.varIB_check_categorie_3?.setOn(true, animated: true)
-                UIView.animate(withDuration: 0.5, animations: {
-                    self.varIB_label_categorie_3?.textColor = COLOR_BLEU
-                })
-            }
-        } else {
-            if self.varIB_check_categorie_3!.on == true {
-                self.varIB_check_categorie_3?.setOn(false, animated: true)
-                UIView.animate(withDuration: 0.5, animations: {
-                    self.varIB_label_categorie_3?.textColor = self.colorUnselected
-                })
-            }
-        }
-
-        self.varIB_separator_categorie_3?.mdInflateAnimatedFromPoint(point: CGPoint(x: MidWidthSeparator, y: 0), backgroundColor: self.filtre_categorie_VeganFriendly_active ? COLOR_BLEU : UIColor.lightGray.withAlphaComponent(0.4), duration: 0.5, completion: {
-
-        })
-
-        self.updateData()
-
+        updateInterface()
+        updateData()
     }
     
     // MARK: Getters
@@ -192,6 +126,14 @@ class VGAbstractFilterViewController: UIViewController {
             categories.insert(CategorieRestaurant.VeganFriendly)
         }
         return categories
+    }
+    
+    internal func setEnabledCategories(_ categories: Set<CategorieRestaurant>) {
+        filtre_categorie_Vegan_active = categories.contains(CategorieRestaurant.Vegan)
+        filtre_categorie_Vegetarien_active = categories.contains(CategorieRestaurant.Végétarien)
+        filtre_categorie_VeganFriendly_active = categories.contains(CategorieRestaurant.VeganFriendly)
+        updateInterface()
+        updateData()
     }
     
     internal func filterCurrentCategories(restaurants: [Restaurant]) -> [Restaurant] {
@@ -219,6 +161,67 @@ class VGAbstractFilterViewController: UIViewController {
                 }
             }
             return false
+        })
+    }
+    
+    private func updateInterface() {
+        let MidWidthSeparator = ((Device.WIDTH - 40.0 ) / 3.0 ) / 2.0
+        
+        if self.filtre_categorie_Vegetarien_active {
+            if self.varIB_check_categorie_1!.on == false {
+                self.varIB_check_categorie_1?.setOn(true, animated: true)
+                UIView.animate(withDuration: 0.5, animations: {
+                    self.varIB_label_categorie_1?.textColor = COLOR_VIOLET
+                })
+            }
+        } else {
+            if self.varIB_check_categorie_1!.on == true {
+                self.varIB_check_categorie_1?.setOn(false, animated: true)
+                UIView.animate(withDuration: 0.5, animations: {
+                    self.varIB_label_categorie_1?.textColor = self.colorUnselected
+                })
+            }
+        }
+        
+        self.varIB_separator_categorie_1?.mdInflateAnimatedFromPoint(point: CGPoint(x: MidWidthSeparator, y: 0), backgroundColor: self.filtre_categorie_Vegetarien_active ? COLOR_VIOLET : UIColor.lightGray.withAlphaComponent(0.4), duration: 0.5, completion: {
+        })
+        
+        if self.filtre_categorie_Vegan_active {
+            if self.varIB_check_categorie_2!.on == false {
+                self.varIB_check_categorie_2?.setOn(true, animated: true)
+                UIView.animate(withDuration: 0.5, animations: {
+                    self.varIB_label_categorie_2?.textColor = COLOR_VERT
+                })
+            }
+        } else {
+            if self.varIB_check_categorie_2!.on == true {
+                self.varIB_check_categorie_2?.setOn(false, animated: true)
+                UIView.animate(withDuration: 0.5, animations: {
+                    self.varIB_label_categorie_2?.textColor = self.colorUnselected
+                })
+            }
+        }
+        
+        self.varIB_separator_categorie_2?.mdInflateAnimatedFromPoint(point: CGPoint(x: MidWidthSeparator, y: 0), backgroundColor: self.filtre_categorie_Vegan_active ? COLOR_VERT : UIColor.lightGray.withAlphaComponent(0.4), duration: 0.5, completion: {
+        })
+        
+        if self.filtre_categorie_VeganFriendly_active {
+            if self.varIB_check_categorie_3!.on == false {
+                self.varIB_check_categorie_3?.setOn(true, animated: true)
+                UIView.animate(withDuration: 0.5, animations: {
+                    self.varIB_label_categorie_3?.textColor = COLOR_BLEU
+                })
+            }
+        } else {
+            if self.varIB_check_categorie_3!.on == true {
+                self.varIB_check_categorie_3?.setOn(false, animated: true)
+                UIView.animate(withDuration: 0.5, animations: {
+                    self.varIB_label_categorie_3?.textColor = self.colorUnselected
+                })
+            }
+        }
+        
+        self.varIB_separator_categorie_3?.mdInflateAnimatedFromPoint(point: CGPoint(x: MidWidthSeparator, y: 0), backgroundColor: self.filtre_categorie_VeganFriendly_active ? COLOR_BLEU : UIColor.lightGray.withAlphaComponent(0.4), duration: 0.5, completion: {
         })
     }
     

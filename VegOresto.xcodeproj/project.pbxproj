@@ -344,10 +344,10 @@
 		AEB954C41FBE13B60019DFF1 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				39848B071CB4231300D718FD /* NavigationAccueilViewController.swift */,
 				370CBE531FB1920D00A1AE02 /* VGAbstractFilterViewController.swift */,
 				39EC7FEF1CAC0E15002AD862 /* MapsViewController.swift */,
 				39EC80031CAC4787002AD862 /* RechercheViewController.swift */,
-				39848B071CB4231300D718FD /* NavigationAccueilViewController.swift */,
 				39EC80051CAD5ED2002AD862 /* RestaurantAnnotation.swift */,
 			);
 			name = Home;
