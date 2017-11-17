@@ -320,20 +320,20 @@ class DetailRestaurantViewController: UIViewController, UIScrollViewDelegate {
                                       message: "Ouvrir l'itinéraire vers ce restaurant ?",
                                       preferredStyle: .actionSheet)
         
-        let action1 = UIAlertAction(title: "Utiliser Plan", style: .default, handler: { (_) -> Void in
+        let action1 = UIAlertAction(title: "Plan", style: .default, handler: { (_) -> Void in
             self.launchAppleMaps()
         })
         alert.addAction(action1)
 
         if Deeplinking.canOpenGoogleMaps() {
-            let action2 = UIAlertAction(title: "Utiliser Google Maps", style: .default, handler: { (_) -> Void in
+            let action2 = UIAlertAction(title: "Google Maps", style: .default, handler: { (_) -> Void in
                 self.launchGoogleMaps()
             })
             alert.addAction(action2)
         }
 
         // Cancel button
-        let cancel = UIAlertAction(title: "Annuler", style: .destructive, handler: { (_) -> Void in })
+        let cancel = UIAlertAction(title: "Annuler", style: .cancel, handler: { (_) -> Void in })
 
         alert.addAction(cancel)
         present(alert, animated: true, completion: nil)
