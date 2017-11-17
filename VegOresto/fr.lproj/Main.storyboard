@@ -1124,7 +1124,7 @@
                                                         <color key="tintColor" red="0.98039215690000003" green="0.65098039220000004" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                                         <color key="color" red="0.98039215690000003" green="0.65098039220000004" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     </activityIndicatorView>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P6D-NB-su3" userLabel="Button Show Comments">
+                                                    <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P6D-NB-su3" userLabel="Button Show Comments">
                                                         <rect key="frame" x="264" y="10" width="36" height="36"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="36" id="XAJ-qk-mP6"/>
