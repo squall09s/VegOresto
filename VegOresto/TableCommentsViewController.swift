@@ -203,7 +203,7 @@ class TableCommentsViewController: UIViewController, UITableViewDelegate, UITabl
         var rootsComment = [Comment]()
         var childsComment = [Comment]()
 
-        for tmpComment in restaurant.getComments() {
+        for tmpComment in restaurant.commentsArray {
             if (tmpComment.parentId?.intValue ?? 0) <= 0 {
                 rootsComment.append(tmpComment)
             } else {

@@ -228,7 +228,7 @@ class DetailRestaurantViewController: UIViewController, UIScrollViewDelegate {
     }
     
     private func updateLabelComment() {
-        if let nbComment = self.current_restaurant?.getComments().count, nbComment > 0 {
+        if let nbComment = self.current_restaurant?.commentsArray.count, nbComment > 0 {
             self.varIB_label_number_comment?.text = "Tous les avis [\(nbComment)]"
         } else {
             self.varIB_label_number_comment?.text = "Aucun avis pour le moment"

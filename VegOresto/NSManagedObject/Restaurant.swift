@@ -40,8 +40,7 @@ class Restaurant: NSManagedObject, Mappable {
         self.comments = comments.copy() as! NSOrderedSet
     }
 
-    // @TODO maybe a var?
-    public func getComments() -> [Comment] {
+    public var commentsArray: [Comment] {
         return (self.comments.array as? [Comment]) ?? []
     }
 
@@ -57,25 +56,6 @@ class Restaurant: NSManagedObject, Mappable {
         }
     }
 
-    // @TODO fix typo in the func name
-    func is_glutonFree() -> Bool {
-
-        let array_cats: [CategorieCulinaire] = categoriesCulinairesArray
-
-        for current_cat in array_cats {
-
-            if current_cat.name == "gluten-free"{
-
-                return true
-
-            }
-
-        }
-
-        return false
-
-    }
-    
     var category: CategorieRestaurant {
         if isVegan.boolValue {
             return CategorieRestaurant.Vegan

@@ -61,7 +61,7 @@ class WebRequestManager {
             
             // remove old comments
             let context = UserData.shared.viewContext
-            let toDelete = Set(restaurant.getComments()).subtracting(comments)
+            let toDelete = Set(restaurant.commentsArray).subtracting(comments)
             for comment in toDelete {
                 context.delete(comment)
             }
