@@ -96,31 +96,33 @@ class UserData {
         }
     }
 
-    func getRestaurants() -> [Restaurant] {
+    public func getRestaurants() -> [Restaurant] {
         let fetchRequest: NSFetchRequest<Restaurant> = NSFetchRequest(entityName: "Restaurant")
         return safeFetch(fetchRequest)
     }
 
-    func getHoraires() -> [Horaire] {
+    public func getHoraires() -> [Horaire] {
         let fetchRequest: NSFetchRequest<Horaire> = NSFetchRequest(entityName: "Horaire")
         return safeFetch(fetchRequest)
     }
 
-    func getRestaurant(identifier: Int) -> Restaurant? {
+    public func getRestaurant(identifier: Int) -> Restaurant? {
         let fetchRequest: NSFetchRequest<Restaurant> = NSFetchRequest(entityName: "Restaurant")
         fetchRequest.predicate = NSPredicate(format: "identifier == %@", String(identifier))
         return safeFetch(fetchRequest).first
     }
 
-    func getHoraire(restaurant: Restaurant) -> Horaire? {
+    public func getHoraire(restaurant: Restaurant) -> Horaire? {
         let fetchRequest: NSFetchRequest<Horaire> = NSFetchRequest(entityName: "Horaire")
         fetchRequest.predicate = NSPredicate(format: "idResto == %@", String(restaurant.identifier?.intValue ?? -1))
         return safeFetch(fetchRequest).first
     }
 }
 
-func cleanHTMLString(str: String) -> String {
-    var strResult = str.replacingOccurrences(of: "<br />", with: "")
+internal func cleanHTMLString(str: String) -> String {
+    // decode basic entities
+    var strResult = str
+    strResult = strResult.replacingOccurrences(of: "<br />", with: "")
     strResult = strResult.replacingOccurrences(of:"<p>", with: "")
     strResult = strResult.replacingOccurrences(of:"</p>", with: "")
     strResult = strResult.replacingOccurrences(of:"&#039;", with: "'")
@@ -129,5 +131,15 @@ func cleanHTMLString(str: String) -> String {
     strResult = strResult.replacingOccurrences(of:"&#8211;", with: "–")
     strResult = strResult.replacingOccurrences(of:"&amp;#038;", with: "&")
     strResult = strResult.replacingOccurrences(of:"&#038;", with: "&")
+
+    // decode left entities
+    let options: [String: Any] = [
+        NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType,
+        NSCharacterEncodingDocumentAttribute: String.Encoding.utf8.rawValue
+    ]
+    if let data = strResult.data(using: .utf8), let attributedString = try? NSAttributedString(data: data, options: options, documentAttributes: nil) {
+        strResult = attributedString.string
+    }
+
     return strResult
 }
