@@ -24,6 +24,9 @@ class NavigationAccueilViewController: UIViewController {
 
     let HAUTEUR_HEADER_BAR = CGFloat(50.0)
     let HAUTEUR_TABBAR = CGFloat(60.0)
+    
+    // MARK: -
+    // MARK: View Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,20 +44,7 @@ class NavigationAccueilViewController: UIViewController {
 
         self.varIB_contrainte_y_chevron_tabbar.constant = Device.WIDTH * 0.25 - 15
 
-        MBProgressHUD.showAdded(to: self.view, animated: true)
-
-        self.updateData(forced: false).always {
-            MBProgressHUD.hide(for: self.view, animated: true)
-        }
-    }
-
-    func updateData(forced: Bool = false) -> Promise<Void> {
-        return UserData.shared.updateDatabaseIfNeeded(forced: forced).then { () -> Void in
-            self.maps_viewController?.updateDataAfterDelay()
-            self.recherche_viewController?.updateDataAfterDelay()
-            
-            let _ = WebRequestManager.shared.loadHoraires()
-        }
+        updateDataIfNeeded()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -82,7 +72,32 @@ class NavigationAccueilViewController: UIViewController {
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
     }
     
-    // MARK: Helpers
+    // MARK: Data Loading
+    
+    private func updateDataIfNeeded() {
+        let showProgressIndicator = UserData.shared.getRestaurants().isEmpty
+        
+        if showProgressIndicator {
+            MBProgressHUD.showAdded(to: self.view, animated: true)
+        }
+        
+        updateData(forced: false).always {
+            if showProgressIndicator {
+                MBProgressHUD.hide(for: self.view, animated: true)
+            }
+        }
+    }
+    
+    public func updateData(forced: Bool = false) -> Promise<Void> {
+        return UserData.shared.updateDatabaseIfNeeded(forced: forced).then { () -> Void in
+            self.maps_viewController?.updateDataAfterDelay()
+            self.recherche_viewController?.updateDataAfterDelay()
+            
+            let _ = WebRequestManager.shared.loadHoraires()
+        }
+    }
+    
+    // MARK: UI Helpers
     
     private func showMapsView() {
         let frame = CGRect(x : Device.WIDTH, y: 0, width: Device.WIDTH, height: Device.HEIGHT - HAUTEUR_HEADER_BAR - HAUTEUR_TABBAR)
