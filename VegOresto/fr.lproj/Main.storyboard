@@ -951,10 +951,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="1478"/>
                                 <subviews>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wig-Jl-FRH" userLabel="contentView">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="1297.3333333333333"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="1289.6666666666667"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zwb-5q-t9M" userLabel="Header View">
-                                                <rect key="frame" x="0.0" y="0.0" width="320" height="302.33333333333331"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="320" height="287.66666666666669"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nns-6V-dfB" userLabel="Image Header View">
                                                         <rect key="frame" x="0.0" y="0.0" width="320" height="133.66666666666666"/>
@@ -1016,12 +1016,12 @@
                                                         </constraints>
                                                     </view>
                                                     <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="AqZ-bM-2nR">
-                                                        <rect key="frame" x="140" y="143.66666666666666" width="39" height="37"/>
+                                                        <rect key="frame" x="140" y="133.66666666666666" width="39" height="37"/>
                                                         <color key="pageIndicatorTintColor" red="0.96862745100000003" green="0.62352941179999999" blue="0.12941176469999999" alpha="0.37560519366197181" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <color key="currentPageIndicatorTintColor" red="0.96862745100000003" green="0.62352941179999999" blue="0.12941176469999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </pageControl>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Aucune description pour le moment" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yV8-Xy-kh8">
-                                                        <rect key="frame" x="20" y="190.33333333333331" width="280" height="60"/>
+                                                        <rect key="frame" x="20" y="175.66666666666669" width="280" height="60"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="LT8-LI-ANc"/>
                                                         </constraints>
@@ -1030,7 +1030,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dz2-Yh-Bxi" userLabel="Rating View">
-                                                        <rect key="frame" x="80" y="260.33333333333331" width="160" height="32"/>
+                                                        <rect key="frame" x="80" y="245.66666666666669" width="160" height="32"/>
                                                         <subviews>
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_favoris_star_off" translatesAutoresizingMaskIntoConstraints="NO" id="yF6-Ch-uzz">
                                                                 <rect key="frame" x="64" y="0.0" width="32" height="32"/>
@@ -1094,9 +1094,9 @@
                                                     <constraint firstItem="Nns-6V-dfB" firstAttribute="top" secondItem="Zwb-5q-t9M" secondAttribute="top" id="DMO-nA-a3f"/>
                                                     <constraint firstItem="Dz2-Yh-Bxi" firstAttribute="centerX" secondItem="Zwb-5q-t9M" secondAttribute="centerX" id="Fl2-TV-kHb"/>
                                                     <constraint firstItem="Nns-6V-dfB" firstAttribute="leading" secondItem="Zwb-5q-t9M" secondAttribute="leading" id="GVc-FI-3pg"/>
-                                                    <constraint firstItem="yV8-Xy-kh8" firstAttribute="top" secondItem="AqZ-bM-2nR" secondAttribute="bottom" constant="10" id="NhM-WX-FXJ"/>
+                                                    <constraint firstItem="yV8-Xy-kh8" firstAttribute="top" secondItem="AqZ-bM-2nR" secondAttribute="bottom" constant="5" id="NhM-WX-FXJ"/>
                                                     <constraint firstItem="Dz2-Yh-Bxi" firstAttribute="top" secondItem="yV8-Xy-kh8" secondAttribute="bottom" constant="10" id="SBK-wF-FIr"/>
-                                                    <constraint firstItem="AqZ-bM-2nR" firstAttribute="top" secondItem="Nns-6V-dfB" secondAttribute="bottom" constant="10" id="ZPv-7B-eOJ"/>
+                                                    <constraint firstItem="AqZ-bM-2nR" firstAttribute="top" secondItem="Nns-6V-dfB" secondAttribute="bottom" id="ZPv-7B-eOJ"/>
                                                     <constraint firstAttribute="trailing" secondItem="yV8-Xy-kh8" secondAttribute="trailing" constant="20" symbolic="YES" id="cZM-B0-K84"/>
                                                     <constraint firstItem="yV8-Xy-kh8" firstAttribute="leading" secondItem="Zwb-5q-t9M" secondAttribute="leading" constant="20" symbolic="YES" id="dxr-ej-01o"/>
                                                     <constraint firstAttribute="bottom" secondItem="Dz2-Yh-Bxi" secondAttribute="bottom" constant="10" id="oVl-RI-OfU"/>
@@ -1105,13 +1105,13 @@
                                                 </constraints>
                                             </view>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_separateur_detail_resto" translatesAutoresizingMaskIntoConstraints="NO" id="Dlk-WY-svL">
-                                                <rect key="frame" x="0.0" y="302.33333333333331" width="320" height="14"/>
+                                                <rect key="frame" x="0.0" y="287.66666666666669" width="320" height="14"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="14" id="jJF-vj-Xs9"/>
                                                 </constraints>
                                             </imageView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gP5-XC-mE7" userLabel="Comments View">
-                                                <rect key="frame" x="0.0" y="316.33333333333331" width="320" height="56"/>
+                                                <rect key="frame" x="0.0" y="301.66666666666669" width="320" height="56"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2s9-hI-ile">
                                                         <rect key="frame" x="0.0" y="0.0" width="320" height="56"/>
@@ -1159,14 +1159,14 @@
                                                 </constraints>
                                             </view>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_separateur_detail_resto" translatesAutoresizingMaskIntoConstraints="NO" id="qaM-Yr-l4i">
-                                                <rect key="frame" x="0.0" y="372.33333333333331" width="320" height="14"/>
+                                                <rect key="frame" x="0.0" y="357.66666666666669" width="320" height="14"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="14" id="4mi-gN-Pfp"/>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="14" id="fzR-UU-KF9"/>
                                                 </constraints>
                                             </imageView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9tc-GB-uQR" userLabel="Contact View">
-                                                <rect key="frame" x="0.0" y="386.33333333333337" width="320" height="341.33333333333337"/>
+                                                <rect key="frame" x="0.0" y="371.66666666666674" width="320" height="341.33333333333326"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contact" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lfR-5o-fd7">
                                                         <rect key="frame" x="20" y="14.999999999999998" width="280" height="21.333333333333329"/>
@@ -1184,14 +1184,14 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Adresse non renseigné" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VIA-dm-tbG">
-                                                                <rect key="frame" x="20" y="22.666666666666742" width="240" height="17.666666666666671"/>
+                                                                <rect key="frame" x="20" y="22.666666666666629" width="240" height="17.666666666666671"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                 <fontDescription key="fontDescription" name="URWGothicL-Book" family="URW Gothic L" pointSize="14"/>
                                                                 <color key="textColor" red="0.40784313729999999" green="0.40784313729999999" blue="0.40784313729999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u3x-Hk-nIU">
-                                                                <rect key="frame" x="270" y="12.666666666666742" width="35" height="35"/>
+                                                                <rect key="frame" x="270" y="12.666666666666629" width="35" height="35"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="35" id="263-5h-qGe"/>
                                                                     <constraint firstAttribute="height" constant="35" id="IeC-Vh-uQc"/>
@@ -1232,14 +1232,14 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Aucun numéro de téléphone" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GLg-x4-OVQ">
-                                                                <rect key="frame" x="20" y="22.666666666666742" width="240" height="17.666666666666671"/>
+                                                                <rect key="frame" x="20" y="22.666666666666629" width="240" height="17.666666666666671"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                 <fontDescription key="fontDescription" name="URWGothicL-Book" family="URW Gothic L" pointSize="14"/>
                                                                 <color key="textColor" red="0.40784313729999999" green="0.40784313729999999" blue="0.40784313729999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pHz-2E-Pdr">
-                                                                <rect key="frame" x="270" y="12.666666666666742" width="35" height="35"/>
+                                                                <rect key="frame" x="270" y="12.666666666666629" width="35" height="35"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="35" id="OpO-1U-B4t"/>
                                                                     <constraint firstAttribute="height" constant="35" id="rYL-8c-DZ0"/>
@@ -1280,14 +1280,14 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Aucun Mail disponible" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VhC-b1-Ojb">
-                                                                <rect key="frame" x="20" y="22.666666666666742" width="240" height="17.666666666666671"/>
+                                                                <rect key="frame" x="20" y="22.666666666666629" width="240" height="17.666666666666671"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                 <fontDescription key="fontDescription" name="URWGothicL-Book" family="URW Gothic L" pointSize="14"/>
                                                                 <color key="textColor" red="0.40784313729999999" green="0.40784313729999999" blue="0.40784313729999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mS6-Ez-DUz">
-                                                                <rect key="frame" x="270" y="12.666666666666742" width="35" height="35"/>
+                                                                <rect key="frame" x="270" y="12.666666666666629" width="35" height="35"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="35" id="dtb-4D-Vqe"/>
                                                                     <constraint firstAttribute="width" constant="35" id="eNI-8y-eZb"/>
@@ -1328,14 +1328,14 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Aucun site disponible" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T0y-xt-Eku">
-                                                                <rect key="frame" x="20" y="22.666666666666742" width="240" height="17.666666666666671"/>
+                                                                <rect key="frame" x="20" y="22.666666666666629" width="240" height="17.666666666666671"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                 <fontDescription key="fontDescription" name="URWGothicL-Book" family="URW Gothic L" pointSize="14"/>
                                                                 <color key="textColor" red="0.40784313729999999" green="0.40784313729999999" blue="0.40784313729999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n3f-Ps-ttN">
-                                                                <rect key="frame" x="270" y="12.666666666666742" width="35" height="35"/>
+                                                                <rect key="frame" x="270" y="12.666666666666629" width="35" height="35"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="35" id="Ktj-gD-DFX"/>
                                                                     <constraint firstAttribute="width" constant="35" id="vvD-pc-anS"/>
@@ -1376,14 +1376,14 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Aucune page disponible" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lad-t0-YIn">
-                                                                <rect key="frame" x="20" y="22.666666666666742" width="240" height="17.666666666666671"/>
+                                                                <rect key="frame" x="20" y="22.666666666666629" width="240" height="17.666666666666671"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                 <fontDescription key="fontDescription" name="URWGothicL-Book" family="URW Gothic L" pointSize="14"/>
                                                                 <color key="textColor" red="0.40784313729999999" green="0.40784313729999999" blue="0.40784313729999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ttP-xi-XmW">
-                                                                <rect key="frame" x="270" y="12.666666666666742" width="35" height="35"/>
+                                                                <rect key="frame" x="270" y="12.666666666666629" width="35" height="35"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="35" id="DtC-tq-dv7"/>
                                                                     <constraint firstAttribute="height" constant="35" id="wFE-Al-0oM"/>
@@ -1439,7 +1439,7 @@
                                                 </constraints>
                                             </view>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_separateur_detail_resto" translatesAutoresizingMaskIntoConstraints="NO" id="op2-ps-fay">
-                                                <rect key="frame" x="0.0" y="727.66666666666663" width="320" height="14"/>
+                                                <rect key="frame" x="0.0" y="713" width="320" height="14"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="14" id="6se-At-XvP"/>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="14" id="Fjh-PZ-qR5"/>
@@ -1451,7 +1451,7 @@
                                                 </variation>
                                             </imageView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nYE-C0-dqG" userLabel="Horaires View">
-                                                <rect key="frame" x="0.0" y="741.66666666666663" width="320" height="181.33333333333337"/>
+                                                <rect key="frame" x="0.0" y="727" width="320" height="181.33333333333337"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Horaires" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jjp-he-lME">
                                                         <rect key="frame" x="20" y="14.999999999999998" width="280" height="21.333333333333329"/>
@@ -1544,13 +1544,13 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jeudi" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="be3-aF-vTc">
-                                                        <rect key="frame" x="20" y="97.666666666666742" width="79.333333333333329" height="15.666666666666671"/>
+                                                        <rect key="frame" x="20" y="97.666666666666629" width="79.333333333333329" height="15.666666666666671"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="13"/>
                                                         <color key="textColor" red="0.40784313729999999" green="0.40784313729999999" blue="0.40784313729999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fermé" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DLT-a1-g21" customClass="MarqueeLabel">
-                                                        <rect key="frame" x="101.33333333333331" y="96.666666666666742" width="198" height="16.333333333333329"/>
+                                                        <rect key="frame" x="101.33333333333331" y="96.666666666666629" width="198" height="16.333333333333329"/>
                                                         <fontDescription key="fontDescription" name="URWGothicL-Book" family="URW Gothic L" pointSize="13"/>
                                                         <color key="textColor" red="0.40784313729999999" green="0.40784313729999999" blue="0.40784313729999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -1625,13 +1625,13 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dimanche" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eVX-9s-FUB">
-                                                        <rect key="frame" x="20" y="150.66666666666674" width="80" height="15.666666666666657"/>
+                                                        <rect key="frame" x="20" y="150.66666666666663" width="80" height="15.666666666666657"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="13"/>
                                                         <color key="textColor" red="0.40784313729999999" green="0.40784313729999999" blue="0.40784313729999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fermé" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f61-eF-BJi" customClass="MarqueeLabel">
-                                                        <rect key="frame" x="102" y="149.66666666666674" width="198" height="16.333333333333343"/>
+                                                        <rect key="frame" x="102" y="149.66666666666663" width="198" height="16.333333333333343"/>
                                                         <fontDescription key="fontDescription" name="URWGothicL-Book" family="URW Gothic L" pointSize="13"/>
                                                         <color key="textColor" red="0.40784313729999999" green="0.40784313729999999" blue="0.40784313729999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -1702,7 +1702,7 @@
                                                 </constraints>
                                             </view>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_separateur_detail_resto" translatesAutoresizingMaskIntoConstraints="NO" id="mQV-VP-j00">
-                                                <rect key="frame" x="0.0" y="923" width="320" height="14"/>
+                                                <rect key="frame" x="0.0" y="908.33333333333337" width="320" height="14"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="14" id="NzM-jA-tbK"/>
                                                     <constraint firstAttribute="height" constant="14" id="oDo-bt-G3h"/>
@@ -1714,22 +1714,22 @@
                                                 </variation>
                                             </imageView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SHr-In-MvV" userLabel="Details View">
-                                                <rect key="frame" x="0.0" y="937.00000000000011" width="320" height="351.33333333333337"/>
+                                                <rect key="frame" x="0.0" y="922.33333333333337" width="320" height="358.33333333333337"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Détails" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Znx-Fh-gX8">
-                                                        <rect key="frame" x="20" y="14.999999999999998" width="280" height="21.333333333333329"/>
+                                                        <rect key="frame" x="20" y="14.999999999999885" width="280" height="21.333333333333329"/>
                                                         <fontDescription key="fontDescription" name="URWGothicL-Book" family="URW Gothic L" pointSize="17"/>
                                                         <color key="textColor" red="0.96862745100000003" green="0.62352941179999999" blue="0.12941176469999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type d’établissement" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QAF-Z9-ptG">
-                                                        <rect key="frame" x="20" y="51.333333333333258" width="270" height="15.666666666666671"/>
+                                                        <rect key="frame" x="20" y="51.333333333333371" width="270" height="15.666666666666671"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="13"/>
                                                         <color key="textColor" red="0.40784313729999999" green="0.40784313729999999" blue="0.40784313729999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="?" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YB1-yg-m90" customClass="MarqueeLabel">
-                                                        <rect key="frame" x="20" y="68" width="270" height="16.333333333333329"/>
+                                                        <rect key="frame" x="20" y="68.999999999999886" width="270" height="16.333333333333329"/>
                                                         <fontDescription key="fontDescription" name="URWGothicL-Book" family="URW Gothic L" pointSize="13"/>
                                                         <color key="textColor" red="0.40784313729999999" green="0.40784313729999999" blue="0.40784313729999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -1750,13 +1750,13 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ambiance" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HN9-1h-4ag">
-                                                        <rect key="frame" x="20" y="94.333333333333258" width="270" height="15.666666666666671"/>
+                                                        <rect key="frame" x="20" y="95.333333333333371" width="270" height="15.666666666666671"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="13"/>
                                                         <color key="textColor" red="0.40784313729999999" green="0.40784313729999999" blue="0.40784313729999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="?" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4kb-Ja-14b" customClass="MarqueeLabel">
-                                                        <rect key="frame" x="20" y="111" width="270" height="16.333333333333329"/>
+                                                        <rect key="frame" x="20" y="112.99999999999989" width="270" height="16.333333333333343"/>
                                                         <fontDescription key="fontDescription" name="URWGothicL-Book" family="URW Gothic L" pointSize="13"/>
                                                         <color key="textColor" red="0.40784313729999999" green="0.40784313729999999" blue="0.40784313729999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -1777,13 +1777,13 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Influences" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hjF-x4-dnB">
-                                                        <rect key="frame" x="20" y="137.33333333333326" width="270" height="15.666666666666657"/>
+                                                        <rect key="frame" x="20" y="139.33333333333337" width="270" height="15.666666666666657"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="13"/>
                                                         <color key="textColor" red="0.40784313729999999" green="0.40784313729999999" blue="0.40784313729999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="?" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ck2-9g-9RW" customClass="MarqueeLabel">
-                                                        <rect key="frame" x="20" y="154" width="270" height="16.333333333333343"/>
+                                                        <rect key="frame" x="20" y="156.99999999999989" width="270" height="16.333333333333343"/>
                                                         <fontDescription key="fontDescription" name="URWGothicL-Book" family="URW Gothic L" pointSize="13"/>
                                                         <color key="textColor" red="0.40784313729999999" green="0.40784313729999999" blue="0.40784313729999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -1804,13 +1804,13 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Catégories" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mmT-AN-Gr7">
-                                                        <rect key="frame" x="20" y="180.33333333333326" width="270" height="15.666666666666657"/>
+                                                        <rect key="frame" x="20" y="183.33333333333337" width="270" height="15.666666666666657"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="13"/>
                                                         <color key="textColor" red="0.40784313729999999" green="0.40784313729999999" blue="0.40784313729999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="?" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T3S-7h-ug7" customClass="MarqueeLabel">
-                                                        <rect key="frame" x="20" y="197" width="270" height="16.333333333333343"/>
+                                                        <rect key="frame" x="20" y="200.99999999999989" width="270" height="16.333333333333343"/>
                                                         <fontDescription key="fontDescription" name="URWGothicL-Book" family="URW Gothic L" pointSize="13"/>
                                                         <color key="textColor" red="0.40784313729999999" green="0.40784313729999999" blue="0.40784313729999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -1831,13 +1831,13 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Montant moyen" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MuN-jb-c8Z">
-                                                        <rect key="frame" x="20" y="223.33333333333326" width="270" height="15.666666666666657"/>
+                                                        <rect key="frame" x="20" y="227.33333333333337" width="270" height="15.666666666666657"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="13"/>
                                                         <color key="textColor" red="0.40784313729999999" green="0.40784313729999999" blue="0.40784313729999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="?" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ddA-5K-33V" customClass="MarqueeLabel">
-                                                        <rect key="frame" x="20" y="240" width="270" height="16.333333333333314"/>
+                                                        <rect key="frame" x="20" y="244.99999999999989" width="270" height="16.333333333333314"/>
                                                         <fontDescription key="fontDescription" name="URWGothicL-Book" family="URW Gothic L" pointSize="13"/>
                                                         <color key="textColor" red="0.40784313729999999" green="0.40784313729999999" blue="0.40784313729999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -1858,13 +1858,13 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Moyens de paiements" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H3b-2W-zkV">
-                                                        <rect key="frame" x="20" y="266.33333333333326" width="270" height="15.666666666666686"/>
+                                                        <rect key="frame" x="20" y="271.33333333333337" width="270" height="15.666666666666686"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="13"/>
                                                         <color key="textColor" red="0.40784313729999999" green="0.40784313729999999" blue="0.40784313729999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="?" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z48-Gk-2ey" customClass="MarqueeLabel">
-                                                        <rect key="frame" x="20" y="283" width="270" height="16.333333333333314"/>
+                                                        <rect key="frame" x="20" y="288.99999999999989" width="270" height="16.333333333333314"/>
                                                         <fontDescription key="fontDescription" name="URWGothicL-Book" family="URW Gothic L" pointSize="13"/>
                                                         <color key="textColor" red="0.40784313729999999" green="0.40784313729999999" blue="0.40784313729999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -1885,13 +1885,13 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Terrasse" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6iw-mr-Rcc">
-                                                        <rect key="frame" x="20" y="303.33333333333326" width="133" height="15.666666666666686"/>
+                                                        <rect key="frame" x="20" y="309.33333333333337" width="133" height="15.666666666666686"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="13"/>
                                                         <color key="textColor" red="0.40784313729999999" green="0.40784313729999999" blue="0.40784313729999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="?" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RuU-gX-dyv" customClass="MarqueeLabel">
-                                                        <rect key="frame" x="20" y="320" width="133" height="16.333333333333314"/>
+                                                        <rect key="frame" x="20" y="326.99999999999989" width="133" height="16.333333333333314"/>
                                                         <fontDescription key="fontDescription" name="URWGothicL-Book" family="URW Gothic L" pointSize="13"/>
                                                         <color key="textColor" red="0.40784313729999999" green="0.40784313729999999" blue="0.40784313729999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -1912,13 +1912,13 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Animaux bienvenus" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="buA-aI-0Mo">
-                                                        <rect key="frame" x="157.33333333333337" y="303.33333333333326" width="132.66666666666663" height="15.666666666666686"/>
+                                                        <rect key="frame" x="157.33333333333337" y="309.33333333333337" width="132.66666666666663" height="15.666666666666686"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="13"/>
                                                         <color key="textColor" red="0.40784313729999999" green="0.40784313729999999" blue="0.40784313729999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="?" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9xe-ur-h5A" customClass="MarqueeLabel">
-                                                        <rect key="frame" x="157.33333333333337" y="320" width="132.66666666666663" height="16.333333333333314"/>
+                                                        <rect key="frame" x="157.33333333333337" y="326.99999999999989" width="132.66666666666663" height="16.333333333333314"/>
                                                         <fontDescription key="fontDescription" name="URWGothicL-Book" family="URW Gothic L" pointSize="13"/>
                                                         <color key="textColor" red="0.40784313729999999" green="0.40784313729999999" blue="0.40784313729999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -1996,7 +1996,7 @@
                                                 </constraints>
                                             </view>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_separateur_detail_resto" translatesAutoresizingMaskIntoConstraints="NO" id="GZE-6P-rzO">
-                                                <rect key="frame" x="0.0" y="1288.3333333333333" width="320" height="14"/>
+                                                <rect key="frame" x="0.0" y="1280.6666666666667" width="320" height="14"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="14" id="I7M-eD-U2f"/>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="14" id="ScC-0l-rKh"/>
@@ -2552,7 +2552,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Mon Nom" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZBV-pD-Cgc" customClass="SkyFloatingLabelTextFieldWithIcon" customModule="SkyFloatingLabelTextField">
-                                <rect key="frame" x="10" y="10" width="250" height="43.666666666666664"/>
+                                <rect key="frame" x="10" y="10" width="250" height="22"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="URWGothicL-Book" family="URW Gothic L" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="alphabet" returnKeyType="next"/>
@@ -2587,7 +2587,7 @@
                                 </connections>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Mon Mail" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HOP-DH-9D2" customClass="SkyFloatingLabelTextFieldWithIcon" customModule="SkyFloatingLabelTextField">
-                                <rect key="frame" x="10" y="68.666666666666671" width="250" height="43.666666666666671"/>
+                                <rect key="frame" x="10" y="47" width="250" height="22"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="URWGothicL-Book" family="URW Gothic L" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="next"/>
