@@ -94,9 +94,6 @@ class NavigationAccueilViewController: UIViewController {
             self.recherche_viewController?.updateDataAfterDelay()
             
             let _ = WebRequestManager.shared.loadHoraires()
-            
-            // @TODO: remove and fix horaires duplication (and not saving)
-            debugPrint("horaires count: \(UserData.shared.viewContext.getHoraires().count ?? (-42))")
         }
     }
     
