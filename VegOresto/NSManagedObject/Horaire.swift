@@ -18,6 +18,13 @@ class Horaire: NSManagedObject, Mappable {
     }
     
     // MARK: Mapping
+    
+    static internal func map(_ JSON: [String:Any], context: NSManagedObjectContext) -> Horaire {
+        let restaurantId = (JSON["id"] as? NSNumber)?.intValue ?? -1
+        let restaurant = context.getHoraire(restaurantId: restaurantId) ?? Horaire(context: context)
+        restaurant.mapping(map: Map(mappingType: .fromJSON, JSON: JSON))
+        return restaurant
+    }
 
     required convenience init?(map: Map) {
         assert(Thread.isMainThread)

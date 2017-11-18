@@ -148,9 +148,16 @@ extension NSManagedObjectContext {
         return safeFetch(fetchRequest).first
     }
     
-    internal func getHoraire(restaurant: Restaurant) -> Horaire? {
+    internal func getHoraire(restaurantId: Int) -> Horaire? {
         let fetchRequest: NSFetchRequest<Horaire> = NSFetchRequest(entityName: "Horaire")
-        fetchRequest.predicate = NSPredicate(format: "idResto == %@", String(restaurant.identifier?.intValue ?? -1))
+        fetchRequest.predicate = NSPredicate(format: "idResto == %@", String(restaurantId))
         return safeFetch(fetchRequest).first
+    }
+    
+    internal func getHoraire(restaurant: Restaurant) -> Horaire? {
+        guard let restaurantId = restaurant.identifier?.intValue else {
+            return nil
+        }
+        return getHoraire(restaurantId: restaurantId)
     }
 }

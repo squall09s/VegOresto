@@ -19,7 +19,7 @@ class WebRequestManager {
 
     public func loadRestaurants() -> Promise<[Restaurant]> {
         let url = getUrl("/wp-json/vg/v1/restos.json")
-        return RequestManager.shared.get(url: url).then { (result : [String : Any]) -> Promise<[Restaurant]> in
+        return RequestManager.shared.get(url: url).then { (result: [String:Any]) -> Promise<[Restaurant]> in
             return UserData.shared.performBackgroundMapping({ context -> [Restaurant] in
                 return Array(result.values).flatMap({ (dict) -> Restaurant? in
                     guard let _dict = dict as? [String:Any] else {
@@ -33,14 +33,15 @@ class WebRequestManager {
     
     public func loadHoraires() -> Promise<[Horaire]> {
         let url = getUrl("/wp-json/vg/v1/horaires.json")
-        return RequestManager.shared.get(url: url).then(execute: { (result: [String:Any]) -> [Horaire] in
-            return Array(result.values).flatMap({ (dict) -> Horaire? in
-                guard let _dict = dict as? [String:Any],
-                    let horaire = Horaire(JSON: _dict) else {
+        return RequestManager.shared.get(url: url).then(execute: { (result: [String:Any]) -> Promise<[Horaire]> in
+            return UserData.shared.performBackgroundMapping({ context -> [Horaire] in
+                return Array(result.values).flatMap({ (dict) -> Horaire? in
+                    guard let _dict = dict as? [String:Any] else {
                         return nil
-                }
-                return horaire
-            })
+                    }
+                    return Horaire.map(_dict, context: context)
+                })
+            }, autosave: true)
         })
     }
     
