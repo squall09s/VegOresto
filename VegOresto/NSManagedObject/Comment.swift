@@ -25,15 +25,6 @@ class Comment: NSManagedObject, Mappable {
         super.init(entity: entity, insertInto: context)
     }
     
-    // MARK: Accessors
-    
-    var decodedContent: String? {
-        guard let _content = content else {
-            return nil
-        }
-        return cleanHTMLString(str: _content)
-    }
-    
     // MARK: Mapping
 
     required init?(map: Map) {
@@ -48,10 +39,7 @@ class Comment: NSManagedObject, Mappable {
     func mapping(map: Map) {
 
         content <-  map["content.rendered"]
-
-        if let _content = content {
-            content = cleanHTMLString(str: _content)
-        }
+        content = content?.removingHTMLTags()
 
         ident <-  map["id"]
         time <- map["time"]

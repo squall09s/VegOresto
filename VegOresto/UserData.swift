@@ -118,28 +118,3 @@ class UserData {
         return safeFetch(fetchRequest).first
     }
 }
-
-internal func cleanHTMLString(str: String) -> String {
-    // decode basic entities
-    var strResult = str
-    strResult = strResult.replacingOccurrences(of: "<br />", with: "")
-    strResult = strResult.replacingOccurrences(of:"<p>", with: "")
-    strResult = strResult.replacingOccurrences(of:"</p>", with: "")
-    strResult = strResult.replacingOccurrences(of:"&#039;", with: "'")
-    strResult = strResult.replacingOccurrences(of:"&rsquo;", with: "'")
-    strResult = strResult.replacingOccurrences(of:"&#8211;", with: "–")
-    strResult = strResult.replacingOccurrences(of:"&#8211;", with: "–")
-    strResult = strResult.replacingOccurrences(of:"&amp;#038;", with: "&")
-    strResult = strResult.replacingOccurrences(of:"&#038;", with: "&")
-
-    // decode left entities
-    let options: [String: Any] = [
-        NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType,
-        NSCharacterEncodingDocumentAttribute: String.Encoding.utf8.rawValue
-    ]
-    if let data = strResult.data(using: .utf8), let attributedString = try? NSAttributedString(data: data, options: options, documentAttributes: nil) {
-        strResult = attributedString.string
-    }
-
-    return strResult
-}

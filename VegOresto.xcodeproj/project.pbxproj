@@ -64,6 +64,8 @@
 		39EC80041CAC4787002AD862 /* RechercheViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EC80031CAC4787002AD862 /* RechercheViewController.swift */; };
 		39EC80061CAD5ED2002AD862 /* RestaurantAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EC80051CAD5ED2002AD862 /* RestaurantAnnotation.swift */; };
 		AE62973F1FB2DD26006313E5 /* Constantes.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE62973E1FB2DD26006313E5 /* Constantes.swift */; };
+		AE991F961FC09FD70091D697 /* entities.c in Sources */ = {isa = PBXBuildFile; fileRef = AE991F941FC09FD60091D697 /* entities.c */; };
+		AE991F9A1FC0A0090091D697 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE991F991FC0A0090091D697 /* String+Extensions.swift */; };
 		AEB954C81FBE3E6D0019DFF1 /* CLLocation+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB954C71FBE3E6D0019DFF1 /* CLLocation+Extensions.swift */; };
 		AEE7808B1FB313B300022F38 /* 2017-02-VegOresto-Charte.pdf in Resources */ = {isa = PBXBuildFile; fileRef = AEE7808A1FB313B300022F38 /* 2017-02-VegOresto-Charte.pdf */; };
 		AEE7808D1FB3146500022F38 /* CharteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE7808C1FB3146500022F38 /* CharteViewController.swift */; };
@@ -140,6 +142,9 @@
 		8F136A5DB59857F23905F5CF /* Pods_VegOresto.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VegOresto.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE5CED771FB4B0C8002B2788 /* VegOresto.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = VegOresto.entitlements; sourceTree = "<group>"; };
 		AE62973E1FB2DD26006313E5 /* Constantes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constantes.swift; sourceTree = "<group>"; };
+		AE991F941FC09FD60091D697 /* entities.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = entities.c; path = entities/entities.c; sourceTree = "<group>"; };
+		AE991F951FC09FD60091D697 /* entities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = entities.h; path = entities/entities.h; sourceTree = "<group>"; };
+		AE991F991FC0A0090091D697 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		AEB954C71FBE3E6D0019DFF1 /* CLLocation+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLLocation+Extensions.swift"; sourceTree = "<group>"; };
 		AEE7808A1FB313B300022F38 /* 2017-02-VegOresto-Charte.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = "2017-02-VegOresto-Charte.pdf"; path = "Ressources/2017-02-VegOresto-Charte.pdf"; sourceTree = "<group>"; };
 		AEE7808C1FB3146500022F38 /* CharteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharteViewController.swift; sourceTree = "<group>"; };
@@ -190,6 +195,8 @@
 		396BD9781CAEB7640071DF07 /* Ressources */ = {
 			isa = PBXGroup;
 			children = (
+				AE991F981FC09FE10091D697 /* entities */,
+				AE991F991FC0A0090091D697 /* String+Extensions.swift */,
 				AEB954C71FBE3E6D0019DFF1 /* CLLocation+Extensions.swift */,
 				398AA7E31D17F90600FA7E0A /* UIViewControllerExtension.swift */,
 				398AA7E91D17F91100FA7E0A /* LGSlideMenu Lib */,
@@ -330,6 +337,15 @@
 				39C50EFB1CC8D9670019FA2B /* Storyboards.swift */,
 			);
 			name = SwiftGen;
+			sourceTree = "<group>";
+		};
+		AE991F981FC09FE10091D697 /* entities */ = {
+			isa = PBXGroup;
+			children = (
+				AE991F941FC09FD60091D697 /* entities.c */,
+				AE991F951FC09FD60091D697 /* entities.h */,
+			);
+			name = entities;
 			sourceTree = "<group>";
 		};
 		AEB954C31FBE13550019DFF1 /* About */ = {
@@ -637,6 +653,7 @@
 				39EC7FF01CAC0E15002AD862 /* MapsViewController.swift in Sources */,
 				AEE780901FB4448B00022F38 /* UserLocationManager.swift in Sources */,
 				390909E51DCB3E52005F77CB /* FBQuadTreeNode.swift in Sources */,
+				AE991F961FC09FD70091D697 /* entities.c in Sources */,
 				370CBE541FB1920D00A1AE02 /* VGAbstractFilterViewController.swift in Sources */,
 				37DD9C091F5DE3A1007B3E2B /* Restaurant+CoreDataProperties.swift in Sources */,
 				37D82FF61F9F10380037CD4B /* AddCommentContainerViewController.swift in Sources */,
@@ -652,6 +669,7 @@
 				398857E71CC2B97600B05F64 /* CategorieCulinaire.swift in Sources */,
 				39C50EFC1CC8D9670019FA2B /* Images.swift in Sources */,
 				AEE7808D1FB3146500022F38 /* CharteViewController.swift in Sources */,
+				AE991F9A1FC0A0090091D697 /* String+Extensions.swift in Sources */,
 				396BD9751CAE62670071DF07 /* DetailRestaurantViewController.swift in Sources */,
 				39610F561E1DBF4A005F7053 /* Comment.swift in Sources */,
 				37D82FFE1F9F10900037CD4B /* CreateCommentStep4ResumeViewController.swift in Sources */,

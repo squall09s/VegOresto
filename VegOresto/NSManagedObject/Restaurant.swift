@@ -356,10 +356,10 @@ class Restaurant: NSManagedObject, Mappable {
         self.mail <- map["email"]
         
         self.address <- map["adresse"]
-        self.address = cleanHTMLString(str: self.address ?? "")
+        self.address = (self.address ?? "").removingHTMLTags()
         
         self.resume <- map["accroche"]
-        self.resume = cleanHTMLString(str: self.resume ?? "")
+        self.resume = (self.resume ?? "").removingHTMLTags()
         
         self.montant_moyen <- map["prix"]
         

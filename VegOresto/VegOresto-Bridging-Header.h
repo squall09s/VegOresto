@@ -7,5 +7,6 @@
 #define VegOresto_Bridging_Header_h
 
 #import "LGSideMenuController.h"
+#import "entities.h"
 
 #endif /* VegOresto_Bridging_Header_h */

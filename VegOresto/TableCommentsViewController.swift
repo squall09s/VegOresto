@@ -115,7 +115,7 @@ class TableCommentsViewController: UIViewController, UITableViewDelegate, UITabl
             currentComment = self.commentsData[self.commentsDataKeysSorted[indexPath.section]]?[indexPath.row - 1 ]
         }
 
-        cell?.varIB_label_comment?.text = currentComment?.decodedContent ?? ""
+        cell?.varIB_label_comment?.text = currentComment?.content ?? ""
 
         cell?.setImage(url: currentComment?.imageUrl)
 
