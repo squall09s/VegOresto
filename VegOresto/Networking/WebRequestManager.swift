@@ -19,25 +19,15 @@ class WebRequestManager {
 
     public func loadRestaurants() -> Promise<[Restaurant]> {
         let url = getUrl("/wp-json/vg/v1/restos.json")
-        return RequestManager.shared.get(url: url).then { (result : [String : Any]) -> [Restaurant] in
-            let restaurants = Array(result.values).flatMap({ (dict) -> Restaurant? in
-                guard let _dict = dict as? [String:Any] else {
-                    return nil
-                }
-                let restaurantId = (_dict["id"] as? NSNumber)?.intValue ?? -1
-                if let restaurant = UserData.shared.getRestaurant(identifier: restaurantId) {
-                    restaurant.mapping(map: Map(mappingType: .fromJSON, JSON: _dict))
-                    return restaurant
-                } else if let restaurant = Restaurant(JSON: _dict) {
-                    return restaurant
-                }
-                return nil
-            })
-
-            // save context
-            UserData.shared.saveContext()
-
-            return restaurants
+        return RequestManager.shared.get(url: url).then { (result : [String : Any]) -> Promise<[Restaurant]> in
+            return UserData.shared.performBackgroundMapping({ context -> [Restaurant] in
+                return Array(result.values).flatMap({ (dict) -> Restaurant? in
+                    guard let _dict = dict as? [String:Any] else {
+                        return nil
+                    }
+                    return Restaurant.map(_dict, context: context)
+                })
+            }, autosave: true)
         }
     }
     

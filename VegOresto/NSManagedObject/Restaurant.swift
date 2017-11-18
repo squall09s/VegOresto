@@ -313,13 +313,21 @@ class Restaurant: NSManagedObject, Mappable {
     }
     
     // MARK: Mapping
+    
+    static internal func map(_ JSON: [String:Any], context: NSManagedObjectContext) -> Restaurant {
+        let restaurantId = (JSON["id"] as? NSNumber)?.intValue ?? -1
+        let restaurant = context.getRestaurant(identifier: restaurantId) ?? Restaurant(context: context)
+        restaurant.mapping(map: Map(mappingType: .fromJSON, JSON: JSON))
+        return restaurant
+    }
 
-    required init?(map: Map) {
+    required convenience init?(map: Map) {
         assert(Thread.isMainThread)
-        
-        let context = UserData.shared.viewContext
-        let entity = NSEntityDescription.entity(forEntityName: "Restaurant", in: context)
-        super.init(entity: entity!, insertInto: context)
+        self.init(map: map, context: UserData.shared.viewContext)
+    }
+    
+    convenience init?(map: Map, context: NSManagedObjectContext) {
+        self.init(context: context)
         mapping(map: map)
     }
     

@@ -19,15 +19,16 @@ class Horaire: NSManagedObject, Mappable {
     
     // MARK: Mapping
 
-    required init?(map: Map) {
+    required convenience init?(map: Map) {
         assert(Thread.isMainThread)
-
-        let context = UserData.shared.viewContext
-        let entity = NSEntityDescription.entity(forEntityName: "Horaire", in: context)
-        super.init(entity: entity!, insertInto: context)
+        self.init(map: map, context: UserData.shared.viewContext)
+    }
+    
+    convenience init?(map: Map, context: NSManagedObjectContext) {
+        self.init(context: context)
         mapping(map: map)
     }
-
+    
     func mapping(map: Map) {
         
         self.idResto <-  map["id"]

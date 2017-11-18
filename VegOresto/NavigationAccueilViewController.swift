@@ -75,7 +75,7 @@ class NavigationAccueilViewController: UIViewController {
     // MARK: Data Loading
     
     private func updateDataIfNeeded() {
-        let showProgressIndicator = UserData.shared.getRestaurants().isEmpty
+        let showProgressIndicator = UserData.shared.viewContext.countRestaurants() == 0
         
         if showProgressIndicator {
             MBProgressHUD.showAdded(to: self.view, animated: true)
@@ -94,6 +94,9 @@ class NavigationAccueilViewController: UIViewController {
             self.recherche_viewController?.updateDataAfterDelay()
             
             let _ = WebRequestManager.shared.loadHoraires()
+            
+            // @TODO: remove and fix horaires duplication (and not saving)
+            debugPrint("horaires count: \(UserData.shared.viewContext.getHoraires().count ?? (-42))")
         }
     }
     

@@ -268,7 +268,7 @@ class RechercheViewController: VGAbstractFilterViewController, UITableViewDelega
     }
     
     private func loadRestaurants(word: String? = nil) {
-        var restaurants = UserData.shared.getRestaurants()
+        var restaurants = UserData.shared.viewContext.getRestaurants()
 
         // filter favorites
         if self.afficherUniquementFavoris {

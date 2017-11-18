@@ -50,11 +50,30 @@ class UserData {
         }
     }
     
+    public func performBackgroundTask(_ block: @escaping (NSManagedObjectContext) -> Void) {
+        return persistentContainer.performBackgroundTask(block)
+    }
+    
+    public func performBackgroundMapping<T>(_ block: @escaping (NSManagedObjectContext) throws -> T, autosave: Bool = false) -> Promise<T> {
+        return Promise(resolvers: { (fulfill, reject) in
+            self.persistentContainer.performBackgroundTask({ (context: NSManagedObjectContext) in
+                do {
+                    let result = try block(context)
+                    if autosave {
+                        try context.save()
+                    }
+                    fulfill(result)
+                } catch let e {
+                    reject(e)
+                }
+            })
+        })
+    }
     // MARK: Reload
     
     public func updateDatabaseIfNeeded(forced: Bool = false) -> Promise<Void> {
-        // do we need to update?
-        if !forced && !needsDatabaseUpdate && getRestaurants().count > 0 {
+        // should we skip update?
+        if !forced && !needsDatabaseUpdate && viewContext.countRestaurants() > 0 {
             return Promise()
         }
 
@@ -83,36 +102,53 @@ class UserData {
     private func saveSynchroDate() {
         UserDefaults.standard.set( Date(), forKey: KEY_LAST_SYNCHRO)
     }
+}
 
-    // MARK: Fetch Helpers
-    
+// MARK: Fetch Helpers
+
+extension NSManagedObjectContext {
     private func safeFetch<T: NSManagedObject>(_ fetchRequest: NSFetchRequest<T>) -> [T] {
         do {
-            return try viewContext.fetch(fetchRequest)
+            return try self.fetch(fetchRequest)
         }
         catch let e {
             debugPrint("Fetch request failed: \((e as NSError).localizedDescription)")
             return [T]()
         }
     }
-
-    public func getRestaurants() -> [Restaurant] {
+    
+    private func safeCount<T: NSManagedObject>(_ fetchRequest: NSFetchRequest<T>) -> Int {
+        do {
+            return try self.count(for: fetchRequest)
+        }
+        catch let e {
+            debugPrint("Fetch request (count) failed: \((e as NSError).localizedDescription)")
+            return (-1)
+        }
+    }
+    
+    internal func getRestaurants() -> [Restaurant] {
         let fetchRequest: NSFetchRequest<Restaurant> = NSFetchRequest(entityName: "Restaurant")
         return safeFetch(fetchRequest)
     }
-
-    public func getHoraires() -> [Horaire] {
+    
+    internal func countRestaurants() -> Int {
+        let fetchRequest: NSFetchRequest<Restaurant> = NSFetchRequest(entityName: "Restaurant")
+        return safeCount(fetchRequest)
+    }
+    
+    internal func getHoraires() -> [Horaire] {
         let fetchRequest: NSFetchRequest<Horaire> = NSFetchRequest(entityName: "Horaire")
         return safeFetch(fetchRequest)
     }
-
-    public func getRestaurant(identifier: Int) -> Restaurant? {
+    
+    internal func getRestaurant(identifier: Int) -> Restaurant? {
         let fetchRequest: NSFetchRequest<Restaurant> = NSFetchRequest(entityName: "Restaurant")
         fetchRequest.predicate = NSPredicate(format: "identifier == %@", String(identifier))
         return safeFetch(fetchRequest).first
     }
-
-    public func getHoraire(restaurant: Restaurant) -> Horaire? {
+    
+    internal func getHoraire(restaurant: Restaurant) -> Horaire? {
         let fetchRequest: NSFetchRequest<Horaire> = NSFetchRequest(entityName: "Horaire")
         fetchRequest.predicate = NSPredicate(format: "idResto == %@", String(restaurant.identifier?.intValue ?? -1))
         return safeFetch(fetchRequest).first
