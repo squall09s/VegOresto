@@ -830,8 +830,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.l214.vegoresto;
 				PRODUCT_NAME = VegOresto;
-				PROVISIONING_PROFILE = "86dfa98c-b0dc-4aff-8e21-ffc89bef9ee0";
-				PROVISIONING_PROFILE_SPECIFIER = "VegOresto Distribution";
+				PROVISIONING_PROFILE = "aa6972ec-fab7-4643-a2a1-599b38d68c04";
+				PROVISIONING_PROFILE_SPECIFIER = "VegOresto Ad Hoc";
 				SWIFT_OBJC_BRIDGING_HEADER = "VegOresto/VegOresto-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 3.0;
