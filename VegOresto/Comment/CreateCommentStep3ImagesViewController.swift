@@ -23,11 +23,12 @@ class CreateCommentStep3ImagesViewController: UIViewController, CreateCommentSte
 
     @IBOutlet weak var imageView: UIImageView?
     @IBOutlet weak var imageViewLabel: UIButton?
+    @IBOutlet weak var frameButton: UIButton?
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        self.imageView?.isHidden = true
     }
 
     override func didReceiveMemoryWarning() {
@@ -85,58 +86,61 @@ extension CreateCommentStep3ImagesViewController : ImagePickerDelegate {
     }
 
     func doneButtonDidPress(_ imagePicker: ImagePickerController, images: [UIImage]) {
-
+        
         if let image = images.first {
-
+            
             self.setImage(image:  image )
-
+            
             imagePicker.dismiss(animated: true, completion: {
-
+                
             })
-
+            
         } else {
-
+            
             let size = CGSize(width: 720, height: 1280)
-
+            
             let imageManager = PHImageManager.default()
             let requestOptions = PHImageRequestOptions()
             requestOptions.isSynchronous = false
             requestOptions.isNetworkAccessAllowed = true
-
+            
             MBProgressHUD.showAdded(to: imagePicker.view, animated: true)
-
+            
             imageManager.requestImage(for: imagePicker.stack.assets.first!, targetSize: size, contentMode: .aspectFit, options: requestOptions) { image, _ in
-
-                print("imageManager.requestImage done")
-
+                
                 MBProgressHUD.hide(for: imagePicker.view, animated: true)
-
+                
                 if let image = image {
-
+                    
                     self.setImage(image:  image )
-
+                    
                     imagePicker.dismiss(animated: true, completion: {
-
+                        
                     })
-
+                    
                 }
-
+                
             }
-
+            
         }
     }
 
-    func setImage(image: UIImage) {
-
-            self.imageView?.image = image
-            self.imageView?.layer.cornerRadius = 64
-            self.imageView?.layer.borderWidth = 2
-            self.imageView?.layer.borderColor = UIColor.white.cgColor
-            self.imageView?.contentMode = .scaleAspectFill
-            self.imageViewLabel?.setTitle("Choisir une autre photo", for: UIControlState.normal)
-
-            self.currentImage = image
-
+    private func setImage(image: UIImage) {
+        
+        self.imageView?.image = image
+        self.imageView?.layer.cornerRadius = 64
+        self.imageView?.layer.borderWidth = 2
+        self.imageView?.layer.borderColor = UIColor.white.cgColor
+        self.imageView?.clipsToBounds = true
+        self.imageView?.contentMode = .scaleAspectFill
+        
+        self.imageViewLabel?.setTitle("Choisir une autre photo", for: UIControlState.normal)
+        
+        self.imageView?.isHidden = false
+        self.frameButton?.isHidden = true
+        
+        self.currentImage = image
+        
     }
 
     func cancelButtonDidPress(_ imagePicker: ImagePickerController) {
