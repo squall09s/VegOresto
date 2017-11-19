@@ -285,13 +285,17 @@ class RechercheViewController: VGAbstractFilterViewController, UITableViewDelega
             restaurants = filterByWord(restaurants: restaurants, word: _word)
         }
         
-        // sort by distance
+        // sort by distance (or name)
         if let location = UserLocationManager.shared.location {
             for restaurant in restaurants {
                 restaurant.setDistance(from: location)
             }
             restaurants.sort(by: { (restaurantA, restaurantB) -> Bool in
                 restaurantA.distance < restaurantB.distance
+            })
+        } else {
+            restaurants.sort(by: { (restaurantA, restaurantB) -> Bool in
+                (restaurantA.name ?? "").lowercased().folding(options : .diacriticInsensitive, locale: Locale.current) < (restaurantB.name ?? "").lowercased().folding(options : .diacriticInsensitive, locale: Locale.current)
             })
         }
         
