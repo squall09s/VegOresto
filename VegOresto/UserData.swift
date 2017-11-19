@@ -38,7 +38,7 @@ class UserData {
         return persistentContainer.viewContext
     }
     
-    public func saveContext() {
+    public func saveViewContext() {
         let context = persistentContainer.viewContext
         if context.hasChanges {
             do {

@@ -39,7 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
-        UserData.shared.saveContext()
+        UserData.shared.saveViewContext()
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
@@ -53,6 +53,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
-        UserData.shared.saveContext()
+        UserData.shared.saveViewContext()
     }
 }

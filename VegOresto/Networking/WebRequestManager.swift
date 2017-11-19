@@ -61,7 +61,7 @@ class WebRequestManager {
             restaurant.comments = NSOrderedSet(array: comments)
 
             // save context
-            UserData.shared.saveContext()
+            UserData.shared.saveViewContext()
 
             return comments
         })
