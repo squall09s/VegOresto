@@ -429,12 +429,13 @@
 			buildConfigurationList = 39968D501CABFFBB0085C61F /* Build configuration list for PBXNativeTarget "VegOresto" */;
 			buildPhases = (
 				8D2F3221741213A99B02CFEF /* [CP] Check Pods Manifest.lock */,
-				398857E31CC2B26300B05F64 /* Run Script */,
+				398857E31CC2B26300B05F64 /* Run SwiftLint + SwiftGen */,
 				39968D371CABFFBA0085C61F /* Sources */,
 				39968D381CABFFBA0085C61F /* Frameworks */,
 				39968D391CABFFBA0085C61F /* Resources */,
 				525004B7D7908068C86921F3 /* [CP] Embed Pods Frameworks */,
 				9894DA9E7A0DCF794DD70E55 /* [CP] Copy Pods Resources */,
+				AEC0C2771FC1928F00C07E26 /* Run Fabric Script */,
 			);
 			buildRules = (
 			);
@@ -505,14 +506,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		398857E31CC2B26300B05F64 /* Run Script */ = {
+		398857E31CC2B26300B05F64 /* Run SwiftLint + SwiftGen */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Run Script";
+			name = "Run SwiftLint + SwiftGen";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -615,6 +616,20 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VegOresto/Pods-VegOresto-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		AEC0C2771FC1928F00C07E26 /* Run Fabric Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Run Fabric Script";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" 9c1e8be68d40f93dd9618c50ac7082f1090a54e4 4044d6fa1c8871002df962c51297d7aff9adaf06e99c8bc050990b05af07e337";
 		};
 /* End PBXShellScriptBuildPhase section */
 

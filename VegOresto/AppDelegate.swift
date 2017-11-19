@@ -12,12 +12,17 @@ import CoreData
 import AlamofireNetworkActivityIndicator
 import AlamofireNetworkActivityLogger
 
+import Fabric
+import Crashlytics
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
+        Fabric.with([Crashlytics.self])
+        
         UILabel.appearance(whenContainedInInstancesOf: [UISearchBar.self]).font = UIFont(name: "URWGothicL-Book", size: 17)!
         UITextView.appearance(whenContainedInInstancesOf: [UISearchBar.self]).font = UIFont(name: "URWGothicL-Book", size: 17)!
         

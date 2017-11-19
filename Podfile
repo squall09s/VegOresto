@@ -45,6 +45,10 @@ target 'VegOresto' do
     pod 'SkyFloatingLabelTextField'
     pod 'SDWebImage'
     pod 'BEMCheckBox'
+    
+    # Fabric
+    pod 'Fabric'
+    pod 'Crashlytics'
 end
 
 post_install do |installer|
