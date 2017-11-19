@@ -428,6 +428,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 39968D501CABFFBB0085C61F /* Build configuration list for PBXNativeTarget "VegOresto" */;
 			buildPhases = (
+				AE84086B1FC24BC600701E60 /* Check Build Number */,
 				8D2F3221741213A99B02CFEF /* [CP] Check Pods Manifest.lock */,
 				398857E31CC2B26300B05F64 /* Run SwiftLint + SwiftGen */,
 				39968D371CABFFBA0085C61F /* Sources */,
@@ -615,6 +616,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VegOresto/Pods-VegOresto-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AE84086B1FC24BC600701E60 /* Check Build Number */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Build Number";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /usr/bin/python;
+			shellScript = "import os\nfrom subprocess import check_output\n\n# helpers\n\ndef check_build_version(bundle_version, bundle_short_version):\n    components = bundle_short_version.split('.')\n    if len(components) == 0 or len(components) > 3:\n        return False\n    major = int(components[0])\n    minor = int(components[1]) if len(components) >= 2 else 0\n    bugfix = int(components[2]) if len(components) >= 3 else 0\n\n    build = int(bundle_version)\n    major_s = int(build / 1000000000)\n    minor_s = int(build / 1000000) % 1000\n    bugfix_s = int(build / 1000) % 1000\n\n    return major == major_s and minor == minor_s and bugfix == bugfix_s\n\ndef get_build_number(bundle_version):\n    return int(bundle_version) % 1000\n\n# checking\n\nprint('Checking Build Number')\n\ninfoPlistPath = os.environ['PROJECT_DIR'] + '/' + os.environ['INFOPLIST_FILE']\nprint('Loading Info.plist from: {}'.format(infoPlistPath))\n\nbundleShortVersion = check_output(['/usr/libexec/PlistBuddy', '-c', 'Print CFBundleShortVersionString', infoPlistPath]).strip()\nbundleVersion = check_output(['/usr/libexec/PlistBuddy', '-c', 'Print CFBundleVersion', infoPlistPath]).strip()\n\nif not check_build_version(bundleVersion, bundleShortVersion):\n    print('Invalid Build Number')\n    print('  CFBundleShortVersionString = {}'.format(bundleShortVersion))\n    print('  CFBundleVersion = {}'.format(bundleVersion))\n    print('Version string must match Mmmmbbbnnn (M = major, mmm = minor, bbb = build, nnn = build number')\n    exit(1)\n\nprint('Short Version: {}, Version: {}, Build: {}'.format(bundleShortVersion, bundleVersion, get_build_number(bundleVersion)))\n";
 			showEnvVarsInLog = 0;
 		};
 		AEC0C2771FC1928F00C07E26 /* Run Fabric Script */ = {
