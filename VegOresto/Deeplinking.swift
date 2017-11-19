@@ -65,6 +65,12 @@ class Deeplinking {
         return canOpenURL("comgooglemaps://")
     }
     
+    // MARK: Settings
+    
+    static public func openAppSettings() {
+        openURL(UIApplicationOpenSettingsURLString)
+    }
+    
     // MARK: Social Media VegOresto
 
     static public func openFacebookProfile() {

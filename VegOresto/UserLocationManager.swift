@@ -54,11 +54,11 @@ class UserLocationManager: NSObject, CLLocationManagerDelegate {
         var isLocationAllowed = false
 
         switch status {
-        case CLAuthorizationStatus.restricted:
+        case .restricted:
             Debug.log( object: "Restricted Access to location")
-        case CLAuthorizationStatus.denied:
+        case .denied:
             Debug.log( object: "User denied access to location")
-        case CLAuthorizationStatus.notDetermined:
+        case .notDetermined:
             Debug.log( object: "Status not determined")
         default:
             Debug.log( object: "Allowed to location Access")
@@ -71,6 +71,10 @@ class UserLocationManager: NSObject, CLLocationManagerDelegate {
         }
     }
     
+    internal var authorizationStatus: CLAuthorizationStatus {
+        return CLLocationManager.authorizationStatus()
+    }
+
     private func fulfillPendingRequests(location: CLLocation) {
         for request in pendingRequests {
             request.fulfill(location)

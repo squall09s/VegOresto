@@ -140,6 +140,15 @@ class NavigationAccueilViewController: UIViewController {
     }
 
     @IBAction func touch_bt_location(sender: UIButton) {
+        if UserLocationManager.shared.authorizationStatus == .denied {
+            let alertController = UIAlertController(title: "Activer la géolocalisation", message: "Vous pouvez activer la géolocalisation dans l'application Réglages", preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: "Réglages", style: .default, handler: { action in
+                Deeplinking.openAppSettings()
+            }))
+            alertController.addAction(UIAlertAction(title: "Annuler", style: .cancel, handler: nil))
+            present(alertController, animated: true, completion: nil)
+        }
+        
         maps_viewController?.update_region_for_user_location()
         recherche_viewController?.update_resultats_for_user_location()
     }
