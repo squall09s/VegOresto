@@ -102,6 +102,14 @@ class UserData {
     private func saveSynchroDate() {
         UserDefaults.standard.set( Date(), forKey: KEY_LAST_SYNCHRO)
     }
+    
+    // MARK: Date Formatting
+    
+    lazy var dateFormatter: ISO8601DateFormatter = {
+        let formatter = ISO8601DateFormatter()
+        formatter.timeZone = TimeZone(secondsFromGMT: 0)
+        return formatter
+    }()
 }
 
 // MARK: Fetch Helpers

@@ -16,7 +16,7 @@ extension Comment {
 
     @NSManaged var identifier: NSNumber?
     @NSManaged var content: String?
-    @NSManaged var time: String?
+    @NSManaged var date: Date?
     @NSManaged var email: String?
     @NSManaged var author: String?
     @NSManaged var rating: NSNumber?

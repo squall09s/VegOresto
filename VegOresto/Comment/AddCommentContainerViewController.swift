@@ -210,7 +210,7 @@ class AddCommentContainerViewController: UIViewController, UIScrollViewDelegate 
         let context = UserData.shared.viewContext
         let comment = Comment(context: context)
         comment.identifier = (-1) // draft comment
-        comment.time = "01/02/1990"
+        comment.date = Date()
         comment.author = self.childViewControllerStep2?.getCurrentName()
         comment.email = self.childViewControllerStep2?.getCurrentEmail()
         comment.content = self.childViewControllerStep1?.getContent()

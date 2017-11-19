@@ -30,7 +30,6 @@ class Restaurant: NSManagedObject, Mappable {
         return self.comments as! Set<Comment>
     }
 
-    // @TODO it would be nice to sort them by something (date?)
     public var commentsArray: [Comment] {
         return Array(commentsSet)
     }

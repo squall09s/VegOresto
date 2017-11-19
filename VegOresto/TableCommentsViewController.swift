@@ -225,8 +225,8 @@ class TableCommentsViewController: UIViewController, UITableViewDelegate, UITabl
 
         commentsDataKeysSorted = commentsData.flatMap({ (dataRoots) -> Comment? in
             return dataRoots.key
-        }).sorted(by: { (comment1, comment2) -> Bool in
-            return (comment1.identifier?.intValue ?? 0 ) < (comment2.identifier?.intValue ?? 0 )
+        }).sorted(by: { (commentA, commentB) -> Bool in
+            return (commentA.date ?? Date()) > (commentB.date ?? Date())
         })
 
         self.title = "Avis (\(self.commentsDataKeysSorted.count))"

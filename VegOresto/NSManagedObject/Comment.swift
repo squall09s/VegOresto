@@ -54,12 +54,15 @@ class Comment: NSManagedObject, Mappable {
         content = content?.removingHTMLTags()
 
         identifier <-  map["id"]
-        time <- map["time"]
         author <- map["author_name"]
         email <- map["author_email"]
         parentId <- map["parent"]
         status <- map["status"]
         rating <- map["vote"]
+        
+        if let dateStr = map.JSON["date_gmt"] as? String {
+            self.date = UserData.shared.dateFormatter.date(from: "\(dateStr)Z")
+        }
 
         if let _firstImageDico: [String : Any] = ((map.JSON["images"] as? [Any])?.first as? [String : Any]),
            let _dicoFirstImageDetail = _firstImageDico["com_illu"] as? [String : Any],
