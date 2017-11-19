@@ -15,19 +15,14 @@ class CategorieCulinaire: NSManagedObject {
     override init(entity: NSEntityDescription, insertInto context: NSManagedObjectContext?) {
         super.init(entity: entity, insertInto: context)
     }
-
-    // @TODO: rename, we don't always create a new category here
-    static func createCategorie(for restaurant: Restaurant, catname: String) {
-        let context = UserData.shared.viewContext
-        let entity =  NSEntityDescription.entity(forEntityName: "CategorieCulinaire", in: context)
-
-        if let category = (NSManagedObject(entity: entity!, insertInto: context) as? CategorieCulinaire) {
-            category.name = catname
-            category.restaurants = NSSet()
-
-            restaurant.addCategorieCulinaire(newCategorie: category)
-            category.addRestaurant(restaurant: restaurant)
+    
+    static internal func map(name: String, context: NSManagedObjectContext) -> CategorieCulinaire {
+        if let category = context.getCategorieCulinaire(name: name) {
+            return category
         }
+        let category = CategorieCulinaire(context: context)
+        category.name = name
+        return category
     }
 
     func addRestaurant(restaurant: Restaurant) {

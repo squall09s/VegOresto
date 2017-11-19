@@ -26,13 +26,6 @@ class Restaurant: NSManagedObject, Mappable {
     override init(entity: NSEntityDescription, insertInto context: NSManagedObjectContext?) {
         super.init(entity: entity, insertInto: context)
     }
-
-    func addCategorieCulinaire(newCategorie: CategorieCulinaire) {
-
-        let categoriesCulinaire = self.mutableSetValue(forKey: "categoriesCulinaire")
-        categoriesCulinaire.add(newCategorie)
-
-    }
     
     public func addComment(_ comment: Comment) {
         let comments = self.comments.mutableCopy() as! NSMutableOrderedSet
@@ -46,6 +39,16 @@ class Restaurant: NSManagedObject, Mappable {
 
     public var categoriesCulinairesArray: [CategorieCulinaire] {
         return (self.categoriesCulinaire.allObjects as? [CategorieCulinaire]) ?? []
+    }
+    
+    public func addCategorieCulinaire(_ category: CategorieCulinaire) {
+        let categoriesCulinaire = self.mutableSetValue(forKey: "categoriesCulinaire")
+        categoriesCulinaire.add(category)
+    }
+    
+    public func addCategorieCulinaire(name: String) {
+        let category = CategorieCulinaire.map(name: name, context: self.managedObjectContext!)
+        self.addCategorieCulinaire(category)
     }
 
     func setDistance(from userLocation: CLLocation) {
@@ -198,43 +201,6 @@ class Restaurant: NSManagedObject, Mappable {
 
     }
 
-    func updateDataCategorieCulinaire(_cat: String) -> String {
-
-        let dico : [ String : String ] = ["bio": "Bio",
-                                          "brasserie": "Brasserie",
-                                          "brunch": "Brunch",
-                                          "bouchon": "Bouchon lyonnais",
-                                          "bar_vin": "Bar à vin",
-                                          "cru": "Cru",
-                                          "glacier": "Glacier",
-                                          "gastro": "Gastronomique",
-                                          "local": "Local",
-                                          "monde": "Cuisine du monde",
-                                          "sans_gluten": "Sans gluten",
-                                          "tapas": "Tapas",
-                                          "tradi": "Vegan-friendly",
-                                          "pizza": "Pizzeria",
-                                          "vegan": "Végétalien, végane",
-                                          "vege": "Végétarien",
-                                          "pub": "Pub",
-                                          "bistro": "Bistro",
-                                          "crepe": "Crêperie",
-                                          "moderne": "Moderne, créatif",
-                                          "bar_jus": "Bar à jus",
-                                          "tarte_vrai": "Tartes",
-                                          "tarte": "Salades" ]
-
-        if let val = dico[_cat] {
-
-            return val
-
-        } else {
-
-            Debug.log(object: "ERROR - [updateDataCategorieCulinaire] key \(_cat) not found")
-            return ""
-        }
-    }
-
     func updateDataMoyensDePaiement(moyensPaiement: [String]) {
 
         let dico : [ String : String ] = ["cb": "Carte Bleue",
@@ -378,11 +344,8 @@ class Restaurant: NSManagedObject, Mappable {
         self.updateDataTypeEtablissement()
         
         if let _cat = map.JSON["cat"] as? [String] {
-            
-            categoriesCulinaire = NSSet()
-            
-            for currentCat in _cat {
-                CategorieCulinaire.createCategorie(for: self, catname: self.updateDataCategorieCulinaire(_cat:  currentCat) )
+            for categoryName in _cat {
+                addCategorieCulinaire(name: Restaurant.mapCategorieCulinaireName(categoryName))
             }
         }
         
@@ -437,5 +400,40 @@ class Restaurant: NSManagedObject, Mappable {
         }
         
         self.comments =  NSOrderedSet()
+    }
+    
+    // MARK: Mapping Helpers
+    
+    static func mapCategorieCulinaireName(_ cat: String) -> String {
+        let d = [
+            "bio": "Bio",
+            "brasserie": "Brasserie",
+            "brunch": "Brunch",
+            "bouchon": "Bouchon lyonnais",
+            "bar_vin": "Bar à vin",
+            "cru": "Cru",
+            "glacier": "Glacier",
+            "gastro": "Gastronomique",
+            "local": "Local",
+            "monde": "Cuisine du monde",
+            "sans_gluten": "Sans gluten",
+            "tapas": "Tapas",
+            "tradi": "Vegan-friendly",
+            "pizza": "Pizzeria",
+            "vegan": "Végétalien, végane",
+            "vege": "Végétarien",
+            "pub": "Pub",
+            "bistro": "Bistro",
+            "crepe": "Crêperie",
+            "moderne": "Moderne, créatif",
+            "bar_jus": "Bar à jus",
+            "tarte_vrai": "Tartes",
+            "tarte": "Salades"
+        ]
+        guard let val = d[cat] else {
+            Debug.log(object: "ERROR - [mapCategorieCulinaireName] key \(cat) not found")
+            return cat
+        }
+        return val
     }
 }

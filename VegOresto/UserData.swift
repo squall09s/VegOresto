@@ -160,4 +160,10 @@ extension NSManagedObjectContext {
         }
         return getHoraire(restaurantId: restaurantId)
     }
+    
+    internal func getCategorieCulinaire(name: String) -> CategorieCulinaire? {
+        let fetchRequest: NSFetchRequest<CategorieCulinaire> = NSFetchRequest(entityName: "CategorieCulinaire")
+        fetchRequest.predicate = NSPredicate(format: "name == %@", name)
+        return safeFetch(fetchRequest).first
+    }
 }
