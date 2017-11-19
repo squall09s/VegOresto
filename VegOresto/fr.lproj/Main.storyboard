@@ -1119,7 +1119,7 @@
                                                             <segue destination="1Sz-2O-5F6" kind="show" identifier="segue_to_comments" id="dvU-F1-GsE"/>
                                                         </connections>
                                                     </button>
-                                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="yEe-Ir-cEX">
+                                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="yEe-Ir-cEX">
                                                         <rect key="frame" x="272" y="18" width="20" height="20"/>
                                                         <color key="tintColor" red="0.98039215690000003" green="0.65098039220000004" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                                         <color key="color" red="0.98039215690000003" green="0.65098039220000004" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>

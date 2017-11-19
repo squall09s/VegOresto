@@ -8,14 +8,13 @@
         <attribute name="author" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="content" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="ident" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="identifier" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="NO" indexed="YES" syncable="YES"/>
         <attribute name="imageUrl" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="parentId" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="postId" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="parentId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="rating" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="status" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="time" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="restaurant" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Restaurant" inverseName="comments" inverseEntity="Restaurant" syncable="YES"/>
+        <relationship name="restaurant" maxCount="1" deletionRule="Nullify" destinationEntity="Restaurant" inverseName="comments" inverseEntity="Restaurant" syncable="YES"/>
     </entity>
     <entity name="Horaire" representedClassName="Horaire" syncable="YES">
         <attribute name="dataD" optional="YES" attributeType="String" syncable="YES"/>
@@ -25,7 +24,7 @@
         <attribute name="dataMe" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="dataS" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="dataV" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="idResto" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" indexed="YES" syncable="YES"/>
+        <attribute name="idResto" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="NO" indexed="YES" syncable="YES"/>
     </entity>
     <entity name="Restaurant" representedClassName="Restaurant" syncable="YES">
         <attribute name="absolute_url" optional="YES" attributeType="String" syncable="YES"/>
@@ -34,7 +33,7 @@
         <attribute name="animaux_bienvenus" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="facebook" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="favoris" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="identifier" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" indexed="YES" syncable="YES"/>
+        <attribute name="identifier" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="NO" indexed="YES" syncable="YES"/>
         <attribute name="image" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="influence_gastronomique" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="isVegan" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
@@ -53,11 +52,11 @@
         <attribute name="ville" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="website" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="categoriesCulinaire" toMany="YES" deletionRule="Nullify" destinationEntity="CategorieCulinaire" inverseName="restaurants" inverseEntity="CategorieCulinaire" syncable="YES"/>
-        <relationship name="comments" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Comment" inverseName="restaurant" inverseEntity="Comment" syncable="YES"/>
+        <relationship name="comments" toMany="YES" deletionRule="Nullify" destinationEntity="Comment" inverseName="restaurant" inverseEntity="Comment" syncable="YES"/>
     </entity>
     <elements>
         <element name="CategorieCulinaire" positionX="-1127" positionY="369" width="128" height="75"/>
-        <element name="Comment" positionX="-1172" positionY="90" width="128" height="210"/>
+        <element name="Comment" positionX="-1172" positionY="90" width="128" height="195"/>
         <element name="Horaire" positionX="-1296" positionY="171" width="128" height="165"/>
         <element name="Restaurant" positionX="-1469" positionY="18" width="128" height="435"/>
     </elements>

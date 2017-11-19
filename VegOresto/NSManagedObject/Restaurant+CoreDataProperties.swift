@@ -13,10 +13,10 @@ import Foundation
 import CoreData
 
 extension Restaurant {
-
+    // properties
+    @NSManaged var identifier: NSNumber?
     @NSManaged var absolute_url: String?
     @NSManaged var address: String?
-    @NSManaged var identifier: NSNumber?
     @NSManaged var terrasse: NSNumber?
     @NSManaged var lat: NSNumber?
     @NSManaged var lon: NSNumber?
@@ -29,8 +29,6 @@ extension Restaurant {
     @NSManaged var facebook: String?
     @NSManaged var website: String?
     @NSManaged var montant_moyen: String?
-    @NSManaged var categoriesCulinaire: NSSet
-    @NSManaged var comments: NSOrderedSet
     @NSManaged var moyens_de_paiement: String?
     @NSManaged var animaux_bienvenus: NSNumber?
     @NSManaged var favoris: NSNumber
@@ -39,7 +37,9 @@ extension Restaurant {
     @NSManaged var image: String?
     @NSManaged var mail: String?
     @NSManaged var rating: NSNumber?
-
     @NSManaged var isVegan: NSNumber
 
+    // relationships
+    @NSManaged var categoriesCulinaire: NSSet
+    @NSManaged var comments: NSSet
 }

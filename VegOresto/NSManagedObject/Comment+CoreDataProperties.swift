@@ -14,7 +14,7 @@ import CoreData
 
 extension Comment {
 
-    @NSManaged var ident: NSNumber?
+    @NSManaged var identifier: NSNumber?
     @NSManaged var content: String?
     @NSManaged var time: String?
     @NSManaged var email: String?
@@ -22,7 +22,6 @@ extension Comment {
     @NSManaged var rating: NSNumber?
     @NSManaged var parentId: NSNumber?
 
-    @NSManaged var postId: NSNumber?
     @NSManaged var status: String?
     @NSManaged var imageUrl: String?
 

@@ -15,18 +15,29 @@ class Comment: NSManagedObject, Mappable {
 
     var temporaryImageIdentSend: String?
 
-    @NSManaged var title: String?
-    @NSManaged var shootingDate: String?
-    @NSManaged var elements: NSSet?
-
-    private var elementsArray: [Image]?
-    
     override init(entity: NSEntityDescription, insertInto context: NSManagedObjectContext?) {
         super.init(entity: entity, insertInto: context)
     }
     
+    // MARK: Getters
+    
+    public var isDraft: Bool {
+        return (identifier?.intValue ?? (-1)) <= 0
+    }
+    
+    public var isRoot: Bool {
+        return (parentId?.intValue ?? 0) <= 0
+    }
+    
     // MARK: Mapping
 
+    static internal func map(_ JSON: [String:Any], context: NSManagedObjectContext) -> Comment {
+        let commentId = (JSON["id"] as? NSNumber)?.intValue ?? -1
+        let comment = context.getComment(identifier: commentId) ?? Comment(context: context)
+        comment.mapping(map: Map(mappingType: .fromJSON, JSON: JSON))
+        return comment
+    }
+    
     required convenience init?(map: Map) {
         assert(Thread.isMainThread)
         self.init(map: map, context: UserData.shared.viewContext)
@@ -42,12 +53,11 @@ class Comment: NSManagedObject, Mappable {
         content <-  map["content.rendered"]
         content = content?.removingHTMLTags()
 
-        ident <-  map["id"]
+        identifier <-  map["id"]
         time <- map["time"]
         author <- map["author_name"]
         email <- map["author_email"]
         parentId <- map["parent"]
-        postId <- map["post"]
         status <- map["status"]
         rating <- map["vote"]
 

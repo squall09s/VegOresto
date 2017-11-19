@@ -195,7 +195,7 @@ class AddCommentContainerViewController: UIViewController, UIScrollViewDelegate 
 
         // then, send comment
         return imageSendPromise.then { () -> Promise<Comment> in
-            return WebRequestManager.shared.postComment(restaurant: restaurant, comment: comment)
+            return WebRequestManager.shared.postComment(comment: comment)
         }
     }
     
@@ -208,15 +208,14 @@ class AddCommentContainerViewController: UIViewController, UIScrollViewDelegate 
 
         // create comment object
         let context = UserData.shared.viewContext
-        let entity =  NSEntityDescription.entity(forEntityName: "Comment", in: context)!
-        guard let comment = NSManagedObject(entity: entity, insertInto: context) as? Comment else {
-            return
-        }
+        let comment = Comment(context: context)
+        comment.identifier = (-1) // draft comment
         comment.time = "01/02/1990"
         comment.author = self.childViewControllerStep2?.getCurrentName()
         comment.email = self.childViewControllerStep2?.getCurrentEmail()
         comment.content = self.childViewControllerStep1?.getContent()
-        comment.parentId = self.parentComment?.ident
+        comment.parentId = self.parentComment?.identifier
+        comment.restaurant = restaurant
         if self.parentComment == nil {
             comment.rating = NSNumber(value: self.childViewControllerStep1?.getVote() ?? 1 )
         }

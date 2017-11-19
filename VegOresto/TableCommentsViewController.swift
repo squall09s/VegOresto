@@ -200,24 +200,21 @@ class TableCommentsViewController: UIViewController, UITableViewDelegate, UITabl
             return
         }
 
-        var rootsComment = [Comment]()
-        var childsComment = [Comment]()
-
-        for tmpComment in restaurant.commentsArray {
-            if (tmpComment.parentId?.intValue ?? 0) <= 0 {
-                rootsComment.append(tmpComment)
-            } else {
-                childsComment.append(tmpComment)
-            }
+        let comments = restaurant.commentsNotDraftArray
+        let rootComments = comments.filter { comment -> Bool in
+            return comment.isRoot
+        }
+        let childComments = comments.filter { comment -> Bool in
+            return !comment.isRoot
         }
 
         commentsData.removeAll()
 
-        for tmpRootsComment in rootsComment {
+        for tmpRootsComment in rootComments {
 
-            commentsData[tmpRootsComment] = childsComment.flatMap({ (tmpChildComment) -> Comment? in
+            commentsData[tmpRootsComment] = childComments.flatMap({ (tmpChildComment) -> Comment? in
 
-                if tmpChildComment.parentId?.intValue == tmpRootsComment.ident?.intValue {
+                if tmpChildComment.parentId?.intValue == tmpRootsComment.identifier?.intValue {
                     return tmpChildComment
                 }
                 return nil
@@ -229,7 +226,7 @@ class TableCommentsViewController: UIViewController, UITableViewDelegate, UITabl
         commentsDataKeysSorted = commentsData.flatMap({ (dataRoots) -> Comment? in
             return dataRoots.key
         }).sorted(by: { (comment1, comment2) -> Bool in
-            return (comment1.ident?.intValue ?? 0 ) < (comment2.ident?.intValue ?? 0 )
+            return (comment1.identifier?.intValue ?? 0 ) < (comment2.identifier?.intValue ?? 0 )
         })
 
         self.title = "Avis (\(self.commentsDataKeysSorted.count))"

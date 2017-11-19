@@ -46,24 +46,35 @@ class WebRequestManager {
     }
     
     public func loadComments(restaurant: Restaurant) -> Promise<[Comment]> {
-        let url = getUrl("/wp-json/wp/v2/comments?post=\(restaurant.identifier?.intValue ?? 0)")
-        return RequestManager.shared.get(url: url).then(execute: { (comments: [Comment]) -> [Comment] in
-            assert(Thread.isMainThread)
-            
-            // remove old comments
-            let context = UserData.shared.viewContext
-            let toDelete = Set(restaurant.commentsArray).subtracting(comments)
-            for comment in toDelete {
-                context.delete(comment)
-            }
-            
-            // set comments to restaurants
-            restaurant.comments = NSOrderedSet(array: comments)
-
-            // save context
-            UserData.shared.saveViewContext()
-
-            return comments
+        guard let restaurantId = restaurant.identifier?.intValue else {
+            return Promise(error: RequestManagerError.localDataError)
+        }
+        let url = getUrl("/wp-json/wp/v2/comments?post=\(restaurantId)")
+        return RequestManager.shared.get(url: url).then(execute: { (result: [[String:Any]]) -> Promise<[Comment]> in
+            return UserData.shared.performBackgroundMapping({ context -> [Comment] in
+                // get restaurant in this context
+                guard let restaurant = context.getRestaurant(identifier: restaurantId) else {
+                    throw RequestManagerError.localDataError
+                }
+                
+                // keep old comments
+                let oldComments = restaurant.commentsSet
+                
+                // map new comments
+                let comments = result.flatMap({ (dict) -> Comment? in
+                    let comment = Comment.map(dict, context: context)
+                    comment.restaurant = restaurant
+                    return comment
+                })
+                
+                // delete old comments
+                let toDelete = oldComments.subtracting(comments)
+                for comment in toDelete {
+                    context.delete(comment)
+                }
+                
+                return comments
+            }, autosave: true)
         })
     }
     
@@ -77,15 +88,17 @@ class WebRequestManager {
         })
     }
 
-    public func postComment(restaurant: Restaurant, comment: Comment) -> Promise<Comment> {
-        let url = getUrl("/wp-json/vegoresto/v1/comments")
+    public func postComment(comment: Comment) -> Promise<Comment> {
+        guard let restaurantId = comment.restaurant?.identifier?.intValue else {
+            return Promise(error: RequestManagerError.localDataError)
+        }
         
         var parameters: [String:String] = [
-            "post": String(restaurant.identifier?.intValue ?? -1),
+            "post": String(restaurantId),
             "content": (comment.content ?? ""),
             "author_name": (comment.author ?? "Invite"),
             "author_email": (comment.email ?? "Noname@mail.fr"),
-            ]
+        ]
         if let vote = comment.rating?.intValue, vote > 0 && vote < 6 {
             parameters["vote"] = String(vote)
         }
@@ -96,11 +109,12 @@ class WebRequestManager {
             parameters["parent"] = String(parentId)
         }
         
+        let url = getUrl("/wp-json/vegoresto/v1/comments")
         return RequestManager.shared.post(url: url, parameters: parameters, encoding: URLEncoding.queryString).then(execute: { (result: Any) -> Comment in
             guard let dict = result as? [String:Any], let comment = Comment(JSON: dict) else {
                 throw RequestManagerError.jsonError
             }
-            restaurant.addComment(comment)
+            // @TODO map resulting comment object
             return comment
         })
     }

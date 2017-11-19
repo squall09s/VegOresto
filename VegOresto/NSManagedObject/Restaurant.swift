@@ -12,7 +12,6 @@ import MapKit
 import ObjectMapper
 
 enum CategorieRestaurant {
-
     case Vegan
     case Végétarien
     case VeganFriendly
@@ -27,21 +26,33 @@ class Restaurant: NSManagedObject, Mappable {
         super.init(entity: entity, insertInto: context)
     }
     
-    public func addComment(_ comment: Comment) {
-        let comments = self.comments.mutableCopy() as! NSMutableOrderedSet
-        comments.add(comment)
-        self.comments = comments.copy() as! NSOrderedSet
+    public var commentsSet: Set<Comment> {
+        return self.comments as! Set<Comment>
     }
 
+    // @TODO it would be nice to sort them by something (date?)
     public var commentsArray: [Comment] {
-        return (self.comments.array as? [Comment]) ?? []
+        return Array(commentsSet)
+    }
+    
+    public var commentsNotDraftArray: [Comment] {
+        return commentsArray.filter({ comment -> Bool in
+            return !comment.isDraft
+        })
     }
 
+    public var commentsRootArray: [Comment] {
+        return commentsArray.filter({ comment -> Bool in
+            return !comment.isDraft && comment.isRoot
+        })
+    }
+    
     public var categoriesCulinairesArray: [CategorieCulinaire] {
         return (self.categoriesCulinaire.allObjects as? [CategorieCulinaire]) ?? []
     }
     
     public func addCategorieCulinaire(_ category: CategorieCulinaire) {
+        assert(category.managedObjectContext == self.managedObjectContext)
         let categoriesCulinaire = self.mutableSetValue(forKey: "categoriesCulinaire")
         categoriesCulinaire.add(category)
     }
@@ -398,8 +409,6 @@ class Restaurant: NSManagedObject, Mappable {
             
             self.isVegan = NSNumber(value: false )
         }
-        
-        self.comments =  NSOrderedSet()
     }
     
     // MARK: Mapping Helpers

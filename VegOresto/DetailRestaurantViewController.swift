@@ -78,16 +78,10 @@ class DetailRestaurantViewController: UIViewController, UIScrollViewDelegate {
         self.varIB_button_favoris?.normalColor = UIColor(hexString: "F1EFF2")
         self.varIB_button_favoris?.selectedColor = COLOR_ORANGE
 
-        self.varIB_activity_indicator?.isHidden = false
-        self.varIB_button_comment?.isHidden = true
-        self.varIB_activity_indicator?.startAnimating()
-
-        self.varIB_activity_indicator?.isHidden = true
-        self.varIB_button_comment?.isHidden = false
-
         updateDayOfWeekLabel()
         updateRestaurantInterface()
         updateRatingImage()
+        updateLabelComment()
 
         // load comments
         loadComments()
@@ -228,7 +222,7 @@ class DetailRestaurantViewController: UIViewController, UIScrollViewDelegate {
     }
     
     private func updateLabelComment() {
-        if let nbComment = self.current_restaurant?.commentsArray.count, nbComment > 0 {
+        if let nbComment = self.current_restaurant?.commentsRootArray.count, nbComment > 0 {
             self.varIB_label_number_comment?.text = "Tous les avis [\(nbComment)]"
         } else {
             self.varIB_label_number_comment?.text = "Aucun avis pour le moment"
@@ -285,13 +279,15 @@ class DetailRestaurantViewController: UIViewController, UIScrollViewDelegate {
         guard let restaurant = self.current_restaurant else {
             return
         }
+        
+        self.varIB_activity_indicator?.startAnimating()
+        self.varIB_button_comment?.isHidden = true
 
         WebRequestManager.shared.loadComments(restaurant: restaurant).always {
             self.updateLabelComment()
             
-            self.varIB_activity_indicator?.stopAnimating()
             UIView.animate(withDuration: 0.5, animations: {
-                self.varIB_activity_indicator?.isHidden = true
+                self.varIB_activity_indicator?.stopAnimating()
                 self.varIB_button_comment?.isHidden = false
             })
         }

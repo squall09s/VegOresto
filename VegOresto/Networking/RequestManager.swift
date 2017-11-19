@@ -25,36 +25,13 @@ extension DataRequest {
             return JSONObject
         })
     }
-
-    fileprivate func responseObject<T: Mappable>(keyPath: String? = nil, mapToObject object: T? = nil, context: MapContext? = nil) -> Promise<T> {
-        return self.responseJSON(keyPath: keyPath).then(execute: { (JSONObject: Any) -> T in
-            guard let _JSONObject = JSONObject as? [String:Any] else {
-                throw RequestManagerError.jsonError
-            }
-            if let _object = object {
-                _ = Mapper<T>(context: context).map(JSONObject: _JSONObject, toObject: _object)
-                return _object
-            } else if let parsedObject = Mapper<T>(context: context).map(JSONObject: _JSONObject){
-                return parsedObject
-            }
-            throw RequestManagerError.jsonError
-        })
-    }
-
-    fileprivate func responseArray<T: Mappable>(keyPath: String? = nil, context: MapContext? = nil) -> Promise<[T]> {
-        return self.responseJSON(keyPath: keyPath).then(execute: { (JSONObject: Any) -> [T] in
-            guard let parsedObject = Mapper<T>(context: context, shouldIncludeNilValues: false).mapArray(JSONObject: JSONObject) else {
-                throw PMKError.invalidCallingConvention
-            }
-            return parsedObject
-        })
-    }
 }
 
 enum RequestManagerError: Error {
     case gzipError
     case jsonError
     case imageCreationError
+    case localDataError
 }
 
 class RequestManager {
@@ -84,24 +61,13 @@ class RequestManager {
 
     // MARK: Request Methods
     
-    public func get<T: Mappable>(url: URL, parameters: Parameters? = nil, keyPath: String? = nil) -> Promise<T> {
-        return session
-            .request(url,
-                     parameters: parameters,
-                     headers: APIConfig.defaultHTTPHeaders())
-            .validate()
-            .responseObject(keyPath: keyPath)
-    }
-    
-    public func get<T: Mappable>(url: URL, parameters: Parameters? = nil, keyPath: String? = nil) -> Promise<[T]> {
-        return session
-            .request(url,
-                     parameters: parameters,
-                     headers: APIConfig.defaultHTTPHeaders())
-            .validate()
-            .responseArray(keyPath: keyPath)
-    }
-
+    /// Gets any object.
+    /// Sends a GET request to the given URL and returns the JSON object.
+    ///
+    /// - Parameters:
+    ///   - url: URL to query.
+    ///   - parameters: HTTP query parameters.
+    /// - Returns: A promise resolving to a JSON object.
     public func get(url: URL, parameters: Parameters? = nil) -> Promise<Any> {
         return session
             .request(url,
@@ -111,12 +77,35 @@ class RequestManager {
             .responseJSON()
     }
 
-    public func get(url: URL, parameters: Parameters? = nil) -> Promise<[String : Any]> {
+    /// Gets a dictionary.
+    /// Sends a GET request to the given URL and returns the JSON dictionary.
+    ///
+    /// - Parameters:
+    ///   - url: URL to query.
+    ///   - parameters: HTTP query parameters.
+    /// - Returns: A promise resolving to a JSON dictionary.
+    public func get(url: URL, parameters: Parameters? = nil) -> Promise<[String:Any]> {
         return get(url: url, parameters: parameters).then(execute: { (responseObject: Any) -> [String:Any] in
             guard let responseDict = responseObject as? [String:Any] else {
                 throw RequestManagerError.jsonError
             }
             return responseDict
+        })
+    }
+
+    /// Gets an array of dictionaries.
+    /// Sends a GET request to the given URL and returns the JSON array.
+    ///
+    /// - Parameters:
+    ///   - url: URL to query.
+    ///   - parameters: HTTP query parameters.
+    /// - Returns: A promise resolving to a JSON array of dictionaries.
+    public func get(url: URL, parameters: Parameters? = nil) -> Promise<[[String:Any]]> {
+        return get(url: url, parameters: parameters).then(execute: { (responseObject: Any) -> [[String:Any]] in
+            guard let responseArray = responseObject as? [[String:Any]] else {
+                throw RequestManagerError.jsonError
+            }
+            return responseArray
         })
     }
 
