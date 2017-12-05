@@ -122,6 +122,21 @@ class Restaurant: NSManagedObject, Mappable {
         return URL(string: "https://www.facebook.com/\(facebookPage)/")
     }
     
+    var displayCityName: String? {
+        if let postalCode = self.postal_code?.trimmingCharacters(in: .whitespacesAndNewlines), postalCode.count == 5 {
+            let dept = postalCode.prefix(2)
+            let arrond = postalCode.suffix(2)
+            if dept == "75", let arrondN = Int(arrond), 1 <= arrondN, arrondN <= 20 {
+                if arrondN == 1 {
+                    return "Paris 1er"
+                } else {
+                    return "Paris \(arrondN)ème"
+                }
+            }
+        }
+        return self.ville
+    }
+    
     // MARK: Mapping
     
     static internal func map(_ JSON: [String:Any], context: NSManagedObjectContext) -> Restaurant {
@@ -145,6 +160,7 @@ class Restaurant: NSManagedObject, Mappable {
         self.identifier <-  map["id"]
         self.name <-  map["title"]
         self.ville <-  map["ville"]
+        self.postal_code <- map["cp"]
         self.phone <- map["tel_public"]
         self.montant_moyen <- map["prix"]
         self.facebook <- map["fb"]

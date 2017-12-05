@@ -177,7 +177,7 @@ class RechercheViewController: VGAbstractFilterViewController, UITableViewDelega
 
         label_name?.text = current_restaurant.name
         label_adress?.text = current_restaurant.address
-        label_ville?.text = current_restaurant.ville
+        label_ville?.text = current_restaurant.displayCityName
         
         // Set rating
         if let _cell = cell {

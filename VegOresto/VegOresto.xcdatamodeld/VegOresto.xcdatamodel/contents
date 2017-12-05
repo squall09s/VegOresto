@@ -44,6 +44,7 @@
         <attribute name="moyens_de_paiement" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="phone" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="postal_code" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="radius" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="rating" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="resume" optional="YES" attributeType="String" syncable="YES"/>
@@ -58,6 +59,6 @@
         <element name="CategorieCulinaire" positionX="-1127" positionY="369" width="128" height="75"/>
         <element name="Comment" positionX="-1172" positionY="90" width="128" height="195"/>
         <element name="Horaire" positionX="-1296" positionY="171" width="128" height="165"/>
-        <element name="Restaurant" positionX="-1469" positionY="18" width="128" height="435"/>
+        <element name="Restaurant" positionX="-1469" positionY="18" width="128" height="450"/>
     </elements>
 </model>

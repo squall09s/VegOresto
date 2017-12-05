@@ -24,6 +24,7 @@ extension Restaurant {
     @NSManaged var name: String?
     @NSManaged var phone: String?
     @NSManaged var ville: String?
+    @NSManaged var postal_code: NSString?
     @NSManaged var resume: String?
     @NSManaged var type_etablissement: String?
     @NSManaged var facebook: String?
