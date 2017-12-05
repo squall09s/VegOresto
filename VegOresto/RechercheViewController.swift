@@ -25,8 +25,14 @@ class RechercheViewController: VGAbstractFilterViewController, UITableViewDelega
 
     let TAG_CELL_VIEW_CATEGORIE_COLOR = 510
     let TAG_CELL_IMAGE_FAVORIS = 520
+    
+    let TAG_CELL_STAR_1 = 581
+    let TAG_CELL_STAR_2 = 582
+    let TAG_CELL_STAR_3 = 583
+    let TAG_CELL_STAR_4 = 584
+    let TAG_CELL_STAR_5 = 585
 
-    var array_restaurants: [Restaurant] = [Restaurant]()
+    var array_restaurants = [Restaurant]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -101,18 +107,64 @@ class RechercheViewController: VGAbstractFilterViewController, UITableViewDelega
     }
 
     // MARK: UITableViewDelegate Delegate
+    
+    private func setStarRating(rating: Double, cell: UITableViewCell) {
+        let image_rating_1 = cell.viewWithTag(TAG_CELL_STAR_1) as? UIImageView
+        let image_rating_2 = cell.viewWithTag(TAG_CELL_STAR_2) as? UIImageView
+        let image_rating_3 = cell.viewWithTag(TAG_CELL_STAR_3) as? UIImageView
+        let image_rating_4 = cell.viewWithTag(TAG_CELL_STAR_4) as? UIImageView
+        let image_rating_5 = cell.viewWithTag(TAG_CELL_STAR_5) as? UIImageView
+        
+        if rating == 0.5 {
+            image_rating_1?.image = Asset.imgFavorisStarHalf.image
+        } else if rating > 0.5 {
+            image_rating_1?.image = Asset.imgFavorisStarOn.image
+        } else {
+            image_rating_1?.image = Asset.imgFavorisStarOff.image
+        }
+        
+        if rating == 1.5 {
+            image_rating_2?.image = Asset.imgFavorisStarHalf.image
+        } else if rating > 1.5 {
+            image_rating_2?.image = Asset.imgFavorisStarOn.image
+        } else {
+            image_rating_2?.image = Asset.imgFavorisStarOff.image
+        }
+        
+        if rating == 2.5 {
+            image_rating_3?.image = Asset.imgFavorisStarHalf.image
+        } else if rating > 2.5 {
+            image_rating_3?.image = Asset.imgFavorisStarOn.image
+        } else {
+            image_rating_3?.image = Asset.imgFavorisStarOff.image
+        }
+        
+        if rating == 3.5 {
+            image_rating_4?.image = Asset.imgFavorisStarHalf.image
+        } else if rating > 3.5 {
+            image_rating_4?.image = Asset.imgFavorisStarOn.image
+        } else {
+            image_rating_4?.image = Asset.imgFavorisStarOff.image
+        }
+        
+        if rating == 4.5 {
+            image_rating_5?.image = Asset.imgFavorisStarHalf.image
+        } else if rating > 4.5 {
+            image_rating_5?.image = Asset.imgFavorisStarOn.image
+        } else {
+            image_rating_5?.image = Asset.imgFavorisStarOff.image
+        }
+    }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        // Get restaurant
+        let current_restaurant = self.array_restaurants[indexPath.row]
 
-        let current_restaurant: Restaurant = self.array_restaurants[indexPath.row]
-
+        // Get cell
         let reuseIdentifier = current_restaurant.favoris.boolValue ? "cell_restaurant_identifer_favoris_on" : "cell_restaurant_identifer_favoris_off"
-
         var cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as? MGSwipeTableCell
-
         if cell == nil {
             cell = MGSwipeTableCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: reuseIdentifier)
-
         }
 
         // Configure the cell...
@@ -126,6 +178,12 @@ class RechercheViewController: VGAbstractFilterViewController, UITableViewDelega
         label_name?.text = current_restaurant.name
         label_adress?.text = current_restaurant.address
         label_ville?.text = current_restaurant.ville
+        
+        // Set rating
+        if let _cell = cell {
+            let rating = current_restaurant.rating?.doubleValue ?? 1
+            setStarRating(rating: rating, cell: _cell)
+        }
 
         let view_color_categorie = cell?.viewWithTag(TAG_CELL_VIEW_CATEGORIE_COLOR)
         let imageview_favoris = cell?.viewWithTag(TAG_CELL_IMAGE_FAVORIS) as? UIImageView
