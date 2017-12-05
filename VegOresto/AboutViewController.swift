@@ -8,6 +8,7 @@
 
 import UIKit
 import VTAcknowledgementsViewController
+import StoreKit
 
 class AboutViewController: UIViewController {
 
@@ -37,6 +38,14 @@ class AboutViewController: UIViewController {
         Deeplinking.openSendEmail(to: "vegoresto@l214.com", subject: subject)
     }
 
+    @IBAction func rateAppButtonPressed(_ sender: Any) {
+        if #available(iOS 10.3, *) {
+            SKStoreReviewController.requestReview()
+        } else {
+            Deeplinking.openURL("https://itunes.apple.com/us/app/apple-store/id1308891756?mt=8")
+        }
+    }
+    
     @IBAction func suggestRestaurant(_ sender: Any) {
         Deeplinking.openWebsite(url: "https://vegoresto.fr/signalement-restaurant-eligible-vegoresto/")
     }

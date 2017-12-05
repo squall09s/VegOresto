@@ -140,6 +140,7 @@
 		39EC80051CAD5ED2002AD862 /* RestaurantAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantAnnotation.swift; sourceTree = "<group>"; };
 		603DD9DF0F9E7DA0799F922E /* Pods-VegOresto.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VegOresto.release.xcconfig"; path = "Pods/Target Support Files/Pods-VegOresto/Pods-VegOresto.release.xcconfig"; sourceTree = "<group>"; };
 		8F136A5DB59857F23905F5CF /* Pods_VegOresto.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VegOresto.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AE25C12E1FD61DF0007AAF3A /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		AE5CED771FB4B0C8002B2788 /* VegOresto.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = VegOresto.entitlements; sourceTree = "<group>"; };
 		AE62973E1FB2DD26006313E5 /* Constantes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constantes.swift; sourceTree = "<group>"; };
 		AE991F941FC09FD60091D697 /* entities.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = entities.c; path = entities/entities.c; sourceTree = "<group>"; };
@@ -409,6 +410,7 @@
 		FDF1F99F6257ABBB1FA1CF5F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AE25C12E1FD61DF0007AAF3A /* StoreKit.framework */,
 				37F8801E1FADEF4C00F34F78 /* Keys.framework */,
 				37D05B391FAC9C68005B3B9D /* Photos.framework */,
 				39C50F011CCAC5610019FA2B /* libc++.tbd */,
