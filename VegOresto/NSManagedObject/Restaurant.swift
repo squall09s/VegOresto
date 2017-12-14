@@ -108,18 +108,14 @@ class Restaurant: NSManagedObject, Mappable {
         guard let facebookURL = URL(string: facebookStr), facebookURL.host == "www.facebook.com" || facebookURL.host == "facebook.com" else {
             return nil
         }
-        let pathComponents = facebookURL.pathComponents
-        return pathComponents.count >= 2 ? pathComponents[1] : nil
+        return "facebook.com\(facebookURL.path)"
     }
     
     var facebookURL: URL? {
-        guard let facebookPage = self.facebookPage else {
-            if let facebookStr = self.facebook {
-                return URL(string: facebookStr)
-            }
+        guard let facebookStr = self.facebook else {
             return nil
         }
-        return URL(string: "https://www.facebook.com/\(facebookPage)/")
+        return URL(string: facebookStr)
     }
     
     var displayCityName: String? {

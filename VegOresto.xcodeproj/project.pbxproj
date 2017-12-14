@@ -430,8 +430,8 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 39968D501CABFFBB0085C61F /* Build configuration list for PBXNativeTarget "VegOresto" */;
 			buildPhases = (
-				AE84086B1FC24BC600701E60 /* Check Build Number */,
 				8D2F3221741213A99B02CFEF /* [CP] Check Pods Manifest.lock */,
+				AE84086B1FC24BC600701E60 /* Check Build Number */,
 				398857E31CC2B26300B05F64 /* Run SwiftLint + SwiftGen */,
 				39968D371CABFFBA0085C61F /* Sources */,
 				39968D381CABFFBA0085C61F /* Frameworks */,
@@ -832,6 +832,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = VegOresto/VegOresto.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = JUR98HQ9F5;
 				INFOPLIST_FILE = VegOresto/Info.plist;
@@ -839,7 +840,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.l214.vegoresto;
 				PRODUCT_NAME = VegOresto;
-				PROVISIONING_PROFILE = "b8d6dfc5-cff7-40af-95c3-d6ba1031dc5e";
+				PROVISIONING_PROFILE = "07ee982d-1144-4130-baea-7866e2e4ce35";
 				PROVISIONING_PROFILE_SPECIFIER = "VegOresto Micha iOS Development";
 				SWIFT_OBJC_BRIDGING_HEADER = "VegOresto/VegOresto-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -863,8 +864,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.l214.vegoresto;
 				PRODUCT_NAME = VegOresto;
-				PROVISIONING_PROFILE = "aa6972ec-fab7-4643-a2a1-599b38d68c04";
-				PROVISIONING_PROFILE_SPECIFIER = "VegOresto Ad Hoc";
+				PROVISIONING_PROFILE = "093a0484-d8cc-476e-86ee-94cd4caaff72";
+				PROVISIONING_PROFILE_SPECIFIER = "VegOresto Distribution";
 				SWIFT_OBJC_BRIDGING_HEADER = "VegOresto/VegOresto-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 3.0;
