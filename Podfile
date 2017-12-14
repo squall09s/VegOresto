@@ -8,8 +8,6 @@ plugin 'cocoapods-keys', {
         "apiBaseUrl",
         "apiClientId",
         "apiClientSecret",
-        "apiBasicAuthLogin",
-        "apiBasicAuthPassword",
     ]
 }
 

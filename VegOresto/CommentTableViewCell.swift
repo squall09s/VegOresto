@@ -36,32 +36,19 @@ class CommentTableViewCell: UITableViewCell {
     }
 
     func setImage(url: String?) {
-
-        if let _url = url {
-
-        self.varIB_imageComment?.isHidden = false
-
-        if let _url = URL(string: _url ) {
-
-            let sdDownloader = SDWebImageDownloader.shared()
-            sdDownloader.username = APIConfig.apiBasicAuthLogin
-            sdDownloader.password = APIConfig.apiBasicAuthPassword
-
-            sdDownloader.downloadImage(with: _url, options: .continueInBackground, progress: { (_, _, _) in
-
-            }, completed: { (image, _, _, _) in
-
-                self.varIB_imageComment?.image = image
-                self.varIB_imageComment?.contentMode = .scaleAspectFit
-            })
-
-        } else {
-
+        guard let urlStr = url, let imageUrl = URL(string: urlStr) else {
             self.varIB_imageComment?.isHidden = true
-
+            return
         }
-        }
-
+        
+        self.varIB_imageComment?.isHidden = false
+        
+        let sdDownloader = SDWebImageDownloader.shared()
+        sdDownloader.downloadImage(with: imageUrl, options: .continueInBackground, progress: { (_, _, _) in
+        }, completed: { (image, _, _, _) in
+            self.varIB_imageComment?.image = image
+            self.varIB_imageComment?.contentMode = .scaleAspectFit
+        })
     }
 
     func setRating(ratting: Int?) {

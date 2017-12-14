@@ -70,9 +70,7 @@ class RequestManager {
     /// - Returns: A promise resolving to a JSON object.
     public func get(url: URL, parameters: Parameters? = nil) -> Promise<Any> {
         return session
-            .request(url,
-                     parameters: parameters,
-                     headers: APIConfig.defaultHTTPHeaders())
+            .request(url, parameters: parameters)
             .validate()
             .responseJSON()
     }

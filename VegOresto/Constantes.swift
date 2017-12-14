@@ -73,21 +73,4 @@ struct APIConfig {
     static var apiClientIss: String {
         return "\(apiBaseUrl.scheme!)://\(apiBaseUrl.host!)"
     }
-
-    static var apiBasicAuthLogin: String {
-        return VegOrestoKeys().apiBasicAuthLogin
-    }
-
-    static var apiBasicAuthPassword: String {
-        return VegOrestoKeys().apiBasicAuthPassword
-    }
-
-    static func defaultHTTPHeaders() -> [String:String] {
-        let authHeader = Request.authorizationHeader(user: apiBasicAuthLogin, password: apiBasicAuthPassword)!
-
-        var headers = SessionManager.defaultHTTPHeaders
-        headers[authHeader.key] = authHeader.value
-        return headers
-    }
 }
-
