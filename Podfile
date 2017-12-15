@@ -44,9 +44,10 @@ target 'VegOresto' do
     pod 'SDWebImage'
     pod 'BEMCheckBox'
     
-    # Fabric
-    pod 'Fabric'
-    pod 'Crashlytics'
+    # Firebase + Fabric
+    pod 'Firebase/Core'
+    pod 'Fabric', '~> 1.7.2'
+    pod 'Crashlytics', '~> 3.9.3'
 end
 
 post_install do |installer|

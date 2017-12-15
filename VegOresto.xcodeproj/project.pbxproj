@@ -72,6 +72,7 @@
 		AEE780901FB4448B00022F38 /* UserLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE7808F1FB4448B00022F38 /* UserLocationManager.swift */; };
 		AEE780921FB4489800022F38 /* Deeplinking.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE780911FB4489800022F38 /* Deeplinking.swift */; };
 		AEE780941FB45DFA00022F38 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE780931FB45DFA00022F38 /* UIImage+Extension.swift */; };
+		AEFF28C61FE3DBCF008D2023 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AEFF28C51FE3DBCF008D2023 /* GoogleService-Info.plist */; };
 		C9BB0E46024B374EBEB1773F /* Pods_VegOresto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F136A5DB59857F23905F5CF /* Pods_VegOresto.framework */; };
 /* End PBXBuildFile section */
 
@@ -152,6 +153,7 @@
 		AEE7808F1FB4448B00022F38 /* UserLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLocationManager.swift; sourceTree = "<group>"; };
 		AEE780911FB4489800022F38 /* Deeplinking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deeplinking.swift; sourceTree = "<group>"; };
 		AEE780931FB45DFA00022F38 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIImage+Extension.swift"; path = "VegOresto/UIImage+Extension.swift"; sourceTree = SOURCE_ROOT; };
+		AEFF28C51FE3DBCF008D2023 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -218,6 +220,7 @@
 				398AA7DF1D17F90500FA7E0A /* VegOresto-Bridging-Header.h */,
 				39968D4D1CABFFBB0085C61F /* Info.plist */,
 				39968D451CABFFBB0085C61F /* VegOresto.xcdatamodeld */,
+				AEFF28C51FE3DBCF008D2023 /* GoogleService-Info.plist */,
 			);
 			name = Ressources;
 			sourceTree = "<group>";
@@ -497,6 +500,7 @@
 			files = (
 				3939F3941D6B98B8006786D6 /* ufonts.com_urw-gothic-l-book.ttf in Resources */,
 				391D6D7A1D7060780023733E /* Pods-VegOresto-acknowledgements.plist in Resources */,
+				AEFF28C61FE3DBCF008D2023 /* GoogleService-Info.plist in Resources */,
 				37255B7F1F818D28006B501C /* Media.xcassets in Resources */,
 				3939F3921D6B9889006786D6 /* olivier_01.ttf in Resources */,
 				AEE7808B1FB313B300022F38 /* 2017-02-VegOresto-Charte.pdf in Resources */,
@@ -536,6 +540,7 @@
 				"${BUILT_PRODUCTS_DIR}/BEMCheckBox/BEMCheckBox.framework",
 				"${BUILT_PRODUCTS_DIR}/DGElasticPullToRefresh/DGElasticPullToRefresh.framework",
 				"${BUILT_PRODUCTS_DIR}/FaveButton/FaveButton.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/ImagePicker/ImagePicker.framework",
 				"${BUILT_PRODUCTS_DIR}/JSONWebToken/JWT.framework",
 				"${BUILT_PRODUCTS_DIR}/Kanna/Kanna.framework",
@@ -554,6 +559,7 @@
 				"${BUILT_PRODUCTS_DIR}/SkyFloatingLabelTextField/SkyFloatingLabelTextField.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftSpinner/SwiftSpinner.framework",
 				"${BUILT_PRODUCTS_DIR}/VTAcknowledgementsViewController/VTAcknowledgementsViewController.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -563,6 +569,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BEMCheckBox.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DGElasticPullToRefresh.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FaveButton.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ImagePicker.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JWT.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kanna.framework",
@@ -581,6 +588,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SkyFloatingLabelTextField.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftSpinner.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/VTAcknowledgementsViewController.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
