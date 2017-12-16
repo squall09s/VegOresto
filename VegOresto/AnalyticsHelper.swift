@@ -9,6 +9,54 @@
 import Foundation
 import FirebaseAnalytics
 
+enum RestaurantListType {
+    case search
+    case map
+    
+    var logString: String {
+        switch self {
+        case .search:
+            return "search"
+        case .map:
+            return "map"
+        }
+    }
+}
+
+enum AnalyticsMapBrand {
+    case apple
+    case google
+    
+    var logString: String {
+        switch self {
+        case .apple:
+            return "apple"
+        case .google:
+            return "google"
+        }
+    }
+}
+
+enum AnalyticsContactMedia {
+    case phone
+    case email
+    case facebook
+    case website
+
+    var logString: String {
+        switch self {
+        case .phone:
+            return "phone"
+        case .email:
+            return "email"
+        case .facebook:
+            return "facebook"
+        case .website:
+            return "website"
+        }
+    }
+}
+
 class AnalyticsHelper {
     static let shared = AnalyticsHelper()
     
@@ -32,14 +80,14 @@ class AnalyticsHelper {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: restaurantSearchWorkItem!)
     }
 
-    public func eventRestaurantList(categories: Set<CategorieRestaurant>, listType: String, hasLocation: Bool) {
+    public func eventRestaurantList(categories: Set<CategorieRestaurant>, listType: RestaurantListType, hasLocation: Bool) {
         restaurantListCategoryWorkItem?.cancel()
         restaurantListCategoryWorkItem = DispatchWorkItem {
             self.logEvent(AnalyticsEventViewItemList, parameters: [
                 AnalyticsParameterItemCategory: categories.map({ (category) -> String in
                     return self.getRestaurantCategory(category)
                 }).sorted().joined(separator: ","),
-                "list_type": listType,
+                "list_type": listType.logString,
                 "location": (hasLocation ? "enabled" : "disabled"),
             ])
         }
@@ -76,6 +124,41 @@ class AnalyticsHelper {
             AnalyticsParameterItemID: String(identifier),
             AnalyticsParameterItemName: name,
             AnalyticsParameterItemCategory: getRestaurantCategory(restaurant.category),
+        ])
+    }
+    
+    public func eventRestaurantOpenMaps(restaurant: Restaurant, mapBrand: AnalyticsMapBrand) {
+        guard let identifier = restaurant.identifier?.intValue, let name = restaurant.name else {
+            return
+        }
+        logEvent("view_item_map", parameters: [
+            AnalyticsParameterItemID: String(identifier),
+            AnalyticsParameterItemName: name,
+            AnalyticsParameterItemCategory: getRestaurantCategory(restaurant.category),
+            "map_brand": mapBrand.logString,
+        ])
+    }
+    
+    public func eventRestaurantShare(restaurant: Restaurant) {
+        guard let identifier = restaurant.identifier?.intValue, let name = restaurant.name else {
+            return
+        }
+        logEvent("view_item_share", parameters: [
+            AnalyticsParameterItemID: String(identifier),
+            AnalyticsParameterItemName: name,
+            AnalyticsParameterItemCategory: getRestaurantCategory(restaurant.category),
+        ])
+    }
+    
+    public func eventRestaurantContact(restaurant: Restaurant, media: AnalyticsContactMedia) {
+        guard let identifier = restaurant.identifier?.intValue, let name = restaurant.name else {
+            return
+        }
+        logEvent("view_item_contact", parameters: [
+            AnalyticsParameterItemID: String(identifier),
+            AnalyticsParameterItemName: name,
+            AnalyticsParameterItemCategory: getRestaurantCategory(restaurant.category),
+            "contact_media": media.logString,
         ])
     }
     

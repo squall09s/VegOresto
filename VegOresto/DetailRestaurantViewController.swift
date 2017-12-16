@@ -279,6 +279,13 @@ class DetailRestaurantViewController: UIViewController, UIScrollViewDelegate {
         }
     }
 
+    private func refreshBt_favoris() {
+        guard let restaurant = self.current_restaurant else {
+            return
+        }
+        self.varIB_button_favoris?.isSelected = restaurant.favoris.boolValue
+    }
+
     // MARK: Networking
     
     private func loadComments() {
@@ -302,14 +309,14 @@ class DetailRestaurantViewController: UIViewController, UIScrollViewDelegate {
     // MARK: IBActions
 
     @IBAction func touch_bt_back(sender: AnyObject) {
-
         _ = self.navigationController?.popViewController( animated: true)
     }
 
     @IBAction func touch_bt_phone(sender: AnyObject) {
-        guard let phoneNumber = self.current_restaurant?.phone else {
+        guard let restaurant = self.current_restaurant, let phoneNumber = restaurant.phone else {
             return
         }
+        AnalyticsHelper.shared.eventRestaurantContact(restaurant: restaurant, media: .phone)
         Deeplinking.openPhone(phoneNumber: phoneNumber)
     }
 
@@ -342,16 +349,19 @@ class DetailRestaurantViewController: UIViewController, UIScrollViewDelegate {
     }
 
     private func launchGoogleMaps() {
-        guard let location = self.current_restaurant?.location else {
+        guard let restaurant = self.current_restaurant, let location = restaurant.location else {
             return
         }
+        AnalyticsHelper.shared.eventRestaurantOpenMaps(restaurant: restaurant, mapBrand: .google)
         Deeplinking.openGoogleMaps(location: location.coordinate)
     }
 
     private func launchAppleMaps() {
-        guard let location = self.current_restaurant?.location else {
+        guard let restaurant = self.current_restaurant, let location = restaurant.location else {
             return
         }
+        
+        AnalyticsHelper.shared.eventRestaurantOpenMaps(restaurant: restaurant, mapBrand: .apple)
 
         let regionDistance: CLLocationDistance = 10000
         let regionSpan = MKCoordinateRegionMakeWithDistance(location.coordinate, regionDistance, regionDistance)
@@ -366,84 +376,49 @@ class DetailRestaurantViewController: UIViewController, UIScrollViewDelegate {
     }
 
     @IBAction func touch_bt_share(sender: AnyObject) {
-
-        if let textToShare = self.current_restaurant?.absolute_url {
-
-            let objectsToShare = [textToShare]
-            let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
-            self.present(activityVC, animated: true, completion: nil)
+        guard let restaurant = self.current_restaurant, let textToShare = restaurant.absolute_url else {
+            return
         }
+        AnalyticsHelper.shared.eventRestaurantShare(restaurant: restaurant)
+        let activityVC = UIActivityViewController(activityItems: [textToShare], applicationActivities: nil)
+        self.present(activityVC, animated: true, completion: nil)
     }
 
     @IBAction func touch_bt_favoris(sender: AnyObject) {
-
-        if let _current_restaurant = self.current_restaurant {
-
-             _current_restaurant.favoris = !(_current_restaurant.favoris.boolValue) as NSNumber
-            
-            if _current_restaurant.favoris.boolValue {
-                AnalyticsHelper.shared.eventRestaurantAddToFavorites(restaurant: _current_restaurant)
-            }
-
-            /*
-            let notificationManager = LNRNotificationManager()
-
-            if !(notificationManager.isNotificationActive) {
-
-             
-                notificationManager.notificationsPosition = LNRNotificationPosition.top
-                notificationManager.notificationsBackgroundColor = COLOR_ORANGE
-                notificationManager.notificationsTitleTextColor = UIColor.white
-                notificationManager.notificationsBodyTextColor = UIColor.white
-                notificationManager.notificationsSeperatorColor = UIColor.white
-
-                notificationManager.notificationsTitleFont = UIFont(name: "URWGothicL-Book", size: 15)!
-                notificationManager.notificationsBodyFont = UIFont(name: "URWGothicL-Book", size: 11)!
-                //notificationManager.notificationsIcon = UIImage(asset: .Img_favoris_wh)
-
-                let message = _current_restaurant.favoris.boolValue ? "Vous avez bien ajouté ce restaurant à vos favoris" : "Vous avez bien retiré ce restaurant de vos favoris"
-
-                notificationManager.showNotification(notification: LNRNotification(title: "Favoris", body: message, duration: 1.5, onTap: { () in
-
-                }, onTimeout: { () in
-
-                }))
-
-            }*/
+        guard let restaurant = self.current_restaurant else {
+            return
         }
-
+        
+        restaurant.favoris = !(restaurant.favoris.boolValue) as NSNumber
+        
+        if restaurant.favoris.boolValue {
+            AnalyticsHelper.shared.eventRestaurantAddToFavorites(restaurant: restaurant)
+        }
+        
         self.refreshBt_favoris()
     }
 
-    func refreshBt_favoris() {
-
-        if let _current_restaurant = self.current_restaurant {
-
-            if self.varIB_button_favoris!.isSelected != _current_restaurant.favoris.boolValue {
-                self.varIB_button_favoris?.isSelected = _current_restaurant.favoris.boolValue
-            }
-        }
-
-    }
-
     @IBAction func touch_bt_mail(sender: AnyObject) {
-        guard let emailAddress = self.current_restaurant?.mail else {
+        guard let restaurant = self.current_restaurant, let emailAddress = restaurant.mail else {
             return
         }
+        AnalyticsHelper.shared.eventRestaurantContact(restaurant: restaurant, media: .email)
         Deeplinking.openSendEmail(to: emailAddress, subject: "Prise de contact")
     }
 
     @IBAction func touch_bt_weburl(sender: AnyObject) {
-        guard let websiteUrl = self.current_restaurant?.website else {
+        guard let restaurant = self.current_restaurant, let websiteUrl = restaurant.website else {
             return
         }
+        AnalyticsHelper.shared.eventRestaurantContact(restaurant: restaurant, media: .website)
         Deeplinking.openWebsite(url: websiteUrl)
     }
 
     @IBAction func touch_bt_facebook(sender: AnyObject) {
-        guard let facebookURL = self.current_restaurant?.facebookURL else {
+        guard let restaurant = self.current_restaurant, let facebookURL = restaurant.facebookURL else {
             return
         }
+        AnalyticsHelper.shared.eventRestaurantContact(restaurant: restaurant, media: .facebook)
         Deeplinking.openURL(facebookURL)
     }
 

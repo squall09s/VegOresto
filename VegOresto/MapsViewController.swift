@@ -272,7 +272,7 @@ class MapsViewController: VGAbstractFilterViewController, MKMapViewDelegate {
     }
 
     override func updateData() {
-        AnalyticsHelper.shared.eventRestaurantList(categories: enabledCategories, listType: "map", hasLocation: UserLocationManager.shared.location != nil)
+        AnalyticsHelper.shared.eventRestaurantList(categories: enabledCategories, listType: .map, hasLocation: UserLocationManager.shared.location != nil)
 
         let annotations = UserData.shared.viewContext.getRestaurants().filter({ (restaurant: Restaurant) -> Bool in
             if self.filtre_categorie_VeganFriendly_active && self.filtre_categorie_Vegetarien_active && self.filtre_categorie_Vegan_active {
