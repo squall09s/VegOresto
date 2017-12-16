@@ -375,6 +375,8 @@ class RechercheViewController: VGAbstractFilterViewController, UITableViewDelega
     }
 
     override func updateData() {
+        AnalyticsHelper.shared.eventRestaurantList(categories: enabledCategories, listType: "search", hasLocation: UserLocationManager.shared.location != nil)
+
         self.loadRestaurants(word: self.varIB_searchBar?.text)
         self.varIB_tableView?.scrollRectToVisible(CGRect(x: 0, y: 0, width: 1, height: 1), animated: true)
     }

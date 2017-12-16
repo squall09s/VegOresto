@@ -13,6 +13,9 @@ class AnalyticsHelper {
     static let shared = AnalyticsHelper()
     
     var restaurantSearchWorkItem: DispatchWorkItem?
+    var restaurantListCategoryWorkItem: DispatchWorkItem?
+    
+    // MARK: Events
     
     public func eventRestaurantSearch(searchText: String) {
         if searchText.isEmpty {
@@ -29,22 +32,47 @@ class AnalyticsHelper {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: restaurantSearchWorkItem!)
     }
 
+    public func eventRestaurantList(categories: Set<CategorieRestaurant>, listType: String, hasLocation: Bool) {
+        restaurantListCategoryWorkItem?.cancel()
+        restaurantListCategoryWorkItem = DispatchWorkItem {
+            self.logEvent(AnalyticsEventViewItemList, parameters: [
+                AnalyticsParameterItemCategory: categories.map({ (category) -> String in
+                    return self.getRestaurantCategory(category)
+                }).sorted().joined(separator: ","),
+                "list_type": listType,
+                "location": (hasLocation ? "enabled" : "disabled"),
+            ])
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: restaurantListCategoryWorkItem!)
+    }
+
     public func eventRestaurantView(restaurant: Restaurant) {
         guard let identifier = restaurant.identifier?.intValue, let name = restaurant.name else {
             return
         }
         
-        let category = restaurant.category
-        
         logEvent(AnalyticsEventViewItem, parameters: [
             AnalyticsParameterItemID: String(identifier),
             AnalyticsParameterItemName: name,
-            AnalyticsParameterItemCategory: (category == .Vegan ? "vegan" : (category == .Végétarien ? "vegetarian" : "veganfriendly")),
+            AnalyticsParameterItemCategory: getRestaurantCategory(restaurant.category),
         ])
     }
+    
+    // MARK: Helpers
     
     private func logEvent(_ eventName: String, parameters: [String:Any]) {
         Debug.log(object: "Analytics Event \"\(eventName)\": \(String(data: try! JSONSerialization.data(withJSONObject: parameters, options: []), encoding: .utf8)!)")
         Analytics.logEvent(eventName, parameters: parameters)
+    }
+    
+    private func getRestaurantCategory(_ category: CategorieRestaurant) -> String {
+        switch category {
+        case .Vegan:
+            return "vegan"
+        case .Végétarien:
+            return "vegetarian"
+        case .VeganFriendly:
+            return "veganfriendly"
+        }
     }
 }
