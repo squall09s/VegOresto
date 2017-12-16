@@ -73,6 +73,7 @@
 		AEE780921FB4489800022F38 /* Deeplinking.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE780911FB4489800022F38 /* Deeplinking.swift */; };
 		AEE780941FB45DFA00022F38 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE780931FB45DFA00022F38 /* UIImage+Extension.swift */; };
 		AEFF28C61FE3DBCF008D2023 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AEFF28C51FE3DBCF008D2023 /* GoogleService-Info.plist */; };
+		AEFF28C81FE41862008D2023 /* AnalyticsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFF28C71FE41862008D2023 /* AnalyticsHelper.swift */; };
 		C9BB0E46024B374EBEB1773F /* Pods_VegOresto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F136A5DB59857F23905F5CF /* Pods_VegOresto.framework */; };
 /* End PBXBuildFile section */
 
@@ -154,6 +155,7 @@
 		AEE780911FB4489800022F38 /* Deeplinking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deeplinking.swift; sourceTree = "<group>"; };
 		AEE780931FB45DFA00022F38 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIImage+Extension.swift"; path = "VegOresto/UIImage+Extension.swift"; sourceTree = SOURCE_ROOT; };
 		AEFF28C51FE3DBCF008D2023 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		AEFF28C71FE41862008D2023 /* AnalyticsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -244,6 +246,7 @@
 				39EC7FF51CAC1F9F002AD862 /* UserData.swift */,
 				AEE7808F1FB4448B00022F38 /* UserLocationManager.swift */,
 				AEE780911FB4489800022F38 /* Deeplinking.swift */,
+				AEFF28C71FE41862008D2023 /* AnalyticsHelper.swift */,
 				AEE7808E1FB3293A00022F38 /* Network */,
 				397901751CADC62900597DCD /* CoreData */,
 			);
@@ -676,6 +679,7 @@
 				AE62973F1FB2DD26006313E5 /* Constantes.swift in Sources */,
 				391D6D7C1D7060A50023733E /* AboutViewController.swift in Sources */,
 				AEE780941FB45DFA00022F38 /* UIImage+Extension.swift in Sources */,
+				AEFF28C81FE41862008D2023 /* AnalyticsHelper.swift in Sources */,
 				39610F511E1DB62A005F7053 /* TableCommentsViewController.swift in Sources */,
 				398857E61CC2B97600B05F64 /* CategorieCulinaire+CoreDataProperties.swift in Sources */,
 				390909DF1DCB3E52005F77CB /* FBAnnotation.swift in Sources */,

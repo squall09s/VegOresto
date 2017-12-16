@@ -87,6 +87,12 @@ class DetailRestaurantViewController: UIViewController, UIScrollViewDelegate {
         loadComments()
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        if let restaurant = self.current_restaurant {
+            AnalyticsHelper.shared.eventRestaurantView(restaurant: restaurant)
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

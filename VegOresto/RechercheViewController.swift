@@ -284,6 +284,8 @@ class RechercheViewController: VGAbstractFilterViewController, UITableViewDelega
 
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         self.loadRestaurants(word: searchText)
+        
+        AnalyticsHelper.shared.eventRestaurantSearch(searchText: searchText)
     }
 
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
