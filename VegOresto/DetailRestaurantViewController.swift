@@ -380,6 +380,10 @@ class DetailRestaurantViewController: UIViewController, UIScrollViewDelegate {
         if let _current_restaurant = self.current_restaurant {
 
              _current_restaurant.favoris = !(_current_restaurant.favoris.boolValue) as NSNumber
+            
+            if _current_restaurant.favoris.boolValue {
+                AnalyticsHelper.shared.eventRestaurantAddToFavorites(restaurant: _current_restaurant)
+            }
 
             /*
             let notificationManager = LNRNotificationManager()

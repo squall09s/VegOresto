@@ -50,8 +50,29 @@ class AnalyticsHelper {
         guard let identifier = restaurant.identifier?.intValue, let name = restaurant.name else {
             return
         }
-        
         logEvent(AnalyticsEventViewItem, parameters: [
+            AnalyticsParameterItemID: String(identifier),
+            AnalyticsParameterItemName: name,
+            AnalyticsParameterItemCategory: getRestaurantCategory(restaurant.category),
+        ])
+    }
+    
+    public func eventRestaurantCommentsView(restaurant: Restaurant) {
+        guard let identifier = restaurant.identifier?.intValue, let name = restaurant.name else {
+            return
+        }
+        logEvent("view_item_comments", parameters: [
+            AnalyticsParameterItemID: String(identifier),
+            AnalyticsParameterItemName: name,
+            AnalyticsParameterItemCategory: getRestaurantCategory(restaurant.category),
+        ])
+    }
+    
+    public func eventRestaurantAddToFavorites(restaurant: Restaurant) {
+        guard let identifier = restaurant.identifier?.intValue, let name = restaurant.name, restaurant.favoris.boolValue else {
+            return
+        }
+        logEvent(AnalyticsEventAddToWishlist, parameters: [
             AnalyticsParameterItemID: String(identifier),
             AnalyticsParameterItemName: name,
             AnalyticsParameterItemCategory: getRestaurantCategory(restaurant.category),

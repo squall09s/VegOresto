@@ -221,6 +221,10 @@ class RechercheViewController: VGAbstractFilterViewController, UITableViewDelega
         let bt1 = MGSwipeButton(title: "", icon: imageSwipe, backgroundColor: COLOR_GRIS_BACKGROUND ) { (_) -> Bool in
 
             current_restaurant.favoris = !(current_restaurant.favoris.boolValue) as NSNumber
+            
+            if current_restaurant.favoris.boolValue {
+                AnalyticsHelper.shared.eventRestaurantAddToFavorites(restaurant: current_restaurant)
+            }
 
             self.afficherUniquementFavoris ? self.updateData() : self.varIB_tableView?.reloadData()
 

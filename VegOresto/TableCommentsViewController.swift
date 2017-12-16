@@ -39,6 +39,12 @@ class TableCommentsViewController: UIViewController, UITableViewDelegate, UITabl
         // Do any additional setup after loading the view.
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        if let restaurant = self.currentRestaurant {
+            AnalyticsHelper.shared.eventRestaurantCommentsView(restaurant: restaurant)
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
