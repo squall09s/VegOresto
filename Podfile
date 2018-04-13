@@ -12,7 +12,6 @@ plugin 'cocoapods-keys', {
 }
 
 target 'VegOresto' do
-    pod 'Pushwoosh'
     pod 'SVPulsingAnnotationView'
     pod 'SwiftGen'
     pod 'MGSwipeTableCell'
@@ -21,7 +20,6 @@ target 'VegOresto' do
     pod 'VTAcknowledgementsViewController'
     pod 'LNRSimpleNotifications'
     pod 'MarqueeLabel'
-    pod 'Kanna'
     pod 'PromiseKit'
 
     # Webservices

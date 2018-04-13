@@ -10,7 +10,6 @@ import SwiftSpinner
 import UIKit
 import CoreData
 import Alamofire
-import Kanna
 import PromiseKit
 
 class UserData {
