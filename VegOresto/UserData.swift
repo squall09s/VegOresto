@@ -68,6 +68,57 @@ class UserData {
             })
         })
     }
+    
+    public func backgroundFlatMap<T, U: NSManagedObject>(_ mapArray: [T], block: @escaping (NSManagedObjectContext, T) throws -> U?, diffEntityName: String, diffPredicate: NSPredicate? = nil, autosave: Bool = false) -> Promise<[U]> {
+        return Promise(resolvers: { (fulfill, reject) in
+            self.persistentContainer.performBackgroundTask({ (context: NSManagedObjectContext) in
+                // fetch object IDs before mapping
+                let originalObjectIDs = context.fetchObjectIDs(entityName: diffEntityName, predicate: diffPredicate)
+                let originalObjectIDSet = Set(originalObjectIDs.map({ (objectID: NSManagedObjectID) -> String in
+                    return objectID.uriRepresentation().absoluteString
+                }))
+
+                // perform mapping
+                var result: [U]
+                do {
+                    result = try mapArray.flatMap({ (item: T) throws -> U? in
+                        return try block(context, item)
+                    })
+                } catch let e {
+                    reject(e)
+                    return
+                }
+
+                // get new object IDs
+                let finalObjectIDSet = Set(result.map({ (item: NSManagedObject) -> String in
+                    return item.objectID.uriRepresentation().absoluteString
+                }))
+
+                // objects to delete
+                var toDeleteObjectIDSet = originalObjectIDSet
+                toDeleteObjectIDSet.subtract(finalObjectIDSet)
+
+                // delete extra objects
+                for objectID in originalObjectIDs {
+                    if toDeleteObjectIDSet.contains(objectID.uriRepresentation().absoluteString) {
+                        let object = context.object(with: objectID)
+                        context.delete(object)
+                    }
+                }
+
+                // save
+                do {
+                    if autosave {
+                        try context.save()
+                    }
+                    fulfill(result)
+                } catch let e {
+                    reject(e)
+                }
+            })
+        })
+    }
+    
     // MARK: Reload
     
     public func updateDatabaseIfNeeded(forced: Bool = false) -> Promise<Void> {
@@ -124,6 +175,16 @@ extension NSManagedObjectContext {
         }
     }
     
+    private func safeFetchIDs(_ fetchRequest: NSFetchRequest<NSManagedObjectID>) -> [NSManagedObjectID] {
+        do {
+            return try self.fetch(fetchRequest)
+        }
+        catch let e {
+            debugPrint("Fetch request failed: \((e as NSError).localizedDescription)")
+            return [NSManagedObjectID]()
+        }
+    }
+    
     private func safeCount<T: NSManagedObject>(_ fetchRequest: NSFetchRequest<T>) -> Int {
         do {
             return try self.count(for: fetchRequest)
@@ -132,6 +193,20 @@ extension NSManagedObjectContext {
             debugPrint("Fetch request (count) failed: \((e as NSError).localizedDescription)")
             return (-1)
         }
+    }
+    
+    internal func fetchObjects(entityName: String, predicate: NSPredicate? = nil) -> [NSManagedObject] {
+        let fetchRequest: NSFetchRequest<NSManagedObject> = NSFetchRequest(entityName: entityName)
+        fetchRequest.predicate = predicate
+        fetchRequest.resultType = .managedObjectResultType
+        return safeFetch(fetchRequest)
+    }
+    
+    internal func fetchObjectIDs(entityName: String, predicate: NSPredicate? = nil) -> [NSManagedObjectID] {
+        let fetchRequest: NSFetchRequest<NSManagedObjectID> = NSFetchRequest(entityName: entityName)
+        fetchRequest.predicate = predicate
+        fetchRequest.resultType = .managedObjectIDResultType
+        return safeFetchIDs(fetchRequest)
     }
     
     internal func getRestaurants() -> [Restaurant] {

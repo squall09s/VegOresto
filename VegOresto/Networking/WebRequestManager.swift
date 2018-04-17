@@ -20,14 +20,12 @@ class WebRequestManager {
     public func loadRestaurants() -> Promise<[Restaurant]> {
         let url = getUrl("/wp-json/vg/v1/restos.json")
         return RequestManager.shared.get(url: url).then { (result: [String:Any]) -> Promise<[Restaurant]> in
-            return UserData.shared.performBackgroundMapping({ context -> [Restaurant] in
-                return Array(result.values).flatMap({ (dict) -> Restaurant? in
-                    guard let _dict = dict as? [String:Any] else {
-                        return nil
-                    }
-                    return Restaurant.map(_dict, context: context)
-                })
-            }, autosave: true)
+            return UserData.shared.backgroundFlatMap(Array(result.values), block: { (context, dict) -> Restaurant? in
+                guard let _dict = dict as? [String:Any] else {
+                    return nil
+                }
+                return Restaurant.map(_dict, context: context)
+            }, diffEntityName: "Restaurant", autosave: true)
         }
     }
     
