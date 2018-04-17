@@ -304,6 +304,8 @@ class Restaurant: NSManagedObject, Mappable {
             "bresilien": "Brésilien",
             "americain": "Américain",
             "russe": "Russe",
+            "grec": "Grec",
+            "tibetain": "Tibétain",
         ]
         return influences.map({ key -> String in
             guard let val = d[key] else {
@@ -344,7 +346,7 @@ class Restaurant: NSManagedObject, Mappable {
             "hote": "Table d’hôte",
             "romantique": "Romantique",
             "dansant": "Dansant",
-            "eau": "Au bord de l'eau"
+            "eau": "Au bord de l'eau",
         ]
         return ambiances.map({ key -> String in
             guard let val = d[key] else {
