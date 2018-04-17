@@ -257,7 +257,8 @@ class Restaurant: NSManagedObject, Mappable {
             "moderne": "Moderne, créatif",
             "bar_jus": "Bar à jus",
             "tarte_vrai": "Tartes",
-            "tarte": "Salades"
+            "tarte": "Salades",
+            "chocolatier": "Chocolatier",
         ]
         guard let val = d[cat] else {
             Debug.log(object: "ERROR - [mapCategorieCulinaireName] key \(cat) not found")
@@ -289,6 +290,7 @@ class Restaurant: NSManagedObject, Mappable {
             "libanais": "Libanais",
             "marocain": "Marocain",
             "mexicain": "Mexicain",
+            "monde": "Cuisine du monde",
             "turc": "Turc",
             "vietnamien": "Vietnamien",
             "thai": "Thailandais",
@@ -298,7 +300,10 @@ class Restaurant: NSManagedObject, Mappable {
             "tunisien": "Tunisien",
             "chinois": "Chinois",
             "coreen": "Coréen",
-            "creole": "Créole"
+            "creole": "Créole",
+            "bresilien": "Brésilien",
+            "americain": "Américain",
+            "russe": "Russe",
         ]
         return influences.map({ key -> String in
             guard let val = d[key] else {
