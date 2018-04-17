@@ -1,4 +1,6 @@
+project 'VegOresto.xcodeproj'
 platform :ios, '10.0'
+inhibit_all_warnings!
 use_frameworks!
 
 # plugin cocoapods-keys (via gem install), see github for details
