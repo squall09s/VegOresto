@@ -1,0 +1,906 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		370CBE521FB128AA00A1AE02 /* UIView+Material.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370CBE511FB128AA00A1AE02 /* UIView+Material.swift */; };
+		370CBE541FB1920D00A1AE02 /* VGAbstractFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370CBE531FB1920D00A1AE02 /* VGAbstractFilterViewController.swift */; };
+		37255B7F1F818D28006B501C /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37255B7E1F818CC3006B501C /* Media.xcassets */; };
+		37D05B3A1FAC9C68005B3B9D /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37D05B391FAC9C68005B3B9D /* Photos.framework */; };
+		37D82FF61F9F10380037CD4B /* AddCommentContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D82FF51F9F10380037CD4B /* AddCommentContainerViewController.swift */; };
+		37D82FF81F9F10520037CD4B /* CreateCommentStep1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D82FF71F9F10520037CD4B /* CreateCommentStep1ViewController.swift */; };
+		37D82FFA1F9F10660037CD4B /* CreateCommentStep2UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D82FF91F9F10660037CD4B /* CreateCommentStep2UserViewController.swift */; };
+		37D82FFC1F9F107A0037CD4B /* CreateCommentStep3ImagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D82FFB1F9F107A0037CD4B /* CreateCommentStep3ImagesViewController.swift */; };
+		37D82FFE1F9F10900037CD4B /* CreateCommentStep4ResumeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D82FFD1F9F10900037CD4B /* CreateCommentStep4ResumeViewController.swift */; };
+		37DD9C081F5DE3A1007B3E2B /* Comment+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DD9C061F5DE3A1007B3E2B /* Comment+CoreDataProperties.swift */; };
+		37DD9C091F5DE3A1007B3E2B /* Restaurant+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DD9C071F5DE3A1007B3E2B /* Restaurant+CoreDataProperties.swift */; };
+		37DD9C0A1F5DE3C9007B3E2B /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398857E91CC2BA1000B05F64 /* Restaurant.swift */; };
+		37E9D7A91F6EE42700D39672 /* Horaire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E9D7A71F6EE42700D39672 /* Horaire.swift */; };
+		37E9D7AA1F6EE42700D39672 /* Horaire+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E9D7A81F6EE42700D39672 /* Horaire+CoreDataProperties.swift */; };
+		37F8801D1FADEF4C00F34F78 /* Keys.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37F8801E1FADEF4C00F34F78 /* Keys.framework */; };
+		37F880221FADF5FC00F34F78 /* WebRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F880201FADF5FC00F34F78 /* WebRequestManager.swift */; };
+		37F880241FADF6F100F34F78 /* RequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F880231FADF6F100F34F78 /* RequestManager.swift */; };
+		390909DF1DCB3E52005F77CB /* FBAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390909D81DCB3E52005F77CB /* FBAnnotation.swift */; };
+		390909E01DCB3E52005F77CB /* FBAnnotationCluster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390909D91DCB3E52005F77CB /* FBAnnotationCluster.swift */; };
+		390909E11DCB3E52005F77CB /* FBAnnotationClusterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390909DA1DCB3E52005F77CB /* FBAnnotationClusterView.swift */; };
+		390909E21DCB3E52005F77CB /* FBBoundingBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390909DB1DCB3E52005F77CB /* FBBoundingBox.swift */; };
+		390909E31DCB3E52005F77CB /* FBClusteringManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390909DC1DCB3E52005F77CB /* FBClusteringManager.swift */; };
+		390909E41DCB3E52005F77CB /* FBQuadTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390909DD1DCB3E52005F77CB /* FBQuadTree.swift */; };
+		390909E51DCB3E52005F77CB /* FBQuadTreeNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390909DE1DCB3E52005F77CB /* FBQuadTreeNode.swift */; };
+		390909E71DCB3E85005F77CB /* ImagesClusters.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 390909E61DCB3E85005F77CB /* ImagesClusters.xcassets */; };
+		39189F7A1CB5548500A64E5E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39189F791CB5548500A64E5E /* CoreLocation.framework */; };
+		391D6D7A1D7060780023733E /* Pods-VegOresto-acknowledgements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 391D6D791D7060780023733E /* Pods-VegOresto-acknowledgements.plist */; };
+		391D6D7C1D7060A50023733E /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391D6D7B1D7060A50023733E /* AboutViewController.swift */; };
+		3939F3921D6B9889006786D6 /* olivier_01.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3939F3911D6B9889006786D6 /* olivier_01.ttf */; };
+		3939F3941D6B98B8006786D6 /* ufonts.com_urw-gothic-l-book.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3939F3931D6B98B8006786D6 /* ufonts.com_urw-gothic-l-book.ttf */; };
+		39610F511E1DB62A005F7053 /* TableCommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39610F501E1DB62A005F7053 /* TableCommentsViewController.swift */; };
+		39610F531E1DB6C1005F7053 /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39610F521E1DB6C1005F7053 /* CommentTableViewCell.swift */; };
+		39610F561E1DBF4A005F7053 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39610F541E1DBF4A005F7053 /* Comment.swift */; };
+		396BD9751CAE62670071DF07 /* DetailRestaurantViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396BD9741CAE62670071DF07 /* DetailRestaurantViewController.swift */; };
+		396BD9801CAEB8640071DF07 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396BD97F1CAEB8640071DF07 /* ColorExtension.swift */; };
+		3978B2771CAC088400D82040 /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3978B2761CAC088400D82040 /* libstdc++.tbd */; };
+		397D33991D18222E00BA7708 /* ListeFavorisViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397D33981D18222E00BA7708 /* ListeFavorisViewController.swift */; };
+		39848B081CB4231300D718FD /* NavigationAccueilViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39848B071CB4231300D718FD /* NavigationAccueilViewController.swift */; };
+		398857E61CC2B97600B05F64 /* CategorieCulinaire+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398857E41CC2B97600B05F64 /* CategorieCulinaire+CoreDataProperties.swift */; };
+		398857E71CC2B97600B05F64 /* CategorieCulinaire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398857E51CC2B97600B05F64 /* CategorieCulinaire.swift */; };
+		398AA7E51D17F90600FA7E0A /* LGSideMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 398AA7E01D17F90600FA7E0A /* LGSideMenuController.m */; };
+		398AA7E61D17F90600FA7E0A /* MenuLateral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398AA7E21D17F90600FA7E0A /* MenuLateral.swift */; };
+		398AA7E71D17F90600FA7E0A /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398AA7E31D17F90600FA7E0A /* UIViewControllerExtension.swift */; };
+		398AA7E81D17F90600FA7E0A /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398AA7E41D17F90600FA7E0A /* MainViewController.swift */; };
+		39968D3F1CABFFBB0085C61F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39968D3E1CABFFBB0085C61F /* AppDelegate.swift */; };
+		39968D441CABFFBB0085C61F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39968D421CABFFBB0085C61F /* Main.storyboard */; };
+		39968D471CABFFBB0085C61F /* VegOresto.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 39968D451CABFFBB0085C61F /* VegOresto.xcdatamodeld */; };
+		39968D4C1CABFFBB0085C61F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39968D4A1CABFFBB0085C61F /* LaunchScreen.storyboard */; };
+		39C50EFC1CC8D9670019FA2B /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C50EFA1CC8D9670019FA2B /* Images.swift */; };
+		39C50EFD1CC8D9670019FA2B /* Storyboards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C50EFB1CC8D9670019FA2B /* Storyboards.swift */; };
+		39C50F0A1CCAD7C20019FA2B /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3978B2741CAC087A00D82040 /* libz.tbd */; };
+		39EC7FF01CAC0E15002AD862 /* MapsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EC7FEF1CAC0E15002AD862 /* MapsViewController.swift */; };
+		39EC7FF21CAC0EAF002AD862 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39EC7FF11CAC0EAF002AD862 /* MapKit.framework */; };
+		39EC7FF61CAC1F9F002AD862 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EC7FF51CAC1F9F002AD862 /* UserData.swift */; };
+		39EC80041CAC4787002AD862 /* RechercheViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EC80031CAC4787002AD862 /* RechercheViewController.swift */; };
+		39EC80061CAD5ED2002AD862 /* RestaurantAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EC80051CAD5ED2002AD862 /* RestaurantAnnotation.swift */; };
+		AE62973F1FB2DD26006313E5 /* Constantes.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE62973E1FB2DD26006313E5 /* Constantes.swift */; };
+		AE991F961FC09FD70091D697 /* entities.c in Sources */ = {isa = PBXBuildFile; fileRef = AE991F941FC09FD60091D697 /* entities.c */; };
+		AE991F9A1FC0A0090091D697 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE991F991FC0A0090091D697 /* String+Extensions.swift */; };
+		AEB954C81FBE3E6D0019DFF1 /* CLLocation+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB954C71FBE3E6D0019DFF1 /* CLLocation+Extensions.swift */; };
+		AEE7808B1FB313B300022F38 /* 2017-02-VegOresto-Charte.pdf in Resources */ = {isa = PBXBuildFile; fileRef = AEE7808A1FB313B300022F38 /* 2017-02-VegOresto-Charte.pdf */; };
+		AEE7808D1FB3146500022F38 /* CharteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE7808C1FB3146500022F38 /* CharteViewController.swift */; };
+		AEE780901FB4448B00022F38 /* UserLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE7808F1FB4448B00022F38 /* UserLocationManager.swift */; };
+		AEE780921FB4489800022F38 /* Deeplinking.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE780911FB4489800022F38 /* Deeplinking.swift */; };
+		AEE780941FB45DFA00022F38 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE780931FB45DFA00022F38 /* UIImage+Extension.swift */; };
+		AEFF28C61FE3DBCF008D2023 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AEFF28C51FE3DBCF008D2023 /* GoogleService-Info.plist */; };
+		AEFF28C81FE41862008D2023 /* AnalyticsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFF28C71FE41862008D2023 /* AnalyticsHelper.swift */; };
+		C9BB0E46024B374EBEB1773F /* Pods_VegOresto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F136A5DB59857F23905F5CF /* Pods_VegOresto.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1D59E1EF91BED1528F2840DC /* Pods-VegOresto.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VegOresto.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VegOresto/Pods-VegOresto.debug.xcconfig"; sourceTree = "<group>"; };
+		370CBE511FB128AA00A1AE02 /* UIView+Material.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Material.swift"; sourceTree = "<group>"; };
+		370CBE531FB1920D00A1AE02 /* VGAbstractFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGAbstractFilterViewController.swift; sourceTree = "<group>"; };
+		370F7B491F97AA43008A4C8E /* fr */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = fr; path = fr.lproj/Main.storyboard; sourceTree = "<group>"; };
+		370F7B4B1F97AA67008A4C8E /* fr */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = fr; path = fr.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		37255B7E1F818CC3006B501C /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Media.xcassets; path = Ressources/Media.xcassets; sourceTree = "<group>"; };
+		37D05B391FAC9C68005B3B9D /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
+		37D82FF51F9F10380037CD4B /* AddCommentContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AddCommentContainerViewController.swift; path = Comment/AddCommentContainerViewController.swift; sourceTree = "<group>"; };
+		37D82FF71F9F10520037CD4B /* CreateCommentStep1ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CreateCommentStep1ViewController.swift; path = Comment/CreateCommentStep1ViewController.swift; sourceTree = "<group>"; };
+		37D82FF91F9F10660037CD4B /* CreateCommentStep2UserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CreateCommentStep2UserViewController.swift; path = Comment/CreateCommentStep2UserViewController.swift; sourceTree = "<group>"; };
+		37D82FFB1F9F107A0037CD4B /* CreateCommentStep3ImagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CreateCommentStep3ImagesViewController.swift; path = Comment/CreateCommentStep3ImagesViewController.swift; sourceTree = "<group>"; };
+		37D82FFD1F9F10900037CD4B /* CreateCommentStep4ResumeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CreateCommentStep4ResumeViewController.swift; path = Comment/CreateCommentStep4ResumeViewController.swift; sourceTree = "<group>"; };
+		37DD9C061F5DE3A1007B3E2B /* Comment+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Comment+CoreDataProperties.swift"; path = "NSManagedObject/Comment+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		37DD9C071F5DE3A1007B3E2B /* Restaurant+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Restaurant+CoreDataProperties.swift"; path = "NSManagedObject/Restaurant+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		37E9D7A71F6EE42700D39672 /* Horaire.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Horaire.swift; path = NSManagedObject/Horaire.swift; sourceTree = "<group>"; };
+		37E9D7A81F6EE42700D39672 /* Horaire+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Horaire+CoreDataProperties.swift"; path = "NSManagedObject/Horaire+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		37F8801E1FADEF4C00F34F78 /* Keys.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Keys.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		37F880201FADF5FC00F34F78 /* WebRequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebRequestManager.swift; sourceTree = "<group>"; };
+		37F880231FADF6F100F34F78 /* RequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestManager.swift; sourceTree = "<group>"; };
+		390909D81DCB3E52005F77CB /* FBAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FBAnnotation.swift; path = Ressources/Lib/FBAnnotation/FBAnnotation.swift; sourceTree = "<group>"; };
+		390909D91DCB3E52005F77CB /* FBAnnotationCluster.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FBAnnotationCluster.swift; path = Ressources/Lib/FBAnnotation/FBAnnotationCluster.swift; sourceTree = "<group>"; };
+		390909DA1DCB3E52005F77CB /* FBAnnotationClusterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FBAnnotationClusterView.swift; path = Ressources/Lib/FBAnnotation/FBAnnotationClusterView.swift; sourceTree = "<group>"; };
+		390909DB1DCB3E52005F77CB /* FBBoundingBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FBBoundingBox.swift; path = Ressources/Lib/FBAnnotation/FBBoundingBox.swift; sourceTree = "<group>"; };
+		390909DC1DCB3E52005F77CB /* FBClusteringManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FBClusteringManager.swift; path = Ressources/Lib/FBAnnotation/FBClusteringManager.swift; sourceTree = "<group>"; };
+		390909DD1DCB3E52005F77CB /* FBQuadTree.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FBQuadTree.swift; path = Ressources/Lib/FBAnnotation/FBQuadTree.swift; sourceTree = "<group>"; };
+		390909DE1DCB3E52005F77CB /* FBQuadTreeNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FBQuadTreeNode.swift; path = Ressources/Lib/FBAnnotation/FBQuadTreeNode.swift; sourceTree = "<group>"; };
+		390909E61DCB3E85005F77CB /* ImagesClusters.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ImagesClusters.xcassets; sourceTree = "<group>"; };
+		39189F791CB5548500A64E5E /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		391D6D791D7060780023733E /* Pods-VegOresto-acknowledgements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "Pods-VegOresto-acknowledgements.plist"; path = "../Pods/Target Support Files/Pods-VegOresto/Pods-VegOresto-acknowledgements.plist"; sourceTree = "<group>"; };
+		391D6D7B1D7060A50023733E /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
+		3939F3911D6B9889006786D6 /* olivier_01.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = olivier_01.ttf; sourceTree = "<group>"; };
+		3939F3931D6B98B8006786D6 /* ufonts.com_urw-gothic-l-book.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ufonts.com_urw-gothic-l-book.ttf"; sourceTree = "<group>"; };
+		39610F501E1DB62A005F7053 /* TableCommentsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableCommentsViewController.swift; sourceTree = "<group>"; };
+		39610F521E1DB6C1005F7053 /* CommentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
+		39610F541E1DBF4A005F7053 /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Comment.swift; path = NSManagedObject/Comment.swift; sourceTree = "<group>"; };
+		396BD9741CAE62670071DF07 /* DetailRestaurantViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailRestaurantViewController.swift; sourceTree = "<group>"; };
+		396BD97F1CAEB8640071DF07 /* ColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
+		3978B2741CAC087A00D82040 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		3978B2761CAC088400D82040 /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
+		397D33981D18222E00BA7708 /* ListeFavorisViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListeFavorisViewController.swift; sourceTree = "<group>"; };
+		39848B071CB4231300D718FD /* NavigationAccueilViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationAccueilViewController.swift; sourceTree = "<group>"; };
+		398857E41CC2B97600B05F64 /* CategorieCulinaire+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CategorieCulinaire+CoreDataProperties.swift"; path = "NSManagedObject/CategorieCulinaire+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		398857E51CC2B97600B05F64 /* CategorieCulinaire.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CategorieCulinaire.swift; path = NSManagedObject/CategorieCulinaire.swift; sourceTree = "<group>"; };
+		398857E91CC2BA1000B05F64 /* Restaurant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Restaurant.swift; path = NSManagedObject/Restaurant.swift; sourceTree = "<group>"; };
+		398AA7DF1D17F90500FA7E0A /* VegOresto-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "VegOresto-Bridging-Header.h"; sourceTree = "<group>"; };
+		398AA7E01D17F90600FA7E0A /* LGSideMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LGSideMenuController.m; path = Ressources/Lib/LGSideMenuController.m; sourceTree = "<group>"; };
+		398AA7E11D17F90600FA7E0A /* LGSideMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LGSideMenuController.h; path = Ressources/Lib/LGSideMenuController.h; sourceTree = "<group>"; };
+		398AA7E21D17F90600FA7E0A /* MenuLateral.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuLateral.swift; sourceTree = "<group>"; };
+		398AA7E31D17F90600FA7E0A /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIViewControllerExtension.swift; path = Ressources/UIViewControllerExtension.swift; sourceTree = "<group>"; };
+		398AA7E41D17F90600FA7E0A /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		39968D3B1CABFFBA0085C61F /* VegOresto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VegOresto.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		39968D3E1CABFFBB0085C61F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		39968D461CABFFBB0085C61F /* VegOresto.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = VegOresto.xcdatamodel; sourceTree = "<group>"; };
+		39968D4D1CABFFBB0085C61F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		39C50EFA1CC8D9670019FA2B /* Images.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Images.swift; path = Constants_Gen/Images.swift; sourceTree = SOURCE_ROOT; };
+		39C50EFB1CC8D9670019FA2B /* Storyboards.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Storyboards.swift; path = Constants_Gen/Storyboards.swift; sourceTree = SOURCE_ROOT; };
+		39C50F011CCAC5610019FA2B /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		39EC7FEF1CAC0E15002AD862 /* MapsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapsViewController.swift; sourceTree = "<group>"; };
+		39EC7FF11CAC0EAF002AD862 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		39EC7FF51CAC1F9F002AD862 /* UserData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
+		39EC80031CAC4787002AD862 /* RechercheViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RechercheViewController.swift; sourceTree = "<group>"; };
+		39EC80051CAD5ED2002AD862 /* RestaurantAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantAnnotation.swift; sourceTree = "<group>"; };
+		603DD9DF0F9E7DA0799F922E /* Pods-VegOresto.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VegOresto.release.xcconfig"; path = "Pods/Target Support Files/Pods-VegOresto/Pods-VegOresto.release.xcconfig"; sourceTree = "<group>"; };
+		8F136A5DB59857F23905F5CF /* Pods_VegOresto.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VegOresto.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AE25C12E1FD61DF0007AAF3A /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		AE5CED771FB4B0C8002B2788 /* VegOresto.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = VegOresto.entitlements; sourceTree = "<group>"; };
+		AE62973E1FB2DD26006313E5 /* Constantes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constantes.swift; sourceTree = "<group>"; };
+		AE991F941FC09FD60091D697 /* entities.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = entities.c; path = entities/entities.c; sourceTree = "<group>"; };
+		AE991F951FC09FD60091D697 /* entities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = entities.h; path = entities/entities.h; sourceTree = "<group>"; };
+		AE991F991FC0A0090091D697 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
+		AEB954C71FBE3E6D0019DFF1 /* CLLocation+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLLocation+Extensions.swift"; sourceTree = "<group>"; };
+		AEE7808A1FB313B300022F38 /* 2017-02-VegOresto-Charte.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = "2017-02-VegOresto-Charte.pdf"; path = "Ressources/2017-02-VegOresto-Charte.pdf"; sourceTree = "<group>"; };
+		AEE7808C1FB3146500022F38 /* CharteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharteViewController.swift; sourceTree = "<group>"; };
+		AEE7808F1FB4448B00022F38 /* UserLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLocationManager.swift; sourceTree = "<group>"; };
+		AEE780911FB4489800022F38 /* Deeplinking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deeplinking.swift; sourceTree = "<group>"; };
+		AEE780931FB45DFA00022F38 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIImage+Extension.swift"; path = "VegOresto/UIImage+Extension.swift"; sourceTree = SOURCE_ROOT; };
+		AEFF28C51FE3DBCF008D2023 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		AEFF28C71FE41862008D2023 /* AnalyticsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsHelper.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		39968D381CABFFBA0085C61F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				37F8801D1FADEF4C00F34F78 /* Keys.framework in Frameworks */,
+				37D05B3A1FAC9C68005B3B9D /* Photos.framework in Frameworks */,
+				39C50F0A1CCAD7C20019FA2B /* libz.tbd in Frameworks */,
+				39189F7A1CB5548500A64E5E /* CoreLocation.framework in Frameworks */,
+				39EC7FF21CAC0EAF002AD862 /* MapKit.framework in Frameworks */,
+				3978B2771CAC088400D82040 /* libstdc++.tbd in Frameworks */,
+				C9BB0E46024B374EBEB1773F /* Pods_VegOresto.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		37D82FF41F9F101A0037CD4B /* AddComment */ = {
+			isa = PBXGroup;
+			children = (
+				37D82FF51F9F10380037CD4B /* AddCommentContainerViewController.swift */,
+				37D82FF71F9F10520037CD4B /* CreateCommentStep1ViewController.swift */,
+				37D82FF91F9F10660037CD4B /* CreateCommentStep2UserViewController.swift */,
+				37D82FFB1F9F107A0037CD4B /* CreateCommentStep3ImagesViewController.swift */,
+				37D82FFD1F9F10900037CD4B /* CreateCommentStep4ResumeViewController.swift */,
+			);
+			name = AddComment;
+			sourceTree = "<group>";
+		};
+		3939F3901D6B9874006786D6 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				3939F3931D6B98B8006786D6 /* ufonts.com_urw-gothic-l-book.ttf */,
+				3939F3911D6B9889006786D6 /* olivier_01.ttf */,
+			);
+			name = Fonts;
+			sourceTree = "<group>";
+		};
+		396BD9781CAEB7640071DF07 /* Ressources */ = {
+			isa = PBXGroup;
+			children = (
+				AE991F981FC09FE10091D697 /* entities */,
+				AE991F991FC0A0090091D697 /* String+Extensions.swift */,
+				AEB954C71FBE3E6D0019DFF1 /* CLLocation+Extensions.swift */,
+				398AA7E31D17F90600FA7E0A /* UIViewControllerExtension.swift */,
+				398AA7E91D17F91100FA7E0A /* LGSlideMenu Lib */,
+				390909D81DCB3E52005F77CB /* FBAnnotation.swift */,
+				390909D91DCB3E52005F77CB /* FBAnnotationCluster.swift */,
+				390909DA1DCB3E52005F77CB /* FBAnnotationClusterView.swift */,
+				390909DB1DCB3E52005F77CB /* FBBoundingBox.swift */,
+				390909DC1DCB3E52005F77CB /* FBClusteringManager.swift */,
+				390909DD1DCB3E52005F77CB /* FBQuadTree.swift */,
+				390909DE1DCB3E52005F77CB /* FBQuadTreeNode.swift */,
+				390909E61DCB3E85005F77CB /* ImagesClusters.xcassets */,
+				37255B7E1F818CC3006B501C /* Media.xcassets */,
+				AE5CED771FB4B0C8002B2788 /* VegOresto.entitlements */,
+				391D6D791D7060780023733E /* Pods-VegOresto-acknowledgements.plist */,
+				AEE7808A1FB313B300022F38 /* 2017-02-VegOresto-Charte.pdf */,
+				3939F3901D6B9874006786D6 /* Fonts */,
+				39C50F001CC8E02D0019FA2B /* SwiftGen */,
+				398AA7DF1D17F90500FA7E0A /* VegOresto-Bridging-Header.h */,
+				39968D4D1CABFFBB0085C61F /* Info.plist */,
+				39968D451CABFFBB0085C61F /* VegOresto.xcdatamodeld */,
+				AEFF28C51FE3DBCF008D2023 /* GoogleService-Info.plist */,
+			);
+			name = Ressources;
+			sourceTree = "<group>";
+		};
+		396BD97A1CAEB7930071DF07 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				398AA7EA1D17F91E00FA7E0A /* Navigation Generale */,
+				AEB954C41FBE13B60019DFF1 /* Home */,
+				AEB954C51FBE143E0019DFF1 /* Restaurant Details */,
+				AEB954C61FBE14470019DFF1 /* Favorites */,
+				AEB954C31FBE13550019DFF1 /* About */,
+				37D82FF41F9F101A0037CD4B /* AddComment */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		396BD97B1CAEB79C0071DF07 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				39EC7FF51CAC1F9F002AD862 /* UserData.swift */,
+				AEE7808F1FB4448B00022F38 /* UserLocationManager.swift */,
+				AEE780911FB4489800022F38 /* Deeplinking.swift */,
+				AEFF28C71FE41862008D2023 /* AnalyticsHelper.swift */,
+				AEE7808E1FB3293A00022F38 /* Network */,
+				397901751CADC62900597DCD /* CoreData */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		396BD97C1CAEB7A90071DF07 /* IHM */ = {
+			isa = PBXGroup;
+			children = (
+				39968D421CABFFBB0085C61F /* Main.storyboard */,
+				39968D4A1CABFFBB0085C61F /* LaunchScreen.storyboard */,
+			);
+			name = IHM;
+			sourceTree = "<group>";
+		};
+		396BD9811CAEB8710071DF07 /* Tools and Services */ = {
+			isa = PBXGroup;
+			children = (
+				370CBE511FB128AA00A1AE02 /* UIView+Material.swift */,
+				AEE780931FB45DFA00022F38 /* UIImage+Extension.swift */,
+				396BD97F1CAEB8640071DF07 /* ColorExtension.swift */,
+			);
+			name = "Tools and Services";
+			sourceTree = "<group>";
+		};
+		397901751CADC62900597DCD /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				398857E91CC2BA1000B05F64 /* Restaurant.swift */,
+				37DD9C071F5DE3A1007B3E2B /* Restaurant+CoreDataProperties.swift */,
+				37E9D7A71F6EE42700D39672 /* Horaire.swift */,
+				37E9D7A81F6EE42700D39672 /* Horaire+CoreDataProperties.swift */,
+				39610F541E1DBF4A005F7053 /* Comment.swift */,
+				37DD9C061F5DE3A1007B3E2B /* Comment+CoreDataProperties.swift */,
+				398857E51CC2B97600B05F64 /* CategorieCulinaire.swift */,
+				398857E41CC2B97600B05F64 /* CategorieCulinaire+CoreDataProperties.swift */,
+			);
+			name = CoreData;
+			sourceTree = "<group>";
+		};
+		398AA7E91D17F91100FA7E0A /* LGSlideMenu Lib */ = {
+			isa = PBXGroup;
+			children = (
+				398AA7E01D17F90600FA7E0A /* LGSideMenuController.m */,
+				398AA7E11D17F90600FA7E0A /* LGSideMenuController.h */,
+			);
+			name = "LGSlideMenu Lib";
+			sourceTree = "<group>";
+		};
+		398AA7EA1D17F91E00FA7E0A /* Navigation Generale */ = {
+			isa = PBXGroup;
+			children = (
+				398AA7E21D17F90600FA7E0A /* MenuLateral.swift */,
+				398AA7E41D17F90600FA7E0A /* MainViewController.swift */,
+			);
+			name = "Navigation Generale";
+			sourceTree = "<group>";
+		};
+		39968D321CABFFBA0085C61F = {
+			isa = PBXGroup;
+			children = (
+				39968D3D1CABFFBB0085C61F /* VegOresto */,
+				39968D3C1CABFFBA0085C61F /* Products */,
+				FDF1F99F6257ABBB1FA1CF5F /* Frameworks */,
+				FBB7DDCF4C7EDFB0424F62AC /* Pods */,
+			);
+			sourceTree = "<group>";
+		};
+		39968D3C1CABFFBA0085C61F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				39968D3B1CABFFBA0085C61F /* VegOresto.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		39968D3D1CABFFBB0085C61F /* VegOresto */ = {
+			isa = PBXGroup;
+			children = (
+				39968D3E1CABFFBB0085C61F /* AppDelegate.swift */,
+				AE62973E1FB2DD26006313E5 /* Constantes.swift */,
+				396BD97B1CAEB79C0071DF07 /* Models */,
+				396BD97A1CAEB7930071DF07 /* Controllers */,
+				396BD97C1CAEB7A90071DF07 /* IHM */,
+				396BD9811CAEB8710071DF07 /* Tools and Services */,
+				396BD9781CAEB7640071DF07 /* Ressources */,
+			);
+			path = VegOresto;
+			sourceTree = "<group>";
+		};
+		39C50F001CC8E02D0019FA2B /* SwiftGen */ = {
+			isa = PBXGroup;
+			children = (
+				39C50EFA1CC8D9670019FA2B /* Images.swift */,
+				39C50EFB1CC8D9670019FA2B /* Storyboards.swift */,
+			);
+			name = SwiftGen;
+			sourceTree = "<group>";
+		};
+		AE991F981FC09FE10091D697 /* entities */ = {
+			isa = PBXGroup;
+			children = (
+				AE991F941FC09FD60091D697 /* entities.c */,
+				AE991F951FC09FD60091D697 /* entities.h */,
+			);
+			name = entities;
+			sourceTree = "<group>";
+		};
+		AEB954C31FBE13550019DFF1 /* About */ = {
+			isa = PBXGroup;
+			children = (
+				391D6D7B1D7060A50023733E /* AboutViewController.swift */,
+				AEE7808C1FB3146500022F38 /* CharteViewController.swift */,
+			);
+			name = About;
+			sourceTree = "<group>";
+		};
+		AEB954C41FBE13B60019DFF1 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				39848B071CB4231300D718FD /* NavigationAccueilViewController.swift */,
+				370CBE531FB1920D00A1AE02 /* VGAbstractFilterViewController.swift */,
+				39EC7FEF1CAC0E15002AD862 /* MapsViewController.swift */,
+				39EC80031CAC4787002AD862 /* RechercheViewController.swift */,
+				39EC80051CAD5ED2002AD862 /* RestaurantAnnotation.swift */,
+			);
+			name = Home;
+			sourceTree = "<group>";
+		};
+		AEB954C51FBE143E0019DFF1 /* Restaurant Details */ = {
+			isa = PBXGroup;
+			children = (
+				396BD9741CAE62670071DF07 /* DetailRestaurantViewController.swift */,
+				39610F501E1DB62A005F7053 /* TableCommentsViewController.swift */,
+				39610F521E1DB6C1005F7053 /* CommentTableViewCell.swift */,
+			);
+			name = "Restaurant Details";
+			sourceTree = "<group>";
+		};
+		AEB954C61FBE14470019DFF1 /* Favorites */ = {
+			isa = PBXGroup;
+			children = (
+				397D33981D18222E00BA7708 /* ListeFavorisViewController.swift */,
+			);
+			name = Favorites;
+			sourceTree = "<group>";
+		};
+		AEE7808E1FB3293A00022F38 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				37F880231FADF6F100F34F78 /* RequestManager.swift */,
+				37F880201FADF5FC00F34F78 /* WebRequestManager.swift */,
+			);
+			name = Network;
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		FBB7DDCF4C7EDFB0424F62AC /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				1D59E1EF91BED1528F2840DC /* Pods-VegOresto.debug.xcconfig */,
+				603DD9DF0F9E7DA0799F922E /* Pods-VegOresto.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		FDF1F99F6257ABBB1FA1CF5F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AE25C12E1FD61DF0007AAF3A /* StoreKit.framework */,
+				37F8801E1FADEF4C00F34F78 /* Keys.framework */,
+				37D05B391FAC9C68005B3B9D /* Photos.framework */,
+				39C50F011CCAC5610019FA2B /* libc++.tbd */,
+				39189F791CB5548500A64E5E /* CoreLocation.framework */,
+				39EC7FF11CAC0EAF002AD862 /* MapKit.framework */,
+				3978B2761CAC088400D82040 /* libstdc++.tbd */,
+				3978B2741CAC087A00D82040 /* libz.tbd */,
+				8F136A5DB59857F23905F5CF /* Pods_VegOresto.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		39968D3A1CABFFBA0085C61F /* VegOresto */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 39968D501CABFFBB0085C61F /* Build configuration list for PBXNativeTarget "VegOresto" */;
+			buildPhases = (
+				8D2F3221741213A99B02CFEF /* [CP] Check Pods Manifest.lock */,
+				AE84086B1FC24BC600701E60 /* Check Build Number */,
+				398857E31CC2B26300B05F64 /* Run SwiftLint + SwiftGen */,
+				39968D371CABFFBA0085C61F /* Sources */,
+				39968D381CABFFBA0085C61F /* Frameworks */,
+				39968D391CABFFBA0085C61F /* Resources */,
+				525004B7D7908068C86921F3 /* [CP] Embed Pods Frameworks */,
+				AEC0C2771FC1928F00C07E26 /* Run Fabric Script */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = VegOresto;
+			productName = VegOresto;
+			productReference = 39968D3B1CABFFBA0085C61F /* VegOresto.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		39968D331CABFFBA0085C61F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0820;
+				ORGANIZATIONNAME = "Nicolas Laurent";
+				TargetAttributes = {
+					39968D3A1CABFFBA0085C61F = {
+						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = JUR98HQ9F5;
+						LastSwiftMigration = 0800;
+						ProvisioningStyle = Manual;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
+					};
+				};
+			};
+			buildConfigurationList = 39968D361CABFFBA0085C61F /* Build configuration list for PBXProject "VegOresto" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				fr,
+			);
+			mainGroup = 39968D321CABFFBA0085C61F;
+			productRefGroup = 39968D3C1CABFFBA0085C61F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				39968D3A1CABFFBA0085C61F /* VegOresto */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		39968D391CABFFBA0085C61F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3939F3941D6B98B8006786D6 /* ufonts.com_urw-gothic-l-book.ttf in Resources */,
+				391D6D7A1D7060780023733E /* Pods-VegOresto-acknowledgements.plist in Resources */,
+				AEFF28C61FE3DBCF008D2023 /* GoogleService-Info.plist in Resources */,
+				37255B7F1F818D28006B501C /* Media.xcassets in Resources */,
+				3939F3921D6B9889006786D6 /* olivier_01.ttf in Resources */,
+				AEE7808B1FB313B300022F38 /* 2017-02-VegOresto-Charte.pdf in Resources */,
+				39968D4C1CABFFBB0085C61F /* LaunchScreen.storyboard in Resources */,
+				390909E71DCB3E85005F77CB /* ImagesClusters.xcassets in Resources */,
+				39968D441CABFFBB0085C61F /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		398857E31CC2B26300B05F64 /* Run SwiftLint + SwiftGen */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Run SwiftLint + SwiftGen";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\nswiftlint autocorrect\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n\nif which ./Pods/SwiftGen/bin/swiftgen >/dev/null; then\n\nrm -r ./Constants_Gen\n\nmkdir ./Constants_Gen\n\ntouch ./Constants_Gen/Images.swift\ntouch ./Constants_Gen/Storyboards.swift\n\n\n./Pods/SwiftGen/bin/swiftgen storyboards \"$PROJECT_DIR\" --output \"$PROJECT_DIR/Constants_Gen/Storyboards.swift\"  -t swift3\n./Pods/SwiftGen/bin/swiftgen xcassets \"$PROJECT_DIR/VegOresto/Ressources/Media.xcassets/\" --output \"$PROJECT_DIR/Constants_Gen/Images.swift\"  -t swift3\nelse\necho \"warning: SwiftGen not installed, download it from https://github.com/AliSoftware/SwiftGen\"\nfi\n";
+		};
+		525004B7D7908068C86921F3 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-VegOresto/Pods-VegOresto-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/AlamofireNetworkActivityIndicator/AlamofireNetworkActivityIndicator.framework",
+				"${BUILT_PRODUCTS_DIR}/AlamofireNetworkActivityLogger/AlamofireNetworkActivityLogger.framework",
+				"${BUILT_PRODUCTS_DIR}/BEMCheckBox/BEMCheckBox.framework",
+				"${BUILT_PRODUCTS_DIR}/DGElasticPullToRefresh/DGElasticPullToRefresh.framework",
+				"${BUILT_PRODUCTS_DIR}/FaveButton/FaveButton.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/ImagePicker/ImagePicker.framework",
+				"${BUILT_PRODUCTS_DIR}/JSONWebToken/JWT.framework",
+				"${BUILT_PRODUCTS_DIR}/Keys/Keys.framework",
+				"${BUILT_PRODUCTS_DIR}/LNRSimpleNotifications/LNRSimpleNotifications.framework",
+				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/MGSwipeTableCell/MGSwipeTableCell.framework",
+				"${BUILT_PRODUCTS_DIR}/MapleBacon/MapleBacon.framework",
+				"${BUILT_PRODUCTS_DIR}/MarqueeLabel/MarqueeLabel.framework",
+				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/PromiseKit/PromiseKit.framework",
+				"${BUILT_PRODUCTS_DIR}/ReCaptcha/ReCaptcha.framework",
+				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/SVPulsingAnnotationView/SVPulsingAnnotationView.framework",
+				"${BUILT_PRODUCTS_DIR}/SkyFloatingLabelTextField/SkyFloatingLabelTextField.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftSpinner/SwiftSpinner.framework",
+				"${BUILT_PRODUCTS_DIR}/VTAcknowledgementsViewController/VTAcknowledgementsViewController.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireNetworkActivityIndicator.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireNetworkActivityLogger.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BEMCheckBox.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DGElasticPullToRefresh.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FaveButton.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ImagePicker.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JWT.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Keys.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LNRSimpleNotifications.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MGSwipeTableCell.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MapleBacon.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MarqueeLabel.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PromiseKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReCaptcha.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVPulsingAnnotationView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SkyFloatingLabelTextField.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftSpinner.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/VTAcknowledgementsViewController.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VegOresto/Pods-VegOresto-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8D2F3221741213A99B02CFEF /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-VegOresto-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AE84086B1FC24BC600701E60 /* Check Build Number */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Build Number";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /usr/bin/python;
+			shellScript = "import os\nfrom subprocess import check_output\n\n# helpers\n\ndef check_build_version(bundle_version, bundle_short_version):\n    components = bundle_short_version.split('.')\n    if len(components) == 0 or len(components) > 3:\n        return False\n    major = int(components[0])\n    minor = int(components[1]) if len(components) >= 2 else 0\n    bugfix = int(components[2]) if len(components) >= 3 else 0\n\n    build = int(bundle_version)\n    major_s = int(build / 1000000000)\n    minor_s = int(build / 1000000) % 1000\n    bugfix_s = int(build / 1000) % 1000\n\n    return major == major_s and minor == minor_s and bugfix == bugfix_s\n\ndef get_build_number(bundle_version):\n    return int(bundle_version) % 1000\n\n# checking\n\nprint('Checking Build Number')\n\ninfoPlistPath = os.environ['PROJECT_DIR'] + '/' + os.environ['INFOPLIST_FILE']\nprint('Loading Info.plist from: {}'.format(infoPlistPath))\n\nbundleShortVersion = check_output(['/usr/libexec/PlistBuddy', '-c', 'Print CFBundleShortVersionString', infoPlistPath]).strip()\nbundleVersion = check_output(['/usr/libexec/PlistBuddy', '-c', 'Print CFBundleVersion', infoPlistPath]).strip()\n\nif not check_build_version(bundleVersion, bundleShortVersion):\n    print('Invalid Build Number')\n    print('  CFBundleShortVersionString = {}'.format(bundleShortVersion))\n    print('  CFBundleVersion = {}'.format(bundleVersion))\n    print('Version string must match Mmmmbbbnnn (M = major, mmm = minor, bbb = build, nnn = build number')\n    exit(1)\n\nprint('Short Version: {}, Version: {}, Build: {}'.format(bundleShortVersion, bundleVersion, get_build_number(bundleVersion)))\n";
+			showEnvVarsInLog = 0;
+		};
+		AEC0C2771FC1928F00C07E26 /* Run Fabric Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Run Fabric Script";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" 9c1e8be68d40f93dd9618c50ac7082f1090a54e4 4044d6fa1c8871002df962c51297d7aff9adaf06e99c8bc050990b05af07e337";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		39968D371CABFFBA0085C61F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				397D33991D18222E00BA7708 /* ListeFavorisViewController.swift in Sources */,
+				398AA7E81D17F90600FA7E0A /* MainViewController.swift in Sources */,
+				37DD9C0A1F5DE3C9007B3E2B /* Restaurant.swift in Sources */,
+				39EC80061CAD5ED2002AD862 /* RestaurantAnnotation.swift in Sources */,
+				39968D3F1CABFFBB0085C61F /* AppDelegate.swift in Sources */,
+				37E9D7AA1F6EE42700D39672 /* Horaire+CoreDataProperties.swift in Sources */,
+				398AA7E51D17F90600FA7E0A /* LGSideMenuController.m in Sources */,
+				AEE780921FB4489800022F38 /* Deeplinking.swift in Sources */,
+				39848B081CB4231300D718FD /* NavigationAccueilViewController.swift in Sources */,
+				AE62973F1FB2DD26006313E5 /* Constantes.swift in Sources */,
+				391D6D7C1D7060A50023733E /* AboutViewController.swift in Sources */,
+				AEE780941FB45DFA00022F38 /* UIImage+Extension.swift in Sources */,
+				AEFF28C81FE41862008D2023 /* AnalyticsHelper.swift in Sources */,
+				39610F511E1DB62A005F7053 /* TableCommentsViewController.swift in Sources */,
+				398857E61CC2B97600B05F64 /* CategorieCulinaire+CoreDataProperties.swift in Sources */,
+				390909DF1DCB3E52005F77CB /* FBAnnotation.swift in Sources */,
+				39610F531E1DB6C1005F7053 /* CommentTableViewCell.swift in Sources */,
+				370CBE521FB128AA00A1AE02 /* UIView+Material.swift in Sources */,
+				AEB954C81FBE3E6D0019DFF1 /* CLLocation+Extensions.swift in Sources */,
+				37F880241FADF6F100F34F78 /* RequestManager.swift in Sources */,
+				398AA7E61D17F90600FA7E0A /* MenuLateral.swift in Sources */,
+				39C50EFD1CC8D9670019FA2B /* Storyboards.swift in Sources */,
+				390909E11DCB3E52005F77CB /* FBAnnotationClusterView.swift in Sources */,
+				390909E01DCB3E52005F77CB /* FBAnnotationCluster.swift in Sources */,
+				39968D471CABFFBB0085C61F /* VegOresto.xcdatamodeld in Sources */,
+				39EC7FF61CAC1F9F002AD862 /* UserData.swift in Sources */,
+				398AA7E71D17F90600FA7E0A /* UIViewControllerExtension.swift in Sources */,
+				37D82FF81F9F10520037CD4B /* CreateCommentStep1ViewController.swift in Sources */,
+				39EC7FF01CAC0E15002AD862 /* MapsViewController.swift in Sources */,
+				AEE780901FB4448B00022F38 /* UserLocationManager.swift in Sources */,
+				390909E51DCB3E52005F77CB /* FBQuadTreeNode.swift in Sources */,
+				AE991F961FC09FD70091D697 /* entities.c in Sources */,
+				370CBE541FB1920D00A1AE02 /* VGAbstractFilterViewController.swift in Sources */,
+				37DD9C091F5DE3A1007B3E2B /* Restaurant+CoreDataProperties.swift in Sources */,
+				37D82FF61F9F10380037CD4B /* AddCommentContainerViewController.swift in Sources */,
+				39EC80041CAC4787002AD862 /* RechercheViewController.swift in Sources */,
+				390909E41DCB3E52005F77CB /* FBQuadTree.swift in Sources */,
+				37D82FFA1F9F10660037CD4B /* CreateCommentStep2UserViewController.swift in Sources */,
+				390909E21DCB3E52005F77CB /* FBBoundingBox.swift in Sources */,
+				37E9D7A91F6EE42700D39672 /* Horaire.swift in Sources */,
+				37D82FFC1F9F107A0037CD4B /* CreateCommentStep3ImagesViewController.swift in Sources */,
+				390909E31DCB3E52005F77CB /* FBClusteringManager.swift in Sources */,
+				37F880221FADF5FC00F34F78 /* WebRequestManager.swift in Sources */,
+				37DD9C081F5DE3A1007B3E2B /* Comment+CoreDataProperties.swift in Sources */,
+				398857E71CC2B97600B05F64 /* CategorieCulinaire.swift in Sources */,
+				39C50EFC1CC8D9670019FA2B /* Images.swift in Sources */,
+				AEE7808D1FB3146500022F38 /* CharteViewController.swift in Sources */,
+				AE991F9A1FC0A0090091D697 /* String+Extensions.swift in Sources */,
+				396BD9751CAE62670071DF07 /* DetailRestaurantViewController.swift in Sources */,
+				39610F561E1DBF4A005F7053 /* Comment.swift in Sources */,
+				37D82FFE1F9F10900037CD4B /* CreateCommentStep4ResumeViewController.swift in Sources */,
+				396BD9801CAEB8640071DF07 /* ColorExtension.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		39968D421CABFFBB0085C61F /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				370F7B491F97AA43008A4C8E /* fr */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		39968D4A1CABFFBB0085C61F /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				370F7B4B1F97AA67008A4C8E /* fr */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		39968D4E1CABFFBB0085C61F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VALIDATE_PRODUCT = NO;
+			};
+			name = Debug;
+		};
+		39968D4F1CABFFBB0085C61F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PROVISIONING_PROFILE = "393ac208-fd12-49ba-9f06-e82b9bbd0158";
+				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				VALIDATE_PRODUCT = NO;
+			};
+			name = Release;
+		};
+		39968D511CABFFBB0085C61F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1D59E1EF91BED1528F2840DC /* Pods-VegOresto.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = VegOresto/VegOresto.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = JUR98HQ9F5;
+				INFOPLIST_FILE = VegOresto/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.l214.vegoresto;
+				PRODUCT_NAME = VegOresto;
+				PROVISIONING_PROFILE = "07ee982d-1144-4130-baea-7866e2e4ce35";
+				PROVISIONING_PROFILE_SPECIFIER = "VegOresto Micha iOS Development";
+				SWIFT_OBJC_BRIDGING_HEADER = "VegOresto/VegOresto-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		39968D521CABFFBB0085C61F /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 603DD9DF0F9E7DA0799F922E /* Pods-VegOresto.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = VegOresto/VegOresto.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Association L214 (JUR98HQ9F5)";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = JUR98HQ9F5;
+				INFOPLIST_FILE = VegOresto/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.l214.vegoresto;
+				PRODUCT_NAME = VegOresto;
+				PROVISIONING_PROFILE = "093a0484-d8cc-476e-86ee-94cd4caaff72";
+				PROVISIONING_PROFILE_SPECIFIER = "VegOresto Distribution";
+				SWIFT_OBJC_BRIDGING_HEADER = "VegOresto/VegOresto-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		39968D361CABFFBA0085C61F /* Build configuration list for PBXProject "VegOresto" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				39968D4E1CABFFBB0085C61F /* Debug */,
+				39968D4F1CABFFBB0085C61F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		39968D501CABFFBB0085C61F /* Build configuration list for PBXNativeTarget "VegOresto" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				39968D511CABFFBB0085C61F /* Debug */,
+				39968D521CABFFBB0085C61F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		39968D451CABFFBB0085C61F /* VegOresto.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				39968D461CABFFBB0085C61F /* VegOresto.xcdatamodel */,
+			);
+			currentVersion = 39968D461CABFFBB0085C61F /* VegOresto.xcdatamodel */;
+			path = VegOresto.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 39968D331CABFFBA0085C61F /* Project object */;
+}

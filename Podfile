@@ -1,35 +1,36 @@
+project 'VegOresto.xcodeproj'
 platform :ios, '10.0'
+inhibit_all_warnings!
 use_frameworks!
 
 # plugin cocoapods-keys (via gem install), see github for details
 plugin 'cocoapods-keys', {
-    :project => "VegoResto",
+    :project => "VegOresto",
     :keys => [
         "apiBaseUrl",
         "apiClientId",
         "apiClientSecret",
-        "apiBasicAuthLogin",
-        "apiBasicAuthPassword",
     ]
 }
 
-target 'VegoResto' do
-    pod 'Pushwoosh'
+target 'VegOresto' do
     pod 'SVPulsingAnnotationView'
     pod 'SwiftGen'
-    pod 'GZIP'
     pod 'MGSwipeTableCell'
     pod 'SwiftSpinner'
     pod 'MapleBacon'
     pod 'VTAcknowledgementsViewController'
     pod 'LNRSimpleNotifications'
     pod 'MarqueeLabel'
-    pod 'Kanna'
+    pod 'PromiseKit'
 
     # Webservices
     pod 'Alamofire'
-    pod 'AlamofireObjectMapper'
+    pod 'ObjectMapper'
     pod 'JSONWebToken'
+    pod 'PromiseKit/Alamofire'
+    pod 'AlamofireNetworkActivityIndicator', '~> 2.2'
+    pod 'AlamofireNetworkActivityLogger', '~> 2.0'
 
     # Captcha
     pod 'ReCaptcha'
@@ -42,6 +43,11 @@ target 'VegoResto' do
     pod 'SkyFloatingLabelTextField'
     pod 'SDWebImage'
     pod 'BEMCheckBox'
+    
+    # Firebase + Fabric
+    pod 'Firebase/Core'
+    pod 'Fabric', '~> 1.7.2'
+    pod 'Crashlytics', '~> 3.9.3'
 end
 
 post_install do |installer|
